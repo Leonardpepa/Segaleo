@@ -1,0 +1,8 @@
+Beach Reservation#10#Activities/beach.png
+Tennis#27#Activities/tennis.png
+Golf#40#Activities/golf.png
+Water Park#20#Activities/waterPark.png
+Spa#16#Activities/spa.pmg
+Diving#40#Activities/diving.png
+Road Trip#30#Activities/road.png
+Concerts#25#Activities/concerts.png
