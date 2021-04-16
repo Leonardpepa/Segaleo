@@ -35,6 +35,7 @@ public class ButtonFactory extends JButton{
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setOpaque(false);
 		button.setFocusPainted(true);
+		button.setContentAreaFilled(false);
 		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		return button;
