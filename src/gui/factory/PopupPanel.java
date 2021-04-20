@@ -21,7 +21,7 @@ public class PopupPanel extends JPanel{
 	
 	public JPanel configurePopupWindow() {
 //		popupPanel = new JPanel();
-		this.setBounds(146, 583, 144,109);
+		this.setBounds(146, 620, 144,109);
 		this.setBackground(new Color(153, 190, 193));
 		
 		
