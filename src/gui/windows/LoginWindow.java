@@ -7,6 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import gui.factory.*;
+import resources.ColorResources;
 import resources.TextResources;
 
 
@@ -58,7 +59,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 	public void intilizePanelToFrame() {
 		
 		new TextResources().changeLanguage();
-		
+		new ColorResources();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -110,7 +111,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 		contactBtn.setBounds(309, 723, 61, 61);
 		
 		
-		loginBtn = ButtonFactory.createButton(TextResources.loginBtn, FontFactory.poppins(20), new Color(0, 129, 138), Color.WHITE);
+		loginBtn = ButtonFactory.createButton(TextResources.loginBtn, FontFactory.poppins(20), ColorResources.bgLoginWindow, Color.WHITE);
 		loginBtn.setBounds(22, 468, 331, 52);
 		
 	}

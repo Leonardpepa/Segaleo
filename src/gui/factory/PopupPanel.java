@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import resources.ColorResources;
 import resources.TextResources;
 
 public class PopupPanel extends JPanel{
@@ -23,15 +24,15 @@ public class PopupPanel extends JPanel{
 	public JPanel configurePopupWindow() {
 		
 		this.setBounds(146, 620, 144,109);
-		this.setBackground(new Color(153, 190, 193));
+		this.setBackground(ColorResources.bgPopup);
 		
 		
-		languageLabel = LabelFactory.createLabel(TextResources.languageLabel, new Color(32, 150, 171), FontFactory.poppins(18));
+		languageLabel = LabelFactory.createLabel(TextResources.languageLabel, ColorResources.frMainWindowBtn, FontFactory.poppins(18));
 		languageLabel.setPreferredSize(new Dimension(120, 35));
 
 		
-		greek = ButtonFactory.createButton(TextResources.greek, FontFactory.poppins(18),new Color(153, 190, 193) ,new Color(205, 221, 223));
-		english = ButtonFactory.createButton(TextResources.english, FontFactory.poppins(18), new Color(153, 190, 193), new Color(205, 221, 223));
+		greek = ButtonFactory.createButton(TextResources.greek, FontFactory.poppins(18),ColorResources.bgPopup ,ColorResources.bgMainWindowBtn);
+		english = ButtonFactory.createButton(TextResources.english, FontFactory.poppins(18), ColorResources.bgPopup, ColorResources.bgMainWindowBtn);
 		greek.setPreferredSize(new Dimension(100, 25));
 		english.setPreferredSize(new Dimension(100, 25));
 		
