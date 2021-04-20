@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import gui.factory.*;
-import resources.TextResources;
 import resources.*;
 
 public class MainWindow  extends JFrame implements ActionListener{
@@ -56,7 +55,6 @@ public class MainWindow  extends JFrame implements ActionListener{
 	public void intilizePanelToFrame() {
 		
 		new TextResources().changeLanguage();
-		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
