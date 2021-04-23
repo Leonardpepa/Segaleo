@@ -9,7 +9,7 @@ public class ColorResources {
 	public static Color frLoginWindow = Color.WHITE;
 	public static Color bgPopup = new Color(153, 190, 193);
 	public static Color frPopup = Color.LIGHT_GRAY;
-	public static Color appetizer = new Color(238 , 206, 97);
+	public static Color appetizer = new Color(238 , 106, 97);
 	public static Color main = new Color(250, 217, 109);
 	public static Color salads = new Color(175, 206, 120);
 	public static Color paymentBtn = new Color(216, 223, 224);

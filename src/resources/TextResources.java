@@ -14,8 +14,17 @@ public class TextResources {
 	public static String greek;
 	public static String english;
 	public static String viewCart;
-	
-	
+	public static String search; 
+	public static String deals; 
+	public static String main; 
+	public static String salads; 
+	public static String desserts; 
+	public static String coffee; 
+	public static String drinks;
+	public static String appetizers;
+	public static String explore;
+	public static String breakfast;
+
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Î•Î»Î»Î·Î½Î¹ÎºÎ¬";
 		english = isEnglish ? "English" : "Î‘Î³Î³Î»Î¹ÎºÎ¬";
@@ -28,7 +37,16 @@ public class TextResources {
 		loginBtn = isEnglish ? "LOGIN" : "Î•Î™Î£ÎŸÎ”ÎŸÎ£";
 		languageLabel = isEnglish ? "Languages" : "Î“Î»ÏŽÏƒÏƒÎµÏ‚";
 		viewCart = isEnglish ? "View Cart" : "Δες το καλαθι";
-		
+		search = isEnglish ? "Search" : "Αναζητηση";
+		deals = isEnglish ? "Deals of the day" : "Προσφορες της ημερας";
+		main = isEnglish ? "Main" : "Κυριως";
+		salads = isEnglish ? "Salads" : "Σαλατες";
+		desserts = isEnglish ? "Desserts" : "Γλυκα";
+		coffee = isEnglish ? "Coffes" : "Καφεδες";
+		drinks = isEnglish ? "Drinks" : "Ποτα";
+		appetizers = isEnglish ? "Appetizers" : "Ορεκτικα";
+		breakfast = isEnglish ? "Breakfast" : "Πρωινο";
+		explore = isEnglish ? "Explore by category" : "Εξερευνηστε απο τις κατηγοριες";
 	}
 	
 }

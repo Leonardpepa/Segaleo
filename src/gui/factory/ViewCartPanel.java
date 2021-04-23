@@ -44,7 +44,7 @@ public class ViewCartPanel extends JPanel{
 		priceLabel.setBounds(301, this.getHeight()/2 - 15, 49, 20);
 		
 		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
-		viewCart.setBounds(67, this.getHeight()/2 - 15, 67, 20);
+		viewCart.setBounds(67, this.getHeight()/2 - 15, 200, 20);
 		
 		bagLabel = LabelFactory.createIconLabel(bagIcon);
 		bagLabel.setBounds(29, this.getHeight()/2 - 15, 25, 25);
