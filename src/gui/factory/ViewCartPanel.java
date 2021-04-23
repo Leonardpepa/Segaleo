@@ -1,6 +1,8 @@
 package gui.factory;
 
 import java.awt.Cursor;
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +27,7 @@ public class ViewCartPanel extends JPanel{
 	
 	public ViewCartPanel() {
 		this.setLayout(null);
+		this.setPreferredSize(new Dimension(375,94));
 		this.setBounds(0, 718, 375, 94);
 		configureComponents();
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));

@@ -34,7 +34,7 @@ public class FontFactory {
 	}
 	
 	public static Font lineThrough(int size) {
-		Font font = new Font("poppins", Font.PLAIN, size);
+		Font font = new Font("Poppins", Font.PLAIN, size);
 		Map  attributes = font.getAttributes();
 		attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
 		Font newFont = new Font(attributes);

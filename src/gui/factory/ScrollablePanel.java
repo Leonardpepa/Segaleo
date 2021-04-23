@@ -1,20 +1,8 @@
 package gui.factory;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.desktop.ScreenSleepListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import order.Product;
@@ -30,6 +18,7 @@ public class ScrollablePanel extends JPanel{
 		}
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
+		scrollPane.getVerticalScrollBar().setUnitIncrement(15);
 		return scrollPane;
 	}
 }

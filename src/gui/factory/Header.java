@@ -36,7 +36,7 @@ public class Header extends JPanel{
 	public void configureComponents() {
 		
 		compobox = new JComboBox<>(sorts);
-		compobox.setBounds(236, 130, 120, 20);
+		compobox.setBounds(236, 119, 120, 20);
 		
 		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
 		backButton.setBounds(16, 30, 63, 23);
@@ -45,7 +45,7 @@ public class Header extends JPanel{
 		headerLabel.setPreferredSize(new Dimension(100, 100));
 		headerLabel.setOpaque(true);
 		headerLabel.setBackground(headerLabelColor);
-		headerLabel.setBounds(16, 77,150,50);
+		headerLabel.setBounds(16, 77,150,62);
 		
 		search = new JTextField("Search");
 		search.setBounds(16, 160, 340, 30);

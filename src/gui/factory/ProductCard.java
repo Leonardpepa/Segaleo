@@ -53,7 +53,7 @@ public class ProductCard extends JPanel{
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "$", Color.BLACK, FontFactory.poppins(13));
-		priceLabel.setBounds(288, 80, 43, 19);
+		priceLabel.setBounds(288, 75, 43, 19);
 		
 		
 	}
