@@ -1,0 +1,8 @@
+Κράτηση ξαπλώστρας στην παραλία#10#Activities/beach.png
+Τένις#27#Activities/tennis.png
+Γκολφ#40#Activities/golf.png
+Πάρκο με νεροτσουλήθρες#20#Activities/waterPark.png
+Σπα#16#Activities/spa.pmg
+Κατάδυση#40#Activities/diving.png
+Ημερήσια οδική εκδρομή#30#Activities/road.png
+Συναυλίες#25#Activities/concerts.png
