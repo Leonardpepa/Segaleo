@@ -15,6 +15,7 @@ public class TextResources {
 	public static String english;
 	public static String viewCart;
 	
+	
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Î•Î»Î»Î·Î½Î¹ÎºÎ¬";
 		english = isEnglish ? "English" : "Î‘Î³Î³Î»Î¹ÎºÎ¬";
