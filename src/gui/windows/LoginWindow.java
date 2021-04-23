@@ -59,7 +59,6 @@ public class LoginWindow extends JFrame implements ActionListener{
 	public void intilizePanelToFrame() {
 		
 		new TextResources().changeLanguage();
-		new ColorResources();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
