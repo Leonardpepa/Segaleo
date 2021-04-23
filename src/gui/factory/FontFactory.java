@@ -1,5 +1,7 @@
 package gui.factory;
 import java.awt.Font;
+import java.awt.font.TextAttribute;
+import java.util.Map;
 
 public class FontFactory {
 
@@ -31,4 +33,11 @@ public class FontFactory {
 		return new Font("Avenir", Font.PLAIN, size);
 	}
 	
+	public static Font lineThrough(int size) {
+		Font font = new Font("poppins", Font.PLAIN, size);
+		Map  attributes = font.getAttributes();
+		attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+		Font newFont = new Font(attributes);
+		return newFont;
+	}
 }
