@@ -18,10 +18,10 @@ public class ViewCartPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	ImageIcon bagIcon = new ImageIcon("buttonImages/Bag.png");
-	JLabel bagLabel;
-	JLabel viewCart;
-	JLabel priceLabel;
+	private ImageIcon bagIcon;
+	private JLabel bagLabel;
+	private JLabel viewCart;
+	private JLabel priceLabel;
 	
 	public ViewCartPanel() {
 		this.setLayout(null);
@@ -35,15 +35,27 @@ public class ViewCartPanel extends JPanel{
 	
 	private void configureComponents() {
 		//TODO make the text of the price change dynamically
-				priceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
-				priceLabel.setBounds(301, this.getHeight()/2 - 15, 49, 20);
-				
-				viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
-				viewCart.setBounds(67, this.getHeight()/2 - 15, 67, 20);
-				
-				bagLabel = LabelFactory.createIconLabel(bagIcon);
-				bagLabel.setBounds(29, this.getHeight()/2 - 15, 25, 25);
+		bagIcon = new ImageIcon("buttonImages/Bag.png");
+		
+		priceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
+		priceLabel.setBounds(301, this.getHeight()/2 - 15, 49, 20);
+		
+		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
+		viewCart.setBounds(67, this.getHeight()/2 - 15, 67, 20);
+		
+		bagLabel = LabelFactory.createIconLabel(bagIcon);
+		bagLabel.setBounds(29, this.getHeight()/2 - 15, 25, 25);
+		bagLabel.setText("0");
 	}
+
+	public JLabel getPriceLabel() {
+		return priceLabel;
+	}
+
+	public void setPriceLabel(JLabel priceLabel) {
+		this.priceLabel = priceLabel;
+	}
+	
 	
 	
 }
