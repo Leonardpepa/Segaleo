@@ -30,7 +30,7 @@ public class ScrollablePanel extends JPanel{
 			
 		container.setLayout(new GridLayout(1,products.size(),8,0));
 			
-			for(Product product: products) {
+		for (Product product: products) {
 				container.add(new DealsCard().createPanel(product));
 			}
 			
