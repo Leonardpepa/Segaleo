@@ -130,7 +130,8 @@ public class MainWindow  extends JFrame implements ActionListener{
 		logoutBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
-		
+		profileBtn.addActionListener(this);
+		servicesBtn.addActionListener(this);
 	}
 
 
@@ -151,6 +152,11 @@ public class MainWindow  extends JFrame implements ActionListener{
 		
 		if(e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
+		}
+		
+		if(e.getSource() == profileBtn) {
+			this.dispose();
+			new ProfileWindow();
 		}
 		intilizePanelToFrame();
 	}

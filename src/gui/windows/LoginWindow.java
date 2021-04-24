@@ -57,7 +57,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 	
 	//set up the panel in the frame
 	public void intilizePanelToFrame() {
-		
+		new ColorResources();
 		new TextResources().changeLanguage();
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -135,6 +135,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 		loginBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
+		
 	}
 	
 	//add or remove the popup panel
