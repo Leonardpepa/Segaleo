@@ -1,8 +1,10 @@
-package gui.factory;
+package gui.components;
 
 import java.awt.*;
 import javax.swing.*;
 
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
 import order.Product;
 
 public class ProductCard extends JPanel{

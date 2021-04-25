@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import gui.components.PopupPanel;
 import gui.factory.*;
 import resources.ColorResources;
 import resources.TextResources;

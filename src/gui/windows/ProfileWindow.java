@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
+import gui.components.RoundedPanel;
 import gui.factory.ButtonFactory;
-import gui.factory.RoundedPanel;
 import resources.TextResources;
 
 public class ProfileWindow extends JFrame implements ActionListener{

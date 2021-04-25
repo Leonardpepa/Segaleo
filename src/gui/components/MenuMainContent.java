@@ -1,4 +1,4 @@
-package gui.factory;
+package gui.components;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,13 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import gui.factory.ButtonFactory;
-import gui.factory.FontFactory;
+import gui.factory.*;
 import resources.ColorResources;
 import resources.TextResources;
 
+
 public class MenuMainContent extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel explore;
 	private JButton main;
 	private JButton salads;

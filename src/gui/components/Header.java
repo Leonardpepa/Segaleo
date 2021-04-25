@@ -1,8 +1,10 @@
-package gui.factory;
+package gui.components;
 
 import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
+
+import gui.factory.ButtonFactory;
 
 public class Header extends JPanel{
 
