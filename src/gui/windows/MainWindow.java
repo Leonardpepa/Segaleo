@@ -37,7 +37,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	boolean isPopup = false;
 	
 	public MainWindow() {
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
@@ -52,7 +52,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	}
 	
 	
-	public void intilizePanelToFrame() {
+	public void initilizePanelToFrame() {
 		
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -158,6 +158,6 @@ public class MainWindow  extends JFrame implements ActionListener{
 			this.dispose();
 			new ProfileWindow();
 		}
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 	}
 }

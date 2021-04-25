@@ -42,21 +42,20 @@ public class LoginWindow extends JFrame implements ActionListener{
 	
 	//constractor
 	public LoginWindow() {
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this,true);
-		
 	}
 	//settings for the frame
 	public void windowsConfiguration() {
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
 	
 	//set up the panel in the frame
-	public void intilizePanelToFrame() {
+	public void initilizePanelToFrame() {
 		new ColorResources();
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -173,7 +172,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 			TextResources.isEnglish = true;
 		}
 		
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 	}
 
 }
