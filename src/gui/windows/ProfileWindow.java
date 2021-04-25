@@ -64,7 +64,7 @@ public void initializePanelToFrame() {
 		configureLogo();
 		configureButtons();
 		addComponentsToPanel();
-		//addListeners();
+		addListeners();
 		
 		this.setContentPane(panel);
 		this.pack();
@@ -115,10 +115,17 @@ public void initializePanelToFrame() {
 		logoLabel = new JLabel(logo);
 		logoLabel.setBounds(101, 50, 173, 173);
 	}
+	
+	public void addListeners() {
+		backBtn.addActionListener(this);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == backBtn) {
+			this.dispose();
+			new MainWindow();
+		}
 		
 	}
 
