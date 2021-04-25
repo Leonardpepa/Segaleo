@@ -1,4 +1,4 @@
-package application.main;
+ package application.main;
 
 import gui.windows.LoginWindow;
 
