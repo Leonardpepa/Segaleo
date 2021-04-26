@@ -48,7 +48,7 @@ public class TextResources {
 		appetizers = isEnglish ? "Appetizers" : "Ορεκτικα";
 		breakfast = isEnglish ? "Breakfast" : "Πρωινο";
 		explore = isEnglish ? "Explore by category" : "Εξερευνηστε απο τις κατηγοριες";
-		endpointPath = isEnglish ? "English" : "Greek";
+		endpointPath = isEnglish ? "English.txt" : "Greek.txt";
 	}
 	
 }
