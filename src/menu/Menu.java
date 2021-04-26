@@ -13,9 +13,9 @@ import resources.TextResources;
 
 public class Menu {
 
-	private ArrayList<Product> appetizersList;
-	private ArrayList<Product> mainList;
-	private ArrayList<Product> saladsList;
+	private ArrayList<Product> appetizers;
+	private ArrayList<Product> main;
+	private ArrayList<Product> salads;
 
 	private String line;
 	private String nameOfFood;
@@ -24,13 +24,13 @@ public class Menu {
 	private String path;
 
 	public Menu() {
-		appetizersList = new ArrayList<>();
-		mainList = new ArrayList<>();
-		saladsList = new ArrayList<>();
+		appetizers = new ArrayList<>();
+		main = new ArrayList<>();
+		salads = new ArrayList<>();
 
-		readFood(appetizersList, "files\\appetizers\\Appetizers", TextResources.endpointPath);
-		readFood(mainList, "files\\main\\Main", TextResources.endpointPath);
-		readFood(saladsList, "files\\salads\\Salads", TextResources.endpointPath);
+		readFood(appetizers, "files\\appetizers\\Appetizers", TextResources.endpointPath);
+		readFood(main, "files\\main\\Main", TextResources.endpointPath);
+		readFood(salads, "files\\salads\\Salads", TextResources.endpointPath);
 	}
 
 	private void readFood(ArrayList<Product> list, String pathName, String language) {
@@ -69,17 +69,32 @@ public class Menu {
 		}
 	}
 
-	public ArrayList<Product> getAppetizersList() {
-		return appetizersList;
+	
+	public ArrayList<Product> getProductList(String category) {
+		String upperCaseCategory = category.toUpperCase();
+		switch(upperCaseCategory) {
+		case "APPETIZERS":
+			return appetizers;
+		case "MAIN":
+			return main;
+		case "SALADS":
+			return salads;
+		}
+		return null;
+	}
+	
+	
+	public ArrayList<Product> getAppetizers() {
+		return appetizers;
 	}
 
 
-	public ArrayList<Product> getMainList() {
-		return mainList;
+	public ArrayList<Product> getMain() {
+		return main;
 	}
 
-	public ArrayList<Product> getSaladsList() {
-		return saladsList;
+	public ArrayList<Product> getSalads() {
+		return salads;
 	}
 
 }
