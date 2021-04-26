@@ -24,6 +24,7 @@ public class TextResources {
 	public static String appetizers;
 	public static String explore;
 	public static String breakfast;
+	public static String endpointPath;
 
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Î•Î»Î»Î·Î½Î¹ÎºÎ¬";
@@ -47,6 +48,7 @@ public class TextResources {
 		appetizers = isEnglish ? "Appetizers" : "Ορεκτικα";
 		breakfast = isEnglish ? "Breakfast" : "Πρωινο";
 		explore = isEnglish ? "Explore by category" : "Εξερευνηστε απο τις κατηγοριες";
+		endpointPath = isEnglish ? "English" : "Greek";
 	}
 	
 }
