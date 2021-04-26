@@ -23,7 +23,6 @@ public class Menu {
 	private String line;
 	private String nameOfFood;
 	private String description;
-	private String stringPrice;
 	private double price;
 	private String path;
 	
@@ -35,17 +34,17 @@ public class Menu {
 		saladsListENG = new ArrayList<>();
 		saladsListGR = new ArrayList<>();
 		
-		readAppetizersEnglish();
-		readAppetizersGreek();
-		readMainEnglish();
-		readMainGreek();
-		readSaladsEnglish();
-		readSaladsGreek();
+		readingMethod(appetizersListENG, "files\\appetizers\\AppetizersEnglish");
+		readingMethod(appetizersListGR, "files\\appetizers\\AppetizersGreek");
+		readingMethod(mainListENG, "files\\main\\MainEnglish");
+		readingMethod(mainListGR, "files\\main\\MainGreek");
+		readingMethod(saladsListENG, "files\\salads\\SaladsEnglish");
+		readingMethod(saladsListGR, "files\\salads\\SaladsGreek");
 	}
 	
-	private void readAppetizersEnglish() {
+	private void readingMethod(ArrayList<Product> list, String pathName) {
 		
-		File activitieFile = new File("files\\appetizers\\AppetizersEnglish");
+		File activitieFile = new File(pathName);
 		try {
 			FileReader reader = new FileReader(activitieFile);
 			BufferedReader inputReader = new BufferedReader (reader);
@@ -60,12 +59,11 @@ public class Menu {
 				//separation
 				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
 				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				stringPrice = line.split("#")[2].replace("\\n", System.lineSeparator());
 				//convertion into Double
-				price = Double.parseDouble(stringPrice);
+				price = Double.parseDouble(line.split("#")[2].replace("\\n", System.lineSeparator()));
 				path = line.split("#")[3].replace("\\n", System.lineSeparator());
 				
-				appetizersListENG.add(new Food(nameOfFood, description, price, path));				
+				list.add(new Food(nameOfFood, description, price, path));				
 		}
 		inputReader.close();
 		reader.close();
@@ -79,170 +77,6 @@ public class Menu {
 		}
 	}
 
-	private void readAppetizersGreek() {
-		
-		File activitieFile = new File("files\\appetizers\\AppetizersGreek");
-		try {
-			FileReader reader = new FileReader(activitieFile);
-			BufferedReader inputReader = new BufferedReader (reader);
-
-			line = inputReader.readLine();
-			
-			while (line != null) {
-				//separation
-				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
-				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				stringPrice = line.split("#")[2].replace("\\n", System.lineSeparator());
-				//convertion into Double
-				price = Double.parseDouble(stringPrice);
-				path = line.split("#")[3].replace("\\n", System.lineSeparator());
-				
-				appetizersListGR.add(new Food(nameOfFood, description, price, path));				
-		}
-		inputReader.close();
-		reader.close();
-		}
-		catch(FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void readMainEnglish() {
-		
-		File activitieFile = new File("files\\main\\MainEnglish");
-		try {
-			FileReader reader = new FileReader(activitieFile);
-			BufferedReader inputReader = new BufferedReader (reader);
-
-
-			line = inputReader.readLine();
-			
-			while (line != null) {
-				//separation
-				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
-				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				stringPrice = line.split("#")[2].replace("\\n", System.lineSeparator());
-				//convertion into Double
-				price = Double.parseDouble(stringPrice);
-				path = line.split("#")[3].replace("\\n", System.lineSeparator());
-				
-				mainListENG.add(new Food(nameOfFood, description, price, path));				
-		}
-		inputReader.close();
-		reader.close();
-		}
-		catch(FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void readMainGreek() {
-		
-		File activitieFile = new File("files\\main\\MainGreek");
-		try {
-			FileReader reader = new FileReader(activitieFile);
-			BufferedReader inputReader = new BufferedReader (reader);
-
-
-			line = inputReader.readLine();
-			
-			while (line != null) {
-				//separation
-				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
-				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				stringPrice = line.split("#")[2].replace("\\n", System.lineSeparator());
-				//convertion into Double
-				price = Double.parseDouble(stringPrice);
-				path = line.split("#")[3].replace("\\n", System.lineSeparator());
-				
-				mainListGR.add(new Food(nameOfFood, description, price, path));				
-		}
-		inputReader.close();
-		reader.close();
-		}
-		catch(FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void readSaladsEnglish() {
-		
-		File activitieFile = new File("files\\salads\\SaladsEnglish");
-		try {
-			FileReader reader = new FileReader(activitieFile);
-			BufferedReader inputReader = new BufferedReader (reader);
-
-
-			line = inputReader.readLine();
-			
-			while (line != null) {
-				//separation
-				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
-				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				stringPrice = line.split("#")[2].replace("\\n", System.lineSeparator());
-				//convertion into Double
-				price = Double.parseDouble(stringPrice);
-				path = line.split("#")[3].replace("\\n", System.lineSeparator());
-				
-				saladsListENG.add(new Food(nameOfFood, description, price, path));				
-		}
-		inputReader.close();
-		reader.close();
-		}
-		catch(FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void readSaladsGreek() {
-		
-		File activitieFile = new File("files\\salads\\SaladsGreek");
-		try {
-			FileReader reader = new FileReader(activitieFile);
-			BufferedReader inputReader = new BufferedReader (reader);
-
-
-			line = inputReader.readLine();
-			
-			while (line != null) {
-				//separation
-				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
-				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				stringPrice = line.split("#")[2].replace("\\n", System.lineSeparator());
-				//convertion into Double
-				price = Double.parseDouble(stringPrice);
-				path = line.split("#")[3].replace("\\n", System.lineSeparator());
-				
-				saladsListGR.add(new Food(nameOfFood, description, price, path));				
-		}
-		inputReader.close();
-		reader.close();
-		}
-		catch(FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	
 	public ArrayList<Product> getAppetizersListENG(){
 		return appetizersListENG;
