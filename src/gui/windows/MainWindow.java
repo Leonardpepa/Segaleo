@@ -159,6 +159,11 @@ public class MainWindow  extends JFrame implements ActionListener{
 			this.dispose();
 			new ProfileWindow();
 		}
+		if(e.getSource() == servicesBtn) {
+			this.dispose();
+			new MenuWindow();
+		}
+		
 		initilizePanelToFrame();
 	}
 }
