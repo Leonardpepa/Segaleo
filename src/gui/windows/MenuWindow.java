@@ -2,16 +2,17 @@ package gui.windows;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import gui.components.MenuHeader;
-import gui.components.MenuMainContent;
-import gui.factory.ViewCartPanel;
+import gui.components.*;
 import menu.Menu;
 
-public class MenuWindow extends JFrame{
+public class MenuWindow extends JFrame implements ActionListener{
 
 	/**
 	 * 
@@ -56,6 +57,11 @@ public class MenuWindow extends JFrame{
 		
 		private void showWindow(JFrame frame, boolean show) {
 			frame.setVisible(show);
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
 			
 		}
 

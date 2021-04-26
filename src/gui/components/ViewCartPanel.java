@@ -1,4 +1,4 @@
-package gui.factory;
+package gui.components;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
