@@ -2,14 +2,17 @@ package gui.components;
 
 import java.awt.*;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
 import gui.factory.*;
+import gui.windows.MainWindow;
 import order.Product;
 import resources.TextResources;
 
-public class MenuHeader extends JPanel {
+public class MenuHeader extends JPanel implements ActionListener{
 
 	/**
 	 * 
@@ -20,8 +23,10 @@ public class MenuHeader extends JPanel {
 	private JPanel container;
 	private JLabel dealsOfTheDay;
 	private ArrayList<Product> deals;
-
-	public MenuHeader(ArrayList<Product> deals) {
+	private JFrame frame;
+	
+	public MenuHeader(JFrame frame, ArrayList<Product> deals) {
+		this.frame = frame;
 		this.deals = deals;
 		this.setPreferredSize(new Dimension(375, 260));
 		this.setLayout(null);
@@ -40,6 +45,7 @@ public class MenuHeader extends JPanel {
 	public void configureComponents() {
 		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
 		backButton.setBounds(16, 30, 63, 23);
+		backButton.addActionListener(this);
 
 		search = TextFieldFactory.createTextField(TextResources.search, Color.white, Color.GRAY,
 				FontFactory.poppins(14));
@@ -66,6 +72,14 @@ public class MenuHeader extends JPanel {
 
 	public void setSearch(JTextField search) {
 		this.search = search;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == backButton) {
+			frame.dispose();
+			new MainWindow();
+		}
 	}
 	
 	

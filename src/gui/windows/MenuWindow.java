@@ -37,7 +37,7 @@ public class MenuWindow extends JFrame implements ActionListener{
 			containerPanel.setPreferredSize(new Dimension(375, 812));
 			containerPanel.setLayout(new BorderLayout());
 			
-			header = new MenuHeader(menu.getAppetizers());
+			header = new MenuHeader(this,menu.getAppetizers());
 			mainContent = new MenuMainContent();
 			viewCart = new ViewCartPanel();
 			
