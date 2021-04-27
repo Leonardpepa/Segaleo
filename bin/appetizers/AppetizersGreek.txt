@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 Μοτσαρέλα Βουβαλίσια#με βασιλικό και ντομάτα#9.50#Food Menu/appetizers/Mozzarella.jpeg
 Ταρτάρ Παντζαριών#με ελληνικό γιαούρτι#5.50#Food Menu/appetizers/tartar.jpeg
 Αλμυρό Cheesecake#με κατσικίσιο τυρί και σάλτσα σύκου#7.00#Food Menu/appetizers/salty cheesecake.jpeg
+=======
+Μοτσαρέλα Βουβαλίσια#με βασιλικό και ντομάτα#9.50#Food Menu/appetizers/Mozzarella.jpeg
+Ταρτάρ Παντζαριών#με ελληνικό γιαούρτι#5.50#Food Menu/appetizers/tartar.jpeg
+Αλμυρό Cheesecake#με κατσικίσιο τυρί και σάλτσα σύκου#7.00#Food Menu/appetizers/salty cheesecake.jpeg
+>>>>>>> 9f2bc95d2d99dba8ae8f36cc035eaa14bbc9a9a8
 Πατατοσαλάτα#με φρέσκα βότανα και ελαιολαδο#5.00#Food Menu/appetizers/potato.jpeg

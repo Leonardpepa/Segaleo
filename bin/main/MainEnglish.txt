@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 Chicken Stir fry#with peppers and mustard#6.00#Food Menu/main/chicken.jpeg
 Vegetable Gnocchi#with asparagus and sun dried tomato#7.50#Food Menu/main/Gnocchi.jpeg
 Chicken Rissotto#with pistachios and red peppers#9.00#Food Menu/main/Risotto.jpeg
+=======
+Chicken Stir fry#with peppers and mustard#6.00#Food Menu/main/chicken.jpeg
+Vegetable Gnocchi#with asparagus and sun dried tomato#7.50#Food Menu/main/Gnocchi.jpeg
+Chicken Rissotto#with pistachios and red peppers#9.00#Food Menu/main/Risotto.jpeg
+>>>>>>> 9f2bc95d2d99dba8ae8f36cc035eaa14bbc9a9a8
 Seafood Rissotto#with shrimp, tomato sauce and parmesan#13.00#Food Menu/main/shrimp.jpeg
