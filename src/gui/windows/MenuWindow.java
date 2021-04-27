@@ -38,7 +38,7 @@ public class MenuWindow extends JFrame implements ActionListener{
 			containerPanel.setLayout(new BorderLayout());
 			
 			header = new MenuHeader(this,menu.getAppetizers());
-			mainContent = new MenuMainContent();
+			mainContent = new MenuMainContent(this, menu);
 			viewCart = new ViewCartPanel();
 			
 			containerPanel.add(BorderLayout.SOUTH, viewCart);
@@ -58,7 +58,6 @@ public class MenuWindow extends JFrame implements ActionListener{
 		
 		private void showWindow(JFrame frame, boolean show) {
 			frame.setVisible(show);
-			
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {

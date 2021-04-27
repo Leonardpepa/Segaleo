@@ -1,12 +1,15 @@
 package gui.components;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 
 import gui.factory.ButtonFactory;
+import gui.windows.MenuWindow;
 
-public class Header extends JPanel{
+public class Header extends JPanel implements ActionListener{
 
 	/**
 	 * 
@@ -19,15 +22,18 @@ public class Header extends JPanel{
 	private JComboBox<String> compobox;
 	private String headerText;
 	private Color headerLabelColor;
+	private JFrame frame;
 	
-	public Header(String productCategory, Color color) {
+	public Header(String productCategory, Color color, JFrame frame) {
 		headerText = productCategory;
 		headerLabelColor = color;
+		this.frame = frame;
+		
 		this.setPreferredSize(new Dimension(375, 200));
 		this.setLayout(null);
 	
 		configureComponents();
-		
+		addListeners();
 		this.add(backButton);
 		this.add(headerLabel);
 		this.add(search);
@@ -52,6 +58,16 @@ public class Header extends JPanel{
 		search = new JTextField("Search");
 		search.setBounds(16, 160, 340, 30);
 		
+	}
+	
+	public void addListeners() {
+		backButton.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		frame.dispose();
+		new MenuWindow();
 	}
 	
 }

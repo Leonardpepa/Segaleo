@@ -2,17 +2,22 @@ package gui.components;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.factory.*;
+import gui.windows.CategoryWindow;
+import menu.Menu;
 import resources.ColorResources;
 import resources.TextResources;
 
 
-public class MenuMainContent extends JPanel{
+public class MenuMainContent extends JPanel implements ActionListener{
 	
 	/**
 	 * 
@@ -26,13 +31,17 @@ public class MenuMainContent extends JPanel{
 	private JButton breakfast;
 	private JButton drinks;
 	private JButton coffee;
+	private JFrame frame;
+	private Menu menu;
 	
-	public MenuMainContent() {
-	
+	public MenuMainContent(JFrame frame, Menu menu) {
+		this.frame = frame;
+		this.menu = menu;
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(360, 468));
 	
 		configureComponents();
+		addListeners();
 		this.add(explore);
 		this.add(appetizers);
 		this.add(main);
@@ -62,6 +71,19 @@ public class MenuMainContent extends JPanel{
 		coffee.setBounds(23, 269, 150,62);
 		drinks.setBounds(203, 269, 150,62);
 		breakfast.setBounds(118, 361, 150, 62);
+	}
+	
+	public void addListeners() {
+		appetizers.addActionListener(this);
+		main.addActionListener(this);
+		salads.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		frame.dispose();
+		JButton btn = (JButton) e.getSource();
+		new CategoryWindow(btn.getBackground(), btn.getText(), menu.getProductList(btn.getText()));
 	}
 
 }
