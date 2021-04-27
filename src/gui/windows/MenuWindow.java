@@ -24,7 +24,7 @@ public class MenuWindow extends JFrame implements ActionListener{
 	private ViewCartPanel viewCart;
 	private Menu menu;
 	
-	//constractor
+	//constructor
 		public MenuWindow() {
 			initilizePanelToFrame();
 			windowsConfiguration();

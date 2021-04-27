@@ -28,9 +28,9 @@ public class Menu {
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
 
-		readFood(appetizers, "files\\appetizers\\Appetizers", TextResources.endpointPath);
-		readFood(main, "files\\main\\Main", TextResources.endpointPath);
-		readFood(salads, "files\\salads\\Salads", TextResources.endpointPath);
+		readFood(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
+		readFood(main, "files/main/Main", TextResources.endpointPath);
+		readFood(salads, "files/salads/Salads", TextResources.endpointPath);
 	}
 
 	private void readFood(ArrayList<Product> list, String pathName, String language) {
