@@ -2,11 +2,13 @@ package gui.windows;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import contact.Contact;
 import gui.components.RoundedPanel;
 import gui.factory.ButtonFactory;
 import resources.TextResources;
@@ -14,16 +16,32 @@ import resources.TextResources;
 public class ContactWindow extends JFrame implements ActionListener {
 
 	private JPanel panel;
+	private Contact contact = new Contact();
 	
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	private JLabel backgroundLabel;
 	
-	private ImageIcon logo = new ImageIcon(
-			new ImageIcon("logo/logo.png").getImage().getScaledInstance(140, 140, Image.SCALE_DEFAULT));
+	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
 	private JLabel logoLabel;
 
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
-	JButton backBtn;
+	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
+	private JButton backBtn;
+	
+	private JLabel contactLabel = new JLabel("Contact Us"); 
+	private JLabel faqLabel = new JLabel("FAQ");
+	
+	private ImageIcon phoneIcon = new ImageIcon("buttonImages/phone button.png");
+	private JButton phoneBtn;
+	
+	private ImageIcon facebookIcon = new ImageIcon("buttonImages/facebook button.png");
+	private JButton facebookBtn;
+	
+	private ImageIcon instagramIcon = new ImageIcon("buttonImages/instagram button.png");
+	private JButton instagramBtn;
+	
+	private ImageIcon messageIcon = new ImageIcon("buttonImages/message button.png");
+	private JButton messageBtn;
+	
 
 	public ContactWindow() {
 		initializePanelToFrame();
@@ -63,6 +81,10 @@ public class ContactWindow extends JFrame implements ActionListener {
 	public void addComponentsToPanel() {
 		panel.add(backBtn);
 		panel.add(logoLabel);
+		panel.add(phoneBtn);
+		panel.add(facebookBtn);
+		panel.add(instagramBtn);
+		panel.add(messageBtn);
 		panel.add(backgroundLabel);
 
 	}
@@ -70,7 +92,18 @@ public class ContactWindow extends JFrame implements ActionListener {
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(12, 40, 67, 21);
-
+		
+		phoneBtn = ButtonFactory.createButtonIcon(phoneIcon);
+		phoneBtn.setBounds(20, 220, 61, 61);
+		
+		facebookBtn = ButtonFactory.createButtonIcon(facebookIcon);
+		facebookBtn.setBounds(80, 220, 61, 61);
+		
+		instagramBtn = ButtonFactory.createButtonIcon(instagramIcon);
+		instagramBtn.setBounds(140, 220, 61, 61);
+		
+		messageBtn = ButtonFactory.createButtonIcon(messageIcon);
+		messageBtn.setBounds(20, 281, 61, 61);
 	}
 
 	public void configureLogo() {
@@ -83,12 +116,10 @@ public class ContactWindow extends JFrame implements ActionListener {
 		backgroundLabel.setBounds(0,0,375, 812);
 	}
 
-	public void resizeLogo() {
-		logoLabel.setIcon(logo);
-	}
-
 	public void addListeners() {
 		backBtn.addActionListener(this);
+		facebookBtn.addActionListener(this);
+		instagramBtn.addActionListener(this);
 	}
 
 	@Override
@@ -96,6 +127,15 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == backBtn) {
 			this.dispose();
 			new MainWindow();
+		}
+		if(e.getSource() == facebookBtn) {
+			contact.getSocial().openURL("facebook");
+		}
+		if(e.getSource() == instagramBtn) {
+			contact.getSocial().openURL("instagram");
+		}
+		if(e.getSource() == phoneBtn) {
+			//todo
 		}
 
 	}

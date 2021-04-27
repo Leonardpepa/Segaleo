@@ -28,7 +28,7 @@ public class FAQReader {
 		String answer;
 		
 		//File format: the # is used to separate the question from the answer
-		File qnaFile = new File("files\\faqs\\Q&A");
+		File qnaFile = new File("./files/faqs/Q&A.txt");
 		try {
 			FileReader reader = new FileReader(qnaFile);
 			BufferedReader inputReader = new BufferedReader(reader);

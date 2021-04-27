@@ -24,19 +24,19 @@ public class MainWindow  extends JFrame implements ActionListener{
 	private JButton servicesBtn;
 	private JButton activitiesBtn;
 	
-	ImageIcon profilImage = new ImageIcon("buttonImages/Profile Button.png");
-	JButton profileBtn;
+	private ImageIcon profilImage = new ImageIcon("buttonImages/Profile Button.png");
+	private JButton profileBtn;
 	
-	ImageIcon logoutBtnImage = new ImageIcon("buttonImages/Logout Button.png");
-	JButton logoutBtn;
+	private ImageIcon logoutBtnImage = new ImageIcon("buttonImages/Logout Button.png");
+	private JButton logoutBtn;
 	
-	ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
-	JButton languageBtn;
+	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
+	private JButton languageBtn;
 	
-	ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
-	JButton contactBtn;
+	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
+	private JButton contactBtn;
 	
-	PopupPanel popupPanel;
+	private PopupPanel popupPanel;
 	boolean isPopup = false;
 	
 	public MainWindow() {
