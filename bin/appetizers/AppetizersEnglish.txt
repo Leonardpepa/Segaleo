@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 Mozzarella bufala#with basil and tomato#9.50#Food Menu/appetizers/Mozzarella.jpeg
 Beetroot Tartar#with Greek yoghurt#5.50#Food Menu/appetizers/tartar.jpeg
 Savory Cheesecake#with goat cheese and fig sauce#7.00#Food Menu/appetizers/salty cheesecake.jpeg
 Potato Salad#with fresh herbs and olive oil#5.00#Food Menu/appetizers/potato.jpeg
-=======
-Mozzarella bufala#with basil and tomato#9.50#Food Menu/appetizers/Mozzarella.jpeg
-Beetroot Tartar#with Greek yoghurt#5.50#Food Menu/appetizers/tartar.jpeg
-Savory Cheesecake#with goat cheese and fig sauce#7.00#Food Menu/appetizers/salty cheesecake.jpeg
-Potato Salad#with fresh herbs and olive oil#5.00#Food Menu/appetizers/potato.jpeg
-
->>>>>>> 9f2bc95d2d99dba8ae8f36cc035eaa14bbc9a9a8
