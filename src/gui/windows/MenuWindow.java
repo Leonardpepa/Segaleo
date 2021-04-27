@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import gui.components.MenuHeader;
 import gui.components.*;
 import menu.Menu;
+import resources.ColorResources;
 
 public class MenuWindow extends JFrame implements ActionListener{
 

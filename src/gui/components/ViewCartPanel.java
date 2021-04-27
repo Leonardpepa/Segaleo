@@ -1,5 +1,6 @@
 package gui.components;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 
@@ -31,6 +32,7 @@ public class ViewCartPanel extends JPanel{
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(375,94));
 		this.setBounds(0, 718, 375, 94);
+		this.setBackground(Color.WHITE);
 		configureComponents();
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.add(bagLabel);
@@ -40,7 +42,7 @@ public class ViewCartPanel extends JPanel{
 	
 	private void configureComponents() {
 		//TODO make the text of the price change dynamically
-		bagIcon = new ImageIcon("buttonImages/Bag.png");
+		bagIcon = new ImageIcon("Icons/Bag.png");
 		
 		priceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
 		priceLabel.setBounds(301, this.getHeight()/2 - 15, 49, 20);
