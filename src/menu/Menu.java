@@ -71,13 +71,14 @@ public class Menu {
 
 	
 	public ArrayList<Product> getProductList(String category) {
-		String upperCaseCategory = category.toUpperCase();
-		switch(upperCaseCategory) {
-		case "APPETIZERS":
+		
+		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
-		case "MAIN":
+		}
+		if(category.equalsIgnoreCase(TextResources.main)) {
 			return main;
-		case "SALADS":
+		}
+		if(category.equalsIgnoreCase(TextResources.salads)) {
 			return salads;
 		}
 		return null;
