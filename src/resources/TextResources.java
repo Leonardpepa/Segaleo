@@ -25,7 +25,12 @@ public class TextResources {
 	public static String explore;
 	public static String breakfast;
 	public static String endpointPath;
+	public static String reservationCompleteTitle;
+	public static String reservationCompleteMessage;
 	public static String rateActivity;
+	public static String orderCompleteTitle;
+	public static String orderCompleteMessage;
+	
 
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -50,7 +55,11 @@ public class TextResources {
 		breakfast = isEnglish ? "Breakfast" : "Πρωινό";
 		explore = isEnglish ? "Explore by category" : "Εξερευνήστε από τις κατηγορίες";
 		endpointPath = isEnglish ? "English.txt" : "Greek.txt";
+		reservationCompleteTitle = isEnglish ? "Reservation Completed" : "Η Κράτηση Ολοκληρώθηκε";
+		reservationCompleteMessage = isEnglish ? "Your reservation has been accepted.We will be waiting for your arrival." : "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
 		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
+		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
+		orderCompleteMessage =  isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes." : "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 	}
 	
 }

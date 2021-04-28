@@ -102,14 +102,14 @@ public void configureButtons() {
 		
 }
 public void configurateLabels() {
-	completeTitle = new JLabel("Reservation Completed");
+	completeTitle = new JLabel(TextResources.reservationCompleteTitle);
 	completeTitle.setFont(new Font("Sans-Serif", Font.PLAIN, 23));
 	completeTitle.setBounds(60,40,300,35);
 	
 	orderComplLabel = new JLabel(orderComplImage);
 	orderComplLabel.setBounds(50, 100, 280, 280);
 	
-	message = new JLabel(String.format("<html><body style=\"text-align: center;\">%s</body></html>","Your reservation has been accepted.We will be waiting for your arrival."));
+	message = new JLabel(String.format("<html><body style=\"text-align: center;\">%s</body></html>",TextResources.reservationCompleteMessage));
 	message.setFont(FontFactory.avenir(15));
 	message.setBounds(40,400,300,40);
 	
