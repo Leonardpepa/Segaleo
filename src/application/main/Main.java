@@ -2,6 +2,7 @@
 
 import contact.FAQReader;
 import contact.SocialMedia;
+import gui.windows.CompleteReservationWindow;
 import gui.windows.LoginWindow;
 
 public class Main {

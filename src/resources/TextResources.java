@@ -25,6 +25,7 @@ public class TextResources {
 	public static String explore;
 	public static String breakfast;
 	public static String endpointPath;
+	public static String rateActivity;
 
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -37,18 +38,19 @@ public class TextResources {
 		passField = isEnglish ? "  Password" : "  Κωδικός‚";
 		loginBtn = isEnglish ? "LOGIN" : "Σύνδεση";
 		languageLabel = isEnglish ? "Languages" : "Γλώσσες";
-		viewCart = isEnglish ? "View Cart" : "Δες το καλαθι";
-		search = isEnglish ? "Search" : "Αναζητηση";
-		deals = isEnglish ? "Deals of the day" : "Προσφορες της ημερας";
-		main = isEnglish ? "Main" : "Κυριως";
-		salads = isEnglish ? "Salads" : "Σαλατες";
-		desserts = isEnglish ? "Desserts" : "Γλυκα";
-		coffee = isEnglish ? "Coffes" : "Καφεδες";
-		drinks = isEnglish ? "Drinks" : "Ποτα";
-		appetizers = isEnglish ? "Appetizers" : "Ορεκτικα";
-		breakfast = isEnglish ? "Breakfast" : "Πρωινο";
-		explore = isEnglish ? "Explore by category" : "Εξερευνηστε απο τις κατηγοριες";
+		viewCart = isEnglish ? "View Cart" : "Δες το καλάθι";
+		search = isEnglish ? "Search" : "Αναζήτηση";
+		deals = isEnglish ? "Deals of the day" : "Προσφορές της ημέρας";
+		main = isEnglish ? "Main" : "Κυρίως";
+		salads = isEnglish ? "Salads" : "Σαλάτες";
+		desserts = isEnglish ? "Desserts" : "Γλυκά";
+		coffee = isEnglish ? "Coffes" : "Καφέδες";
+		drinks = isEnglish ? "Drinks" : "Ποτά";
+		appetizers = isEnglish ? "Appetizers" : "Ορεκτικά";
+		breakfast = isEnglish ? "Breakfast" : "Πρωινό";
+		explore = isEnglish ? "Explore by category" : "Εξερευνήστε από τις κατηγορίες";
 		endpointPath = isEnglish ? "English.txt" : "Greek.txt";
+		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
 	}
 	
 }
