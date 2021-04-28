@@ -7,10 +7,9 @@ public class Customer{
 	private Room room;
 	
 	
-	public Customer(String name, String email, Room room) {
+	public Customer(String name, String email) {
 		this.name = name;
 		this.email = email;
-		this.room = room;
 	}
 
 	
@@ -26,5 +25,8 @@ public class Customer{
 		return room;
 	}
 	
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 	
 }

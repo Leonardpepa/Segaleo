@@ -7,10 +7,9 @@ public class Room {
 	private Customer customer;
 	
 	
-	public Room(int number, String password, Customer customer) {
+	public Room(int number, String password) {
 		this.number = number;
 		this.password = password;
-		this.customer = customer;
 	}
 
 
@@ -26,6 +25,10 @@ public class Room {
 
 	public Customer getCustomer() {
 		return customer;
+	}
+	
+	public void setCustomer(Customer customer){
+		this.customer = customer;
 	}
 	
 	
