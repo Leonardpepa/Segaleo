@@ -28,9 +28,9 @@ public class Menu {
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
 
-		readFood(appetizers, "files\\appetizers\\Appetizers", TextResources.endpointPath);
-		readFood(main, "files\\main\\Main", TextResources.endpointPath);
-		readFood(salads, "files\\salads\\Salads", TextResources.endpointPath);
+		readFood(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
+		readFood(main, "files/main/Main", TextResources.endpointPath);
+		readFood(salads, "files/salads/Salads", TextResources.endpointPath);
 	}
 
 	private void readFood(ArrayList<Product> list, String pathName, String language) {
@@ -71,13 +71,14 @@ public class Menu {
 
 	
 	public ArrayList<Product> getProductList(String category) {
-		String upperCaseCategory = category.toUpperCase();
-		switch(upperCaseCategory) {
-		case "APPETIZERS":
+		
+		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
-		case "MAIN":
+		}
+		if(category.equalsIgnoreCase(TextResources.main)) {
 			return main;
-		case "SALADS":
+		}
+		if(category.equalsIgnoreCase(TextResources.salads)) {
 			return salads;
 		}
 		return null;
