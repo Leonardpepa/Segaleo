@@ -11,6 +11,9 @@ import javax.swing.border.EmptyBorder;
 import contact.Contact;
 import gui.components.RoundedPanel;
 import gui.factory.ButtonFactory;
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
+import resources.ColorResources;
 import resources.TextResources;
 
 public class ContactWindow extends JFrame implements ActionListener {
@@ -27,8 +30,8 @@ public class ContactWindow extends JFrame implements ActionListener {
 	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
 	private JButton backBtn;
 	
-	private JLabel contactLabel = new JLabel("Contact Us"); 
-	private JLabel faqLabel = new JLabel("FAQ");
+	private JLabel contactLabel = new JLabel();
+	private JLabel faqLabel = new JLabel();
 	
 	private ImageIcon phoneIcon = new ImageIcon("buttonImages/phone button.png");
 	private JButton phoneBtn;
@@ -67,6 +70,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		configureLogo();
 		configureBackground();
 		configureButtons();
+		configureLabels();
 		addComponentsToPanel();
 		addListeners();
 
@@ -79,13 +83,17 @@ public class ContactWindow extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToPanel() {
+		
 		panel.add(backBtn);
 		panel.add(logoLabel);
+		panel.add(contactLabel);
 		panel.add(phoneBtn);
 		panel.add(facebookBtn);
 		panel.add(instagramBtn);
 		panel.add(messageBtn);
+		panel.add(faqLabel);
 		panel.add(backgroundLabel);
+	
 
 	}
 
@@ -94,16 +102,26 @@ public class ContactWindow extends JFrame implements ActionListener {
 		backBtn.setBounds(12, 40, 67, 21);
 		
 		phoneBtn = ButtonFactory.createButtonIcon(phoneIcon);
-		phoneBtn.setBounds(20, 220, 61, 61);
+		phoneBtn.setBounds(20, 250, 61, 61);
 		
 		facebookBtn = ButtonFactory.createButtonIcon(facebookIcon);
-		facebookBtn.setBounds(80, 220, 61, 61);
+		facebookBtn.setBounds(80, 250, 61, 61);
 		
 		instagramBtn = ButtonFactory.createButtonIcon(instagramIcon);
-		instagramBtn.setBounds(140, 220, 61, 61);
+		instagramBtn.setBounds(140, 250, 61, 61);
 		
 		messageBtn = ButtonFactory.createButtonIcon(messageIcon);
-		messageBtn.setBounds(20, 281, 61, 61);
+		messageBtn.setBounds(20, 311, 61, 61);
+	}
+	
+	public void configureLabels() {
+		contactLabel = LabelFactory.createLabelBG("CONTACT US", ColorResources.bgLoginWindow, Color.WHITE ,FontFactory.poppins(16));
+		contactLabel = LabelFactory.alignLabel(contactLabel, SwingConstants.CENTER, SwingConstants.CENTER);
+		contactLabel.setBounds(20, 225, 118, 26);
+		
+		faqLabel = LabelFactory.createLabelBG("FAQ", ColorResources.bgLoginWindow, Color.WHITE ,FontFactory.poppins(16));
+		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
+		faqLabel.setBounds(20, 425, 118, 26);
 	}
 
 	public void configureLogo() {

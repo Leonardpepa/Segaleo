@@ -4,6 +4,8 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class LabelFactory {
 
@@ -18,6 +20,21 @@ public class LabelFactory {
 	public static JLabel createIconLabel(ImageIcon icon) {
 		JLabel label = new JLabel();
 		label.setIcon(icon);
+		return label;
+	}
+	
+	public static JLabel createLabelBG(String text, Color backgroundColor, Color foregroundColor, Font font){
+		JLabel label = new JLabel(text);
+		label.setBackground(backgroundColor);
+		label.setForeground(foregroundColor);
+		label.setFont(font);
+		label.setOpaque(true);
+		return label;
+	}
+	
+	public static JLabel alignLabel(JLabel label, int horizontal, int vertical) {
+		label.setHorizontalAlignment(horizontal);
+		label.setVerticalAlignment(vertical);
 		return label;
 	}
 }
