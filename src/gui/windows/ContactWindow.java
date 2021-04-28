@@ -13,6 +13,7 @@ import gui.components.RoundedPanel;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import gui.factory.TextFieldFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -45,6 +46,9 @@ public class ContactWindow extends JFrame implements ActionListener {
 	private ImageIcon messageIcon = new ImageIcon("buttonImages/message button.png");
 	private JButton messageBtn;
 	
+	private JTextField messageField = new JTextField();
+	private JButton sendBtn;
+	
 
 	public ContactWindow() {
 		initializePanelToFrame();
@@ -71,6 +75,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		configureBackground();
 		configureButtons();
 		configureLabels();
+		configureTextArea();
 		addComponentsToPanel();
 		addListeners();
 
@@ -91,10 +96,18 @@ public class ContactWindow extends JFrame implements ActionListener {
 		panel.add(facebookBtn);
 		panel.add(instagramBtn);
 		panel.add(messageBtn);
+		panel.add(messageField);
 		panel.add(faqLabel);
+		panel.add(sendBtn);
+		
 		panel.add(backgroundLabel);
 	
 
+	}
+	
+	public void configureTextArea() {
+		messageField = TextFieldFactory.createTextField("Write your message here", Color.WHITE, ColorResources.bgLoginWindow, FontFactory.poppins(12));
+		messageField.setBounds(76, 315, 193, 89);
 	}
 
 	public void configureButtons() {
@@ -112,6 +125,9 @@ public class ContactWindow extends JFrame implements ActionListener {
 		
 		messageBtn = ButtonFactory.createButtonIcon(messageIcon);
 		messageBtn.setBounds(20, 311, 61, 61);
+		
+		sendBtn = ButtonFactory.createButton("Send", FontFactory.poppins(14), ColorResources.sendColor, ColorResources.bgLoginWindow);
+		sendBtn.setBounds(281, 379, 57, 23);
 	}
 	
 	public void configureLabels() {
