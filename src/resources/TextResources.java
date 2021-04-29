@@ -25,30 +25,41 @@ public class TextResources {
 	public static String explore;
 	public static String breakfast;
 	public static String endpointPath;
+	public static String reservationCompleteTitle;
+	public static String reservationCompleteMessage;
+	public static String rateActivity;
+	public static String orderCompleteTitle;
+	public static String orderCompleteMessage;
+	
 
 	public  void changeLanguage() {
-		greek = isEnglish ? "Greek" : "Î•Î»Î»Î·Î½Î¹ÎºÎ¬";
-		english = isEnglish ? "English" : "Î‘Î³Î³Î»Î¹ÎºÎ¬";
-		roomService = isEnglish ? "ROOM SERVICE" : "Î Î‘Î¡Î‘Î“Î“Î•Î›Î™Î‘";
-		activities = isEnglish ? "ACTIVITIES" : "Î”Î¡Î‘Î£Î¤Î—Î¡Î™ÎŸÎ¤Î—Î¤Î•Î£";
-		welcome = isEnglish ? "Welcome to Segaleo" : "ÎšÎ±Î»ÏŽÏ‚ Î®Ï�Î¸Î±Ï„Îµ ÏƒÏ„Î¿ Segaleo";
-		loginto = isEnglish ?  "Login to your account" : "Î£Ï…Î½Î´ÎµÎ¸ÎµÎ¯Ï„Îµ ÏƒÏ„Î¿Î½ Î»Î¿Î³Î±Ï�Î¹Î±ÏƒÎ¼ÏŒ ÏƒÎ±Ï‚";
-		roomField = isEnglish ?  "  Room Number" : "  Î‘Ï�Î¹Î¸Î¼ÏŒÏ‚ Î´Ï‰Î¼Î±Ï„Î¯Î¿Ï…";
-		passField = isEnglish ? "  Password" : "  ÎšÏ‰Î´Î¹ÎºÏŒÏ‚";
-		loginBtn = isEnglish ? "LOGIN" : "Î•Î™Î£ÎŸÎ”ÎŸÎ£";
-		languageLabel = isEnglish ? "Languages" : "Î“Î»ÏŽÏƒÏƒÎµÏ‚";
-		viewCart = isEnglish ? "View Cart" : "Δες το καλαθι";
-		search = isEnglish ? "Search" : "Αναζητηση";
-		deals = isEnglish ? "Deals of the day" : "Προσφορες της ημερας";
-		main = isEnglish ? "Main" : "Κυριως";
-		salads = isEnglish ? "Salads" : "Σαλατες";
-		desserts = isEnglish ? "Desserts" : "Γλυκα";
-		coffee = isEnglish ? "Coffes" : "Καφεδες";
-		drinks = isEnglish ? "Drinks" : "Ποτα";
-		appetizers = isEnglish ? "Appetizers" : "Ορεκτικα";
-		breakfast = isEnglish ? "Breakfast" : "Πρωινο";
-		explore = isEnglish ? "Explore by category" : "Εξερευνηστε απο τις κατηγοριες";
+		greek = isEnglish ? "Greek" : "Ελληνικά";
+		english = isEnglish ? "English" : "Αγγλικά";
+		roomService = isEnglish ? "ROOM SERVICE" : "ΠΑΡΑΓΓΕΛΙΑ";
+		activities = isEnglish ? "ACTIVITIES" : "ΔΡΑΣΤΗΡΙΟΤΗΤΕΣ";
+		welcome = isEnglish ? "Welcome to Segaleo" : "Καλώς ήρθατε στο Segaleo";
+		loginto = isEnglish ?  "Login to your account" : "Συνδεθείτε στον λογαριασμό σας";
+		roomField = isEnglish ?  "  Room Number" : "  Αριθμός Δωματίου";
+		passField = isEnglish ? "  Password" : "  Κωδικός‚";
+		loginBtn = isEnglish ? "LOGIN" : "Σύνδεση";
+		languageLabel = isEnglish ? "Languages" : "Γλώσσες";
+		viewCart = isEnglish ? "View Cart" : "Δες το καλάθι";
+		search = isEnglish ? "Search" : "Αναζήτηση";
+		deals = isEnglish ? "Deals of the day" : "Προσφορές της ημέρας";
+		main = isEnglish ? "Main" : "Κυρίως";
+		salads = isEnglish ? "Salads" : "Σαλάτες";
+		desserts = isEnglish ? "Desserts" : "Γλυκά";
+		coffee = isEnglish ? "Coffes" : "Καφέδες";
+		drinks = isEnglish ? "Drinks" : "Ποτά";
+		appetizers = isEnglish ? "Appetizers" : "Ορεκτικά";
+		breakfast = isEnglish ? "Breakfast" : "Πρωινό";
+		explore = isEnglish ? "Explore by category" : "Εξερευνήστε από τις κατηγορίες";
 		endpointPath = isEnglish ? "English.txt" : "Greek.txt";
+		reservationCompleteTitle = isEnglish ? "Reservation Completed" : "Η Κράτηση Ολοκληρώθηκε";
+		reservationCompleteMessage = isEnglish ? "Your reservation has been accepted.We will be waiting for your arrival." : "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
+		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
+		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
+		orderCompleteMessage =  isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes." : "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 	}
 	
 }

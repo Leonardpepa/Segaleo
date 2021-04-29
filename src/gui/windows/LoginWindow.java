@@ -20,7 +20,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 
 	private JPanel panel;
 	
-	private ImageIcon backgroundImage = new ImageIcon("buttonImages/loginBackground.png");
+	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
 	
 	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
@@ -133,6 +133,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 	public void addListeners() {
 		languageBtn.addActionListener(this);
 		loginBtn.addActionListener(this);
+		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
 		
@@ -171,6 +172,10 @@ public class LoginWindow extends JFrame implements ActionListener{
 		
 		if(e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
+		}
+		if(e.getSource() == contactBtn) {
+			this.dispose();
+			new ContactWindow();
 		}
 		
 		initilizePanelToFrame();

@@ -1,5 +1,6 @@
  package application.main;
 
+
 import gui.windows.LoginWindow;
 
 public class Main {

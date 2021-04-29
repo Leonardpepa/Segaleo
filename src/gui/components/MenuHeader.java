@@ -52,4 +52,22 @@ public class MenuHeader extends JPanel {
 		dealsOfTheDay.setBounds(16, 110, 200, 30);
 	}
 
+	public JButton getBackButton() {
+		return backButton;
+	}
+
+	public void setBackButton(JButton backButton) {
+		this.backButton = backButton;
+	}
+
+	public JTextField getSearch() {
+		return search;
+	}
+
+	public void setSearch(JTextField search) {
+		this.search = search;
+	}
+	
+	
+
 }
