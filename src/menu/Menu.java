@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import order.Coffee;
 import order.Drink;
 import order.Food;
 import order.Product;
@@ -37,7 +38,7 @@ public class Menu {
 		salads = new ArrayList<>();
 
 		readFood(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
-		readFood(coffee, "files/coffee/Coffee", TextResources.endpointPath);
+		readFood(coffee, "files/coffee/Coffees", TextResources.endpointPath);
 		readFood(desserts, "files/desserts/Desserts", TextResources.endpointPath);
 		readFood(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readFood(main, "files/main/Main", TextResources.endpointPath);
@@ -65,16 +66,18 @@ public class Menu {
 				price = Double.parseDouble(line.split("#")[2]);
 				path = line.split("#")[3];
 				
-				if (list.equals(drinks)) {
+				if (pathName.contentEquals("files/drinks/Drinks")) {
 					//convertion into Double
 					alchoolPerc = Double.parseDouble(line.split("#")[4]);
 					
 					list.add(new Drink(nameOfFood, description, price, path, alchoolPerc));
-					//break because alchool percentage is surely the last #
-					break;
 				}
-
+				else if (pathName.equalsIgnoreCase("files/coffee/Coffees")){
+					list.add(new Coffee(nameOfFood, description, price, path));
+				}
+				else {
 				list.add(new Food(nameOfFood, description, price, path));
+				}
 				
 				line = inputReader.readLine();
 
