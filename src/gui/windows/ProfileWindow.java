@@ -22,6 +22,10 @@ import resources.TextResources;
 
 public class ProfileWindow extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private ImageIcon logo = new ImageIcon("logo/logo.png");
 	private JLabel logoLabel;
