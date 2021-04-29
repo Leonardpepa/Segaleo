@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import order.Drink;
 import order.Food;
 import order.Product;
 import resources.TextResources;
@@ -14,6 +15,9 @@ import resources.TextResources;
 public class Menu {
 
 	private ArrayList<Product> appetizers;
+	private ArrayList<Product> coffee;
+	private ArrayList<Product> desserts;
+	private ArrayList<Product> drinks;
 	private ArrayList<Product> main;
 	private ArrayList<Product> salads;
 
@@ -22,13 +26,20 @@ public class Menu {
 	private String description;
 	private double price;
 	private String path;
+	private double alchoolPerc;
 
 	public Menu() {
 		appetizers = new ArrayList<>();
+		coffee = new ArrayList<>();
+		desserts = new ArrayList<>();
+		drinks = new ArrayList<>();
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
 
 		readFood(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
+		readFood(coffee, "files/coffee/Coffee", TextResources.endpointPath);
+		readFood(desserts, "files/desserts/Desserts", TextResources.endpointPath);
+		readFood(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readFood(main, "files/main/Main", TextResources.endpointPath);
 		readFood(salads, "files/salads/Salads", TextResources.endpointPath);
 	}
@@ -53,6 +64,15 @@ public class Menu {
 				// convertion into Double
 				price = Double.parseDouble(line.split("#")[2]);
 				path = line.split("#")[3];
+				
+				if (list.equals(drinks)) {
+					//convertion into Double
+					alchoolPerc = Double.parseDouble(line.split("#")[4]);
+					
+					list.add(new Drink(nameOfFood, description, price, path, alchoolPerc));
+					//break because alchool percentage is surely the last #
+					break;
+				}
 
 				list.add(new Food(nameOfFood, description, price, path));
 				
@@ -75,6 +95,12 @@ public class Menu {
 		switch(upperCaseCategory) {
 		case "APPETIZERS":
 			return appetizers;
+		case "COFFEE":
+			return coffee;
+		case "DESSERTS":
+			return desserts;
+		case "DRINKS":
+			return drinks;
 		case "MAIN":
 			return main;
 		case "SALADS":
@@ -88,6 +114,17 @@ public class Menu {
 		return appetizers;
 	}
 
+	public ArrayList<Product> getCoffees() {
+		return coffee;
+	}
+	
+	public ArrayList<Product> getDesserts() {
+		return desserts;
+	}
+	
+	public ArrayList<Product> getDrinks() {
+		return drinks;
+	}
 
 	public ArrayList<Product> getMain() {
 		return main;
