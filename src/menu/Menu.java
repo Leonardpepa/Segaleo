@@ -38,12 +38,9 @@ public class Menu {
 		salads = new ArrayList<>();
 
 		readFood(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
-<<<<<<< HEAD
-=======
 		readFood(coffee, "files/coffee/Coffees", TextResources.endpointPath);
 		readFood(desserts, "files/desserts/Desserts", TextResources.endpointPath);
 		readFood(drinks, "files/drinks/Drinks", TextResources.endpointPath);
->>>>>>> master
 		readFood(main, "files/main/Main", TextResources.endpointPath);
 		readFood(salads, "files/salads/Salads", TextResources.endpointPath);
 	}
@@ -97,13 +94,10 @@ public class Menu {
 
 	
 	public ArrayList<Product> getProductList(String category) {
-<<<<<<< HEAD
 		
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
-=======
-
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
@@ -116,7 +110,6 @@ public class Menu {
 		if(category.equalsIgnoreCase(TextResources.drinks)) {
 			return drinks;
 		}
->>>>>>> master
 		if(category.equalsIgnoreCase(TextResources.main)) {
 			return main;
 		}

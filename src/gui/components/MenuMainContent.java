@@ -77,6 +77,9 @@ public class MenuMainContent extends JPanel implements ActionListener{
 		appetizers.addActionListener(this);
 		main.addActionListener(this);
 		salads.addActionListener(this);
+		dessert.addActionListener(this);
+		coffee.addActionListener(this);
+		drinks.addActionListener(this);
 	}
 
 	@Override
