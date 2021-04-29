@@ -13,6 +13,7 @@ import gui.components.RoundedPanel;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import gui.factory.TextAreaFactory;
 import gui.factory.TextFieldFactory;
 import resources.ColorResources;
 import resources.TextResources;
@@ -21,34 +22,35 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	private JPanel panel;
 	private Contact contact = new Contact();
-	
+
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	private JLabel backgroundLabel;
-	
+
 	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
 	private JLabel logoLabel;
 
 	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
 	private JButton backBtn;
-	
+
 	private JLabel contactLabel = new JLabel();
 	private JLabel faqLabel = new JLabel();
-	
+
 	private ImageIcon phoneIcon = new ImageIcon("buttonImages/phone button.png");
 	private JButton phoneBtn;
-	
+
 	private ImageIcon facebookIcon = new ImageIcon("buttonImages/facebook button.png");
 	private JButton facebookBtn;
-	
+
 	private ImageIcon instagramIcon = new ImageIcon("buttonImages/instagram button.png");
 	private JButton instagramBtn;
-	
+
 	private ImageIcon messageIcon = new ImageIcon("buttonImages/message button.png");
-	private JButton messageBtn;
-	
-	private JTextField messageField = new JTextField();
+	private JLabel messageLabel;
+
+	private JTextArea messageArea = new JTextArea();
 	private JButton sendBtn;
 	
+	private ImageIcon phonecallIcon = new ImageIcon("Icons/phone-icon.png");
 
 	public ContactWindow() {
 		initializePanelToFrame();
@@ -88,54 +90,63 @@ public class ContactWindow extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToPanel() {
-		
+
 		panel.add(backBtn);
 		panel.add(logoLabel);
 		panel.add(contactLabel);
 		panel.add(phoneBtn);
 		panel.add(facebookBtn);
 		panel.add(instagramBtn);
-		panel.add(messageBtn);
-		panel.add(messageField);
+		panel.add(messageLabel);
+		panel.add(messageArea);
 		panel.add(faqLabel);
 		panel.add(sendBtn);
-		
+
 		panel.add(backgroundLabel);
-	
 
 	}
-	
+
 	public void configureTextArea() {
-		messageField = TextFieldFactory.createTextField("Write your message here", Color.WHITE, ColorResources.bgLoginWindow, FontFactory.poppins(12));
-		messageField.setBounds(76, 315, 193, 89);
+		messageArea = TextAreaFactory.createTextArea("Write your message here", Color.WHITE,
+				ColorResources.bgLoginWindow, FontFactory.poppins(12));
+		messageArea.setBounds(76, 315, 193, 89);
+
+		messageArea.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				messageArea.setText("");
+			}
+		});
 	}
 
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(12, 40, 67, 21);
-		
+
 		phoneBtn = ButtonFactory.createButtonIcon(phoneIcon);
 		phoneBtn.setBounds(20, 250, 61, 61);
-		
+
 		facebookBtn = ButtonFactory.createButtonIcon(facebookIcon);
 		facebookBtn.setBounds(80, 250, 61, 61);
-		
+
 		instagramBtn = ButtonFactory.createButtonIcon(instagramIcon);
 		instagramBtn.setBounds(140, 250, 61, 61);
-		
-		messageBtn = ButtonFactory.createButtonIcon(messageIcon);
-		messageBtn.setBounds(20, 311, 61, 61);
-		
-		sendBtn = ButtonFactory.createButton("Send", FontFactory.poppins(14), ColorResources.sendColor, ColorResources.bgLoginWindow);
+
+		sendBtn = ButtonFactory.createButton("Send", FontFactory.poppins(14), ColorResources.sendColor,
+				ColorResources.bgLoginWindow);
 		sendBtn.setBounds(281, 379, 57, 23);
 	}
-	
+
 	public void configureLabels() {
-		contactLabel = LabelFactory.createLabelBG("CONTACT US", ColorResources.bgLoginWindow, Color.WHITE ,FontFactory.poppins(16));
+		contactLabel = LabelFactory.createLabelBG("CONTACT US", ColorResources.bgLoginWindow, Color.WHITE,
+				FontFactory.poppins(16));
 		contactLabel = LabelFactory.alignLabel(contactLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		contactLabel.setBounds(20, 225, 118, 26);
-		
-		faqLabel = LabelFactory.createLabelBG("FAQ", ColorResources.bgLoginWindow, Color.WHITE ,FontFactory.poppins(16));
+
+		messageLabel = LabelFactory.createIconLabel(messageIcon);
+		messageLabel.setBounds(20, 311, 61, 61);
+
+		faqLabel = LabelFactory.createLabelBG("FAQ", ColorResources.bgLoginWindow, Color.WHITE,
+				FontFactory.poppins(16));
 		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		faqLabel.setBounds(20, 425, 118, 26);
 	}
@@ -144,16 +155,18 @@ public class ContactWindow extends JFrame implements ActionListener {
 		logoLabel = new JLabel(logo);
 		logoLabel.setBounds(101, 50, 173, 173);
 	}
-	
+
 	public void configureBackground() {
 		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0,0,375, 812);
+		backgroundLabel.setBounds(0, 0, 375, 812);
 	}
 
 	public void addListeners() {
 		backBtn.addActionListener(this);
 		facebookBtn.addActionListener(this);
 		instagramBtn.addActionListener(this);
+		phoneBtn.addActionListener(this);
+		sendBtn.addActionListener(this);
 	}
 
 	@Override
@@ -162,14 +175,22 @@ public class ContactWindow extends JFrame implements ActionListener {
 			this.dispose();
 			new MainWindow();
 		}
-		if(e.getSource() == facebookBtn) {
+		if (e.getSource() == facebookBtn) {
 			contact.getSocial().openURL("facebook");
 		}
-		if(e.getSource() == instagramBtn) {
+		if (e.getSource() == instagramBtn) {
 			contact.getSocial().openURL("instagram");
 		}
-		if(e.getSource() == phoneBtn) {
-			//todo
+		if (e.getSource() == phoneBtn) {	
+			Object[] options = {"Call"};
+			int n = JOptionPane.showOptionDialog(null,
+					"+30 6978265917",
+					"Phone Call",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					phonecallIcon,     //do not use a custom Icon
+					options,  //the titles of buttons
+					options[0]); //default button title
 		}
 
 	}
