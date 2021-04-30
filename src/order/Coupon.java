@@ -6,7 +6,15 @@ public class Coupon {
     private String code;
     private Date date;
 
-    public Coupon(String code, Date date) {
+    public Date getDate() {
+		return date;
+	} 
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Coupon(String code, Date date) {
         this.code = code;
         this.date = date;
     }

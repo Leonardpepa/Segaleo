@@ -57,6 +57,7 @@ public class Order {
 		if(new CouponFactory().isValid(coupon)) {
 			return totalCost -= 3;
 		}
+		return 0;
 	}
 	
 }
