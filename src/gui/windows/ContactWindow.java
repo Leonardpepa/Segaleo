@@ -15,6 +15,7 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.TextAreaFactory;
 import gui.factory.TextFieldFactory;
+import gui.factory.*;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -49,8 +50,15 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	private JTextArea messageArea = new JTextArea();
 	private JButton sendBtn;
-	
+
 	private ImageIcon phonecallIcon = new ImageIcon("Icons/phone-icon.png");
+
+	private JLabel question1;
+	private JTextArea answer1;
+	private JLabel question2;
+	private JTextArea answer2;
+
+	private JButton seeMoreBtn;
 
 	public ContactWindow() {
 		initializePanelToFrame();
@@ -101,6 +109,11 @@ public class ContactWindow extends JFrame implements ActionListener {
 		panel.add(messageArea);
 		panel.add(faqLabel);
 		panel.add(sendBtn);
+		panel.add(question1);
+		panel.add(answer1);
+		panel.add(question2);
+		panel.add(answer2);
+		panel.add(seeMoreBtn);
 
 		panel.add(backgroundLabel);
 
@@ -134,6 +147,10 @@ public class ContactWindow extends JFrame implements ActionListener {
 		sendBtn = ButtonFactory.createButton("Send", FontFactory.poppins(14), ColorResources.sendColor,
 				ColorResources.bgLoginWindow);
 		sendBtn.setBounds(281, 379, 57, 23);
+
+		seeMoreBtn = ButtonFactory.createButton(TextResources.seeMore, FontFactory.poppins(14),
+				ColorResources.sendColor, ColorResources.bgLoginWindow);
+		seeMoreBtn.setBounds(234, 750, 119, 27);
 	}
 
 	public void configureLabels() {
@@ -149,6 +166,27 @@ public class ContactWindow extends JFrame implements ActionListener {
 				FontFactory.poppins(16));
 		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		faqLabel.setBounds(20, 425, 118, 26);
+
+		question1 = LabelFactory.createLabel(contact.getFaqs().get(0).getQuestion(), Color.black,
+				FontFactory.poppins(13));
+		question1.setBounds(22, 476, 308, 20);
+
+		answer1 = TextAreaFactory.createTextArea(contact.getFaqs().get(0).getAnswer(), Color.white,
+				ColorResources.bgLoginWindow, FontFactory.poppins(13));
+		answer1.setBounds(22, 493, 331, 100);
+		answer1.setEditable(false);
+
+		question2 = LabelFactory.createLabel(contact.getFaqs().get(1).getQuestion(), Color.black,
+				FontFactory.poppins(12));
+		question2.setBounds(22, 600, 308, 20);
+
+		answer2 = TextAreaFactory.createTextArea(contact.getFaqs().get(1).getAnswer(), Color.white,
+				ColorResources.bgLoginWindow, FontFactory.poppins(13));
+		answer2.setBounds(22, 620, 331, 105);
+		answer2.setEditable(false);
+		answer2.setWrapStyleWord(true);
+		answer2.setLineWrap(true);
+
 	}
 
 	public void configureLogo() {
@@ -181,16 +219,12 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == instagramBtn) {
 			contact.getSocial().openURL("instagram");
 		}
-		if (e.getSource() == phoneBtn) {	
-			Object[] options = {"Call"};
-			int n = JOptionPane.showOptionDialog(null,
-					"+30 6978265917",
-					"Phone Call",
-					JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE,
-					phonecallIcon,     //do not use a custom Icon
-					options,  //the titles of buttons
-					options[0]); //default button title
+		if (e.getSource() == phoneBtn) {
+			Object[] options = { "Call" };
+			int n = JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, phonecallIcon, // do not use a custom Icon
+					options, // the titles of buttons
+					options[0]); // default button title
 		}
 
 	}
