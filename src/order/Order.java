@@ -1,8 +1,6 @@
 package order;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Order {
 	
@@ -14,8 +12,6 @@ public class Order {
 		products = new ArrayList<Product>();
 	}
 
-	private Pattern pattern = Pattern.compile("12345");
-	
 
 	public void addProduct(Product product) {
 		products.add(product);
@@ -57,17 +53,9 @@ public class Order {
 	//TODO tha dexetai ena kouponi
 	//an to kouponi == null tote ekptwsh 0
 	//alliw ekptwsh calcCost - ekptwsh
-	public double calcDiscount(Coupon aCoupon) {
+	public double calcDiscount(CouponFactory aCoupon) {
 
-		Matcher matcher = pattern.matcher(aCoupon.getCode());
-		boolean matchFound = matcher.matches();
-
-		if(matchFound)
-			totalCost -= 3;
-		else
-			System.out.println("Invalid Coupon");
-
-		return totalCost;
+		return 0;
 	}
 	
 }
