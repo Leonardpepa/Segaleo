@@ -43,19 +43,19 @@ public class ProductCard extends JPanel{
 		productimgLabel.setBounds(10, 10, 100, 100);
 		
 		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(141,20,150,17);
+		titleLabel.setBounds(120,20,200,17);
 		
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
-		descLabel.setBounds(141, 35, 150, 17);
+		descLabel.setBounds(120, 35, 200, 17);
 		
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(295, 95, 24, 24);
+		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		priceLabel = LabelFactory.createLabel(product.getPrice() + "$", Color.BLACK, FontFactory.poppins(13));
-		priceLabel.setBounds(288, 75, 43, 19);
+		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		priceLabel.setBounds(286, 65, 43, 19);
 		
 		
 	}

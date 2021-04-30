@@ -22,7 +22,7 @@ public class CategoryWindow extends JFrame{
 	
 	private JPanel containerPanel;
 	private Header header;
-	private JPanel mainContent;
+	private JScrollPane mainContent;
 	private ViewCartPanel viewCart;
 	private Menu menu;
 	private Color categoryColor;
@@ -44,8 +44,7 @@ public class CategoryWindow extends JFrame{
 		containerPanel.setLayout(new BorderLayout());
 		
 		header = new Header(categoryName, categoryColor, this);
-		mainContent = new JPanel(); 
-		mainContent.add(new ScrollablePanel().createVertical(products));
+		mainContent = new ScrollablePanel().createVertical(products);
 		viewCart = new ViewCartPanel();
 		
 		containerPanel.add(BorderLayout.SOUTH, viewCart);
