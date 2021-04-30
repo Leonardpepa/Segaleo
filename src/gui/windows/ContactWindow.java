@@ -119,6 +119,8 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	}
 
+	//CONFIGURING ALL THE COMPONENTS ADDED TO THE PANEL BY CATEGORY 
+	
 	public void configureTextArea() {
 		messageArea = TextAreaFactory.createTextArea("Write your message here", Color.WHITE,
 				ColorResources.bgLoginWindow, FontFactory.poppins(12));
@@ -167,6 +169,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		faqLabel.setBounds(20, 425, 118, 26);
 
+		//picking the 1st and 2nd questions and answers from the FAQ list to show
 		question1 = LabelFactory.createLabel(contact.getFaqs().get(0).getQuestion(), Color.black,
 				FontFactory.poppins(13));
 		question1.setBounds(22, 476, 308, 20);
@@ -219,6 +222,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == instagramBtn) {
 			contact.getSocial().openURL("instagram");
 		}
+		//Opens custom dialog for phone call
 		if (e.getSource() == phoneBtn) {
 			Object[] options = { "Call" };
 			int n = JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
