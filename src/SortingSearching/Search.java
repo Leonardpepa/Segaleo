@@ -14,12 +14,17 @@ public class Search {
     {
         this.array = prod_array;
         int i=1;
-        String name=array.get(i).getName().substring(0, KeyWord.length()-1);
+        String name=array.get(i).getName().substring(0, KeyWord.length());
 
         while(i<array.size() && name.compareTo(KeyWord)<=0)
         {
             i=i*2;
-            name = array.get(i).getName().substring(0, KeyWord.length() - 1);
+            name = array.get(i).getName().substring(0, KeyWord.length());
+            if(i*2>=array.size())
+            {
+                return SerSearch(array.size(), i-1, KeyWord, array);
+                
+            }
         }
         if(i<array.size())
         {
@@ -31,12 +36,13 @@ public class Search {
 
     public ArrayList<Product> SerSearch(int end, int start, String KeyWord, ArrayList<Product> array)
     {
+        this.array = array;
         ArrayList<Product> Found = new ArrayList<Product>();
 
-        for(int i=start;i<=end;i++)
+        for(int i=start;i<end;i++)
         {
-            String name=array.get(i).getName().substring(0, KeyWord.length()-1);
-            if( name.compareTo(KeyWord)==0)
+            String name=array.get(i).getName().substring(0, KeyWord.length());
+            if(name.equals(KeyWord))
             {
                 Found.add(array.get(i));
             }
