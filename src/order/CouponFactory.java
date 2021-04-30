@@ -26,9 +26,10 @@ public class CouponFactory {
     	Date today = new Date();
     	String code = coupon.getCode(); 
     	String letters = code.substring(0, 2);
-    	
+    	//converting time from milliseconds to days
     	long mill = today.getTime() - coupon.getDate().getTime();
     	
+    	//check if the format and the date of the coupon is right
     	if(email.toUpperCase().contains(letters) && code.length() == 7) {
     		if((long) (mill / (1000*60*60*24)) < 3) {
     			return true;
