@@ -28,7 +28,7 @@ public class Menu {
 	private double price;
 	private String path;
 	private double alchoolPerc;
-
+//svdaavce
 	public Menu() {
 		appetizers = new ArrayList<>();
 		coffee = new ArrayList<>();
