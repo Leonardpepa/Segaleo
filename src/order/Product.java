@@ -19,6 +19,13 @@ public abstract class Product {
 		this.ratings = new ArrayList<Rating>();
 	}
 
+	public double calcAvRating() {
+		double sum = 0;
+		for(Rating rating: ratings) {
+			sum += rating.getStars();
+		}
+		return ratings.size() == 0? 0 :sum/ratings.size();
+	}
 	
 	public void addRating(Rating rating) {
 		ratings.add(rating);
