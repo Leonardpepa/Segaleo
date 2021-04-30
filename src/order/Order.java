@@ -53,9 +53,10 @@ public class Order {
 	//TODO tha dexetai ena kouponi
 	//an to kouponi == null tote ekptwsh 0
 	//alliw ekptwsh calcCost - ekptwsh
-	public double calcDiscount(CouponFactory aCoupon) {
-
-		return 0;
+	public double calcDiscount(Coupon coupon) {
+		if(new CouponFactory().isValid(coupon)) {
+			return totalCost -= 3;
+		}
 	}
 	
 }
