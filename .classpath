@@ -10,5 +10,6 @@
 	<classpathentry kind="src" path="logo"/>
 	<classpathentry kind="src" path="activites"/>
 	<classpathentry kind="src" path="files"/>
+	<classpathentry kind="src" path="Coffee Menu"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

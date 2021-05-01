@@ -1,4 +1,4 @@
-espresso#warm italian coffee#2.5#Coffee Menu/coffee/espresso.jpeg
-cappuccino#warm italian coffee with frothed milk#3.0#Coffee Menu/coffee/cappuccino.jpeg
-americano#warm coffee deluted with water#2.5#Coffee Menu/coffee/americano.jpeg
-filter coffee#warm french coffee#2.0#Coffee Menu/coffee/filtercoffee.jpeg
+espresso#warm italian coffee#2.50#Coffee Menu/coffee/espresso.jpeg
+cappuccino#warm italian coffee with frothed milk#3.00#Coffee Menu/coffee/cappuccino.jpeg
+americano#warm coffee deluted with water#2.50#Coffee Menu/coffee/americano.jpeg
+filter coffee#warm french coffee#2.00#Coffee Menu/coffee/filtercoffee.jpeg

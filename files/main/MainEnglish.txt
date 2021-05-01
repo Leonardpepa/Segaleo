@@ -2,3 +2,5 @@ Chicken Stir fry#with peppers and mustard#6.00#Food Menu/main/chicken.jpeg
 Vegetable Gnocchi#with asparagus and sun dried tomato#7.50#Food Menu/main/Gnocchi.jpeg
 Chicken Rissotto#with pistachios and red peppers#9.00#Food Menu/main/Risotto.jpeg
 Seafood Rissotto#with shrimp, tomato sauce and parmesan#13.00#Food Menu/main/shrimp.jpeg
+Grilled Salmon#with potato puree#9.00#Food Menu/main/salmon/jpeg
+Flap Steak#from Australian Black Angus beef#14.00#Food Menu/main/steak.jpeg

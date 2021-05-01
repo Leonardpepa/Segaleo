@@ -1,4 +1,4 @@
-Σμιρνοφ#ρώσικη βότκα#25.0#Drinks Menu/drinks/smirnoff.jpeg#37.5
-Μπακάρντι#λευκό ρούμι#27.0#Drinks Menu/drinks/bacardi.jpeg#40.0
-Τζόνι γουόλκερ#σκωτσέζικο ουίσκι#25.0#Drinks Menu/drinks/johnnie.jpeg#40.0
-Φίσερ#ξανθιά μπύρα#4.0#Drinks Menu/drinks/fisher.jpeg#3
+Σμιρνοφ#ρώσικη βότκα#25.00#Drinks Menu/drinks/smirnoff.jpeg#37.5
+Μπακάρντι#λευκό ρούμι#27.00#Drinks Menu/drinks/bacardi.jpeg#40.0
+Τζόνι γουόλκερ#σκωτσέζικο ουίσκι#25.00#Drinks Menu/drinks/johnnie.jpeg#40.0
+Φίσερ#ξανθιά μπύρα#4.00#Drinks Menu/drinks/fisher.jpeg#3
