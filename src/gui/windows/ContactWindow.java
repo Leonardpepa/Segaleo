@@ -208,6 +208,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		instagramBtn.addActionListener(this);
 		phoneBtn.addActionListener(this);
 		sendBtn.addActionListener(this);
+		seeMoreBtn.addActionListener(this);
 	}
 
 	@Override
@@ -229,6 +230,10 @@ public class ContactWindow extends JFrame implements ActionListener {
 					JOptionPane.QUESTION_MESSAGE, phonecallIcon, // do not use a custom Icon
 					options, // the titles of buttons
 					options[0]); // default button title
+		}
+		if(e.getSource() == seeMoreBtn) {
+			this.dispose();
+			new FaqWindow();
 		}
 
 	}
