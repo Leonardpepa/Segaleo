@@ -19,6 +19,7 @@ public class Menu {
 	private ArrayList<Product> coffee;
 	private ArrayList<Product> desserts;
 	private ArrayList<Product> drinks;
+	private ArrayList<Product> nonAlcoholicDrinks;
 	private ArrayList<Product> main;
 	private ArrayList<Product> salads;
 
@@ -34,6 +35,7 @@ public class Menu {
 		coffee = new ArrayList<>();
 		desserts = new ArrayList<>();
 		drinks = new ArrayList<>();
+		nonAlcoholicDrinks = new ArrayList<>();
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
 
@@ -41,6 +43,7 @@ public class Menu {
 		readProduct(coffee, "files/coffee/Coffees", TextResources.endpointPath);
 		readProduct(desserts, "files/desserts/Desserts", TextResources.endpointPath);
 		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
+		readProduct(nonAlcoholicDrinks, "files/drinks/NonAlcoholicDrinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
 	}
@@ -66,7 +69,7 @@ public class Menu {
 				price = Double.parseDouble(line.split("#")[2]);
 				path = line.split("#")[3];
 				
-				if (pathName.contentEquals("files/drinks/Drinks")) {
+				if (pathName.contentEquals("files/drinks/Drinks") || pathName.contentEquals("files/drinks/Drinks/nonAlcoholicDrinks")) {
 					//convertion into Double
 					alchoolPerc = Double.parseDouble(line.split("#")[4]);
 					
@@ -110,6 +113,10 @@ public class Menu {
 		if(category.equalsIgnoreCase(TextResources.drinks)) {
 			return drinks;
 		}
+		//TextResources must be changed as to read nestedPackage: "drinks.nonAlcoholicDrinks
+		if(category.equalsIgnoreCase(TextResources.drinks.nonAlcoholicDrinks)) {
+			return nonAlcoholicDrinks;
+		}
 		if(category.equalsIgnoreCase(TextResources.main)) {
 			return main;
 		}
@@ -136,6 +143,9 @@ public class Menu {
 		return drinks;
 	}
 
+	public ArrayList<Product> getNonAlcoholicDrinks(){
+		return nonAlcoholicDrinks;
+	}
 	public ArrayList<Product> getMain() {
 		return main;
 	}
