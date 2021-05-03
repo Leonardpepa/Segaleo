@@ -19,10 +19,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
-import reservation.Activity;
+
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import reservation.Activity;
 import resources.ColorResources;
 import resources.TextResources;
 
