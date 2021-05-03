@@ -1,0 +1,4 @@
+Εσπρέσο#ζεστός ιταλικός καφές#2.5#Coffee Menu/coffee/espresso.jpeg
+Καπουτσίνο#ζεστός ιταλικός καφές με αφρόγαλο#3.0#Coffee Menu/coffee/cappuccino.jpeg
+Αμερικάνο#ζεστός καφές αραιωμένος με νερό#2.5#Coffee Menu/coffee/americano.jpeg
+Καφές Φίλτρου#ζεστός γαλλικός καφές #2.0#Coffee Menu/coffee/filtercoffee.jpeg

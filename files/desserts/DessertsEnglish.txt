@@ -1,0 +1,4 @@
+Brownies#cake-formmed chocolate dessert#6.0#Desserts Menu/desserts/brownies.jpeg
+Cheesecake#cheese layer with biscuits and  fruit jam#7.0#Desserts Menu/desserts/cheeseacke.jpeg
+Red Velvet#cheese cream cake with red fruits#7.0#Desserts Menu/desserts/redvelvet.jpeg
+Apple pie#tart filled with processed apples#6.0#Desserts Menu/desserts/applepie.jpeg

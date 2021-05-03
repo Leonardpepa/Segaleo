@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import gui.components.PopupPanel;
 import gui.factory.*;
 import resources.*;
 
@@ -18,6 +19,8 @@ public class MainWindow  extends JFrame implements ActionListener{
 	private JPanel panel; 
 	private ImageIcon logo = new ImageIcon("logo/logo.png");
 	private JLabel logoLabel;
+	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
+	private JLabel backgroundLabel;
 	private JButton servicesBtn;
 	private JButton activitiesBtn;
 	
@@ -37,7 +40,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	boolean isPopup = false;
 	
 	public MainWindow() {
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
@@ -52,7 +55,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	}
 	
 	
-	public void intilizePanelToFrame() {
+	public void initilizePanelToFrame() {
 		
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -63,6 +66,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 		configurePopupWindow();
 		configureLogo();
 		configureButtons();
+		configureBackground();
 		addComponentsToPanel();
 		addListeners();
 		
@@ -83,6 +87,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 		panel.add(languageBtn);
 		togglePanel();
 		panel.add(logoLabel);
+		panel.add(backgroundLabel);
 	}
 	
 	public void configureButtons() {
@@ -112,6 +117,11 @@ public class MainWindow  extends JFrame implements ActionListener{
 		logoLabel.setBounds(101, 118, 173, 173);
 	}
 	
+	public void configureBackground() {
+		backgroundLabel = new JLabel(backgroundImage);
+		backgroundLabel.setBounds(0,0,375, 812);
+	}
+	
 	public void configurePopupWindow() {
 		popupPanel =  new PopupPanel();
 		popupPanel.configurePopupWindow();
@@ -130,7 +140,9 @@ public class MainWindow  extends JFrame implements ActionListener{
 		logoutBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
-		
+		profileBtn.addActionListener(this);
+		servicesBtn.addActionListener(this);
+		contactBtn.addActionListener(this);
 	}
 
 
@@ -152,6 +164,20 @@ public class MainWindow  extends JFrame implements ActionListener{
 		if(e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
 		}
-		intilizePanelToFrame();
+		
+		if(e.getSource() == profileBtn) {
+			this.dispose();
+			new ProfileWindow();
+		}
+		if(e.getSource() == servicesBtn) {
+			this.dispose();
+			new MenuWindow();
+		}
+		if(e.getSource() == contactBtn) {
+			this.dispose();
+			new ContactWindow();
+		}
+		
+		initilizePanelToFrame();
 	}
 }

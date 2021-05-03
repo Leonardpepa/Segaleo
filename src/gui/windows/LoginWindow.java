@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import gui.components.PopupPanel;
 import gui.factory.*;
 import resources.ColorResources;
 import resources.TextResources;
@@ -19,7 +20,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 
 	private JPanel panel;
 	
-	private ImageIcon backgroundImage = new ImageIcon("buttonImages/loginBackground.png");
+	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
 	
 	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
@@ -42,24 +43,22 @@ public class LoginWindow extends JFrame implements ActionListener{
 	
 	//constractor
 	public LoginWindow() {
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this,true);
-		
 	}
 	//settings for the frame
 	public void windowsConfiguration() {
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
 	
 	//set up the panel in the frame
-	public void intilizePanelToFrame() {
-		
-		new TextResources().changeLanguage();
+	public void initilizePanelToFrame() {
 		new ColorResources();
+		new TextResources().changeLanguage();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -134,8 +133,10 @@ public class LoginWindow extends JFrame implements ActionListener{
 	public void addListeners() {
 		languageBtn.addActionListener(this);
 		loginBtn.addActionListener(this);
+		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
+		
 	}
 	
 	//add or remove the popup panel
@@ -172,8 +173,12 @@ public class LoginWindow extends JFrame implements ActionListener{
 		if(e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
 		}
+		if(e.getSource() == contactBtn) {
+			this.dispose();
+			new ContactWindow();
+		}
 		
-		intilizePanelToFrame();
+		initilizePanelToFrame();
 	}
 
 }

@@ -1,4 +1,4 @@
-package gui.factory;
+package gui.components;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import gui.factory.ButtonFactory;
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
