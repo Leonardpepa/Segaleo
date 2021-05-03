@@ -1,8 +1,8 @@
-Εσπρέσο#ζεστός ιταλικός καφές#2.5#Coffee Menu/coffee/espresso.jpeg
-Καπουτσίνο#ζεστός ιταλικός καφές με αφρόγαλο#3.0#Coffee Menu/coffee/cappuccino.jpeg
-Αμερικάνο#ζεστός καφές αραιωμένος με νερό#2.5#Coffee Menu/coffee/americano.jpeg
-Καφές Φίλτρου#ζεστός γαλλικός καφές #2.0#Coffee Menu/coffee/filtercoffee.jpeg
-Φρέντο εσπρέσο#κρύος καφές#2.5#Coffee Menu/coffee/freddo-espresso.jpeg
-Φρέντο καπουτσίνο#κρύος καφές με αφρόγαλο#3.0#Coffee Menu/coffee/freddo-cap.jpeg
-Φραπέ#κρύος αφρώδης καφές#3.0#Coffee Menu/coffee/frappe.jpeg
-Ελληνικός καφές#ζεστός καφές#2.5#freddo espresso#Coffee Menu/coffee/greek.jpeg
+Εσπρέσσο#ζεστό ιταλικό χαρμάνι#2.50#Drinks Menu/Coffees/Espresso.png
+Καπουτσίνο#ζεστός ιταλικός εσπρέσσο με αφρόγαλα#3.00#Drinks Menu/Coffees/cappuccino.png
+Αμερικάνο#ζεστός εσπρέσσο αραιωμένος με νερό#2.50#Drinks Menu/Coffees/Americano.png
+Φίλτρου#ζεστός καφές φίλτρου ημέρας#2.00#Drinks Menu/Coffees/Filter.png
+Φρέντο Εσπρέσσο#παγωμένος εσπρέσσο#2.50#Drinks Menu/Coffees/Freddo Espresso.png
+Φρέντο Καπουτσίνο#παγωμένος εσπρέσσο με κρέμα#3.00#Drinks Menu/Coffees/Freddo Cappuccino.png
+Φραπέ#παγωμένος στιγμιαίος καφές#3.00#Drinks Menu/Coffees/Frappe.png
+Ελληνικός#παραδοσιακός ελληνικός καφές#2.50#freddo espresso#Drinks Menu/Coffees/Greek.png

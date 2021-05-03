@@ -1,8 +1,8 @@
-espresso#warm italian coffee#2.5#Coffee Menu/coffee/espresso.jpeg
-cappuccino#warm italian coffee with frothed milk#3.0#Coffee Menu/coffee/cappuccino.jpeg
-americano#warm coffee deluted with water#2.5#Coffee Menu/coffee/americano.jpeg
-filter coffee#warm french coffee#2.0#Coffee Menu/coffee/filtercoffee.jpeg
-freddo espresso#iced coffee#2.5#Coffee Menu/coffee/freddo-espresso.jpeg
-freddo cappuccino#iced coffee with frothed milk#3.0#Coffee Menu/coffee/freddo-cap.jpeg
-frappe#iced foamy coffee#3.0#Coffee Menu/coffee/frappe.jpeg
-greek coffee#hot coffee#2.5#freddo espresso#Coffee Menu/coffee/greek.jpeg
+Espresso#warm italian coffee#2.50#Drinks Menu/Coffees/Espresso.png
+Cappuccino#warm italian coffee with frothed milk#3.00#Drinks Menu/Coffees/cappuccino.png
+Americano#warm coffee deluted with water#2.50#Drinks Menu/Coffees/Americano.png
+Filter Coffee#warm french coffee#2.00#Drinks Menu/Coffees/Filter.png
+Freddo Espresso#iced coffee#2.50#Drinks Menu/Coffees/Freddo Espresso.png
+Freddo Cappuccino#iced coffee with frothed milk#3.00#Drinks Menu/Coffees/Freddo Cappuccino.png
+Frappe#iced foamy coffee#3.00#Drinks Menu/Coffees/Frappe.png
+Greek Coffee#hot coffee#2.50#freddo espresso#Drinks Menu/Coffees/Greek.png

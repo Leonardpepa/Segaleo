@@ -1,6 +1,0 @@
-Sprite#soda#2.5#Non-alcoholic Drinks Menu/drinks/sprite.jpeg#0.0
-Coca-Cola#refreshment#2.5#Non-alcoholic Drinks Menu/drinks/cola.jpeg#0.0
-Lemonade#lemon juice with carbon#2.5#Non-alcoholic Drinks Menu/drinks/lemonade.jpeg#0.0
-Fruit-Punch#fruit cocktail#4.0#Non-alcoholic Drinks Menu/drinks/fruit-punch.jpeg#0.0
-Orange juice#homemade orange juice#3.0#Non-alcoholic Drinks Menu/drinks/orange-juice.jpeg#0.0
-peach iced-tea#peach-flavoured iced tea#3.0#Non-alcoholic Drinks Menu/drinks/peach-juice.jpeg#0.0

@@ -1,6 +1,0 @@
-Σπράιτ#σόδα#2.5#Non-alcoholic Drinks Menu/drinks/sprite.jpeg#0.0
-Κόκα-Κόλα#αναψυκτικό#2.5#Non-alcoholic Drinks Menu/drinks/cola.jpeg#0.0
-Λεμονάδα#χυμός λεμονιού με ανθρακικό#2.5#Non-alcoholic Drinks Menu/drinks/lemonade.jpeg#0.0
-Φρούτ-Πάντς#κοκτέιλ φρούτων#4.0#Non-alcoholic Drinks Menu/drinks/fruit-punch.jpeg#0.0
-Πορτοκαλάδα#φρέσκος χυμός πορτοκάλι#3.0#Non-alcoholic Drinks Menu/drinks/orange-juice.jpeg#0.0
-Τσάι Ροδάκινο#κρύο τσάι ροδάκινο#3.0#Non-alcoholic Drinks Menu/drinks/peach-juice.jpeg#0.0
