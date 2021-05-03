@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.swing.JOptionPane;
+
 public class SocialMedia {
 
 	public void openURL(String social) {
@@ -19,5 +21,5 @@ public class SocialMedia {
 			e.printStackTrace();
 		}
 	}
-
+	
 }

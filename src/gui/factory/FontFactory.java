@@ -33,6 +33,10 @@ public class FontFactory {
 		return new Font("Avenir", Font.PLAIN, size);
 	}
 	
+	public static Font boldavenir(int size) {
+		return new Font("Avenir", Font.BOLD, size);
+	}
+	
 	public static Font lineThrough(int size) {
 		Font font = new Font("Poppins", Font.PLAIN, size);
 		Map  attributes = font.getAttributes();

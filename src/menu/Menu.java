@@ -94,7 +94,10 @@ public class Menu {
 
 	
 	public ArrayList<Product> getProductList(String category) {
-
+		
+		if(category.equalsIgnoreCase(TextResources.appetizers)) {
+			return appetizers;
+		}
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
