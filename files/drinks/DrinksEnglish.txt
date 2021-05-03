@@ -4,3 +4,9 @@ Johnnie Walker#scotch whiskey#25.0#Drinks Menu/drinks/johnnie.jpeg#40.0
 Fisher#blonde beer#4.0#Drinks Menu/drinks/fisher.jpeg#3%
 Campari#italian liquor#20.0#Drinks Menu/drinks/campari.jpeg#28.5%
 Moet#champagne#150.0#Drinks Menu/drinks/moet.jpeg#3%
+Cinderella#lemon juice with orange juice and pineapple#5.0#Drinks Menu/drinks/fruit-punch.jpeg#0.0
+virgin Mary#tomato juice with lemon juice and tabasco#5.0#Drinks Menu/drinks/fruit-punch.jpeg#0.0
+Lemonade#lemon juice with carbon#2.5#Non-alcoholic Drinks Menu/drinks/lemonade.jpeg#0.0
+Fruit-Punch#fruit cocktail#4.0#Non-alcoholic Drinks Menu/drinks/fruit-punch.jpeg#0.0
+Orange juice#homemade orange juice#3.0#Non-alcoholic Drinks Menu/drinks/orange-juice.jpeg#0.0
+peach iced-tea#peach-flavoured iced tea#3.0#Non-alcoholic Drinks Menu/drinks/peach-juice.jpeg#0.0

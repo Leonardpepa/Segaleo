@@ -4,3 +4,8 @@
 Φίσερ#ξανθιά μπύρα#4.0#Drinks Menu/drinks/fisher.jpeg#3%
 Καμπάρι#ιταλικό λικέρ#20.0#Drinks Menu/drinks/campari.jpeg#28.5%
 Μοέ#σαμπάνια#150.0#Drinks Menu/drinks/moet.jpeg#3%
+Σιντερέλα#χυμός πορτοκαλιού ανανά και λεμονιού#5.0#Drinks Menu/drinks/fruit-punch.jpeg#0.0
+Βίρτζιν μέρι#χυμός τομάτας λεμονιού και ταμπάσκο#5.0#Drinks Menu/drinks/fruit-punch.jpeg#0.0
+Φρούτ-Πάντς#κοκτέιλ φρούτων#4.0#Drinks Menu/drinks/fruit-punch.jpeg#0.0
+Πορτοκαλάδα#φρέσκος χυμός πορτοκάλι#3.0#Drinks Menu/drinks/orange-juice.jpeg#0.0
+Τσάι Ροδάκινο#κρύο τσάι ροδάκινο#3.0#Drinks Menu/drinks/peach-juice.jpeg#0.0
