@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Smirnoff#russian vodka#25.0#Drinks Menu/drinks/smirnoff.jpeg#37.5
 Bacardi#white rum#27.0#Drinks Menu/drinks/bacardi.jpeg#40.0
 Johnnie Walker#scotch whiskey#25.0#Drinks Menu/drinks/johnnie.jpeg#40.0
@@ -10,3 +11,17 @@ Lemonade#lemon juice with carbon#2.5#Non-alcoholic Drinks Menu/drinks/lemonade.j
 Fruit-Punch#fruit cocktail#4.0#Non-alcoholic Drinks Menu/drinks/fruit-punch.jpeg#0.0
 Orange juice#homemade orange juice#3.0#Non-alcoholic Drinks Menu/drinks/orange-juice.jpeg#0.0
 peach iced-tea#peach-flavoured iced tea#3.0#Non-alcoholic Drinks Menu/drinks/peach-juice.jpeg#0.0
+=======
+Smirnoff#russian vodka#25.00#Drinks Menu/Drinks/smirnoff.jpeg#37.5
+Bacardi#white rum#27.00#Drinks Menu/Drinks/bacardi.jpeg#40.0
+Johnnie Walker#scotch whiskey#25.00#Drinks Menu/Drinks/johnnie.jpeg#40.0
+Fisher#blonde beer#4.00#Drinks Menu/Drinks/fisher.jpeg#5.0
+Campari#italian liquor#20.00#Drinks Menu/Drinks/campari.jpeg#28.5
+Moet#champagne#150.00#Drinks Menu/Drinks/moet.jpeg#30.0
+Sprite#soda#2.50#Non-alcoholic Drinks Menu/Drinks/sprite.jpeg#0.0
+Coca-Cola#refreshment#2.50#Drinks Menu/Drinks/coca cola.jpeg#0.0
+Lemonade#refreshment#2.50#Drinks Menu/Drinks/fanta.jpeg#0.0
+Fruit-Punch#fruit cocktail#4.00#Drinks Menu/Drinks/fruit punch.jpeg#0.0
+Orange juice#homemade orange juice#3.00#Drinks Menu/Drinks/orange juice.jpeg#0.0
+Iced-tea#peach flavoured iced tea#3.00#Drinks Menu/Drinks/ice tea.jpeg#0.0
+>>>>>>> e15e5ace26003c059fcdedd71f8b383d953a612e
