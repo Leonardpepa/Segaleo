@@ -21,17 +21,19 @@ public class CouponFactory {
 		return new Coupon(code.toUpperCase(), new Date());
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean isValid(Coupon coupon) {
     	Date today = new Date();
     	String code = coupon.getCode(); 
     	String letters = code.substring(0, 2);
-    	//converting time from milliseconds to days
+    	//calculates the time that takes for a useer to use the coupon in milliseconds
     	long mill = today.getTime() - coupon.getDate().getTime();
+    	
+    	//converts the millseconds to days
+    	long days = (long) (mill / (1000*60*60*24));
     	
     	//check if the format and the date of the coupon is right
     	if(email.toUpperCase().contains(letters) && code.length() == 7) {
-    		if((long) (mill / (1000*60*60*24)) < 3) {
+    		if(days < 3) {
     			return true;
     		}
     	}
