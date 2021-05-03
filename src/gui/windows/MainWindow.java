@@ -3,7 +3,7 @@ package gui.windows;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+import reservation.ActivityReader;
 import gui.components.PopupPanel;
 import gui.factory.*;
 import resources.*;
@@ -143,6 +143,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 		profileBtn.addActionListener(this);
 		servicesBtn.addActionListener(this);
 		contactBtn.addActionListener(this);
+		activitiesBtn.addActionListener(this);
 	}
 
 
@@ -176,6 +177,11 @@ public class MainWindow  extends JFrame implements ActionListener{
 		if(e.getSource() == contactBtn) {
 			this.dispose();
 			new ContactWindow();
+		}
+		if(e.getSource() == activitiesBtn) {
+			this.dispose();
+			ActivityReader actReader = new ActivityReader();
+			new ActivityWindow(actReader.getActivitiesList());
 		}
 		
 		initilizePanelToFrame();

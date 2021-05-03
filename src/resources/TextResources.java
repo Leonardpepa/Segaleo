@@ -31,6 +31,7 @@ public class TextResources {
 	public static String orderCompleteTitle;
 	public static String orderCompleteMessage;
 	public static String seeMore;
+	public static String activityHeader;
 	
 
 	public  void changeLanguage() {
@@ -62,6 +63,7 @@ public class TextResources {
 		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
 		orderCompleteMessage =  isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes." : "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 		seeMore = isEnglish ? "See More" : "Δείτε Περισσότερα";
+		activityHeader = isEnglish ? "Choose the activity that best suits your vocation" : "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
 	}
 	
 }
