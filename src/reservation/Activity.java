@@ -2,6 +2,9 @@ package reservation;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 
 public class Activity 
@@ -24,6 +27,26 @@ public class Activity
 	private int diving2 = 2; 
 	private int roadtrip = 12;
 	int [][] a = new int[7][9];
+	
+	// Initializing a Dictionary
+    Dictionary days = new Hashtable();
+    Dictionary activities = new Hashtable();
+    Dictionary tennis = new Hashtable();
+    Dictionary golf = new Hashtable();
+    Dictionary diving = new Hashtable();
+    Dictionary concert = new Hashtable();
+    Dictionary beach = new Hashtable();
+    Dictionary limitΤ1 = new Hashtable();
+    Dictionary limitΤ2 = new Hashtable();
+    Dictionary limitG1 = new Hashtable();
+    Dictionary limitG2 = new Hashtable();
+    Dictionary limitS = new Hashtable();
+    Dictionary limitW = new Hashtable();
+    Dictionary limitD1 = new Hashtable();
+    Dictionary limitD2 = new Hashtable();
+    Dictionary limitR = new Hashtable();
+    Dictionary limitC = new Hashtable();
+    Dictionary limitB = new Hashtable();
 	
 	
 	public Activity(String id, String name,  int price, String path, int availability, String hour ){
@@ -99,6 +122,65 @@ public class Activity
 		else return -1;
 		
 		return j;
+	}
+	
+	public void initializeHashTable()
+	{
+		// put() method limit-hour
+        limitΤ1.put("4", "17:00");
+        limitΤ2.put("4", "18:00");
+        limitG1.put("6", "15:00");
+        limitG2.put("6", "16:00");
+        limitS.put("8", "16:00");
+        limitW.put("10", "10:00");
+        limitD1.put("2", "10:00");
+        limitD2.put("2", "11:00");
+        limitR.put("12", "9:00");
+        limitC.put("40", "20:00");
+        limitB.put("40", "10:00");
+        
+        // put() method groups of 2
+        tennis.put("t1",limitΤ1);
+        tennis.put("t2", limitΤ2);
+        golf.put("g1", limitG1);
+        golf.put("g2", limitG2);
+        diving.put("d1", limitD1);
+        diving.put("d2", limitD2);
+        
+        // put() method activities
+        activities.put("Tennis", tennis);
+        activities.put("Golf", golf);
+        activities.put("Spa", limitS);
+        activities.put("WaterPark", limitW);
+        activities.put("Diving", diving);
+        activities.put("Roadtrip", limitR);
+        activities.put("Concert", limitR);
+        activities.put("Beach", limitR);
+        
+        // put() method days
+        days.put("Δευτέρα", activities);
+        days.put("Τρίτη", activities);
+        days.put("Τετάρτη", activities);
+        days.put("Πέμπτη", activities);
+        days.put("Παρασκευή", activities);
+        days.put("Σάββατο", activities);
+  
+        // elements() method :
+        for (Enumeration i = days.elements(); i.hasMoreElements();)
+        {
+            System.out.println("Value in Dictionary : " + i.nextElement());
+        }
+  
+        // get() method :
+        System.out.println("\nValue at key = Tennis : " + activities.get("Tennis"));
+        System.out.println("Value at key = Τρίτη : " + days.get("Τρίτη"));
+  
+
+        // keys() method :
+        for (Enumeration k = days.keys(); k.hasMoreElements();)
+        {
+            System.out.println("Keys in Dictionary : " + k.nextElement());
+        }
 	}
 	
 	//γίνεται ο έλεγχος διαθεσιμότητας θέσης
