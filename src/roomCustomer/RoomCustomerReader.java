@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class RoomCustomerReader {
 
 	private ArrayList<Customer> customers;
-	private ArrayList<Room> rooms;
+	public static ArrayList<Room> rooms;
 	
 	public RoomCustomerReader(){
 		customers = new ArrayList<Customer>();
@@ -64,11 +64,22 @@ public class RoomCustomerReader {
 	
 	
 	private void AssociateRoomCustomer() {
+		/*Associates the last added room to the last added customer
+		 * and the opposite
+		 */
 		
 		customers.get(customers.size()-1).setRoom(rooms.get(rooms.size()-1));
 		rooms.get(customers.size()-1).setCustomer(customers.get(rooms.size()-1));
 	}
 	
 	
+	public ArrayList<Customer> getCustomersList(){
+		return customers;
+	}
+	
+	
+	public static ArrayList<Room> getRoomsList(){
+		return rooms;
+	}
 	
 }

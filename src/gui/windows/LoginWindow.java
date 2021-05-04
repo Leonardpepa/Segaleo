@@ -1,14 +1,25 @@
 package gui.windows;
-import java.awt.*;
-
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import gui.factory.*;
+import gui.factory.ButtonFactory;
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
+import gui.factory.PopupPanel;
+import gui.factory.TextFieldFactory;
 import resources.ColorResources;
 import resources.TextResources;
+
+import login.Login;
 
 
 public class LoginWindow extends JFrame implements ActionListener{
@@ -161,8 +172,11 @@ public class LoginWindow extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource() == loginBtn) {
-			this.dispose();
-			new MainWindow();
+			if(Login.checkLogin(roomField.getText(), passwordField.getText()))
+			{
+				this.dispose();
+				new MainWindow();
+			}
 		}
 		
 		if(e.getSource() == popupPanel.greek) {

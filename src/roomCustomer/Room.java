@@ -4,7 +4,7 @@ public class Room {
 	
 	private int number;
 	private String password;
-	private Customer customer;
+	private Customer customer = null;
 	
 	
 	public Room(int number, String password) {

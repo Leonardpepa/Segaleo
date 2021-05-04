@@ -4,7 +4,7 @@ public class Customer{
 	
 	private String name;
 	private String email;
-	private Room room;
+	private Room room = null;
 	
 	
 	public Customer(String name, String email) {
