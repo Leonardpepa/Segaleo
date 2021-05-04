@@ -5,4 +5,4 @@ Filter Coffee#warm french coffee#2.00#Drinks Menu/Coffees/Filter.png
 Freddo Espresso#iced coffee#2.50#Drinks Menu/Coffees/Freddo Espresso.png
 Freddo Cappuccino#iced coffee with frothed milk#3.00#Drinks Menu/Coffees/Freddo Cappuccino.png
 Frappe#iced foamy coffee#3.00#Drinks Menu/Coffees/Frappe.png
-Greek Coffee#hot coffee#2.50#freddo espresso#Drinks Menu/Coffees/Greek.png
+Greek Coffee#hot coffee#2.50#Drinks Menu/Coffees/Greek.png
