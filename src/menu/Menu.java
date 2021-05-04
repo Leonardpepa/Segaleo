@@ -98,9 +98,6 @@ public class Menu {
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
-		if(category.equalsIgnoreCase(TextResources.appetizers)) {
-			return appetizers;
-		}
 		if(category.equalsIgnoreCase(TextResources.coffee)) {
 			return coffee;
 		}
