@@ -1,10 +1,7 @@
-b#Beach Reservation#5#Activities/beach.png#40#9:00-12:00
-t1#Tennis#9#Activities/tennis.png#4#17:00-18:00
-t2#Tennis#9#Activities/tennis.png#4#18:00-19:00
-g1#Golf#12#Activities/golf.png#6#15:00-16:00
-g2#Golf#12#Activities/golf.png#6#16:00-17:00
-w#Water Park#18#Activities/waterPark.png#10#10:00-15:00
-s#Spa#15#Activities/spa.png#8#16:00-18:00
-d1#Diving#40#Activities/diving.png#2#10:00-11:00
-d2#Diving#40#Activities/diving.png#2#11:00-12:00
-r#Road Trip#20#Activities/road.png#12#9:00-12:00
+Beach Reservation#5#Activities/beach.png#40#9:00-12:00#-
+Tennis#9#Activities/tennis.png#4#17:00-18:00#18:00-19:00
+Golf#12#Activities/golf.png#6#15:00-16:00#16:00-17:00
+Water Park#18#Activities/waterPark.png#10#10:00-15:00#-
+Spa#15#Activities/spa.png#8#16:00-18:00#-
+Diving#40#Activities/diving.png#2#10:00-11:00#11:00-12:00
+Road Trip#20#Activities/road.png#12#9:00-12:00#-
