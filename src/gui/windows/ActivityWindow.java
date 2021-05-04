@@ -118,7 +118,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		
 		activityImage = new ImageIcon(activity.getPath());
 		activityimgLabel = LabelFactory.createIconLabel(activityImage);
-		activityimgLabel.setBounds(5, 5, 300, 170);
+		activityimgLabel.setBounds(5, 5, 310, 170);
 		
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(5,180,150,19);
@@ -130,7 +130,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		plusButtonLabel.setBounds(295, 180, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		priceLabel = LabelFactory.createLabel(activity.getPrice() + "$", Color.BLACK, FontFactory.poppins(13));
+		priceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		priceLabel.setBounds(155, 180, 43, 19);
 		
 		panel.add(activityimgLabel);

@@ -25,12 +25,12 @@ public class Reservation
 		this.hour = hour;
 		dayFormat = new SimpleDateFormat("dd/MM");
 		hourFormat = new SimpleDateFormat("hh:mm");
-		if (this.activity.checkLimit(people, hour,day)) {
-			code = code;
-		}
-		else {
-			System.out.println("den xorane tosoi");
-		}
+//		if (this.activity.checkLimit(people, hour,day)) {
+//			code = code;
+//		}
+//		else {
+//			System.out.println("den xorane tosoi");
+//		}
 
 
 	}
