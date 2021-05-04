@@ -11,15 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gui.components.PopupPanel;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
-import gui.factory.PopupPanel;
 import gui.factory.TextFieldFactory;
+import login.Login;
 import resources.ColorResources;
 import resources.TextResources;
 
-import login.Login;
+import roomCustomer.*;
 
 
 public class LoginWindow extends JFrame implements ActionListener{
@@ -172,7 +173,10 @@ public class LoginWindow extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource() == loginBtn) {
-			if(Login.checkLogin(roomField.getText(), passwordField.getText()))
+			//reads and saves the all customers with their rooms
+			new RoomCustomerReader();
+			
+			if(Login.checkLogin(Integer.parseInt(roomField.getText()), passwordField.getText()))
 			{
 				this.dispose();
 				new MainWindow();
@@ -186,6 +190,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 		if(e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
 		}
+
 		
 		intilizePanelToFrame();
 	}
