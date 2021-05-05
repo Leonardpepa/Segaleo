@@ -1,10 +1,18 @@
 package roomCustomer;
 
+import java.util.ArrayList;
+
+import order.Coupon;
+import order.Order;
+
 public class Customer{
 	
 	private String name;
 	private String email;
 	private Room room = null;
+	private ArrayList<Coupon> coupons = new ArrayList<Coupon>();
+	private ArrayList<Order> orders = new ArrayList<Order>();
+	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 	
 	
 	public Customer(String name, String email) {
