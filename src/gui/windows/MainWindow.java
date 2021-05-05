@@ -40,7 +40,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	boolean isPopup = false;
 	
 	public MainWindow() {
-		initilizePanelToFrame();
+		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
@@ -55,7 +55,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	}
 	
 	
-	public void initilizePanelToFrame() {
+	public void initializePanelToFrame() {
 		
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -184,6 +184,6 @@ public class MainWindow  extends JFrame implements ActionListener{
 			new ActivityWindow(actReader.getActivitiesList());
 		}
 		
-		initilizePanelToFrame();
+		initializePanelToFrame();
 	}
 }

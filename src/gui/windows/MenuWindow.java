@@ -81,13 +81,13 @@ public class MenuWindow extends JFrame implements ActionListener {
 
 	// constructor
 	public MenuWindow() {
-		initilizePanelToFrame();
+		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
 
 	// put all the components to the background panel
-	private void initilizePanelToFrame() {
+	private void initializePanelToFrame() {
 		menu = new Menu();
 		backgroundPanel = new JPanel();
 		backgroundPanel.setPreferredSize(new Dimension(375, 812));

@@ -21,7 +21,7 @@ public class Order {
 		products = new ArrayList<>();
 	}
 	
-	public void deleteProduct(Product product) {
+	public void removeProduct(Product product) {
 		products.remove(product);
 	}
 	

@@ -54,12 +54,12 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 
 	public ActivityWindow(ArrayList<Activity> activities) {
 		this.activities = activities;
-		initilizePanelToFrame();
+		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
 	
-	private void initilizePanelToFrame() {
+	private void initializePanelToFrame() {
 		backgroundPanel = new JPanel();
 		backgroundPanel.setPreferredSize(new Dimension(375, 812));
 		backgroundPanel.setLayout(null);

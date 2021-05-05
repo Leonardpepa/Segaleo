@@ -10,6 +10,7 @@ public class Reservation
 {
 	private String day  ; 
 	private String hour ;
+	private double totalCost;
 	private int code;
 	private Activity activity;
 	private int people;
@@ -35,11 +36,13 @@ public class Reservation
 
 	}
 	
-	public double calcTotal() 
-	{
-		double cost=0;
-		cost = this.people*this.activity.getPrice();
-		return cost;
+	public double calcCost() 
+	{	
+		totalCost = 0;
+		
+		totalCost = this.people*this.activity.getPrice();
+		
+		return totalCost;
 	}
 	
 	//hour and das

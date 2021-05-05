@@ -41,9 +41,9 @@ public class LoginWindow extends JFrame implements ActionListener{
 	
 	boolean isPopup = false;
 	
-	//constractor
+	//constructor
 	public LoginWindow() {
-		initilizePanelToFrame();
+		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this,true);
 	}
@@ -56,7 +56,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 	}
 	
 	//set up the panel in the frame
-	public void initilizePanelToFrame() {
+	public void initializePanelToFrame() {
 		new ColorResources();
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -178,7 +178,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 			new ContactWindow();
 		}
 		
-		initilizePanelToFrame();
+		initializePanelToFrame();
 	}
 
 }
