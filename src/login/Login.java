@@ -9,6 +9,8 @@ import roomCustomer.RoomCustomerReader;
 
 public class Login{
 	
+	//This class logs in and out an user
+	
 	public static Customer loggedCustomer = null;
 	
 	
