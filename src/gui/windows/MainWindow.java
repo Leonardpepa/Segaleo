@@ -1,12 +1,29 @@
 package gui.windows;
 
+<<<<<<< HEAD
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import reservation.ActivityReader;
+=======
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+>>>>>>> Room-Customer
 import gui.components.PopupPanel;
-import gui.factory.*;
-import resources.*;
+import gui.factory.ButtonFactory;
+import gui.factory.FontFactory;
+import login.Login;
+import resources.ColorResources;
+import resources.TextResources;
 
 public class MainWindow  extends JFrame implements ActionListener{
 	
@@ -178,10 +195,17 @@ public class MainWindow  extends JFrame implements ActionListener{
 			this.dispose();
 			new ContactWindow();
 		}
+<<<<<<< HEAD
 		if(e.getSource() == activitiesBtn) {
 			this.dispose();
 			ActivityReader actReader = new ActivityReader();
 			new ActivityWindow(actReader.getActivitiesList());
+=======
+		if(e.getSource() == logoutBtn) {
+			Login.logout();
+			this.dispose();
+			new LoginWindow();
+>>>>>>> Room-Customer
 		}
 		
 		initializePanelToFrame();

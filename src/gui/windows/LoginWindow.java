@@ -1,18 +1,31 @@
 package gui.windows;
-import java.awt.*;
-
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import gui.components.PopupPanel;
-import gui.factory.*;
+import gui.factory.ButtonFactory;
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
+import gui.factory.TextFieldFactory;
+import login.Login;
 import resources.ColorResources;
 import resources.TextResources;
+import roomCustomer.RoomCustomerReader;
 
 
-public class LoginWindow extends JFrame implements ActionListener{
+public class LoginWindow extends JFrame implements ActionListener, FocusListener{
 	/**
 	 * 
 	 */
@@ -20,7 +33,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 
 	private JPanel panel;
 	
-	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
+	private ImageIcon backgroundImage = new ImageIcon("buttonImages/loginBackground.png");
 	private JLabel backgroundLabel;
 	
 	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
@@ -43,22 +56,33 @@ public class LoginWindow extends JFrame implements ActionListener{
 	
 	//constructor
 	public LoginWindow() {
+<<<<<<< HEAD
 		initializePanelToFrame();
+=======
+		intilizePanelToFrame();
+>>>>>>> Room-Customer
 		windowsConfiguration();
 		showWindow(this,true);
+		
 	}
 	//settings for the frame
 	public void windowsConfiguration() {
-		this.setTitle("Segaleo");
+		this.setTitle("Hotel PDA Sample");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
 	
 	//set up the panel in the frame
+<<<<<<< HEAD
 	public void initializePanelToFrame() {
 		new ColorResources();
+=======
+	public void intilizePanelToFrame() {
+		
+>>>>>>> Room-Customer
 		new TextResources().changeLanguage();
+		new ColorResources();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -76,6 +100,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 
 	//makes the frame visible
 	public void showWindow(JFrame frame, boolean show) {
+		loginBtn.requestFocusInWindow();
 		frame.setVisible(show);
 	}
 	
@@ -133,10 +158,10 @@ public class LoginWindow extends JFrame implements ActionListener{
 	public void addListeners() {
 		languageBtn.addActionListener(this);
 		loginBtn.addActionListener(this);
-		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
-		
+		roomField.addFocusListener(this);
+		passwordField.addFocusListener(this);
 	}
 	
 	//add or remove the popup panel
@@ -162,8 +187,18 @@ public class LoginWindow extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource() == loginBtn) {
-			this.dispose();
-			new MainWindow();
+			//reads and saves the all customers with their rooms
+			new RoomCustomerReader();
+			
+			//checks if the text field is empty and if the login data is correct
+			if(!roomField.getText().equals("")  &&  Login.checkLogin(roomField.getText(), passwordField.getText()))
+			{
+				this.dispose();
+				new MainWindow();
+			}
+			else
+				JOptionPane.showMessageDialog(popupPanel, "Wrong Password or Room.\n Please contact with the reception.","Log In Error", JOptionPane.WARNING_MESSAGE);
+			
 		}
 		
 		if(e.getSource() == popupPanel.greek) {
@@ -173,12 +208,28 @@ public class LoginWindow extends JFrame implements ActionListener{
 		if(e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
 		}
-		if(e.getSource() == contactBtn) {
-			this.dispose();
-			new ContactWindow();
-		}
+
 		
+		intilizePanelToFrame();
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		
+		if(e.getSource() == roomField)
+			roomField.setText("");
+		if(e.getSource() == passwordField)
+			passwordField.setText("");
+		
+	}
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+<<<<<<< HEAD
 		initializePanelToFrame();
+=======
+>>>>>>> Room-Customer
 	}
 
 }
