@@ -77,14 +77,14 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 		backgroundLabel = new JLabel(backgroundImage);
 		backgroundLabel.setBounds(0,0,375, 812);
 		
-//		forgotPassword = LabelFactory.createLabel(TextResources.forgotPassword, Color.WHITE, FontFactory.poppins(30));
-//		forgotPassword.setBounds(41, 224, 241, 39);
-//		
-//		txtPass = LabelFactory.createLabel(TextResources.txtPass, Color.WHITE, FontFactory.poppins(16));
-//		txtPass.setBounds(41, 263, 304, 74);
-//		
-//		txtSendEmail = LabelFactory.createLabel(TextResources.txtSendEmail, Color.WHITE, FontFactory.poppins(16));
-//		txtSendEmail.setBounds(41, 300, 304, 74);
+		forgotPassword = LabelFactory.createLabel(TextResources.forgotPassword, Color.WHITE, FontFactory.poppins(30));
+		forgotPassword.setBounds(41, 224, 241, 39);
+		
+		txtPass = LabelFactory.createLabel(TextResources.txtPass, Color.WHITE, FontFactory.poppins(16));
+		txtPass.setBounds(41, 263, 304, 74);
+		
+		txtSendEmail = LabelFactory.createLabel(TextResources.txtSendEmail, Color.WHITE, FontFactory.poppins(16));
+		txtSendEmail.setBounds(41, 300, 304, 74);
 	}
 	
 	//buttons settings

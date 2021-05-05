@@ -33,6 +33,9 @@ public class TextResources {
 	public static String seeMore;
 	public static String activityHeader;
 	public static String payment; 
+	public static String forgotPassword; 
+	public static String txtPass; 
+	public static String txtSendEmail; 
 	
 
 	public  void changeLanguage() {
@@ -66,6 +69,9 @@ public class TextResources {
 		seeMore = isEnglish ? "See More" : "Δείτε Περισσότερα";
 		activityHeader = isEnglish ? "Choose the activity that best suits your vocation" : "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
 		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής";	
+		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
+		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
+		txtSendEmail = isEnglish? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
 	}
 	
 }
