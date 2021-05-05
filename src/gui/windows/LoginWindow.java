@@ -91,8 +91,8 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 	//makes the frame visible
 	public void showWindow(JFrame frame, boolean show) {
+		loginBtn.requestFocusInWindow();
 		frame.setVisible(show);
-		loginBtn.requestFocus();
 	}
 	
 	//label settings
