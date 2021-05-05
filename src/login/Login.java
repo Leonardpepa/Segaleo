@@ -14,8 +14,9 @@ public class Login{
 	public static Customer loggedCustomer = null;
 	
 	
-	public static boolean checkLogin(int number, String password) {
+	public static boolean checkLogin(String numberString, String password) {
 		ArrayList<Room> rooms = RoomCustomerReader.getRoomsList();
+		int number = Integer.parseInt(numberString);
 		
 		/* The array index of the room we're looking for*/
 		int roomIndex;

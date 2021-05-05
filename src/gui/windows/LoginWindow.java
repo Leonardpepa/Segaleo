@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,8 +20,7 @@ import gui.factory.TextFieldFactory;
 import login.Login;
 import resources.ColorResources;
 import resources.TextResources;
-
-import roomCustomer.*;
+import roomCustomer.RoomCustomerReader;
 
 
 public class LoginWindow extends JFrame implements ActionListener{
@@ -176,11 +176,14 @@ public class LoginWindow extends JFrame implements ActionListener{
 			//reads and saves the all customers with their rooms
 			new RoomCustomerReader();
 			
-			if(Login.checkLogin(Integer.parseInt(roomField.getText()), passwordField.getText()))
+			if(Login.checkLogin(roomField.getText(), passwordField.getText()))
 			{
 				this.dispose();
 				new MainWindow();
 			}
+			else
+				JOptionPane.showMessageDialog(popupPanel, "Wrong Password or Room.\n Please contact with the reception.","Log In Error", JOptionPane.WARNING_MESSAGE);
+			
 		}
 		
 		if(e.getSource() == popupPanel.greek) {
