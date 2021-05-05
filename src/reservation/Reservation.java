@@ -35,7 +35,7 @@ public class Reservation
 
 	}
 	
-	public double calcTotal() 
+	public double calcCost() 
 	{
 		double cost=0;
 		cost = this.people*this.activity.getPrice();
