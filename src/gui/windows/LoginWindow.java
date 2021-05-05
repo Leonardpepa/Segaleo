@@ -197,7 +197,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 		}
 		if(e.getSource() == myPassBtn) {
 			this.dispose();
-//			new ForgotPasswordWindow();
+			new ForgotPasswordWindow();
 		}
 		
 		initilizePanelToFrame();
