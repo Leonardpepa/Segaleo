@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,7 +25,7 @@ import resources.TextResources;
 import roomCustomer.RoomCustomerReader;
 
 
-public class LoginWindow extends JFrame implements ActionListener{
+public class LoginWindow extends JFrame implements ActionListener, FocusListener{
 	/**
 	 * 
 	 */
@@ -90,6 +92,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 	//makes the frame visible
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
+		loginBtn.requestFocus();
 	}
 	
 	//label settings
@@ -148,6 +151,8 @@ public class LoginWindow extends JFrame implements ActionListener{
 		loginBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
+		roomField.addFocusListener(this);
+		passwordField.addFocusListener(this);
 	}
 	
 	//add or remove the popup panel
@@ -176,7 +181,8 @@ public class LoginWindow extends JFrame implements ActionListener{
 			//reads and saves the all customers with their rooms
 			new RoomCustomerReader();
 			
-			if(Login.checkLogin(roomField.getText(), passwordField.getText()))
+			//checks if the text field is empty and if the login data is correct
+			if(!roomField.getText().equals("")  &&  Login.checkLogin(roomField.getText(), passwordField.getText()))
 			{
 				this.dispose();
 				new MainWindow();
@@ -196,6 +202,21 @@ public class LoginWindow extends JFrame implements ActionListener{
 
 		
 		intilizePanelToFrame();
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		
+		if(e.getSource() == roomField)
+			roomField.setText("");
+		if(e.getSource() == passwordField)
+			passwordField.setText("");
+		
+	}
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
