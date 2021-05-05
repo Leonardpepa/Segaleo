@@ -37,6 +37,11 @@ public class LoginWindow extends JFrame implements ActionListener{
 	
 	private JButton loginBtn;
 	
+	//forgotPass button
+	private ImageIcon myPassImage = new ImageIcon("buttonImages/MyPassImage.png");
+	private ImageIcon myPassImageGR = new ImageIcon("buttonImages/MyPassImageGR.png");
+	private JButton myPassBtn;
+	
 	private PopupPanel popupPanel;
 	
 	boolean isPopup = false;
@@ -113,6 +118,17 @@ public class LoginWindow extends JFrame implements ActionListener{
 		loginBtn = ButtonFactory.createButton(TextResources.loginBtn, FontFactory.poppins(20), ColorResources.bgLoginWindow, Color.WHITE);
 		loginBtn.setBounds(22, 468, 331, 52);
 		
+		if (TextResources.isEnglish)
+		{
+			myPassBtn = ButtonFactory.createButtonIcon(myPassImage);
+			myPassBtn.setBounds(132, 539, 112, 19);
+		}
+		else
+		{	
+			myPassBtn = ButtonFactory.createButtonIcon(myPassImageGR);
+			myPassBtn.setBounds(113, 538, 150, 19);
+		}
+		
 	}
 	
 	//add all the components
@@ -125,6 +141,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 		panel.add(roomField);
 		panel.add(passwordField);
 		panel.add(loginBtn);
+		panel.add(myPassBtn);
 		togglePanel();
 		panel.add(backgroundLabel);
 	}
@@ -136,6 +153,7 @@ public class LoginWindow extends JFrame implements ActionListener{
 		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
+		myPassBtn.addActionListener(this);
 		
 	}
 	
@@ -176,6 +194,10 @@ public class LoginWindow extends JFrame implements ActionListener{
 		if(e.getSource() == contactBtn) {
 			this.dispose();
 			new ContactWindow();
+		}
+		if(e.getSource() == myPassBtn) {
+			this.dispose();
+//			new ForgotPasswordWindow();
 		}
 		
 		initilizePanelToFrame();
