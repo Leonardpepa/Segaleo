@@ -215,7 +215,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	}
 	@Override
 	public void focusLost(FocusEvent e) {
-		initializePanelToFrame();
+		//initializePanelToFrame();
 	}
 
 }
