@@ -1,11 +1,10 @@
 package gui.windows;
 
-<<<<<<< HEAD
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import reservation.ActivityReader;
-=======
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -17,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
->>>>>>> Room-Customer
 import gui.components.PopupPanel;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
@@ -75,6 +73,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	public void initializePanelToFrame() {
 		
 		new TextResources().changeLanguage();
+		new ColorResources();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -166,10 +165,6 @@ public class MainWindow  extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == logoutBtn) {
-			this.dispose();
-			new LoginWindow();			
-		}
 		
 		if(e.getSource() == languageBtn) {
 			isPopup = isPopup ? false : true;
@@ -195,17 +190,15 @@ public class MainWindow  extends JFrame implements ActionListener{
 			this.dispose();
 			new ContactWindow();
 		}
-<<<<<<< HEAD
 		if(e.getSource() == activitiesBtn) {
 			this.dispose();
 			ActivityReader actReader = new ActivityReader();
 			new ActivityWindow(actReader.getActivitiesList());
-=======
+		}
 		if(e.getSource() == logoutBtn) {
 			Login.logout();
 			this.dispose();
 			new LoginWindow();
->>>>>>> Room-Customer
 		}
 		
 		initializePanelToFrame();

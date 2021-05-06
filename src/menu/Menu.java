@@ -37,21 +37,13 @@ public class Menu {
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
 
-<<<<<<< HEAD
-		readFood(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
-		readFood(coffee, "files/coffee/Coffees", TextResources.endpointPath);
-		readFood(desserts, "files/desserts/Desserts", TextResources.endpointPath);
-		readFood(drinks, "files/drinks/Drinks", TextResources.endpointPath);
-		readFood(main, "files/main/Main", TextResources.endpointPath);
-		readFood(salads, "files/salads/Salads", TextResources.endpointPath);
-=======
+
 		readProduct(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
 		readProduct(coffee, "files/coffee/Coffees", TextResources.endpointPath);
 		readProduct(desserts, "files/desserts/Desserts", TextResources.endpointPath);
 		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
->>>>>>> Room-Customer
 	}
 
 	private void readProduct(ArrayList<Product> list, String pathName, String language) {
@@ -103,20 +95,15 @@ public class Menu {
 
 	
 	public ArrayList<Product> getProductList(String category) {
-<<<<<<< HEAD
 		
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
-=======
 
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
-		if(category.equalsIgnoreCase(TextResources.appetizers)) {
-			return appetizers;
-		}
->>>>>>> Room-Customer
+
 		if(category.equalsIgnoreCase(TextResources.coffee)) {
 			return coffee;
 		}

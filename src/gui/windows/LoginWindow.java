@@ -33,7 +33,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 	private JPanel panel;
 	
-	private ImageIcon backgroundImage = new ImageIcon("buttonImages/loginBackground.png");
+	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
 	
 	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
@@ -56,11 +56,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	
 	//constructor
 	public LoginWindow() {
-<<<<<<< HEAD
 		initializePanelToFrame();
-=======
-		intilizePanelToFrame();
->>>>>>> Room-Customer
 		windowsConfiguration();
 		showWindow(this,true);
 		
@@ -74,13 +70,8 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	}
 	
 	//set up the panel in the frame
-<<<<<<< HEAD
 	public void initializePanelToFrame() {
-		new ColorResources();
-=======
-	public void intilizePanelToFrame() {
 		
->>>>>>> Room-Customer
 		new TextResources().changeLanguage();
 		new ColorResources();
 		panel = new JPanel();
@@ -210,7 +201,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		}
 
 		
-		intilizePanelToFrame();
+		initializePanelToFrame();
 	}
 	
 	@Override
@@ -224,12 +215,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	}
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-<<<<<<< HEAD
 		initializePanelToFrame();
-=======
->>>>>>> Room-Customer
 	}
 
 }

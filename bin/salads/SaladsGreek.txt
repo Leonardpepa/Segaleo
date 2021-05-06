@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 Χωριάτικη Σαλάτα#με ντομάτα, αγγούρι, φέτα, κρεμμύδια και ελιές#7.50#Food Menu/salads/greek salad.jpeg
 Σπανακοσαλάτα#με ντοματίνια, μανούρι και κρουτόν#8.00#Food Menu/salads/σαλατα.jpeg
 Ντάκος#με φέτα, ντομάτα και ελαιόλαδο#7.50#Food Menu/salads/dakos.jpeg
 Σαλάτα Segaleo#με μαρούλι, ρόκα, ηλιόσπορους και βινεγκρέτ φράουλας#7.00#Food Menu/salads/segalo salad.jpg
 Πολίτικη#με λάχανο, καρότο και ξύδι#5.00#Food Menu/salads/carrot.jpeg
 Κινόα#με θρεπτικά λαχανικά#7.00#Food Menu/salads/quinoa.jpeg
-=======
-Χωριάτικη Σαλάτα#με ντομάτα, αγγούρι, φέτα, κρεμμύδια και ελιές#7.50#Food Menu/salads/greek salad.jpeg
-Σπανακοσαλάτα#με ντοματίνια, μανούρι και κρουτόν#8.00#Food Menu/salads/σαλατα.jpeg
-Ντάκος#με φέτα, ντομάτα και ελαιόλαδο#7.50#Food Menu/salads/dakos.jpeg
-Σαλάτα Segaleo#με μαρούλι, ρόκα, ηλιόσπορους και βινεγκρέτ φράουλας#7.00#Food Menu/salads/segalo salad.jpg
->>>>>>> Room-Customer
