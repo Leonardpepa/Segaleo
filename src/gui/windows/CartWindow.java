@@ -113,10 +113,11 @@ public class CartWindow extends JFrame{
 		priceHolder.setLayout(null);
 		priceHolder.setPreferredSize(new Dimension(328, 63));
 		priceHolder.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.WHITE));
+		priceHolder.setBackground(Color.WHITE);
 		
 		totalLabel = LabelFactory.createLabel(TextResources.total, Color.BLACK, FontFactory.poppins(14));
 		priceLabel = LabelFactory.createLabel("17.00", Color.BLACK, FontFactory.poppins(14));
-		totalLabel.setBounds(23, 18, 50, 20);
+		totalLabel.setBounds(23, 18, 100, 20);
 		priceLabel.setBounds(264,18, 50, 20);
 		
 		priceHolder.setBounds(24, 141, 328, 63);
