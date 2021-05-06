@@ -36,6 +36,7 @@ public class TextResources {
 	public static String forgotPassword; 
 	public static String txtPass; 
 	public static String txtSendEmail; 
+	public static String myCart;
 	
 
 	public  void changeLanguage() {
@@ -72,6 +73,7 @@ public class TextResources {
 		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
 		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
 		txtSendEmail = isEnglish? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
+		myCart = isEnglish ? "My Cart" : "Το καλάθι μου";
 	}
 	
 }

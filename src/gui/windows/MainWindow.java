@@ -48,7 +48,7 @@ public class MainWindow  extends JFrame implements ActionListener{
 	
 	public void windowsConfiguration() {
 		this.setIconImage(logo.getImage());
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
