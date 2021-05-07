@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import order.Coupon;
 import order.Order;
+import reservation.Reservation;
 
 public class Customer{
 	
@@ -12,10 +13,7 @@ public class Customer{
 	private Room room = null;
 	private ArrayList<Coupon> coupons = new ArrayList<Coupon>();
 	private ArrayList<Order> orders = new ArrayList<Order>();
-	
-	//ΜΟΛΙΣ ΠΕΡΑΣΤΕΙ ΣΤΟ ΜΑΣΤΕΡ, ΤΟ ΠΑΡΑΚΑΤΩ ARRAYLIST NA ΠΑΨΕΙ ΝΑ ΕΙΝΑΙ ΣΧΟΛΙΟ
-	//MΑΖΙ ΜΕ ΤΙΣ ΚΛΑΣΕΙΣ ΠΟΥ ΤΟ ΠΕΡΙΒΑΛΛΟΥΝ
-	//private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 	
 	
 	public Customer(String name, String email) {
@@ -59,11 +57,11 @@ public class Customer{
 		return orders;
 	}
 	
-	/*public void addReservation(Reservation reservation) {
+	public void addReservation(Reservation reservation) {
 		reservations.add(reservation);
 	}
 	
 	public ArrayList<Reservation> getReservations() {
 		return reservations;
-	}*/
+	}
 }
