@@ -39,7 +39,7 @@ public class CreditCardGUI extends JFrame{
 	JComboBox monthsList = new JComboBox(months);
     JComboBox yearList = new JComboBox(year);
     
-    
+    CreditCard cc;
     public class RoundJTextField extends JTextField {
         private Shape shape;
         public RoundJTextField(int size) {
@@ -104,65 +104,21 @@ public class CreditCardGUI extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//check month
-			boolean validMonth = true;
+
+			String cn = cardNum.getText();
+			String n = name.getText();
+			
 			String m = (String) monthsList.getSelectedItem();
 			int month = Integer.parseInt(m);
-		
-			SimpleDateFormat currentMonth = new SimpleDateFormat("MM");  
-		    Date mm = new Date();  
-		    int cmonth = Integer.parseInt(currentMonth.format(mm));
-		    if(cmonth > month) validMonth = false;
-		    
-		    //check year
-		    boolean validYear = true;
+
 			String y = (String) yearList.getSelectedItem();
 			int year = Integer.parseInt(y);
-			
-			SimpleDateFormat currentYear = new SimpleDateFormat("yyyy");  
-			Date yyyy = new Date();  
-			int cyear = Integer.parseInt(currentYear.format(yyyy));
-			if(cyear > year) validYear = false;
-			
-			//valid card number (16digits)
-			boolean validNum = true;
-			String cn = cardNum.getText();
-			char[] strarray=new char[cn.length()];
-			int[] intarray = new int[cn.length()];
-			for(int i=0; i<cn.length();i++){
-				strarray[i] = cn.charAt(i);
-				intarray[i] = (int) strarray[i];
-				if(intarray[i] <48 || intarray[i]>57) validNum=false;
-			}
-			if(cn.length()!=16) validNum = false;
-			
-			//valid card code (3digits)
-			boolean validCode = true;
+		
 			String cod = code.getText();
-			char[] sarray=new char[cod.length()];
-			int[] iarray = new int[cod.length()];
-			for(int i=0; i<cod.length();i++){
-				sarray[i] = cod.charAt(i);
-				iarray[i] = (int) sarray[i];
-				if(iarray[i] <48 || iarray[i]>57) validCode=false;
-			}
-			if(cod.length()!=3) validCode = false;
-			
-			//print message
-			JFrame frame = new JFrame();
-			if (validNum && validCode && validYear && validMonth) {
-				JOptionPane.showMessageDialog(frame,
-					    "Successful Transaction",
-					    "Success",
-					    JOptionPane.PLAIN_MESSAGE);
-			}
-			else {
-				JOptionPane.showMessageDialog(frame,
-					    "Unsuccesful Transaction. Check again your personal details.",
-					    "Unsuccesful Transaction",
-					    JOptionPane.ERROR_MESSAGE);
-			}
-			
+
+			//create card object and check for validation
+			cc = new CreditCard(cn,n,month,year,cod);
+			cc.checkValidation();
 		}
 		
 	}
