@@ -1,6 +1,7 @@
 package SortingSearching;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import order.Product;
 
@@ -12,7 +13,11 @@ public class Search {
    
     public ArrayList<Product> ExpoSearch(ArrayList<Product> prod_array, String KeyWord)
     {
+        
         this.array = prod_array;
+        new Sort();
+        Collections.sort(array, Sort.prodNameComparator);
+       
         int i=1;
         String name=array.get(i).getName().substring(0, KeyWord.length());
 
