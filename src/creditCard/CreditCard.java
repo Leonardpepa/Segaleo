@@ -79,14 +79,14 @@ public class CreditCard {
 		JFrame frame = new JFrame();
 		if (checkCardNumber() && checkExpireDate() && checkCode()) {
 			JOptionPane.showMessageDialog(frame,
-				    "Successful Transaction",
+				    "Card Added",
 				    "Success",
 				    JOptionPane.PLAIN_MESSAGE);
 		}
 		else {
 			JOptionPane.showMessageDialog(frame,
-				    "Unsuccesful Transaction. Check again your personal details.",
-				    "Unsuccesful Transaction",
+				    "Payment Unsuccessful",
+				    "Payment Unsucessful",
 				    JOptionPane.ERROR_MESSAGE);
 		}
 	}
