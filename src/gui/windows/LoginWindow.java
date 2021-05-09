@@ -202,7 +202,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		
 		if(e.getSource() == popupPanel.greek) {
 			TextResources.isEnglish = false; 
-
+		}
 
 		if (e.getSource() == popupPanel.greek) {
 			TextResources.isEnglish = false;
@@ -214,7 +214,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		}
 
 		initializePanelToFrame();
-	}
+	
 	}
 
 	@Override
