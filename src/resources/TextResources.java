@@ -47,6 +47,7 @@ public class TextResources {
 	public static String nameCardField;
 	public static String numCardField;
 	public static String saveCard;
+	public static String profileButtons;
 	
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -93,6 +94,7 @@ public class TextResources {
 		nameCardField = isEnglish ? "Enter full name" : "Εισάγετε ονοματεπώνυμο";
 		numCardField = isEnglish ? "Enter card number" : "Εισάγετε αριθμό κάρτας";
 		saveCard = isEnglish ? "Save Card" : "Αποθήκευση κάρτας";
+		profileButtons =  isEnglish ? "" : "GR";
 	}
 	
 }
