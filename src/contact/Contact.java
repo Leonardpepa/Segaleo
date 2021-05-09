@@ -7,8 +7,16 @@ public class Contact {
 	private SocialMedia social;
 	private ArrayList<FAQ> faqs;
 	private FAQReader reader;
-	//private Message message;
+	private MessageSender message;
 	
+	public MessageSender getMessage() {
+		return message;
+	}
+
+	public void setMessage(MessageSender message) {
+		this.message = message;
+	}
+
 	public Contact() {
 		this.reader = new FAQReader();
 		this.social = new SocialMedia();

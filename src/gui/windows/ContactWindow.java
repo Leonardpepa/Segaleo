@@ -5,12 +5,15 @@ import java.awt.event.*;
 import javax.swing.*;
 import contact.Contact;
 import gui.factory.*;
+import login.Login;
 import resources.*;
+import roomCustomer.Customer;
 
 public class ContactWindow extends JFrame implements ActionListener {
 
 	private JPanel panel;
 	private Contact contact = new Contact();
+	private Customer customer;
 
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	private JLabel backgroundLabel;
@@ -54,6 +57,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
+
 	}
 
 	public void windowsConfiguration() {
@@ -212,6 +216,14 @@ public class ContactWindow extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == instagramBtn) {
 			contact.getSocial().openURL("instagram");
+		}
+		if(e.getSource() == sendBtn) {
+			
+			if(Login.loggedCustomer == null) {
+				//pop-up asking for email
+				
+			}
+		//	contact.getMessage().sendEmail(customer.getEmail(), customer.getName()); needs fix
 		}
 		//Opens custom dialog for phone call
 		if (e.getSource() == phoneBtn) {

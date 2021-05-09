@@ -10,5 +10,7 @@
 	<classpathentry kind="src" path="logo"/>
 	<classpathentry kind="src" path="activityImages"/>
 	<classpathentry kind="src" path="files"/>
+	<classpathentry kind="lib" path="/Users/aravella/Documents/hotel pda/mailactivation/activation.jar"/>
+	<classpathentry kind="lib" path="/Users/aravella/Documents/hotel pda/mailactivation/mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
