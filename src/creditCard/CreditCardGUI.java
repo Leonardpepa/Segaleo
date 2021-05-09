@@ -57,7 +57,7 @@ public class CreditCardGUI extends JFrame implements ActionListener {
 	}
 
 	public void windowsConfiguration() {
-		this.setTitle("Add card");
+		this.setTitle(TextResources.addCard);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
