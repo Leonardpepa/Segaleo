@@ -5,7 +5,6 @@ public class Payment {
 	public Payment() {
 		
 		
-		
 	}
 	
 	public void paypal()

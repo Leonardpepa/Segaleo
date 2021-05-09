@@ -32,6 +32,10 @@ public class TextResources {
 	public static String orderCompleteMessage;
 	public static String seeMore;
 	public static String activityHeader;
+	public static String forgotPassword; 
+	public static String txtPass; 
+	public static String txtSendEmail; 
+	public static String payment; 
 	
 
 	public  void changeLanguage() {
@@ -64,6 +68,10 @@ public class TextResources {
 		orderCompleteMessage =  isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes." : "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 		seeMore = isEnglish ? "See More" : "Δείτε Περισσότερα";
 		activityHeader = isEnglish ? "Choose the activity that best suits your vocation" : "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
+		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής"; 
+		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
+		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
+		txtSendEmail = isEnglish? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
 	}
 	
 }
