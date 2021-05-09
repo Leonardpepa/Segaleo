@@ -1,23 +1,11 @@
 package gui.windows;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import contact.Contact;
-import gui.components.RoundedPanel;
-import gui.factory.ButtonFactory;
-import gui.factory.FontFactory;
-import gui.factory.LabelFactory;
-import gui.factory.TextAreaFactory;
-import gui.factory.TextFieldFactory;
 import gui.factory.*;
-import resources.ColorResources;
-import resources.TextResources;
+import resources.*;
 
 public class ContactWindow extends JFrame implements ActionListener {
 
@@ -229,7 +217,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == phoneBtn) {
 			Object[] options = { "Call" };
 			int n = JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, phonecallIcon, // do not use a custom Icon
+					JOptionPane.QUESTION_MESSAGE, phonecallIcon, 
 					options, // the titles of buttons
 					options[0]); // default button title
 		}
