@@ -149,6 +149,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	public void addListeners() {
 		languageBtn.addActionListener(this);
 		loginBtn.addActionListener(this);
+		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
 		roomField.addFocusListener(this);
@@ -190,6 +191,11 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 			else
 				JOptionPane.showMessageDialog(popupPanel, "Wrong Password or Room.\n Please contact with the reception.","Log In Error", JOptionPane.WARNING_MESSAGE);
 			
+		}
+		
+		if(e.getSource() == contactBtn) {
+			this.dispose();
+			new ContactWindow();
 		}
 		
 		if(e.getSource() == popupPanel.greek) {

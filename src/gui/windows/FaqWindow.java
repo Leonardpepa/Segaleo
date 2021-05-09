@@ -27,7 +27,9 @@ public class FaqWindow extends JFrame implements ActionListener {
 	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
 	private JLabel logoLabel;
 
-	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
+	private String path = "buttonImages/Back Button";
+	private String lang = TextResources.imageLang;
+	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
 
 	private JLabel faqLabel = new JLabel();

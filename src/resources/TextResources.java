@@ -36,6 +36,12 @@ public class TextResources {
 	public static String txtPass; 
 	public static String txtSendEmail; 
 	public static String payment; 
+	public static String msgArea;
+	public static String sendbtn;
+	public static String contactLabel;
+	public static String imageLang;
+
+
 	
 
 	public  void changeLanguage() {
@@ -72,6 +78,12 @@ public class TextResources {
 		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
 		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
 		txtSendEmail = isEnglish? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
+		msgArea = isEnglish ? "Write your message here" : "Γράψτε το μήνυμα σας εδώ";
+		sendbtn = isEnglish ? "Send" : "Αποστολή";
+		contactLabel = isEnglish ? "CONTACT US" : "ΕΠΙΚΟΙΝΩΝΙΑ";
+		imageLang = isEnglish ? ".png" : "GR.png";
+		
+		
 	}
 	
 }
