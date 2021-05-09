@@ -194,7 +194,6 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 						JOptionPane.WARNING_MESSAGE);
 
 		}
-<<<<<<< HEAD
 		
 		if(e.getSource() == contactBtn) {
 			this.dispose();
@@ -203,11 +202,11 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		
 		if(e.getSource() == popupPanel.greek) {
 			TextResources.isEnglish = false; 
-=======
+
 
 		if (e.getSource() == popupPanel.greek) {
 			TextResources.isEnglish = false;
->>>>>>> CreditCard
+
 		}
 
 		if (e.getSource() == popupPanel.english) {
@@ -215,6 +214,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		}
 
 		initializePanelToFrame();
+	}
 	}
 
 	@Override

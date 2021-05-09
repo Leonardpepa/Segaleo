@@ -32,7 +32,6 @@ public class TextResources {
 	public static String orderCompleteMessage;
 	public static String seeMore;
 	public static String activityHeader;
-<<<<<<< HEAD
 	public static String forgotPassword; 
 	public static String txtPass; 
 	public static String txtSendEmail; 
@@ -41,9 +40,6 @@ public class TextResources {
 	public static String sendbtn;
 	public static String contactLabel;
 	public static String imageLang;
-
-
-=======
 	public static String addCard;
 	public static String nameCard;
 	public static String numCard;
@@ -51,7 +47,6 @@ public class TextResources {
 	public static String nameCardField;
 	public static String numCardField;
 	public static String saveCard;
->>>>>>> CreditCard
 	
 	public  void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -83,7 +78,6 @@ public class TextResources {
 		orderCompleteMessage =  isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes." : "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 		seeMore = isEnglish ? "See More" : "Δείτε Περισσότερα";
 		activityHeader = isEnglish ? "Choose the activity that best suits your vocation" : "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
-<<<<<<< HEAD
 		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής"; 
 		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
 		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
@@ -92,9 +86,6 @@ public class TextResources {
 		sendbtn = isEnglish ? "Send" : "Αποστολή";
 		contactLabel = isEnglish ? "CONTACT US" : "ΕΠΙΚΟΙΝΩΝΙΑ";
 		imageLang = isEnglish ? ".png" : "GR.png";
-		
-		
-=======
 		addCard = isEnglish ? "Add New Card" : "Προσθέστε κάρτα";
 		nameCard = isEnglish ? "Card Holder" : "Κάτοχος κάρτας";
 		numCard = isEnglish ? "Card Number" : "Αριθμός κάρτας";
@@ -102,7 +93,6 @@ public class TextResources {
 		nameCardField = isEnglish ? "Enter full name" : "Εισάγετε ονοματεπώνυμο";
 		numCardField = isEnglish ? "Enter card number" : "Εισάγετε αριθμό κάρτας";
 		saveCard = isEnglish ? "Save Card" : "Αποθήκευση κάρτας";
->>>>>>> CreditCard
 	}
 	
 }
