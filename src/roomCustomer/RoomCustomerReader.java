@@ -25,7 +25,7 @@ public class RoomCustomerReader {
 			String roomPassword = null;
 			
 			
-			File roomCustomerFile = new File("files\\roomCustomer\\Room-Customer.txt");
+			File roomCustomerFile = new File("./files/roomCustomer/Room-Customer.txt");
 			Scanner scanner = new Scanner(roomCustomerFile);
 			
 			while(scanner.hasNextLine())
