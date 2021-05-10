@@ -1,8 +1,8 @@
 package resources;
 
 public class TextResources {
-	public static boolean  isEnglish = true;
-	
+	public static boolean isEnglish = true;
+
 	public static String roomService;
 	public static String activities;
 	public static String welcome;
@@ -14,12 +14,12 @@ public class TextResources {
 	public static String greek;
 	public static String english;
 	public static String viewCart;
-	public static String search; 
-	public static String deals; 
-	public static String main; 
-	public static String salads; 
-	public static String desserts; 
-	public static String coffee; 
+	public static String search;
+	public static String deals;
+	public static String main;
+	public static String salads;
+	public static String desserts;
+	public static String coffee;
 	public static String drinks;
 	public static String appetizers;
 	public static String explore;
@@ -32,22 +32,17 @@ public class TextResources {
 	public static String orderCompleteMessage;
 	public static String seeMore;
 	public static String activityHeader;
-<<<<<<< HEAD
-	public static String payment; 
-	public static String forgotPassword; 
-	public static String txtPass; 
-	public static String txtSendEmail; 
+
 	public static String myCart;
 	public static String couponCode;
 	public static String submit;
 	public static String orderNow;
 	public static String total;
 
-=======
-	public static String forgotPassword; 
-	public static String txtPass; 
-	public static String txtSendEmail; 
-	public static String payment; 
+	public static String forgotPassword;
+	public static String txtPass;
+	public static String txtSendEmail;
+	public static String payment;
 	public static String msgArea;
 	public static String sendbtn;
 	public static String contactLabel;
@@ -59,16 +54,15 @@ public class TextResources {
 	public static String nameCardField;
 	public static String numCardField;
 	public static String saveCard;
-	
->>>>>>> master
-	public  void changeLanguage() {
+
+	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
 		roomService = isEnglish ? "ROOM SERVICE" : "ΠΑΡΑΓΓΕΛΙΑ";
 		activities = isEnglish ? "ACTIVITIES" : "ΔΡΑΣΤΗΡΙΟΤΗΤΕΣ";
 		welcome = isEnglish ? "Welcome to Segaleo" : "Καλώς ήρθατε στο Segaleo";
-		loginto = isEnglish ?  "Login to your account" : "Συνδεθείτε στον λογαριασμό σας";
-		roomField = isEnglish ?  "  Room Number" : "  Αριθμός Δωματίου";
+		loginto = isEnglish ? "Login to your account" : "Συνδεθείτε στον λογαριασμό σας";
+		roomField = isEnglish ? "  Room Number" : "  Αριθμός Δωματίου";
 		passField = isEnglish ? "  Password" : "  Κωδικός‚";
 		loginBtn = isEnglish ? "LOGIN" : "Σύνδεση";
 		languageLabel = isEnglish ? "Languages" : "Γλώσσες";
@@ -85,27 +79,27 @@ public class TextResources {
 		explore = isEnglish ? "Explore by category" : "Εξερευνήστε από τις κατηγορίες";
 		endpointPath = isEnglish ? "English.txt" : "Greek.txt";
 		reservationCompleteTitle = isEnglish ? "Reservation Completed" : "Η Κράτηση Ολοκληρώθηκε";
-		reservationCompleteMessage = isEnglish ? "Your reservation has been accepted.We will be waiting for your arrival." : "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
+		reservationCompleteMessage = isEnglish
+				? "Your reservation has been accepted.We will be waiting for your arrival."
+				: "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
 		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
 		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
-		orderCompleteMessage =  isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes." : "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
+		orderCompleteMessage = isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes."
+				: "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 		seeMore = isEnglish ? "See More" : "Δείτε Περισσότερα";
-		activityHeader = isEnglish ? "Choose the activity that best suits your vocation" : "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
-<<<<<<< HEAD
-		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής";	
-		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
-		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
-		txtSendEmail = isEnglish? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
+		activityHeader = isEnglish ? "Choose the activity that best suits your vocation"
+				: "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
+
 		myCart = isEnglish ? "My Cart" : "Το καλάθι μου";
-		couponCode = isEnglish ? "Coupon code": "Κωδικός Κουπονιού";
+		couponCode = isEnglish ? "Coupon code" : "Κωδικός Κουπονιού";
 		submit = isEnglish ? "Submit" : "Υποβολή";
 		orderNow = isEnglish ? "Order Now" : "Παραγγείλτε Τωρα";
 		total = isEnglish ? "Total" : "Συνολικά";
-=======
-		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής"; 
-		forgotPassword = isEnglish? "Forgot Password" : "Ξέχασα τον κωδικό"; 
-		txtPass = isEnglish? "Don't know your password?": "Δεν ξέρεις τον κωδικό σου;"; 
-		txtSendEmail = isEnglish? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
+
+		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής";
+		forgotPassword = isEnglish ? "Forgot Password" : "Ξέχασα τον κωδικό";
+		txtPass = isEnglish ? "Don't know your password?" : "Δεν ξέρεις τον κωδικό σου;";
+		txtSendEmail = isEnglish ? "We can send you a reminder email!" : "Μπορούμε να σου στείλουμε ένα email!";
 		msgArea = isEnglish ? "Write your message here" : "Γράψτε το μήνυμα σας εδώ";
 		sendbtn = isEnglish ? "Send" : "Αποστολή";
 		contactLabel = isEnglish ? "CONTACT US" : "ΕΠΙΚΟΙΝΩΝΙΑ";
@@ -117,8 +111,7 @@ public class TextResources {
 		nameCardField = isEnglish ? "Enter full name" : "Εισάγετε ονοματεπώνυμο";
 		numCardField = isEnglish ? "Enter card number" : "Εισάγετε αριθμό κάρτας";
 		saveCard = isEnglish ? "Save Card" : "Αποθήκευση κάρτας";
-		
->>>>>>> master
+
 	}
-	
+
 }

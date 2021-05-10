@@ -1,16 +1,11 @@
- package application.main;
- 
-import gui.windows.LoginWindow;
-import gui.windows.MyOrdersGUI;
+package application.main;
 
+import gui.windows.LoginWindow;
 
 public class Main {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		new MyOrdersGUI();
-=======
-		new LoginWindow();	
->>>>>>> master
+		new LoginWindow();
+
 	}
 }
