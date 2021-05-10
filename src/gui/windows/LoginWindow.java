@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import gui.components.PopupPanel;
+import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
@@ -32,9 +33,6 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panel;
-
-	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
-	private JLabel backgroundLabel;
 
 	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
 	private JButton languageBtn;
@@ -98,8 +96,6 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 	// label settings
 	public void configureLabels() {
-		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0, 0, 375, 812);
 
 		welcomeLabel = LabelFactory.createLabel(TextResources.welcome, Color.WHITE, FontFactory.poppins(28));
 		welcomeLabel.setBounds(42, 224, 294, 29);
@@ -144,7 +140,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		panel.add(passwordField);
 		panel.add(loginBtn);
 		togglePanel();
-		panel.add(backgroundLabel);
+		panel.add(BackgroundFactory.addBackgroundDark());
 	}
 
 	// add listeners
@@ -194,14 +190,14 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 						JOptionPane.WARNING_MESSAGE);
 
 		}
-		
-		if(e.getSource() == contactBtn) {
+
+		if (e.getSource() == contactBtn) {
 			this.dispose();
 			new ContactWindow();
 		}
-		
-		if(e.getSource() == popupPanel.greek) {
-			TextResources.isEnglish = false; 
+
+		if (e.getSource() == popupPanel.greek) {
+			TextResources.isEnglish = false;
 		}
 
 		if (e.getSource() == popupPanel.greek) {
@@ -214,7 +210,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		}
 
 		initializePanelToFrame();
-	
+
 	}
 
 	@Override

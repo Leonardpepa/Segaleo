@@ -17,6 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import gui.components.RoundedPanel;
+import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import resources.TextResources;
 
@@ -30,24 +31,19 @@ public class ProfileWindow extends JFrame implements ActionListener {
 	private ImageIcon logo = new ImageIcon("logo/logo.png");
 	private JLabel logoLabel;
 	private JPanel insidePanel;
-	
-	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
-	private JLabel backgroundLabel;
-	
+
 	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
 	private JButton contactBtn;
 
-
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
+	ImageIcon backImage = new ImageIcon("buttonImages/Back Button" + TextResources.imageLang);
 	JButton backBtn;
-	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button"+TextResources.imageLang);
+	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button" + TextResources.imageLang);
 	JButton orderBtn;
-	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button"+TextResources.imageLang);
+	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button" + TextResources.imageLang);
 	JButton reservationBtn;
-	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button"+TextResources.imageLang);
+	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button" + TextResources.imageLang);
 	JButton couponBtn;
-	
-	
+
 	public ProfileWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
@@ -71,7 +67,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 		configureLogo();
 		configureButtons();
-		configureBackground();
+
 		addComponentsToPanel();
 		addListeners();
 
@@ -107,7 +103,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		insidePanel.add(couponBtn);
 
 		panel.add(insidePanel);
-		panel.add(backgroundLabel);
+		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
 
@@ -118,17 +114,12 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		orderBtn = ButtonFactory.createButtonIcon(orderImage);
 		reservationBtn = ButtonFactory.createButtonIcon(reservationImage);
 		couponBtn = ButtonFactory.createButtonIcon(couponImage);
-		
+
 		contactBtn = ButtonFactory.createButtonIcon(contactImage);
 		contactBtn.setBounds(309, 723, 61, 61);
 
 	}
 
-	public void configureBackground() {
-		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0,0,375, 812);
-	}
-	
 	public void configureLogo() {
 		logoLabel = new JLabel(logo);
 		logoLabel.setBounds(101, 50, 173, 173);
@@ -145,7 +136,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 			this.dispose();
 			new MainWindow();
 		}
-		if(e.getSource() == contactBtn) {
+		if (e.getSource() == contactBtn) {
 			this.dispose();
 			new ContactWindow();
 		}
