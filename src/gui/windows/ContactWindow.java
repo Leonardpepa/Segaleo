@@ -12,9 +12,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 	private JPanel panel;
 	private Contact contact = new Contact();
 
-	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
-	private JLabel backgroundLabel;
-
 	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
 	private JLabel logoLabel;
 
@@ -72,7 +69,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 		panel.setBackground(new Color(216, 223, 224));
 
 		configureLogo();
-		configureBackground();
 		configureButtons();
 		configureLabels();
 		configureTextArea();
@@ -104,16 +100,15 @@ public class ContactWindow extends JFrame implements ActionListener {
 		panel.add(question2);
 		panel.add(answer2);
 		panel.add(seeMoreBtn);
-
-		panel.add(backgroundLabel);
+		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
 
-	//CONFIGURING ALL THE COMPONENTS ADDED TO THE PANEL BY CATEGORY 
-	
+	// CONFIGURING ALL THE COMPONENTS ADDED TO THE PANEL BY CATEGORY
+
 	public void configureTextArea() {
-		messageArea = TextAreaFactory.createTextArea(TextResources.msgArea, Color.WHITE,
-				ColorResources.bgLoginWindow, FontFactory.poppins(12));
+		messageArea = TextAreaFactory.createTextArea(TextResources.msgArea, Color.WHITE, ColorResources.bgLoginWindow,
+				FontFactory.poppins(12));
 		messageArea.setBounds(76, 315, 193, 89);
 
 		messageArea.addMouseListener(new MouseAdapter() {
@@ -159,7 +154,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		faqLabel.setBounds(20, 425, 118, 26);
 
-		//picking the 1st and 2nd questions and answers from the FAQ list to show
+		// picking the 1st and 2nd questions and answers from the FAQ list to show
 		question1 = LabelFactory.createLabel(contact.getFaqs().get(0).getQuestion(), Color.black,
 				FontFactory.poppins(13));
 		question1.setBounds(22, 476, 308, 20);
@@ -187,11 +182,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 		logoLabel.setBounds(101, 50, 173, 173);
 	}
 
-	public void configureBackground() {
-		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0, 0, 375, 812);
-	}
-
 	public void addListeners() {
 		backBtn.addActionListener(this);
 		facebookBtn.addActionListener(this);
@@ -213,15 +203,14 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == instagramBtn) {
 			contact.getSocial().openURL("instagram");
 		}
-		//Opens custom dialog for phone call
+		// Opens custom dialog for phone call
 		if (e.getSource() == phoneBtn) {
 			Object[] options = { "Call" };
 			int n = JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, phonecallIcon, 
-					options, // the titles of buttons
+					JOptionPane.QUESTION_MESSAGE, phonecallIcon, options, // the titles of buttons
 					options[0]); // default button title
 		}
-		if(e.getSource() == seeMoreBtn) {
+		if (e.getSource() == seeMoreBtn) {
 			this.dispose();
 			new FaqWindow();
 		}
