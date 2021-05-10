@@ -12,9 +12,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 	private JPanel panel;
 	private Contact contact = new Contact();
 
-	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
-	private JLabel logoLabel;
-
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
 	private ImageIcon backImage = new ImageIcon(path + lang);
@@ -68,7 +65,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 		panel.setPreferredSize(new Dimension(375, 812));
 		panel.setBackground(new Color(216, 223, 224));
 
-		configureLogo();
 		configureButtons();
 		configureLabels();
 		configureTextArea();
@@ -86,7 +82,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 	public void addComponentsToPanel() {
 
 		panel.add(backBtn);
-		panel.add(logoLabel);
+		panel.add(LogoFactory.addLogoScaled());
 		panel.add(contactLabel);
 		panel.add(phoneBtn);
 		panel.add(facebookBtn);
@@ -120,7 +116,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
-		backBtn.setBounds(12, 40, 67, 21);
+		backBtn.setBounds(12, 40, 67, 45);
 
 		phoneBtn = ButtonFactory.createButtonIcon(phoneIcon);
 		phoneBtn.setBounds(20, 250, 61, 61);
@@ -175,11 +171,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 		answer2.setWrapStyleWord(true);
 		answer2.setLineWrap(true);
 
-	}
-
-	public void configureLogo() {
-		logoLabel = new JLabel(logo);
-		logoLabel.setBounds(101, 50, 173, 173);
 	}
 
 	public void addListeners() {

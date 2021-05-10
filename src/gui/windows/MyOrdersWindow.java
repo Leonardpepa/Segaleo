@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.*;
 import javax.swing.*;
 
+import gui.factory.BackgroundFactory;
+import gui.factory.LogoFactory;
 import resources.TextResources;
 
 public class MyOrdersWindow extends JFrame{
@@ -12,9 +14,6 @@ public class MyOrdersWindow extends JFrame{
 	private JPanel panel;
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	private JLabel backgroundLabel;
-	
-	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
-	private JLabel logoLabel;
 	
 	private ImageIcon backImage = new ImageIcon("buttonImages/Back ButtonGR.png");
 	private JButton backBtn;
@@ -40,8 +39,8 @@ public class MyOrdersWindow extends JFrame{
 		panel.setPreferredSize(new Dimension(375, 812));
 		panel.setBackground(new Color(216, 223, 224));
 
-		configureLogo();
-		configureBackground();
+	
+		
 	//	configureButtons();
 	//	configureLabels();
 	//	configureTextArea();
@@ -58,20 +57,14 @@ public class MyOrdersWindow extends JFrame{
 	
 	public void addComponentsToPanel() {
 		//panel.add(backBtn);
-		panel.add(logoLabel);
+		panel.add(LogoFactory.addLogoScaled());
 		
-		panel.add(backgroundLabel);
+		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
 	
-	public void configureLogo() {
-		logoLabel = new JLabel(logo);
-		logoLabel.setBounds(101, 50, 173, 173);
-	}
 	
-	public void configureBackground() {
-		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0, 0, 375, 812);
-	}
+	
+	
 	
 }

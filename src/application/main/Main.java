@@ -1,11 +1,11 @@
 package application.main;
 
-import gui.windows.LoginWindow;
+import gui.windows.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		new LoginWindow();
+		new MainWindow();
 
 	}
 }

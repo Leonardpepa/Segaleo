@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import gui.components.RoundedPanel;
 import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
+import gui.factory.LogoFactory;
 import resources.TextResources;
 
 public class ProfileWindow extends JFrame implements ActionListener {
@@ -28,8 +29,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private ImageIcon logo = new ImageIcon("logo/logo.png");
-	private JLabel logoLabel;
+	
 	private JPanel insidePanel;
 
 	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
@@ -65,7 +65,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		panel.setPreferredSize(new Dimension(375, 812));
 		panel.setBackground(new Color(216, 223, 224));
 
-		configureLogo();
+	
 		configureButtons();
 
 		addComponentsToPanel();
@@ -81,7 +81,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 	public void addComponentsToPanel() {
 		panel.add(backBtn);
-		panel.add(logoLabel);
+		panel.add(LogoFactory.addLogoScaled());
 		panel.add(contactBtn);
 
 		// initial insidePanel and add it to panel
@@ -109,7 +109,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
-		backBtn.setBounds(12, 40, 67, 21);
+		backBtn.setBounds(12, 45, 68, 45);
 
 		orderBtn = ButtonFactory.createButtonIcon(orderImage);
 		reservationBtn = ButtonFactory.createButtonIcon(reservationImage);
@@ -120,10 +120,6 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 	}
 
-	public void configureLogo() {
-		logoLabel = new JLabel(logo);
-		logoLabel.setBounds(101, 50, 173, 173);
-	}
 
 	public void addListeners() {
 		backBtn.addActionListener(this);
