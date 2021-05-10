@@ -29,7 +29,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	
+
 	private JPanel insidePanel;
 
 	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
@@ -65,7 +65,6 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		panel.setPreferredSize(new Dimension(375, 812));
 		panel.setBackground(new Color(216, 223, 224));
 
-	
 		configureButtons();
 
 		addComponentsToPanel();
@@ -120,10 +119,10 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 	}
 
-
 	public void addListeners() {
 		backBtn.addActionListener(this);
 		contactBtn.addActionListener(this);
+		orderBtn.addActionListener(this);
 	}
 
 	@Override
@@ -135,6 +134,10 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		if (e.getSource() == contactBtn) {
 			this.dispose();
 			new ContactWindow();
+		}
+		if (e.getSource() == orderBtn) {
+			this.dispose();
+			new MyOrdersWindow();
 		}
 
 	}
