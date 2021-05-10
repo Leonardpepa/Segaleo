@@ -36,11 +36,11 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
 	JButton backBtn;
-	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button"+TextResources.profileButtons+".png");
+	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button"+TextResources.imageLang);
 	JButton orderBtn;
-	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button"+TextResources.profileButtons+".png");
+	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button"+TextResources.imageLang);
 	JButton reservationBtn;
-	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button"+TextResources.profileButtons+".png");
+	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button"+TextResources.imageLang);
 	JButton couponBtn;
 
 	public ProfileWindow() {
