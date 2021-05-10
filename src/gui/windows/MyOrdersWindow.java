@@ -7,7 +7,7 @@ import javax.swing.*;
 
 import resources.TextResources;
 
-public class MyOrdersGUI extends JFrame{
+public class MyOrdersWindow extends JFrame{
 
 	private JPanel panel;
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
@@ -19,7 +19,7 @@ public class MyOrdersGUI extends JFrame{
 	private ImageIcon backImage = new ImageIcon("buttonImages/Back ButtonGR.png");
 	private JButton backBtn;
 	
-	public MyOrdersGUI() {
+	public MyOrdersWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
