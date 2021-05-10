@@ -11,7 +11,7 @@ public class Order {
 	public Order() {
 		products = new ArrayList<Product>();
 	}
-	
+
 
 	public void addProduct(Product product) {
 		products.add(product);
@@ -21,7 +21,7 @@ public class Order {
 		products = new ArrayList<>();
 	}
 	
-	public void deleteProduct(Product product) {
+	public void removeProduct(Product product) {
 		products.remove(product);
 	}
 	
@@ -32,13 +32,29 @@ public class Order {
 		}
 		return totalCost;
 	}
+
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public Product isProduct(String name) {
+		Product temp = null;
+
+		for(Product product: products) {
+			if(name.equals(product.getName())) {
+				temp = product;
+				break;
+			}
+		}
+
+		return temp;
+	}
 	
-	//TODO tha dexetai ena kouponi
-	//an to kouponi == null tote ekptwsh 0
-	//alliw ekptwsh calcCost - ekptwsh
-	public double calcDiscount(/* orisma kouponi*/) {
-		
-		return 0;
+	public double calcDiscount(Coupon coupon) {
+		if(new CouponFactory().isValid(coupon)) {
+			return totalCost -= 3;
+		}
+		return totalCost;
 	}
 	
 }

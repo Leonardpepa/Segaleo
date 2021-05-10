@@ -22,12 +22,13 @@ public class ActivityReader {
 	
 	private void readActivity(String pathName, String language) {
 		String line;
-		String id;
 		String name;
 		int price;
 		String path;
 		int availability;
-		String hour;
+		String hour1;
+		String hour2;
+		ArrayList<String> hour = new ArrayList<String>();
 		Activity a;
 		//File format: the # is used to separate the question from the answer
 		File activityFile = new File(pathName + language);
@@ -37,14 +38,18 @@ public class ActivityReader {
 			
 			line = inputReader.readLine();
 			while(line != null) {
-				id = line.split("#")[0];
-				name = line.split("#")[1];
-				price = Integer.parseInt(line.split("#")[2]);
-				path = line.split("#")[3];
-				availability = Integer.parseInt(line.split("#")[4]);
-				hour = line.split("#")[5];
+				name = line.split("#")[0];
+				price = Integer.parseInt(line.split("#")[1]);
+				path = line.split("#")[2];
+				availability = Integer.parseInt(line.split("#")[3]);
+				hour1 = line.split("#")[4];
+				hour2 = line.split("#")[5];
 				
-				a=new Activity(id,name,price,path,availability,hour);
+				hour.add(hour1);
+				if(!hour2.equals("-")) {
+					hour.add(hour2);
+				}
+				a=new Activity(name,price,path,availability,hour);
 				activitiesList.add(a);
 				line = inputReader.readLine();
 			}

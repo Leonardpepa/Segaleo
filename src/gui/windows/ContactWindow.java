@@ -1,23 +1,11 @@
 package gui.windows;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import contact.Contact;
-import gui.components.RoundedPanel;
-import gui.factory.ButtonFactory;
-import gui.factory.FontFactory;
-import gui.factory.LabelFactory;
-import gui.factory.TextAreaFactory;
-import gui.factory.TextFieldFactory;
 import gui.factory.*;
-import resources.ColorResources;
-import resources.TextResources;
+import resources.*;
 
 public class ContactWindow extends JFrame implements ActionListener {
 
@@ -30,7 +18,9 @@ public class ContactWindow extends JFrame implements ActionListener {
 	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
 	private JLabel logoLabel;
 
-	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
+	private String path = "buttonImages/Back Button";
+	private String lang = TextResources.imageLang;
+	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
 
 	private JLabel contactLabel = new JLabel();
@@ -122,7 +112,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 	//CONFIGURING ALL THE COMPONENTS ADDED TO THE PANEL BY CATEGORY 
 	
 	public void configureTextArea() {
-		messageArea = TextAreaFactory.createTextArea("Write your message here", Color.WHITE,
+		messageArea = TextAreaFactory.createTextArea(TextResources.msgArea, Color.WHITE,
 				ColorResources.bgLoginWindow, FontFactory.poppins(12));
 		messageArea.setBounds(76, 315, 193, 89);
 
@@ -146,17 +136,17 @@ public class ContactWindow extends JFrame implements ActionListener {
 		instagramBtn = ButtonFactory.createButtonIcon(instagramIcon);
 		instagramBtn.setBounds(140, 250, 61, 61);
 
-		sendBtn = ButtonFactory.createButton("Send", FontFactory.poppins(14), ColorResources.sendColor,
+		sendBtn = ButtonFactory.createButton(TextResources.sendbtn, FontFactory.poppins(14), ColorResources.sendColor,
 				ColorResources.bgLoginWindow);
-		sendBtn.setBounds(281, 379, 57, 23);
+		sendBtn.setBounds(281, 379, 70, 23);
 
 		seeMoreBtn = ButtonFactory.createButton(TextResources.seeMore, FontFactory.poppins(14),
 				ColorResources.sendColor, ColorResources.bgLoginWindow);
-		seeMoreBtn.setBounds(234, 750, 119, 27);
+		seeMoreBtn.setBounds(200, 750, 150, 27);
 	}
 
 	public void configureLabels() {
-		contactLabel = LabelFactory.createLabelBG("CONTACT US", ColorResources.bgLoginWindow, Color.WHITE,
+		contactLabel = LabelFactory.createLabelBG(TextResources.contactLabel, ColorResources.bgLoginWindow, Color.WHITE,
 				FontFactory.poppins(16));
 		contactLabel = LabelFactory.alignLabel(contactLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		contactLabel.setBounds(20, 225, 118, 26);
@@ -227,7 +217,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == phoneBtn) {
 			Object[] options = { "Call" };
 			int n = JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, phonecallIcon, // do not use a custom Icon
+					JOptionPane.QUESTION_MESSAGE, phonecallIcon, 
 					options, // the titles of buttons
 					options[0]); // default button title
 		}

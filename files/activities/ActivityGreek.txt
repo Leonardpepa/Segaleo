@@ -1,10 +1,7 @@
-b#Κράτηση ξαπλώστρας στην παραλία#5#Activities/beach.png#40#9:00-12:00
-t1#Τένις#9#Activities/tennis.png#4#17:00-18:00
-t2#Τένις#9#Activities/tennis.png#4#18:00-19:00
-g1#Γκολφ#12#Activities/golf.png#6#15:00-16:00
-g2#Γκολφ#12#Activities/golf.png#6#16:00-17:00
-w#Πάρκο με νεροτσουλήθρες#18#Activities/waterPark.png#10#10:00-15:00
-s#Σπα#15#Activities/spa.png#8#16:00-18:00
-d1#Κατάδυση#40#Activities/diving.png#2#10:00-11:00
-d2#Κατάδυση#40#Activities/diving.png#2#11:00-12:00
-r#Ημερήσια οδική εκδρομή#20#Activities/road.png#12#9:00-12:00
+Κράτηση ξαπλώστρας στην παραλία#5#activityImages/beach.png#40#9:00-12:00#-
+Τένις#9#activityImages/tennis.png#4#17:00-18:00#18:00-19:00
+Γκολφ#12#activityImages/golf.png#6#15:00-16:00#16:00-17:00
+Πάρκο με νεροτσουλήθρες#18#activityImages/waterPark.png#10#10:00-15:00#-
+Σπα#15#activityImages/spa.png#8#16:00-18:00#-
+Κατάδυση#40#activityImages/diving.png#2#10:00-11:00#11:00-12:00
+Ημερήσια οδική εκδρομή#20#activityImages/road.png#12#9:00-12:00#-

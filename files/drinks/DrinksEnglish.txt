@@ -1,4 +1,14 @@
+Sprite#soda#2.50#Drinks Menu/Drinks/sprite.jpeg#0.0
+Coca-Cola#refreshment#2.50#Drinks Menu/Drinks/coca cola.jpeg#0.0
+Lemonade#refreshment#2.50#Drinks Menu/Drinks/fanta.jpeg#0.0
+Orange juice#homemade orange juice#3.00#Drinks Menu/Drinks/orange juice.jpeg#0.0
+Iced-tea#peach flavoured iced tea#3.00#Drinks Menu/Drinks/ice tea.jpeg#0.0
+Cinderella#lemon juice with orange juice and pineapple#5.0#Drinks Menu/Drinks/cinderella.jpeg#0.0
+Virgin Mary#tomato juice with lemon juice and tabasco#5.0#Drinks Menu/Drinks/virgin-mary.jpeg#0.0
+Fruit-Punch#fruit mocktail#4.00#Drinks Menu/Drinks/fruit punch.jpeg#0.0
 Smirnoff#russian vodka#25.0#Drinks Menu/drinks/smirnoff.jpeg#37.5
 Bacardi#white rum#27.0#Drinks Menu/drinks/bacardi.jpeg#40.0
 Johnnie Walker#scotch whiskey#25.0#Drinks Menu/drinks/johnnie.jpeg#40.0
 Fisher#blonde beer#4.0#Drinks Menu/drinks/fisher.jpeg#3
+Campari#italian liquor#20.0#Drinks Menu/drinks/campari.jpeg#28.5
+Moet#champagne#150.0#Drinks Menu/drinks/moet.jpeg#3

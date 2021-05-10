@@ -1,15 +1,23 @@
 package gui.windows;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+=======
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+
+import gui.factory.ButtonFactory;
+import payment.Payment;
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
+import resources.TextResources;
+>>>>>>> master
+
 
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
@@ -40,9 +48,9 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 
 	//constructor
 	public PaymentMethodsWindow() {
-//		initializePanelToFrame();
-//		windowsConfiguration();
-//		showWindow(this,true);
+		initializePanelToFrame();
+		windowsConfiguration();
+		showWindow(this,true);
 	}
 
 	//settings for the frame
@@ -96,7 +104,11 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 		}
 		else
 		{
+<<<<<<< HEAD
 			cardBtn = ButtonFactory.createButtonIcon(cardImageGR); //na valw ta ellhnika 
+=======
+			cardBtn = ButtonFactory.createButtonIcon(cardImageGR); 
+>>>>>>> master
 			cardBtn.setPressedIcon(cardImageGR);
 		}
 		cardBtn.setBounds(17, 154, 342, 133);
@@ -112,7 +124,11 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 		}
 		else
 		{
+<<<<<<< HEAD
 			roomBillBtn = ButtonFactory.createButtonIcon(roomBillImageGR);//na valw ta ellhnika
+=======
+			roomBillBtn = ButtonFactory.createButtonIcon(roomBillImageGR);
+>>>>>>> master
 			roomBillBtn.setPressedIcon(roomBillImageGR);
 		}
 		roomBillBtn.setBounds(17, 467 , 342, 133);
@@ -142,6 +158,7 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 
 		if(e.getSource() == cardBtn) {
 //			this.dispose();
@@ -161,4 +178,28 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 		initializePanelToFrame();
 	}
 
+=======
+//		Payment payment = new Payment();
+
+		if(e.getSource() == cardBtn) {
+//			this.dispose();
+//			payment.card();
+		}
+		
+		if(e.getSource() == paypalBtn) {
+//			this.dispose();
+//			paypal.card();
+			
+		}
+		if(e.getSource() == roomBillBtn) {
+//			this.dispose();
+//			roomBill.card();
+			
+		}
+		
+		initializePanelToFrame();
+	}
+
+
+>>>>>>> master
 }

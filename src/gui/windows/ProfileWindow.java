@@ -33,16 +33,21 @@ public class ProfileWindow extends JFrame implements ActionListener {
 	
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	private JLabel backgroundLabel;
+	
+	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
+	private JButton contactBtn;
 
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
+
+	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
 	JButton backBtn;
-	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button.png");
+	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button"+TextResources.imageLang);
 	JButton orderBtn;
-	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button.png");
+	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button"+TextResources.imageLang);
 	JButton reservationBtn;
-	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button.png");
+	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button"+TextResources.imageLang);
 	JButton couponBtn;
-
+	
+	
 	public ProfileWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
@@ -81,14 +86,14 @@ public class ProfileWindow extends JFrame implements ActionListener {
 	public void addComponentsToPanel() {
 		panel.add(backBtn);
 		panel.add(logoLabel);
-		
+		panel.add(contactBtn);
 
 		// initial insidePanel and add it to panel
 		insidePanel = new RoundedPanel(50, new Color(255, 255, 255));
 		insidePanel.setOpaque(false);
 		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
 		insidePanel.setLayout(new BoxLayout(insidePanel, BoxLayout.Y_AXIS));
-		insidePanel.setBounds(11, 280, 351, 550);
+		insidePanel.setBounds(11, 280, 351, 300);
 
 		// add components to insidePanel
 		insidePanel.add(orderBtn);
@@ -113,6 +118,9 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		orderBtn = ButtonFactory.createButtonIcon(orderImage);
 		reservationBtn = ButtonFactory.createButtonIcon(reservationImage);
 		couponBtn = ButtonFactory.createButtonIcon(couponImage);
+		
+		contactBtn = ButtonFactory.createButtonIcon(contactImage);
+		contactBtn.setBounds(309, 723, 61, 61);
 
 	}
 
@@ -128,6 +136,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 
 	public void addListeners() {
 		backBtn.addActionListener(this);
+		contactBtn.addActionListener(this);
 	}
 
 	@Override
@@ -135,6 +144,10 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		if (e.getSource() == backBtn) {
 			this.dispose();
 			new MainWindow();
+		}
+		if(e.getSource() == contactBtn) {
+			this.dispose();
+			new ContactWindow();
 		}
 
 	}

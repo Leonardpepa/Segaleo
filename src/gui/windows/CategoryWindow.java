@@ -71,12 +71,12 @@ public class CategoryWindow extends JFrame implements ActionListener{
 		this.categoryColor = categoryColor;
 		this.categoryName = categoryName;
 		this.products = products;
-		initilizePanelToFrame();
+		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
 
-	private void initilizePanelToFrame() {
+	private void initializePanelToFrame() {
 		backgroundPanel = new JPanel();
 		backgroundPanel.setPreferredSize(new Dimension(375, 812));
 		backgroundPanel.setLayout(new BorderLayout());

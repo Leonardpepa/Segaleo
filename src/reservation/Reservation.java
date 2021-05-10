@@ -10,6 +10,7 @@ public class Reservation
 {
 	private String day  ; 
 	private String hour ;
+	private double totalCost;
 	private int code;
 	private Activity activity;
 	private int people;
@@ -25,21 +26,23 @@ public class Reservation
 		this.hour = hour;
 		dayFormat = new SimpleDateFormat("dd/MM");
 		hourFormat = new SimpleDateFormat("hh:mm");
-		if (this.activity.checkLimit(people, hour,day)) {
-			code = code;
-		}
-		else {
-			System.out.println("den xorane tosoi");
-		}
+//		if (this.activity.checkLimit(people, hour,day)) {
+//			code = code;
+//		}
+//		else {
+//			System.out.println("den xorane tosoi");
+//		}
 
 
 	}
 	
-	public double calcTotal() 
-	{
-		double cost=0;
-		cost = this.people*this.activity.getPrice();
-		return cost;
+	public double calcCost() 
+	{	
+		totalCost = 0;
+		
+		totalCost = this.people*this.activity.getPrice();
+		
+		return totalCost;
 	}
 	
 	//hour and das

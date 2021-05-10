@@ -1,4 +1,5 @@
-Μπράουνις#γλυκό σοκολάτας σε σχήμα κέικ#6.0#Desserts Menu/desserts/brownies.jpeg
-Τσίζκεικ#στρώση κρέμας τυριού με μπισκότα και μαρμελάδα#7.0#Desserts Menu/desserts/cheeseacke.jpeg
-Ρέντ Βέλβετ#κέικ από κρέμα τυριού και κόκκινα φρούτα#7.0#Desserts Menu/desserts/redvelvet.jpeg
-Μηλόπιτα#τάρτα με γέμιση επεξεργασμένων μήλων#6.0#Desserts Menu/desserts/applepie.jpeg
+Αρμενοβίλ#τούρτα παγωτό#7.00#Food Menu/desserts/armenovil.jpeg
+Μιλφέιγ#με φύλλο και κρέμα#7.50#Food Menu/desserts/milfeulle.jpeg
+Πάβλοβα#καλοκαιρινό γλυκό με φράουλες#8.00#Food Menu/desserts/pavlova.jpeg
+Κρέμα Βανίλιας#με φρούτα του δάσους#6.00#Food Menu/desserts/custard.jpeg
+Μπάλα σοκολάτας#με έκπληξη παγωτό#8.00#Food Menu/desserts/chocolate suprise ball.jpeg

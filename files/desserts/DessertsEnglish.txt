@@ -1,4 +1,5 @@
-Brownies#cake-formmed chocolate dessert#6.0#Desserts Menu/desserts/brownies.jpeg
-Cheesecake#cheese layer with biscuits and  fruit jam#7.0#Desserts Menu/desserts/cheeseacke.jpeg
-Red Velvet#cheese cream cake with red fruits#7.0#Desserts Menu/desserts/redvelvet.jpeg
-Apple pie#tart filled with processed apples#6.0#Desserts Menu/desserts/applepie.jpeg
+Armenonville#ice cream cake#7.00#Food Menu/desserts/armenovil.jpeg
+Milfeulle#with phyllo and cream#7.50#Food Menu/desserts/milfeulle.jpeg
+Pavlova#summer dessert with strawberries#8.00#Food Menu/desserts/pavlova.jpeg
+Custard Cream#with wild berries#6.00#Food Menu/desserts/custard.jpeg
+Chocolate Ball#with surprise ice cream inside#8.00#Food Menu/desserts/chocolate suprise ball.jpeg
