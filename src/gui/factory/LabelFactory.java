@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import resources.TextResources;
+
 public class LabelFactory {
 
 	public static JLabel createLabel(String text, Color color, Font font) {
@@ -24,7 +26,7 @@ public class LabelFactory {
 	}
 	
 	public static JLabel createLabelBG(String text, Color backgroundColor, Color foregroundColor, Font font){
-		JLabel label = new JLabel(text);
+		JLabel label = new JLabel(String.format("<html><body style=\"text-align: center;\">%s</body></html>",text));
 		label.setBackground(backgroundColor);
 		label.setForeground(foregroundColor);
 		label.setFont(font);
