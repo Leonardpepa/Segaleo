@@ -54,6 +54,9 @@ public class TextResources {
 	public static String nameCardField;
 	public static String numCardField;
 	public static String saveCard;
+	
+	public static String ratingLabel;
+	public static String ratingComment;
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -112,6 +115,8 @@ public class TextResources {
 		numCardField = isEnglish ? "Enter card number" : "Εισάγετε αριθμό κάρτας";
 		saveCard = isEnglish ? "Save Card" : "Αποθήκευση κάρτας";
 
+		ratingLabel = isEnglish ? "Rate Activities" : "Αξιολόγησε τις δραστηριότητες";
+		ratingComment = isEnglish ? "Leave your comment about this activity here..." : "Σχολίασε την εμπειρία σου για την συγκεκριμένη δραστηριότητα εδώ";
 	}
 
 }
