@@ -137,7 +137,7 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == orderBtn) {
 			this.dispose();
-			new MyOrdersWindow();
+			//new MyOrderReservationWindow();
 		}
 
 	}
