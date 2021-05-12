@@ -1,14 +1,14 @@
-package creditCard;
+package gui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import gui.components.*;
 import gui.factory.*;
-import gui.windows.PaymentMethodsWindow;
+import payment.CreditCard;
 import resources.*;
 
-public class CreditCardGUI extends JFrame implements ActionListener {
+public class CreditCardWindow extends JFrame implements ActionListener {
 
 	JPanel panel = new JPanel();
 
@@ -50,7 +50,7 @@ public class CreditCardGUI extends JFrame implements ActionListener {
 
 	private CreditCard cc;
 
-	public CreditCardGUI() {
+	public CreditCardWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);

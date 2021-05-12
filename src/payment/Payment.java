@@ -1,5 +1,7 @@
 package payment;
 
+import gui.windows.CreditCardWindow;
+
 public class Payment {
 	
 	public Payment() {
@@ -14,7 +16,7 @@ public class Payment {
 	
 	public void card()
 	{
-		
+		new CreditCardWindow();
 	}
 	
 	public void roomBill()
