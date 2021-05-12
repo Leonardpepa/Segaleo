@@ -48,6 +48,10 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 	private JButton loginBtn;
 
+	private ImageIcon myPassImage = new ImageIcon("buttonImages/MyPassImage.png");
+	private ImageIcon myPassImageGR = new ImageIcon("buttonImages/MyPassImageGR.png");
+	private JButton myPassBtn;
+
 	private PopupPanel popupPanel;
 
 	boolean isPopup = false;
@@ -126,6 +130,17 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		loginBtn = ButtonFactory.createButton(TextResources.loginBtn, FontFactory.poppins(20),
 				ColorResources.bgLoginWindow, Color.WHITE);
 		loginBtn.setBounds(22, 468, 331, 52);
+		
+		if (TextResources.isEnglish)
+		{
+			myPassBtn = ButtonFactory.createButtonIcon(myPassImage);
+			myPassBtn.setBounds(132, 539, 112, 19);
+		}
+		else
+		{	
+			myPassBtn = ButtonFactory.createButtonIcon(myPassImageGR);
+			myPassBtn.setBounds(113, 538, 150, 19);
+		}
 
 	}
 
@@ -139,6 +154,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		panel.add(roomField);
 		panel.add(passwordField);
 		panel.add(loginBtn);
+		panel.add(myPassBtn);
 		togglePanel();
 		panel.add(BackgroundFactory.addBackgroundDark());
 	}
@@ -152,6 +168,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		popupPanel.english.addActionListener(this);
 		roomField.addFocusListener(this);
 		passwordField.addFocusListener(this);
+		myPassBtn.addActionListener(this);
 	}
 
 	// add or remove the popup panel
@@ -207,6 +224,11 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		if (e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
+		}
+		
+		if(e.getSource() == myPassBtn) {
+			this.dispose();
+			new ForgotPasswordWindow();
 		}
 
 		initializePanelToFrame();

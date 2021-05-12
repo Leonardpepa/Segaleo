@@ -16,7 +16,7 @@ public class Payment {
 	
 	public void card()
 	{
-		new CreditCardWindow();
+		
 	}
 	
 	public void roomBill()
