@@ -19,15 +19,17 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 
 	private JPanel panel;
 	
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
-	ImageIcon backImageGR = new ImageIcon("buttonImages/Back ButtonGR.png");
+	private String path = "buttonImages/Back Button";
+	private String lang = TextResources.imageLang;
+	private ImageIcon backImage = new ImageIcon(path + lang);
 	JButton backBtn;
 	
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
 	
-	private ImageIcon remindMeImage = new ImageIcon("buttonImages/RemindMe.png");
-	private ImageIcon remindMeImageGR = new ImageIcon("buttonImages/RemindMeGR.png");
+	private String path2 = "buttonImages/RemindMe.png";
+	private String lang2 = TextResources.imageLang;
+	private ImageIcon remindMeImage = new ImageIcon(path + lang);
 	private JButton remindMeBtn;
 	
 	private JLabel forgotPassword;
@@ -88,25 +90,14 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 	}
 	
 	//buttons settings
-	public void configureButtons(){
-		if (TextResources.isEnglish)
-		{
+	public void configureButtons() {
+
 			remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
 			remindMeBtn.setBounds(22, 380, 331, 52);
 			remindMeBtn.setPressedIcon(remindMeImage);
 			
 			backBtn = ButtonFactory.createButtonIcon(backImage);
 			backBtn.setBounds(12, 50, 64, 45);
-		}
-		else
-		{
-			remindMeBtn = ButtonFactory.createButtonIcon(remindMeImageGR);
-			remindMeBtn.setBounds(22, 391, 331, 57);
-			remindMeBtn.setPressedIcon(remindMeImageGR);
-			
-			backBtn = ButtonFactory.createButtonIcon(backImageGR);
-			backBtn.setBounds(12, 50, 64, 45);
-		}
 	}
 	
 	//add all the components
