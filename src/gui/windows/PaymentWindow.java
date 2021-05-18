@@ -16,9 +16,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel panel;
-	
-	private ImageIcon backgroundImage = new ImageIcon("Background Images/PaymentBackground.png");
-	private JLabel backgroundLabel;
+
 
 	private String lang = TextResources.imageLang;
 	
@@ -32,6 +30,9 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 	
 	private ImageIcon paypalImage = new ImageIcon("buttonImages/Paypal.png");
 	private JButton paypalBtn;
+	
+	private ImageIcon backgroundImage = new ImageIcon("Background Images/PaymentBackground.png");
+	private JLabel backgroundLabel;
 	
 	private JLabel paymentLabel;
 
@@ -58,7 +59,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
-
+		panel.setBackground(Color.white);
 
 		configureLabels();
 		configureButtons();
@@ -66,7 +67,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		addListeners();
 		addComponentsToPanel();
 		
-		panel.setBackground(Color.white);
+		
 		this.setContentPane(panel);
 		this.pack();
 	}

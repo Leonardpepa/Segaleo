@@ -32,7 +32,6 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
 	
-	
 	private JLabel forgotPassword;
 	private JLabel txtPass;
 	private JLabel txtSendEmail;
