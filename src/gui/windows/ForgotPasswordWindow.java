@@ -19,16 +19,19 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 
 	private JPanel panel;
 	
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
-	ImageIcon backImageGR = new ImageIcon("buttonImages/Back ButtonGR.png");
-	JButton backBtn;
+	private String lang = TextResources.imageLang;
+	
+	private String path = "buttonImages/Back Button";
+	private ImageIcon backImage = new ImageIcon(path + lang);
+	private JButton backBtn;
+	
+	private String path2 = "buttonImages/RemindMe";
+	private ImageIcon remindMeImage = new ImageIcon(path2 + lang);
+	private JButton remindMeBtn;
 	
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
 	
-	private ImageIcon remindMeImage = new ImageIcon("buttonImages/RemindMe.png");
-	private ImageIcon remindMeImageGR = new ImageIcon("buttonImages/RemindMeGR.png");
-	private JButton remindMeBtn;
 	
 	private JLabel forgotPassword;
 	private JLabel txtPass;
@@ -89,24 +92,12 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 	
 	//buttons settings
 	public void configureButtons(){
-		if (TextResources.isEnglish)
-		{
-			remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
-			remindMeBtn.setBounds(22, 380, 331, 52);
-			remindMeBtn.setPressedIcon(remindMeImage);
-			
-			backBtn = ButtonFactory.createButtonIcon(backImage);
-			backBtn.setBounds(12, 50, 64, 45);
-		}
-		else
-		{
-			remindMeBtn = ButtonFactory.createButtonIcon(remindMeImageGR);
-			remindMeBtn.setBounds(22, 391, 331, 57);
-			remindMeBtn.setPressedIcon(remindMeImageGR);
-			
-			backBtn = ButtonFactory.createButtonIcon(backImageGR);
-			backBtn.setBounds(12, 50, 64, 45);
-		}
+		remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
+		remindMeBtn.setBounds(22, 380, 331, 52);
+		remindMeBtn.setPressedIcon(remindMeImage);
+		
+		backBtn = ButtonFactory.createButtonIcon(backImage);
+		backBtn.setBounds(12, 50, 64, 45);
 	}
 	
 	//add all the components
@@ -125,7 +116,6 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 		remindMeBtn.addActionListener(this);
 		backBtn.addActionListener(this);
 	}
-	
 
 	
 	@Override

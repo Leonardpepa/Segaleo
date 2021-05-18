@@ -19,18 +19,20 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 	
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/PaymentBackground.png");
 	private JLabel backgroundLabel;
+
+	private String lang = TextResources.imageLang;
 	
-	private ImageIcon cardImage = new ImageIcon("buttonImages/Card.png");
-	private ImageIcon cardImageGR = new ImageIcon("buttonImages/CardGR.png");
+	private String path = "buttonImages/Card";
+	private ImageIcon cardImage = new ImageIcon(path + lang);
 	private JButton cardBtn;
+	
+	private String path2 = "buttonImages/RoomBill";
+	private ImageIcon roomBillImage = new ImageIcon(path2 + lang);
+	private JButton roomBillBtn;
 	
 	private ImageIcon paypalImage = new ImageIcon("buttonImages/Paypal.png");
 	private JButton paypalBtn;
 	
-	private ImageIcon roomBillImage = new ImageIcon("buttonImages/RoomBill.png");
-	private ImageIcon roomBillImageGR = new ImageIcon("buttonImages/RoomBillGR.png");
-	private JButton roomBillBtn;
-
 	private JLabel paymentLabel;
 
 
@@ -84,33 +86,17 @@ public class PaymentMethodsWindow extends JFrame  implements ActionListener {
 	//buttons settings
 	public void configureButtons() {
 		
-		
-		if (TextResources.isEnglish)
-		{
-			cardBtn = ButtonFactory.createButtonIcon(cardImage);
-			cardBtn.setPressedIcon(cardImage);
-		}
-		else
-		{
-			cardBtn = ButtonFactory.createButtonIcon(cardImageGR); 
-			cardBtn.setPressedIcon(cardImageGR);
-		}
+		cardBtn = ButtonFactory.createButtonIcon(cardImage);
+		cardBtn.setPressedIcon(cardImage);
 		cardBtn.setBounds(17, 154, 342, 133);
 		
 		paypalBtn = ButtonFactory.createButtonIcon(paypalImage);
 		paypalBtn.setBounds(17, 309 , 342, 133);
 		paypalBtn.setPressedIcon(paypalImage);
 		
-		if (TextResources.isEnglish)
-		{
-			roomBillBtn = ButtonFactory.createButtonIcon(roomBillImage);
-			roomBillBtn.setPressedIcon(roomBillImage);
-		}
-		else
-		{
-			roomBillBtn = ButtonFactory.createButtonIcon(roomBillImageGR);
-			roomBillBtn.setPressedIcon(roomBillImageGR);
-		}
+	
+		roomBillBtn = ButtonFactory.createButtonIcon(roomBillImage);
+		roomBillBtn.setPressedIcon(roomBillImage);
 		roomBillBtn.setBounds(17, 467 , 342, 133);
 
 	}
