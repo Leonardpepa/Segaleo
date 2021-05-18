@@ -81,24 +81,22 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 		
 		
 		forgotPassword = LabelFactory.createLabel(TextResources.forgotPassword, Color.WHITE, FontFactory.poppins(30));
-		forgotPassword.setBounds(41, 224, 241, 39);
-//		forgotPassword.setEditable(false);
-//		forgotPassword.setWrapStyleWord(true);
-//		forgotPassword.setLineWrap(true);
+		forgotPassword.setBounds(41, 224, 241, 70);
+
 		
 		txtPass = LabelFactory.createLabel(TextResources.txtPass, Color.WHITE, FontFactory.poppins(16));
-		txtPass.setBounds(41, 263, 304, 74);
+		txtPass.setBounds(41, 283, 304, 74);
 		txtPass.setFont(FontFactory.boldavenir(20));
 		
 		txtSendEmail = LabelFactory.createLabel(TextResources.txtSendEmail, Color.WHITE, FontFactory.poppins(16));
-		txtSendEmail.setBounds(41, 300, 304, 74);
+		txtSendEmail.setBounds(41, 320, 304, 74);
 		txtSendEmail.setFont(FontFactory.boldavenir(20));
 	}
 	
 	//buttons settings
 	public void configureButtons(){
 		remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
-		remindMeBtn.setBounds(22, 380, 331, 52);
+		remindMeBtn.setBounds(22, 400, 331, 52);
 		remindMeBtn.setPressedIcon(remindMeImage);
 		
 		backBtn = ButtonFactory.createButtonIcon(backImage);

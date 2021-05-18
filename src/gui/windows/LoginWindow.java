@@ -102,21 +102,21 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	public void configureLabels() {
 
 		welcomeLabel = LabelFactory.createLabel(TextResources.welcome, Color.WHITE, FontFactory.poppins(28));
-		welcomeLabel.setBounds(42, 224, 294, 29);
+		welcomeLabel.setBounds(42, 224, 294, 70);
 
 		loginLabel = LabelFactory.createLabel(TextResources.loginto, Color.WHITE, FontFactory.poppins(22));
-		loginLabel.setBounds(41, 263, 244, 31);
+		loginLabel.setBounds(41, 298, 244, 70);
 	}
 
 	// textfileds setings
 	public void configureTextFields() {
 		roomField = TextFieldFactory.createTextField(TextResources.roomField, Color.WHITE, Color.LIGHT_GRAY,
 				FontFactory.poppins(12));
-		roomField.setBounds(22, 330, 331, 52);
+		roomField.setBounds(22, 365, 331, 52);
 
 		passwordField = TextFieldFactory.createTextField(TextResources.passField, Color.WHITE, Color.LIGHT_GRAY,
 				FontFactory.poppins(12));
-		passwordField.setBounds(22, 398, 331, 52);
+		passwordField.setBounds(22, 433, 331, 52);
 	}
 
 	// buttons settings
@@ -129,17 +129,17 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		loginBtn = ButtonFactory.createButton(TextResources.loginBtn, FontFactory.poppins(20),
 				ColorResources.bgLoginWindow, Color.WHITE);
-		loginBtn.setBounds(22, 468, 331, 52);
+		loginBtn.setBounds(22, 503, 331, 52);
 		
 		if (TextResources.isEnglish)
 		{
 			myPassBtn = ButtonFactory.createButtonIcon(myPassImage);
-			myPassBtn.setBounds(132, 539, 112, 19);
+			myPassBtn.setBounds(132, 574, 112, 19);
 		}
 		else
 		{	
 			myPassBtn = ButtonFactory.createButtonIcon(myPassImageGR);
-			myPassBtn.setBounds(113, 538, 150, 19);
+			myPassBtn.setBounds(113, 574, 150, 19);
 		}
 
 	}

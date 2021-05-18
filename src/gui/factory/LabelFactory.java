@@ -7,11 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import resources.TextResources;
+
 public class LabelFactory {
 
 	public static JLabel createLabel(String text, Color color, Font font) {
-		JLabel label = new JLabel();
-		label.setText(text);
+		JLabel label = new JLabel(String.format("<html><body style=\"text-align: left;\">%s</body></html>",text));
 		label.setForeground(color);
 		label.setFont(font);
 		return label;
