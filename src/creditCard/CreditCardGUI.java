@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import gui.components.*;
 import gui.factory.*;
-import gui.windows.PaymentMethodsWindow;
+import gui.windows.PaymentWindow;
 import resources.*;
 
 public class CreditCardGUI extends JFrame implements ActionListener {
@@ -207,7 +207,7 @@ public class CreditCardGUI extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == exitBtn) {
 			this.dispose();
-			new PaymentMethodsWindow();
+			new PaymentWindow();
 		}
 
 	}

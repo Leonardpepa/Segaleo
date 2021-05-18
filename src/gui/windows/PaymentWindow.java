@@ -8,7 +8,7 @@ import javax.swing.*;
 import gui.factory.*;
 import resources.TextResources;
 
-public class PaymentMethodsWindow extends JFrame implements ActionListener {
+public class PaymentWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panel;
@@ -30,7 +30,7 @@ public class PaymentMethodsWindow extends JFrame implements ActionListener {
 	private JLabel paymentLabel;
 
 	// constructor
-	public PaymentMethodsWindow() {
+	public PaymentWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
