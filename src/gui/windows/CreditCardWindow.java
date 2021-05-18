@@ -207,7 +207,7 @@ public class CreditCardWindow extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == exitBtn) {
 			this.dispose();
-			new PaymentMethodsWindow();
+			new PaymentWindow();
 		}
 
 	}
