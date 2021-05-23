@@ -9,9 +9,11 @@ import javax.swing.*;
 
 import contact.Contact;
 import contact.FAQ;
+import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import gui.factory.LogoFactory;
 import gui.factory.TextAreaFactory;
 import resources.ColorResources;
 import resources.TextResources;
@@ -20,12 +22,6 @@ public class FaqWindow extends JFrame implements ActionListener {
 
 	private JPanel panel;
 	private Contact contact = new Contact();
-
-	private ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
-	private JLabel backgroundLabel;
-
-	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
-	private JLabel logoLabel;
 
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
@@ -59,8 +55,6 @@ public class FaqWindow extends JFrame implements ActionListener {
 		panel.setPreferredSize(new Dimension(375, 812));
 		panel.setBackground(new Color(216, 223, 224));
 
-		configureLogo();
-		configureBackground();
 		configureButtons();
 		configureLabels();
 		configureFaq();
@@ -78,10 +72,10 @@ public class FaqWindow extends JFrame implements ActionListener {
 	public void addComponentsToPanel() {
 
 		panel.add(backBtn);
-		panel.add(logoLabel);
+		panel.add(LogoFactory.addLogoScaled());
 		panel.add(faqLabel);
 
-		panel.add(backgroundLabel);
+		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
 
@@ -90,7 +84,8 @@ public class FaqWindow extends JFrame implements ActionListener {
 	public void configureFaq() {
 
 		faqs = contact.getFaqs();
-		//y and z are used to change the horizontal position of each question and answer
+		// y and z are used to change the horizontal position of each question and
+		// answer
 		int y = 250;
 		int z = 270;
 		for (FAQ faq : faqs) {
@@ -113,7 +108,7 @@ public class FaqWindow extends JFrame implements ActionListener {
 
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
-		backBtn.setBounds(12, 40, 67, 21);
+		backBtn.setBounds(12, 40, 67, 45);
 	}
 
 	public void configureLabels() {
@@ -121,16 +116,6 @@ public class FaqWindow extends JFrame implements ActionListener {
 				FontFactory.poppins(16));
 		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		faqLabel.setBounds(20, 225, 118, 26);
-	}
-
-	public void configureLogo() {
-		logoLabel = new JLabel(logo);
-		logoLabel.setBounds(101, 50, 173, 173);
-	}
-
-	public void configureBackground() {
-		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0, 0, 375, 812);
 	}
 
 	public void addListeners() {
