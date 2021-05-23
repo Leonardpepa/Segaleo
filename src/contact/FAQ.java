@@ -1,9 +1,10 @@
 package contact;
+
 /* This class holds each question and answer from the FAQ arraylist*/
 public class FAQ {
 	private String question;
 	private String answer;
-	
+
 	public FAQ(String question, String answer) {
 		this.question = question;
 		this.answer = answer;
@@ -24,7 +25,5 @@ public class FAQ {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	
-	
-	
+
 }
