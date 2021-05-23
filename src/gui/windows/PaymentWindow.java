@@ -5,42 +5,43 @@ import java.awt.event.*;
 import javax.swing.*;
 import gui.factory.*;
 import payment.Payment;
+
+
+import gui.factory.*;
+
 import resources.TextResources;
 
-
-public class PaymentWindow extends JFrame  implements ActionListener {
+public class PaymentWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
 
-	
 	private JPanel panel;
 
 	private String lang = TextResources.imageLang;
-	
+
 	private String path = "buttonImages/Card";
 	private ImageIcon cardImage = new ImageIcon(path + lang);
 	private JButton cardBtn;
-	
+
 	private String path2 = "buttonImages/RoomBill";
 	private ImageIcon roomBillImage = new ImageIcon(path2 + lang);
 	private JButton roomBillBtn;
-	
+
 	private ImageIcon paypalImage = new ImageIcon("buttonImages/Paypal.png");
 	private JButton paypalBtn;
-	
+
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/PaymentBackground.png");
 	private JLabel backgroundLabel;
-	
+
 	private JLabel paymentLabel;
 
-	//constructor
+	// constructor
 	public PaymentWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
-		showWindow(this,true);
+		showWindow(this, true);
 	}
 
-	//settings for the frame
+	// settings for the frame
 	public void windowsConfiguration() {
 		this.setTitle("Hotel PDA Sample");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,58 +49,59 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		this.setLocationRelativeTo(null);
 	}
 
-	//set up the panel in the frame
+	// set up the panel in the frame
 	public void initializePanelToFrame() {
-		
+
 		new TextResources().changeLanguage();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
-		panel.setBackground(Color.white);
 
 		configureLabels();
 		configureButtons();
 		configureBackground();
 		addListeners();
 		addComponentsToPanel();
-		
+
+		panel.setBackground(Color.white);
+
 		this.setContentPane(panel);
 		this.pack();
 	}
 
-	//makes the frame visible
+	// makes the frame visible
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
 
-	//label settings
+	// label settings
 	public void configureLabels() {
 		paymentLabel = LabelFactory.createLabel(TextResources.payment, Color.black, FontFactory.poppins(22));
 		paymentLabel.setBounds(24, 73, 200, 31);
-	
+
 	}
 
-	//buttons settings
+	// buttons settings
 	public void configureButtons() {
-		
+
 		cardBtn = ButtonFactory.createButtonIcon(cardImage);
-		cardBtn.setBounds(17, 154, 342, 133);
 		cardBtn.setPressedIcon(cardImage);
-		
+
+		cardBtn.setBounds(17, 154, 342, 133);
+
 		paypalBtn = ButtonFactory.createButtonIcon(paypalImage);
-		paypalBtn.setBounds(17, 309 , 342, 133);
+		paypalBtn.setBounds(17, 309, 342, 133);
 		paypalBtn.setPressedIcon(paypalImage);
-		
-	
+
 		roomBillBtn = ButtonFactory.createButtonIcon(roomBillImage);
 		roomBillBtn.setBounds(17, 467 , 342, 133);
 		roomBillBtn.setPressedIcon(roomBillImage);
 
 	}
-	
+
 	public void configureBackground() {
 		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0,0,375, 125);
+		backgroundLabel.setBounds(0, 0, 375, 125);
 	}
 
 	public void addListeners() {
@@ -113,7 +115,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		panel.add(cardBtn);
 		panel.add(paypalBtn);
 		panel.add(roomBillBtn);
-		
+
 		panel.add(backgroundLabel);
 	}
 
@@ -131,14 +133,9 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 			p.paypal();
 			
 		}
-		if(e.getSource() == roomBillBtn) {
-//			this.dispose();
-//			p.roomBill();
-			
-		}
-		
+
+
 		initializePanelToFrame();
 	}
-
 
 }

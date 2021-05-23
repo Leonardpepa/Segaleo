@@ -129,6 +129,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		loginBtn = ButtonFactory.createButton(TextResources.loginBtn, FontFactory.poppins(20),
 				ColorResources.bgLoginWindow, Color.WHITE);
+
 		loginBtn.setBounds(22, 503, 331, 52);
 		
 		if (TextResources.isEnglish)
@@ -142,6 +143,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 			myPassBtn.setBounds(113, 574, 150, 19);
 		}
 
+
 	}
 
 	// add all the components
@@ -154,7 +156,9 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		panel.add(roomField);
 		panel.add(passwordField);
 		panel.add(loginBtn);
+
 		panel.add(myPassBtn);
+
 		togglePanel();
 		panel.add(BackgroundFactory.addBackgroundDark());
 	}
@@ -166,9 +170,12 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
+
 		roomField.addFocusListener(this);
 		passwordField.addFocusListener(this);
+
 		myPassBtn.addActionListener(this);
+
 	}
 
 	// add or remove the popup panel
@@ -248,6 +255,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	@Override
 	public void focusLost(FocusEvent e) {
 		// initializePanelToFrame();
+
 	}
 
 }

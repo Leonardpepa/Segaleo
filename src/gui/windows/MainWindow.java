@@ -20,6 +20,7 @@ import gui.components.PopupPanel;
 import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
+import gui.factory.LogoFactory;
 import login.Login;
 import resources.ColorResources;
 import resources.TextResources;
@@ -32,8 +33,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panel;
-	private ImageIcon logo = new ImageIcon("logo/logo.png");
-	private JLabel logoLabel;
 
 	private JButton servicesBtn;
 	private JButton activitiesBtn;
@@ -60,8 +59,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	}
 
 	public void windowsConfiguration() {
-		this.setIconImage(logo.getImage());
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -77,7 +75,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		panel.setBackground(new Color(216, 223, 224));
 
 		configurePopupWindow();
-		configureLogo();
+
 		configureButtons();
 
 		addComponentsToPanel();
@@ -99,7 +97,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		panel.add(contactBtn);
 		panel.add(languageBtn);
 		togglePanel();
-		panel.add(logoLabel);
+		panel.add(LogoFactory.addLogo());
 		panel.add(BackgroundFactory.addBackgroundLight());
 	}
 
@@ -125,11 +123,6 @@ public class MainWindow extends JFrame implements ActionListener {
 		contactBtn = ButtonFactory.createButtonIcon(contactImage);
 		contactBtn.setBounds(309, 723, 61, 61);
 
-	}
-
-	public void configureLogo() {
-		logoLabel = new JLabel(logo);
-		logoLabel.setBounds(101, 118, 173, 173);
 	}
 
 	public void configurePopupWindow() {

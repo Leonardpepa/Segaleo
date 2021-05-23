@@ -12,6 +12,8 @@ public class TextAreaFactory {
 		area.setBackground(backgroundColor);
 		area.setForeground(foregroundColor);
 		area.setFont(font);
+		area.setLineWrap(true);
+		area.setWrapStyleWord(true);
 		return area;
 	}
 }

@@ -24,13 +24,14 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import reservation.Activity;
+import reservation.ActivityReader;
 import resources.ColorResources;
 import resources.TextResources;
 
 public class ActivityWindow  extends JFrame implements ActionListener{
 
 	private JPanel backgroundPanel;
-	private ArrayList<Activity> activities;
+	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 	private JLabel activityLabel;
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
 	JButton backBtn;

@@ -5,7 +5,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import gui.components.*;
 import gui.factory.*;
+
 import payment.CreditCard;
+
 import resources.*;
 
 public class CreditCardWindow extends JFrame implements ActionListener {
