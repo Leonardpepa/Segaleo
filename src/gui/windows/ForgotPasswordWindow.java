@@ -4,12 +4,17 @@ import java.awt.*;
 
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import contact.MessageSender;
 import gui.factory.*;
+import login.Login;
 import resources.ColorResources;
 import resources.TextResources;
+import roomCustomer.Room;
+import roomCustomer.RoomCustomerReader;
 
 public class ForgotPasswordWindow extends JFrame implements ActionListener {
 	/**
@@ -91,7 +96,7 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 	public void configureButtons() {
 
 		remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
-		remindMeBtn.setBounds(22, 380, 331, 52);
+		remindMeBtn.setBounds(22, 410, 331, 70);
 		remindMeBtn.setPressedIcon(remindMeImage);
 
 		backBtn = ButtonFactory.createButtonIcon(backImage);
@@ -128,11 +133,27 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String getEmail;
+		String getRoom;
+		String password = null;
+		MessageSender sender = new MessageSender();
 
-		if(e.getSource() == remindMeBtn) {
-			JOptionPane.showInputDialog("Enter your email address:");
+		if (e.getSource() == remindMeBtn) {
+			getEmail = JOptionPane.showInputDialog("Enter your email address:");
+			getRoom = JOptionPane.showInputDialog("Enter your room number:");
 
+			if (getEmail != (null) && getEmail.equals("")) {
+				JOptionPane.showMessageDialog(null, "Enter your email");
+				getEmail = JOptionPane.showInputDialog("Enter your email address:");
+			} else if (getRoom != null && getRoom.equals("")) {
+				JOptionPane.showMessageDialog(null, "Enter your room number");
+				getRoom = JOptionPane.showInputDialog("Enter your room number:");
+			} else {
+				password = getUserPassword(getRoom);
+			}
+			sender.sendEmail(getEmail, false, password);
 		}
+
 		if (e.getSource() == backBtn) {
 			this.dispose();
 			new LoginWindow();
@@ -141,4 +162,17 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 		initializePanelToFrame();
 	}
 
+	public String getUserPassword(String getRoom) {
+		int roomIndex;
+		String password = null;
+		ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
+
+		if (Integer.parseInt(getRoom) / 100 == 1)
+			roomIndex = (Integer.parseInt(getRoom) % 100) - 1;
+		else
+			roomIndex = (Integer.parseInt(getRoom) / 100) * 10 + (Integer.parseInt(getRoom) % 100) - 1;
+
+		password = rooms.get(roomIndex).getPassword();
+		return password;
+	}
 }

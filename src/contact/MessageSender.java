@@ -8,7 +8,7 @@ import javax.activation.*;
 
 public class MessageSender {
 	
-	public void sendEmail(String email, String name){  
+	public void sendEmail(String email, boolean isContact, String password){  
 		String from = "segaleouom@gmail.com";  
 	      String to = email; 
 	      String host = "localhost";  
@@ -39,8 +39,17 @@ public class MessageSender {
 	          msg.setFrom(new InternetAddress(from));
 	          msg.setRecipients(Message.RecipientType.TO, 
 	                            InternetAddress.parse(to,false));
-	          msg.setSubject("We have received your message");
-	          msg.setText("Hello " + name + ",\n\nThanks for submitting your request.\n\nOur support team will get back to you as soon as possible.\n\nSegaleo");
+	          if(isContact) {
+	        	  msg.setSubject("We have received your message");
+	        	  msg.setText("Hello,\n\nThanks for submitting your request.\n\nOur support team will get back to you as soon as possible.\n\nSegaleo");	        	  
+	          }
+	          else {
+	        	  msg.setSubject("Password Reminder");
+	        	  msg.setText("Hello,\n\n Your password is: " + password 
+	        	  		+ "\n\nSegaleo");	        	  
+	     
+	          }
+
 	          msg.setSentDate(new Date());
 	          Transport.send(msg);
 	          System.out.println("Message sent.");
@@ -49,4 +58,5 @@ public class MessageSender {
 	        } 
 
 	}
+	
 }
