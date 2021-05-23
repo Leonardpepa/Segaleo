@@ -52,7 +52,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JLabel descLabel;
 	private JLabel priceLabel;
 	private ImageIcon plusIcon;
-//	private JLabel plusButtonLabel;
 
 	// components for the header
 	private JPanel header;
@@ -75,10 +74,11 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		this.categoryColor = categoryColor;
 		this.categoryName = categoryName;
 		this.products = products;
+		this.order = order;
+		this.menu = new Menu();
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
-		this.order = order;
 	}
 
 	private void initializePanelToFrame() {
@@ -184,7 +184,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	//layout display for the products
 	public JPanel configureProductPanel(Product product) {
 		JPanel panel = new JPanel();
-		panel.addMouseListener(this);
+		panel.setName(product.getName());
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
@@ -195,16 +195,18 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(120, 20, 200, 17);
-		titleLabel.setName(product.getName());
 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 35, 200, 17);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		
 		JLabel plusButtonLabel;
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		plusButtonLabel.addMouseListener(this);
+		
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		priceLabel.setBounds(286, 65, 43, 19);
 
@@ -247,15 +249,12 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			this.dispose();
 			new CartWindow(order, true);
 		}
-		else {
-			JPanel pressedPanel = (JPanel) e.getSource();
-			JLabel Labelname = (JLabel) pressedPanel.getComponent(1);
-			String name = Labelname.getName();
-			System.out.println(name);
-
-			Product p = Menu.findProduct(name);
-			order.addProduct(p);
-			System.out.println(order.calcCost());
+		else if(e.getSource() instanceof JLabel) {
+			JLabel plusLabel = (JLabel) e.getSource();
+			JPanel parent = (JPanel) plusLabel.getParent();
+			String productName = parent.getName();
+			Product clickedProduct = Menu.findProduct(productName);
+			order.addProduct(clickedProduct);
 		}
 
 	}
