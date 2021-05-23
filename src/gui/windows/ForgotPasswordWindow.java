@@ -122,7 +122,7 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == remindMeBtn) {
-			JOptionPane.showMessageDialog(panel,"We send it!");
+			JOptionPane.showInputDialog("Enter your email address:");
 		}
 		if(e.getSource() == backBtn) {
 			this.dispose();
