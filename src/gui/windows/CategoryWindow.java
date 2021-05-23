@@ -9,6 +9,8 @@ import java.awt.HeadlessException;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -30,7 +32,7 @@ import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CategoryWindow extends JFrame implements ActionListener{
+public class CategoryWindow extends JFrame implements ActionListener, MouseListener {
 
 	private JPanel backgroundPanel;
 
@@ -109,6 +111,7 @@ public class CategoryWindow extends JFrame implements ActionListener{
 	
 	public void addListeners() {
 		backButton.addActionListener(this);
+
 	}
 
 	
@@ -194,7 +197,6 @@ public class CategoryWindow extends JFrame implements ActionListener{
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
-		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -234,4 +236,28 @@ public class CategoryWindow extends JFrame implements ActionListener{
 		
 	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("Success");
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
 }
