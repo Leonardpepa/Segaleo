@@ -2,8 +2,11 @@ package gui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import contact.Contact;
+import contact.MessageSender;
 import gui.factory.*;
 import login.Login;
 import resources.*;
@@ -11,9 +14,11 @@ import roomCustomer.Customer;
 
 public class ContactWindow extends JFrame implements ActionListener {
 
+	public static Customer loggedCustomer;
+	
+
 	private JPanel panel;
 	private Contact contact = new Contact();
-	private Customer customer;
 
 	private ImageIcon logo = new ImageIcon("logo/logo-scaled.png");
 	private JLabel logoLabel;
@@ -42,6 +47,8 @@ public class ContactWindow extends JFrame implements ActionListener {
 	private JButton sendBtn;
 
 	private ImageIcon phonecallIcon = new ImageIcon("Icons/phone-icon.png");
+	private ImageIcon emailIcon = new ImageIcon("Icons/login.png");
+	
 
 	private JLabel question1;
 	private JTextArea answer1;
@@ -197,9 +204,16 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		loggedCustomer = Login.loggedCustomer;
+		
 		if (e.getSource() == backBtn) {
 			this.dispose();
-			new MainWindow();
+			if(loggedCustomer !=null) {
+				new MainWindow();	
+			}
+			else {
+				new LoginWindow();
+			}
 		}
 		if (e.getSource() == facebookBtn) {
 			contact.getSocial().openURL("facebook");
@@ -219,6 +233,21 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == seeMoreBtn) {
 			this.dispose();
 			new FaqWindow();
+		}
+
+		if (e.getSource() == sendBtn) {
+			MessageSender sender = new MessageSender();
+
+			
+			if (loggedCustomer == null) {
+				UIManager.put("OptionPane.informationIcon", emailIcon);
+				JOptionPane.showMessageDialog(null, "You need to log in first");
+				
+			} else {
+				String email = loggedCustomer.getEmail();
+
+				sender.sendEmail(email, true, "");
+			}
 		}
 
 	}
