@@ -4,11 +4,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import gui.factory.*;
+import payment.Payment;
 import resources.TextResources;
 
 
 public class PaymentWindow extends JFrame  implements ActionListener {
 	private static final long serialVersionUID = 1L;
+	
+
 	
 	private JPanel panel;
 
@@ -81,7 +84,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		
 		cardBtn = ButtonFactory.createButtonIcon(cardImage);
 		cardBtn.setBounds(17, 154, 342, 133);
-//		cardBtn.setPressedIcon(cardImage);
+		cardBtn.setPressedIcon(cardImage);
 		
 		paypalBtn = ButtonFactory.createButtonIcon(paypalImage);
 		paypalBtn.setBounds(17, 309 , 342, 133);
@@ -90,7 +93,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 	
 		roomBillBtn = ButtonFactory.createButtonIcon(roomBillImage);
 		roomBillBtn.setBounds(17, 467 , 342, 133);
-//		roomBillBtn.setPressedIcon(roomBillImage);
+		roomBillBtn.setPressedIcon(roomBillImage);
 
 	}
 	
@@ -116,16 +119,16 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		Payment payment = new Payment();
+		Payment p = new Payment();
 
 		if(e.getSource() == cardBtn) {
-//			this.dispose();
-//			payment.card();
+			this.dispose();
+			new CreditCardWindow();
 		}
 		
 		if(e.getSource() == paypalBtn) {
-//			this.dispose();
-//			paypal.card();
+			this.dispose();
+			p.paypal();
 			
 		}
 		if(e.getSource() == roomBillBtn) {
