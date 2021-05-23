@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -29,7 +31,7 @@ import reservation.ActivityReader;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CartWindow extends JFrame {
+public class CartWindow extends JFrame implements ActionListener{
 
 	private JPanel backgroundPanel;
 
@@ -72,7 +74,7 @@ public class CartWindow extends JFrame {
 	// TODO display the total price in the footer
 
 	public CartWindow(Order order, boolean isOrder) {
-
+		this.order= order; 
 		this.isOrder = isOrder;
 		initilizePanelToFrame();
 		windowsConfiguration();
@@ -96,6 +98,7 @@ public class CartWindow extends JFrame {
 		configureHeader();
 		configureFooter();
 		configureMainContent();
+		addListeners();
 		backgroundPanel.add(BorderLayout.NORTH, header);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 		backgroundPanel.add(BorderLayout.SOUTH, footer);
@@ -103,6 +106,11 @@ public class CartWindow extends JFrame {
 		this.setContentPane(backgroundPanel);
 		this.pack();
 
+	}
+	
+	
+	public void addListeners() {
+		exitButton.addActionListener(this);
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -135,9 +143,9 @@ public class CartWindow extends JFrame {
 	public JScrollPane createVerticalScrollablePanel() {
 		JPanel container = new JPanel();
 		if (isOrder) {
-			container.setLayout(new GridLayout(menu.getAppetizers().size(), 1, 0, 8));
+			container.setLayout(new GridLayout(order.getProducts().size(), 1, 0, 8));
 
-			for (Product product : menu.getAppetizers()) {
+			for (Product product : order.getProducts()) {
 				container.add(configureProductPanel(product));
 			}
 		} else {
@@ -265,6 +273,15 @@ public class CartWindow extends JFrame {
 		footer.add(paymentMethods);
 		footer.add(priceHolder);
 		footer.add(orderNowButton);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == exitButton) {
+			this.dispose();
+			new MenuWindow();
+		}
 	}
 
 }
