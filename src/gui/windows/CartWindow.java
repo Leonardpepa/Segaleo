@@ -177,7 +177,7 @@ public class CartWindow extends JFrame implements ActionListener{
 		titleLabel.setBounds(120, 20, 200, 17);
 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
-		descLabel.setBounds(120, 35, 200, 17);
+		descLabel.setBounds(120, 35, 200, 40);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
@@ -195,7 +195,7 @@ public class CartWindow extends JFrame implements ActionListener{
 		quantinty.setBounds(290, 85, 50, 20);
 
 		productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
-		productPriceLabel.setBounds(286, 60, 43, 19);
+		productPriceLabel.setBounds(220, 85, 43, 19);
 
 		panel.add(productimgLabel);
 		panel.add(titleLabel);

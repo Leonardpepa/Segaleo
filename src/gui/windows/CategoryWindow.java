@@ -195,7 +195,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		titleLabel.setBounds(120, 20, 200, 17);
 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
-		descLabel.setBounds(120, 35, 200, 17);
+		descLabel.setBounds(120, 35, 200, 40);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 
