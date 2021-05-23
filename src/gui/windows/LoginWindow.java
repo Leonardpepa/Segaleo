@@ -205,13 +205,10 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 			new RoomCustomerReader();
 
 			// checks if the text field is empty and if the login data is correct
-			if (!roomField.getText().equals("") && Login.checkLogin(roomField.getText(), passwordField.getText())) {
+			if (Login.checkLogin(roomField.getText(), passwordField.getText())) {
 				this.dispose();
 				new MainWindow();
-			} else
-				JOptionPane.showMessageDialog(popupPanel,
-						"Wrong Password or Room.\n Please contact with the reception.", "Log In Error",
-						JOptionPane.WARNING_MESSAGE);
+			}
 
 		}
 
