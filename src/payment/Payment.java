@@ -1,6 +1,6 @@
 package payment;
 
-import gui.windows.CreditCardWindow;
+//import gui.windows.CreditCardWindow;
 
 public class Payment {
 	

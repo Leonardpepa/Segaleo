@@ -2,7 +2,9 @@ package gui.windows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -10,12 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
+import menu.Menu;
+import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -39,6 +45,19 @@ public class CartWindow extends JFrame{
 	private JPanel priceHolder;
 	private JButton orderNowButton;
 	
+	//main
+	private JPanel mainContent;
+	private ImageIcon productImage;
+	private JLabel productimgLabel;
+	private JLabel titleLabel;
+	private JLabel descLabel;
+	private JLabel productPriceLabel;
+	private ImageIcon plusIcon;
+	private JLabel plusButtonLabel;
+	private ImageIcon minusIcon;
+	private JLabel minusButtonLabel;
+	private JLabel quantinty;
+	Menu menu = new Menu();
 	
 	public CartWindow() {
 		
@@ -63,9 +82,11 @@ public class CartWindow extends JFrame{
 		
 		configureHeader();
 		configureFooter();
-		
+		configureMainContent();
 		backgroundPanel.add(BorderLayout.NORTH, header);
+		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 		backgroundPanel.add(BorderLayout.SOUTH, footer);
+		
 		
 		this.setContentPane(backgroundPanel);
 		this.pack();
@@ -94,13 +115,78 @@ public class CartWindow extends JFrame{
 	}
 	
 	
+	public void configureMainContent() {
+		mainContent = new JPanel();
+		mainContent.setLayout(new BorderLayout());
+		mainContent.add(createVerticalScrollablePanel());
+	}
+	//creates a vertical scrollable panel
+		public JScrollPane createVerticalScrollablePanel() {
+			JPanel container = new JPanel();
+			container.setLayout(new GridLayout(menu.getAppetizers().size(), 1, 0, 8));
+
+			for (Product product : menu.getAppetizers()) {
+				container.add(configureProductPanel(product));
+			}
+
+			JScrollPane scrollPane = new JScrollPane(container);
+			scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+			scrollPane.getVerticalScrollBar().setUnitIncrement(15);
+
+			return scrollPane;
+		}
+	
+	public JPanel configureProductPanel(Product product) {
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setPreferredSize(new Dimension(325, 120));
+		panel.setBackground(Color.white);
+
+		productImage = new ImageIcon(product.getPath());
+		productimgLabel = LabelFactory.createIconLabel(productImage);
+		productimgLabel.setBounds(10, 10, 100, 100);
+
+		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
+		titleLabel.setBounds(120, 20, 200, 17);
+
+		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
+		descLabel.setBounds(120, 35, 200, 17);
+
+		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
+		plusButtonLabel.setIcon(plusIcon);
+		plusButtonLabel.setBounds(320, 85, 24, 24);
+		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+		minusIcon = new ImageIcon("./buttonImages/minus.png");
+		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
+		minusButtonLabel.setIcon(minusIcon);
+		minusButtonLabel.setBounds(260, 85, 24, 24);
+		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
+		quantinty.setBounds(290, 85, 50, 20);
+		
+		productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		productPriceLabel.setBounds(286, 60, 43, 19);
+
+		panel.add(productimgLabel);
+		panel.add(titleLabel);
+		panel.add(descLabel);
+		panel.add(plusButtonLabel);
+		panel.add(quantinty);
+		panel.add(minusButtonLabel);
+		panel.add(productPriceLabel);
+		return panel;
+	}
+	
 	public void configureFooter(){
 		footer = new JPanel();
 		footer.setLayout(null);
 		footer.setPreferredSize(new Dimension(375, 290));
 		footer.setBackground(new Color(244, 249, 250));
 		
-		couponField = TextFieldFactory.createTextField(TextResources.couponCode, new Color(216, 223, 224), Color.LIGHT_GRAY, FontFactory.poppins(14));
+		couponField = TextFieldFactory.createTextField(TextResources.couponCode, new Color(216, 223, 224), Color.BLACK, FontFactory.poppins(14));
 		couponField.setBounds(24,10, 195, 48);
 		
 		submitCouponButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(14), new Color(216, 223, 224), Color.BLACK);

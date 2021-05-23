@@ -60,7 +60,7 @@ public class MenuWindow extends JFrame implements ActionListener {
 	private JLabel descLabel;
 	private JLabel prevPrice;
 	private ImageIcon plusIcon;
-	private JLabel plusButtonLabel = new JLabel();
+	private JLabel plusButtonLabel;
 	private JLabel newPrice;
 	private Random rand = new Random();
 
@@ -265,6 +265,7 @@ public class MenuWindow extends JFrame implements ActionListener {
 		prevPrice.setBounds(195, 60, 43, 19);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		plusButtonLabel = new JLabel();
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(200, 80, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
