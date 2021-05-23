@@ -236,7 +236,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == backButton) {
 			this.dispose();
-			new MenuWindow();
+			new MenuWindow(order);
 		}
 		
 	}

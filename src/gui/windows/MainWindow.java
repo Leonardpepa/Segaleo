@@ -22,6 +22,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LogoFactory;
 import login.Login;
+import order.Order;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -32,6 +33,8 @@ public class MainWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	Order order = new Order();
+	
 	private JPanel panel;
 
 	private JButton servicesBtn;
@@ -170,7 +173,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == servicesBtn) {
 			this.dispose();
-			new MenuWindow();
+			new MenuWindow(order);
 		}
 		if (e.getSource() == contactBtn) {
 			this.dispose();

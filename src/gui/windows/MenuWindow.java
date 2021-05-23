@@ -29,7 +29,7 @@ import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class MenuWindow extends JFrame implements ActionListener {
+public class MenuWindow extends JFrame implements ActionListener, MouseListener {
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class MenuWindow extends JFrame implements ActionListener {
 	private JPanel backgroundPanel;
 
 	//order
-	private Order order = new Order();
+	private Order order;
 
 	// main panel
 	private JPanel mainContent;
@@ -84,7 +84,8 @@ public class MenuWindow extends JFrame implements ActionListener {
 	private JLabel priceLabel;
 
 	// constructor
-	public MenuWindow() {
+	public MenuWindow(Order order) {
+		this.order = order;
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
@@ -130,6 +131,7 @@ public class MenuWindow extends JFrame implements ActionListener {
 		dessert.addActionListener(this);
 		drinks.addActionListener(this);
 		salads.addActionListener(this);
+		cartPanel.addMouseListener(this);
 	}
 
 	// all the content of the main panel (CENTER panel)
@@ -298,6 +300,37 @@ public class MenuWindow extends JFrame implements ActionListener {
 			JButton btn = (JButton) e.getSource();
 			new CategoryWindow(btn.getBackground(), btn.getText(), menu.getProductList(btn.getText()), order);
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		this.dispose();
+		new CartWindow(order, true);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

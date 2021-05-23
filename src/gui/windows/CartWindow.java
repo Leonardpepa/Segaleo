@@ -280,7 +280,7 @@ public class CartWindow extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource() == exitButton) {
 			this.dispose();
-			new MenuWindow();
+			new MenuWindow(order);
 		}
 	}
 
