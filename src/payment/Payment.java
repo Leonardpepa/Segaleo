@@ -1,7 +1,5 @@
 package payment;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
@@ -28,7 +26,7 @@ public class Payment  {
 	
 	public void card()
 	{
-		
+		new CreditCardWindow();
 	}
 	
 	public void roomBill()

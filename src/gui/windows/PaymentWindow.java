@@ -123,7 +123,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 
 		if(e.getSource() == cardBtn) {
 			this.dispose();
-			new CreditCardWindow();
+			p.card();
 		}
 		
 		if(e.getSource() == paypalBtn) {
@@ -133,7 +133,7 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		}
 		if(e.getSource() == roomBillBtn) {
 //			this.dispose();
-//			roomBill.card();
+//			p.roomBill();
 			
 		}
 		
