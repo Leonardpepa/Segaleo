@@ -38,7 +38,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JPanel backgroundPanel;
 
 	private Order order;
-	
+
 	private Menu menu;
 	private Color categoryColor;
 	private String categoryName;
@@ -62,8 +62,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JComboBox<String> compobox;
 	private String headerText;
 	private Color headerLabelColor;
-	
-	//cart panel
+
+	// cart panel
 	private JPanel cartPanel;
 	private ImageIcon bagIcon;
 	private JLabel bagLabel;
@@ -90,7 +90,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		configureMainContent();
 		configureCartPanel();
 		addListeners();
-		
 
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
@@ -111,14 +110,13 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
-	
+
 	public void addListeners() {
 		backButton.addActionListener(this);
 		cartPanel.addMouseListener(this);
 	}
 
-	
-	//all the content for the header panel
+	// all the content for the header panel
 	public void configureHeader() {
 		headerText = categoryName;
 		headerLabelColor = categoryColor;
@@ -147,41 +145,41 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		header.add(search);
 		header.add(compobox);
 	}
-	
-	//all the content for the cart panel
-		public void configureCartPanel() {
-			cartPanel = new JPanel();
-			
-			cartPanel.setLayout(null);
-			cartPanel.setPreferredSize(new Dimension(375,94));
-			cartPanel.setBounds(0, 718, 375, 94);
-			cartPanel.setBackground(Color.WHITE);
-			cartPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			
-			bagIcon = new ImageIcon("Icons/Bag.png");
-			
-			cartPriceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
-			cartPriceLabel.setBounds(301, cartPanel.getHeight()/2 - 15, 49, 20);
-			
-			viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
-			viewCart.setBounds(67, cartPanel.getHeight()/2 - 15, 200, 20);
-			
-			bagLabel = LabelFactory.createIconLabel(bagIcon);
-			bagLabel.setBounds(29, cartPanel.getHeight()/2 - 15, 25, 25);
-			
-			cartPanel.add(bagLabel);
-			cartPanel.add(viewCart);
-			cartPanel.add(cartPriceLabel);
-		}
-		
-	//main panel
+
+	// all the content for the cart panel
+	public void configureCartPanel() {
+		cartPanel = new JPanel();
+
+		cartPanel.setLayout(null);
+		cartPanel.setPreferredSize(new Dimension(375, 94));
+		cartPanel.setBounds(0, 718, 375, 94);
+		cartPanel.setBackground(Color.WHITE);
+		cartPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+		bagIcon = new ImageIcon("Icons/Bag.png");
+
+		cartPriceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
+		cartPriceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
+
+		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
+		viewCart.setBounds(67, cartPanel.getHeight() / 2 - 15, 200, 20);
+
+		bagLabel = LabelFactory.createIconLabel(bagIcon);
+		bagLabel.setBounds(29, cartPanel.getHeight() / 2 - 15, 25, 25);
+
+		cartPanel.add(bagLabel);
+		cartPanel.add(viewCart);
+		cartPanel.add(cartPriceLabel);
+	}
+
+	// main panel
 	public void configureMainContent() {
 		mainContent = new JPanel();
 		mainContent.setLayout(new BorderLayout());
 		mainContent.add(createVerticalScrollablePanel());
 	}
 
-	//layout display for the products
+	// layout display for the products
 	public JPanel configureProductPanel(Product product) {
 		JPanel panel = new JPanel();
 		panel.setName(product.getName());
@@ -200,13 +198,13 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		descLabel.setBounds(120, 35, 200, 17);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
-		
+
 		JLabel plusButtonLabel;
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
-		
+
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		priceLabel.setBounds(286, 65, 43, 19);
 
@@ -217,8 +215,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		panel.add(priceLabel);
 		return panel;
 	}
-	
-	//creates a vertical scrollable panel
+
+	// creates a vertical scrollable panel
 	public JScrollPane createVerticalScrollablePanel() {
 		JPanel container = new JPanel();
 		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
@@ -236,20 +234,20 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == backButton) {
+		if (e.getSource() == backButton) {
 			this.dispose();
 			new MenuWindow(order);
 		}
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e.getSource() == cartPanel) {
+		if (e.getSource() == cartPanel) {
 			this.dispose();
 			new CartWindow(order, true);
 		}
-		else if(e.getSource() instanceof JLabel) {
+		if (e.getSource() instanceof JLabel) {
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
 			String productName = parent.getName();

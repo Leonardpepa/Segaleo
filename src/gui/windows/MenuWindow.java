@@ -42,7 +42,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	// contains all the panels for the whole gui window
 	private JPanel backgroundPanel;
 
-	//order
+	// order
 	private Order order;
 
 	// main panel
@@ -64,7 +64,6 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel descLabel;
 	private JLabel prevPrice;
 	private ImageIcon plusIcon;
-	private JLabel plusButtonLabel;
 	private JLabel newPrice;
 	private Random rand = new Random();
 
@@ -252,7 +251,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	// layout display for the products
 	public JPanel configureProductPanel(Product product) {
 		productPanel = new JPanel();
-
+		productPanel.setName(product.getName());
 		productPanel.setLayout(null);
 		productPanel.setPreferredSize(new Dimension(250, 100));
 		productPanel.setBackground(Color.white);
@@ -271,10 +270,12 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		prevPrice.setBounds(195, 60, 43, 19);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		JLabel plusButtonLabel;
 		plusButtonLabel = new JLabel();
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(200, 80, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		plusButtonLabel.addMouseListener(this);
 
 		int discount = rand.nextInt(3) + 1;
 		newPrice = LabelFactory.createLabel((product.getPrice() - discount) + "€", Color.RED, FontFactory.poppins(14));
@@ -294,8 +295,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		if (e.getSource() == backButton) {
 			this.dispose();
 			new MainWindow();
-		} 
-		else {
+		} else {
 			this.dispose();
 			JButton btn = (JButton) e.getSource();
 			new CategoryWindow(btn.getBackground(), btn.getText(), menu.getProductList(btn.getText()), order);
@@ -305,32 +305,41 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		this.dispose();
-		new CartWindow(order, true);
+		if (e.getSource() == cartPanel) {
+			this.dispose();
+			new CartWindow(order, true);
+		}
+		if (e.getSource() instanceof JLabel) {
+			JLabel plusLabel = (JLabel) e.getSource();
+			JPanel parent = (JPanel) plusLabel.getParent();
+			String productName = parent.getName();
+			Product clickedProduct = Menu.findProduct(productName);
+			order.addProduct(clickedProduct);
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
