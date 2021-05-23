@@ -2,13 +2,8 @@ package gui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
-import gui.factory.ButtonFactory;
-import payment.Payment;
-import gui.factory.FontFactory;
-import gui.factory.LabelFactory;
+import gui.factory.*;
 import resources.TextResources;
 
 
@@ -16,7 +11,6 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel panel;
-
 
 	private String lang = TextResources.imageLang;
 	
@@ -35,7 +29,6 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 	private JLabel backgroundLabel;
 	
 	private JLabel paymentLabel;
-
 
 	//constructor
 	public PaymentWindow() {
@@ -67,7 +60,6 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		addListeners();
 		addComponentsToPanel();
 		
-		
 		this.setContentPane(panel);
 		this.pack();
 	}
@@ -88,8 +80,8 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 	public void configureButtons() {
 		
 		cardBtn = ButtonFactory.createButtonIcon(cardImage);
-		cardBtn.setPressedIcon(cardImage);
 		cardBtn.setBounds(17, 154, 342, 133);
+//		cardBtn.setPressedIcon(cardImage);
 		
 		paypalBtn = ButtonFactory.createButtonIcon(paypalImage);
 		paypalBtn.setBounds(17, 309 , 342, 133);
@@ -97,8 +89,8 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		
 	
 		roomBillBtn = ButtonFactory.createButtonIcon(roomBillImage);
-		roomBillBtn.setPressedIcon(roomBillImage);
 		roomBillBtn.setBounds(17, 467 , 342, 133);
+//		roomBillBtn.setPressedIcon(roomBillImage);
 
 	}
 	
@@ -111,7 +103,6 @@ public class PaymentWindow extends JFrame  implements ActionListener {
 		cardBtn.addActionListener(this);
 		paypalBtn.addActionListener(this);
 		roomBillBtn.addActionListener(this);
-
 	}
 
 	public void addComponentsToPanel() {
