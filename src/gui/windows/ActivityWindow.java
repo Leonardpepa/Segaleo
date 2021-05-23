@@ -113,7 +113,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(320, 210));
+		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
 		
 		activityImage = new ImageIcon(activity.getPath());
@@ -121,17 +121,17 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		activityimgLabel.setBounds(5, 5, 310, 170);
 		
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(5,180,150,19);
+		titleLabel.setBounds(5,180,150,40);
 		
 		
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(295, 180, 24, 24);
+		plusButtonLabel.setBounds(295, 185, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		priceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
-		priceLabel.setBounds(155, 180, 43, 19);
+		priceLabel.setBounds(155, 185, 43, 19);
 		
 		panel.add(activityimgLabel);
 		panel.add(titleLabel);
@@ -144,7 +144,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 	//creates a vertical scrollable panel
 		public JScrollPane createVerticalScrollablePanel() {
 			JPanel container = new JPanel();
-			container.setLayout(new GridLayout(activities.size(), 1, 0, 8));
+			container.setLayout(new GridLayout(activities.size(), 1, 0, 15));
 
 			for (Activity activity : activities) {
 				container.add(configureActivityPanel(activity));

@@ -1,4 +1,4 @@
-package creditCard;
+package payment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
