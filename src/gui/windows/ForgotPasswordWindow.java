@@ -40,6 +40,9 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 	private JLabel txtPass;
 	private JLabel txtSendEmail;
 
+	private ImageIcon emailIcon = new ImageIcon("Icons/email-optionpane.png");
+	private ImageIcon roomIcon = new ImageIcon("Icons/door.png");
+
 	// constructor
 	public ForgotPasswordWindow() {
 		initializePanelToFrame();
@@ -139,19 +142,40 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 		MessageSender sender = new MessageSender();
 
 		if (e.getSource() == remindMeBtn) {
-			getEmail = JOptionPane.showInputDialog("Enter your email address:");
-			getRoom = JOptionPane.showInputDialog("Enter your room number:");
+			// user needs to enter their email
+			UIManager.put("OptionPane.informationIcon", emailIcon);
+			getEmail = (String) JOptionPane.showInputDialog(null, "Enter your email", "Email",
+					JOptionPane.INFORMATION_MESSAGE, emailIcon, null, "");
 
+			// if they don't enter the email and click on Ok, ask for it again
 			if (getEmail != (null) && getEmail.equals("")) {
+				UIManager.put("OptionPane.informationIcon", emailIcon);
 				JOptionPane.showMessageDialog(null, "Enter your email");
-				getEmail = JOptionPane.showInputDialog("Enter your email address:");
-			} else if (getRoom != null && getRoom.equals("")) {
-				JOptionPane.showMessageDialog(null, "Enter your room number");
-				getRoom = JOptionPane.showInputDialog("Enter your room number:");
-			} else {
-				password = getUserPassword(getRoom);
+				getEmail = (String) JOptionPane.showInputDialog(null, "Enter your email", "Email",
+						JOptionPane.INFORMATION_MESSAGE, emailIcon, null, "");
 			}
-			sender.sendEmail(getEmail, false, password);
+
+			// if they enter their email, ask for their room number
+			if (getEmail != null) {
+				getRoom = (String) JOptionPane.showInputDialog(null, "Enter your room number:", "Room Number",
+						JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
+				// if they don't enter their room number and click on Ok, ask for it again
+				if (getRoom != null && getRoom.equals("")) {
+					UIManager.put("OptionPane.informationIcon", roomIcon);
+					JOptionPane.showMessageDialog(null, "Enter your room number");
+					getRoom = (String) JOptionPane.showInputDialog(null, "Enter your room number:", "Room Number",
+							JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
+				}
+				else {
+					// if they enter both successfully search for their password and send an email
+					password = getUserPassword(getRoom);
+					sender.sendEmail(getEmail, false, password);
+				}
+			// if they click on Cancel on both dialogs don't do anything
+			if (getEmail == null || getRoom == null) {
+				
+			} 
+			}
 		}
 
 		if (e.getSource() == backBtn) {

@@ -238,7 +238,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 		if (e.getSource() == sendBtn) {
 			MessageSender sender = new MessageSender();
 
-			
 			if (loggedCustomer == null) {
 				UIManager.put("OptionPane.informationIcon", emailIcon);
 				JOptionPane.showMessageDialog(null, "You need to log in first");
