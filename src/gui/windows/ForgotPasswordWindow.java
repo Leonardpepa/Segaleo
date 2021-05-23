@@ -1,4 +1,5 @@
 package gui.windows;
+
 import java.awt.*;
 
 import java.awt.Dimension;
@@ -10,125 +11,133 @@ import gui.factory.*;
 import resources.ColorResources;
 import resources.TextResources;
 
-
-public class ForgotPasswordWindow extends JFrame implements ActionListener{
+public class ForgotPasswordWindow extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panel;
-	
+
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
 	private ImageIcon backImage = new ImageIcon(path + lang);
 	JButton backBtn;
-	
+
+	private String path2 = "buttonImages/RemindMe";
+	private ImageIcon remindMeImage = new ImageIcon(path2 + lang);
+	private JButton remindMeBtn;
+
 	private ImageIcon backgroundImage = new ImageIcon("Background Images/loginBackground.png");
 	private JLabel backgroundLabel;
-	
-	private String path2 = "buttonImages/RemindMe.png";
-	private String lang2 = TextResources.imageLang;
-	private ImageIcon remindMeImage = new ImageIcon(path + lang);
-	private JButton remindMeBtn;
-	
+
 	private JLabel forgotPassword;
 	private JLabel txtPass;
 	private JLabel txtSendEmail;
 
-	
-	//constructor
+	// constructor
 	public ForgotPasswordWindow() {
 		initializePanelToFrame();
 		windowsConfiguration();
-		showWindow(this,true);
+		showWindow(this, true);
 	}
-	
-	//settings for the frame
+
+	// settings for the frame
 	public void windowsConfiguration() {
 		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
-	
-	//set up the panel in the frame
+
+	// set up the panel in the frame
 	public void initializePanelToFrame() {
 		new ColorResources();
 		new TextResources().changeLanguage();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
-		
+
 		configureLabels();
 		configureButtons();
 		addListeners();
 		addComponentsToPanel();
-		
+
 		this.setContentPane(panel);
 		this.pack();
 	}
 
-	//makes the frame visible
+	// makes the frame visible
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
-	
-	//label settings
+
+	// label settings
 	public void configureLabels() {
 		backgroundLabel = new JLabel(backgroundImage);
-		backgroundLabel.setBounds(0,0,375, 812);
-		
+		backgroundLabel.setBounds(0, 0, 375, 812);
+
 		forgotPassword = LabelFactory.createLabel(TextResources.forgotPassword, Color.WHITE, FontFactory.poppins(30));
 		forgotPassword.setBounds(41, 224, 241, 39);
-		
+
 		txtPass = LabelFactory.createLabel(TextResources.txtPass, Color.WHITE, FontFactory.poppins(16));
 		txtPass.setBounds(41, 263, 304, 74);
-		
+
 		txtSendEmail = LabelFactory.createLabel(TextResources.txtSendEmail, Color.WHITE, FontFactory.poppins(16));
 		txtSendEmail.setBounds(41, 300, 304, 74);
 	}
-	
-	//buttons settings
+
+	// buttons settings
 	public void configureButtons() {
 
-			remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
-			remindMeBtn.setBounds(22, 380, 331, 52);
-			remindMeBtn.setPressedIcon(remindMeImage);
-			
-			backBtn = ButtonFactory.createButtonIcon(backImage);
-			backBtn.setBounds(12, 50, 64, 45);
+		remindMeBtn = ButtonFactory.createButtonIcon(remindMeImage);
+		remindMeBtn.setBounds(22, 380, 331, 52);
+		remindMeBtn.setPressedIcon(remindMeImage);
+
+		backBtn = ButtonFactory.createButtonIcon(backImage);
+		backBtn.setBounds(12, 50, 64, 45);
+
+		forgotPassword = LabelFactory.createLabel(TextResources.forgotPassword, Color.WHITE, FontFactory.poppins(30));
+		forgotPassword.setBounds(41, 224, 241, 70);
+
+		txtPass = LabelFactory.createLabel(TextResources.txtPass, Color.WHITE, FontFactory.poppins(16));
+		txtPass.setBounds(41, 283, 304, 74);
+		txtPass.setFont(FontFactory.boldavenir(20));
+
+		txtSendEmail = LabelFactory.createLabel(TextResources.txtSendEmail, Color.WHITE, FontFactory.poppins(16));
+		txtSendEmail.setBounds(41, 320, 304, 74);
+		txtSendEmail.setFont(FontFactory.boldavenir(20));
 	}
-	
-	//add all the components
+
+	// add all the components
 	public void addComponentsToPanel() {
 		panel.add(backBtn);
 		panel.add(forgotPassword);
 		panel.add(txtPass);
 		panel.add(txtSendEmail);
 		panel.add(remindMeBtn);
-		
+
 		panel.add(backgroundLabel);
 	}
-	
-	//add listeners
+
+	// add listeners
 	public void addListeners() {
 		remindMeBtn.addActionListener(this);
 		backBtn.addActionListener(this);
 	}
-	
 
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if(e.getSource() == remindMeBtn) {
 			JOptionPane.showInputDialog("Enter your email address:");
+
 		}
-		if(e.getSource() == backBtn) {
+		if (e.getSource() == backBtn) {
 			this.dispose();
 			new LoginWindow();
 		}
-		
+
 		initializePanelToFrame();
 	}
 
