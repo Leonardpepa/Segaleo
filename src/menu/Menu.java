@@ -21,7 +21,7 @@ public class Menu {
 	private ArrayList<Product> drinks;
 	private ArrayList<Product> main;
 	private ArrayList<Product> salads;
-
+	private ArrayList<Product> allProducts;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -36,7 +36,7 @@ public class Menu {
 		drinks = new ArrayList<>();
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
-
+		allProducts = new ArrayList<Product>();
 
 		readProduct(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
 		readProduct(coffee, "files/coffee/Coffees", TextResources.endpointPath);
@@ -44,6 +44,13 @@ public class Menu {
 		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
+		
+		allProducts.addAll(coffee);
+		allProducts.addAll(appetizers);
+		allProducts.addAll(desserts);
+		allProducts.addAll(drinks);
+		allProducts.addAll(main);
+		allProducts.addAll(salads);	
 	}
 
 	private void readProduct(ArrayList<Product> list, String pathName, String language) {
@@ -93,6 +100,15 @@ public class Menu {
 		}
 	}
 
+	public Product findProduct(String name) {
+		for(Product p: allProducts) {
+			if(p.getName().equalsIgnoreCase(name)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	
 	public ArrayList<Product> getProductList(String category) {
 		

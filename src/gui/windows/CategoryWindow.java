@@ -50,7 +50,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JLabel descLabel;
 	private JLabel priceLabel;
 	private ImageIcon plusIcon;
-	private JLabel plusButtonLabel;
+//	private JLabel plusButtonLabel;
 
 	// components for the header
 	private JPanel header;
@@ -111,7 +111,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	
 	public void addListeners() {
 		backButton.addActionListener(this);
-
 	}
 
 	
@@ -196,10 +195,11 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		descLabel.setBounds(120, 35, 200, 17);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		JLabel plusButtonLabel;
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
+		plusButtonLabel.addMouseListener(this);
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		priceLabel.setBounds(286, 65, 43, 19);
 
@@ -238,7 +238,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Success");
+		System.out.println(e.getSource());
 	}
 
 	@Override
