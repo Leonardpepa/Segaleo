@@ -22,6 +22,7 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import menu.Menu;
+import order.Order;
 import order.Product;
 import reservation.Activity;
 import reservation.ActivityReader;
@@ -31,6 +32,8 @@ import resources.TextResources;
 public class CartWindow extends JFrame {
 
 	private JPanel backgroundPanel;
+
+	private Order order;
 
 	// header
 	private JPanel header;
@@ -63,16 +66,18 @@ public class CartWindow extends JFrame {
 	Menu menu = new Menu();
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
-	private boolean isOrder = false;
+	private boolean isOrder;
 
 	// TODO take the order from the logged customer
 	// TODO display the total price in the footer
 
-	public CartWindow() {
+	public CartWindow(Order order, boolean isOrder) {
 
+		this.isOrder = isOrder;
 		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
+
 
 	}
 

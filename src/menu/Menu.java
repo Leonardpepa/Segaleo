@@ -7,13 +7,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import order.Coffee;
-import order.Drink;
-import order.Food;
-import order.Product;
+import order.*;
 import resources.TextResources;
 
 public class Menu {
+
 
 	private ArrayList<Product> appetizers;
 	private ArrayList<Product> coffee;
@@ -21,7 +19,7 @@ public class Menu {
 	private ArrayList<Product> drinks;
 	private ArrayList<Product> main;
 	private ArrayList<Product> salads;
-	private ArrayList<Product> allProducts;
+	private static ArrayList<Product> allProducts;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -100,7 +98,7 @@ public class Menu {
 		}
 	}
 
-	public Product findProduct(String name) {
+	public static Product findProduct(String name) {
 		for(Product p: allProducts) {
 			if(p.getName().equalsIgnoreCase(name)) {
 				return p;

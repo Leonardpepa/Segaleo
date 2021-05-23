@@ -24,6 +24,7 @@ import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import gui.components.*;
 import menu.Menu;
+import order.Order;
 import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
@@ -40,6 +41,9 @@ public class MenuWindow extends JFrame implements ActionListener {
 
 	// contains all the panels for the whole gui window
 	private JPanel backgroundPanel;
+
+	//order
+	private Order order = new Order();
 
 	// main panel
 	private JPanel mainContent;
@@ -292,7 +296,7 @@ public class MenuWindow extends JFrame implements ActionListener {
 		else {
 			this.dispose();
 			JButton btn = (JButton) e.getSource();
-			new CategoryWindow(btn.getBackground(), btn.getText(), menu.getProductList(btn.getText()));
+			new CategoryWindow(btn.getBackground(), btn.getText(), menu.getProductList(btn.getText()), order);
 		}
 	}
 

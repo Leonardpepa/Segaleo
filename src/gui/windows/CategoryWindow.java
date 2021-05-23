@@ -28,6 +28,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import menu.Menu;
+import order.Order;
 import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
@@ -36,6 +37,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	private JPanel backgroundPanel;
 
+	private Order order;
 	
 	private Menu menu;
 	private Color categoryColor;
@@ -69,13 +71,14 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JLabel viewCart;
 	private JLabel cartPriceLabel;
 
-	public CategoryWindow(Color categoryColor, String categoryName, ArrayList<Product> products) {
+	public CategoryWindow(Color categoryColor, String categoryName, ArrayList<Product> products, Order order) {
 		this.categoryColor = categoryColor;
 		this.categoryName = categoryName;
 		this.products = products;
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
+		this.order = order;
 	}
 
 	private void initializePanelToFrame() {
@@ -111,6 +114,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	
 	public void addListeners() {
 		backButton.addActionListener(this);
+		cartPanel.addMouseListener(this);
 	}
 
 	
@@ -180,6 +184,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	//layout display for the products
 	public JPanel configureProductPanel(Product product) {
 		JPanel panel = new JPanel();
+		panel.addMouseListener(this);
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
@@ -190,6 +195,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(120, 20, 200, 17);
+		titleLabel.setName(product.getName());
 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 35, 200, 17);
@@ -199,7 +205,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		priceLabel.setBounds(286, 65, 43, 19);
 
@@ -238,7 +243,21 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(e.getSource());
+		if(e.getSource() == cartPanel) {
+			this.dispose();
+			new CartWindow(order, true);
+		}
+		else {
+			JPanel pressedPanel = (JPanel) e.getSource();
+			JLabel Labelname = (JLabel) pressedPanel.getComponent(1);
+			String name = Labelname.getName();
+			System.out.println(name);
+
+			Product p = Menu.findProduct(name);
+			order.addProduct(p);
+			System.out.println(order.calcCost());
+		}
+
 	}
 
 	@Override
