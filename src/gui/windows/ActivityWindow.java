@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 
@@ -28,7 +30,7 @@ import reservation.ActivityReader;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class ActivityWindow  extends JFrame implements ActionListener{
+public class ActivityWindow  extends JFrame implements ActionListener,MouseListener{
 
 	private JPanel backgroundPanel;
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
@@ -101,6 +103,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		
 	public void addListeners() {
 		backBtn.addActionListener(this);
+	
 	}
 	
 
@@ -142,6 +145,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 	
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
+		panel.setName(activity.getName());
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
@@ -159,6 +163,7 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(295, 185, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		plusButtonLabel.addMouseListener(this);
 		
 		priceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		priceLabel.setBounds(155, 185, 43, 19);
@@ -192,7 +197,65 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 			this.dispose();
 			new MainWindow();
 		} 
+	
+		
 		
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() instanceof JLabel) {
+			Activity thisactivity =null;
+			JLabel plusLabel = (JLabel) e.getSource();
+			JPanel parent = (JPanel) plusLabel.getParent();
+			String activityName = parent.getName();
+			//search for the activity with activityName
+			for(Activity a : activities) {
+				if(a.getName().equalsIgnoreCase(activityName)) {
+					thisactivity = a;
+					System.out.println(thisactivity.getName());
+				}
+			}
+			//column where activity starts
+			 int pos =(activities.indexOf(thisactivity))*2;
+			 System.out.println(pos);
+			//να μπαίνει στο reservation αβτίστοιχα με το order
+			//order.addProduct(clickedProduct);
+			//cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
+		}
+
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+		
+		
+	
+
+
+	
 
 }
