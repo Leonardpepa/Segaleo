@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -31,7 +33,7 @@ import reservation.ActivityReader;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CartWindow extends JFrame implements ActionListener{
+public class CartWindow extends JFrame implements ActionListener, MouseListener {
 
 	private JPanel backgroundPanel;
 
@@ -63,7 +65,7 @@ public class CartWindow extends JFrame implements ActionListener{
 	private ImageIcon plusIcon;
 	private JLabel plusButtonLabel;
 	private ImageIcon minusIcon;
-	private JLabel minusButtonLabel;
+
 	private JLabel quantinty;
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
@@ -164,6 +166,7 @@ public class CartWindow extends JFrame implements ActionListener{
 
 	public JPanel configureProductPanel(Product product) {
 		JPanel panel = new JPanel();
+		panel.setName(product.getName());
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
@@ -185,10 +188,11 @@ public class CartWindow extends JFrame implements ActionListener{
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 		minusIcon = new ImageIcon("./buttonImages/minus.png");
+		JLabel minusButtonLabel;
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
-		minusButtonLabel.setIcon(minusIcon);
 		minusButtonLabel.setBounds(260, 85, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		minusButtonLabel.addMouseListener(this);
 
 		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
 		quantinty.setBounds(290, 85, 50, 20);
@@ -283,4 +287,36 @@ public class CartWindow extends JFrame implements ActionListener{
 		}
 	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		JLabel minusLabel = (JLabel) e.getSource();
+		JPanel parent = (JPanel) minusLabel.getParent();
+		String productName = parent.getName();
+		Product clickedProduct = Menu.findProduct(productName);
+		order.removeProduct(clickedProduct);
+
+		initilizePanelToFrame();
+		windowsConfiguration();
+		showWindow(this, true);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
 }
