@@ -122,6 +122,9 @@ public class Menu {
 		ArrayList<Food> deals = new ArrayList<Food>();
 		for(int i=0; i<3; i++) {
 			Food dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
+			while(dealdFood.isHasDiscount()) {
+				dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
+			}
 			int discount = rand.nextInt(3) + 1;
 			dealdFood.setHasDiscount(true, discount);
 			deals.add(dealdFood);
