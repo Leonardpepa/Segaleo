@@ -65,7 +65,6 @@ public class CartWindow extends JFrame implements ActionListener{
 	private ImageIcon minusIcon;
 	private JLabel minusButtonLabel;
 	private JLabel quantinty;
-	Menu menu = new Menu();
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
 	private boolean isOrder;

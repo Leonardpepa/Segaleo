@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,8 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import login.Login;
+import menu.Menu;
+import order.Food;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.RoomCustomerReader;
@@ -55,7 +58,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	private PopupPanel popupPanel;
 
 	boolean isPopup = false;
-
+	public static ArrayList<Food> deals = new Menu().GetDeals();
 	// constructor
 	public LoginWindow() {
 		initializePanelToFrame();

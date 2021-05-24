@@ -40,7 +40,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	private Order order;
 
-	private Menu menu;
 	private Color categoryColor;
 	private String categoryName;
 	private ArrayList<Product> products;
@@ -76,7 +75,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		this.categoryName = categoryName;
 		this.products = products;
 		this.order = order;
-		this.menu = new Menu();
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
@@ -208,11 +206,11 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
+		
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		if (product instanceof Food) {
 			foodProduct = (Food) product;
 			if (foodProduct.isHasDiscount()) {
-				foodProduct.setPrice(foodProduct.getPrice() - 3);
 				priceLabel = new JLabel("<html><body><span style='text-decoration: line-through;'>"
 						+ (foodProduct.getPrice() + foodProduct.getDiscount()) + "€</span></body></html>");
 				JLabel newPrice = LabelFactory.createLabel(foodProduct.getPrice() + "€", Color.red,

@@ -36,10 +36,6 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// menu object for access to the products
-	// TODO this have to be passed as argument
-	private Menu menu;
-
 	// contains all the panels for the whole gui window
 	private JPanel backgroundPanel;
 
@@ -93,7 +89,6 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 	// put all the components to the background panel
 	private void initializePanelToFrame() {
-		menu = new Menu();
 		backgroundPanel = new JPanel();
 		backgroundPanel.setPreferredSize(new Dimension(375, 812));
 		backgroundPanel.setLayout(new BorderLayout());
@@ -223,7 +218,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		container.setLayout(new BorderLayout());
 		container.setBounds(16, 140, 340, 200);
 		// container contains the scrollable panel
-		container.add(createHorizontalScrollablePanel(menu.GetDeals()));
+		container.add(createHorizontalScrollablePanel(LoginWindow.deals));
 
 		dealsOfTheDay = LabelFactory.createLabel(TextResources.deals, Color.BLACK, FontFactory.poppins(16));
 		dealsOfTheDay.setBounds(16, 110, 200, 30);
@@ -299,7 +294,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		} else {
 			this.dispose();
 			JButton btn = (JButton) e.getSource();
-			new CategoryWindow(btn.getBackground(), btn.getText(), menu.getProductList(btn.getText()), order);
+			new CategoryWindow(btn.getBackground(), btn.getText(), Menu.getProductList(btn.getText()), order);
 		}
 	}
 

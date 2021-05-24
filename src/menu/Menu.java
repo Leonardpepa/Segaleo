@@ -13,14 +13,14 @@ import resources.TextResources;
 public class Menu {
 
 
-	private ArrayList<Product> appetizers;
-	private ArrayList<Product> coffee;
-	private ArrayList<Product> desserts;
-	private ArrayList<Product> drinks;
-	private ArrayList<Product> main;
-	private ArrayList<Product> salads;
+	public static ArrayList<Product> appetizers;
+	public static ArrayList<Product> coffee;
+	public static ArrayList<Product> desserts;
+	public static ArrayList<Product> drinks;
+	public static ArrayList<Product> main;
+	public static ArrayList<Product> salads;
 	private static ArrayList<Product> allProducts;
-	private ArrayList<Product> onlyFood;
+	public static ArrayList<Product> onlyFood;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -113,7 +113,7 @@ public class Menu {
 		return null;
 	}
 	
-	public ArrayList<Food> GetDeals(){
+	public static ArrayList<Food> GetDeals(){
 		Random rand = new Random();
 		ArrayList<Food> deals = new ArrayList<Food>();
 		for(int i=0; i<3; i++) {
@@ -126,7 +126,7 @@ public class Menu {
 	}
 	
 	
-	public ArrayList<Product> getProductList(String category) {
+	public static ArrayList<Product> getProductList(String category) {
 		
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
