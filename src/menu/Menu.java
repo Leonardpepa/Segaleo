@@ -46,6 +46,7 @@ public class Menu {
 		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
+
 		readProduct(breakfast, "files/breakfast/Breakfast", TextResources.endpointPath);
 		
 		allProducts.addAll(appetizers);
@@ -59,6 +60,7 @@ public class Menu {
 		onlyFood.addAll(allProducts);
 		onlyFood.removeAll(coffee);
 		onlyFood.removeAll(drinks);
+
 	}
 
 	private void readProduct(ArrayList<Product> list, String pathName, String language) {
@@ -135,10 +137,6 @@ public class Menu {
 	
 	public static ArrayList<Product> getProductList(String category) {
 		
-		if(category.equalsIgnoreCase(TextResources.appetizers)) {
-			return appetizers;
-		}
-
 		if(category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
