@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Random;
 import order.*;
 import resources.TextResources;
 
@@ -20,6 +20,7 @@ public class Menu {
 	private ArrayList<Product> main;
 	private ArrayList<Product> salads;
 	private static ArrayList<Product> allProducts;
+	private ArrayList<Product> onlyFood;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -35,6 +36,7 @@ public class Menu {
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
 		allProducts = new ArrayList<Product>();
+		onlyFood = new ArrayList<Product>();
 
 		readProduct(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
 		readProduct(coffee, "files/coffee/Coffees", TextResources.endpointPath);
@@ -43,12 +45,16 @@ public class Menu {
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
 		
-		allProducts.addAll(coffee);
 		allProducts.addAll(appetizers);
 		allProducts.addAll(desserts);
-		allProducts.addAll(drinks);
 		allProducts.addAll(main);
 		allProducts.addAll(salads);	
+		allProducts.addAll(coffee);
+		allProducts.addAll(drinks);
+		
+		onlyFood.addAll(allProducts);
+		onlyFood.removeAll(coffee);
+		onlyFood.removeAll(drinks);
 	}
 
 	private void readProduct(ArrayList<Product> list, String pathName, String language) {
@@ -105,6 +111,18 @@ public class Menu {
 			}
 		}
 		return null;
+	}
+	
+	public ArrayList<Food> GetDeals(){
+		Random rand = new Random();
+		ArrayList<Food> deals = new ArrayList<Food>();
+		for(int i=0; i<3; i++) {
+			Food dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
+			int discount = rand.nextInt(3) + 1;
+			dealdFood.setHasDiscount(true, discount);
+			deals.add(dealdFood);
+		}
+		return deals;
 	}
 	
 	
