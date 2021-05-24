@@ -1,7 +1,7 @@
-Beach Reservation#5#activityImages/beach.png#40#9:00-12:00#-
+Beach Reservation#5#activityImages/beach.png#40#9:00-12:00#13:00-16:00
 Tennis#9#activityImages/tennis.png#4#17:00-18:00#18:00-19:00
 Golf#12#activityImages/golf.png#6#15:00-16:00#16:00-17:00
-Water Park#18#activityImages/waterPark.png#10#10:00-15:00#-
-Spa#15#activityImages/spa.png#8#16:00-18:00#-
+Water Park#18#activityImages/waterPark.png#10#10:00-13:00#15:00-18:00
+Spa#15#activityImages/spa.png#8#16:00-17:00#17:00-18:00
 Diving#40#activityImages/diving.png#2#10:00-11:00#11:00-12:00
-Road Trip#20#activityImages/road.png#12#9:00-12:00#-
+Road Trip#20#activityImages/road.png#12#9:00-12:00#17:00-20:00
