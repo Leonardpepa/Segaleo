@@ -296,8 +296,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		order.removeProduct(clickedProduct);
 
 		initilizePanelToFrame();
-		windowsConfiguration();
-		showWindow(this, true);
 	}
 
 	@Override
