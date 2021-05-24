@@ -65,6 +65,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private ImageIcon plusIcon;
 	private JLabel plusButtonLabel;
 	private ImageIcon minusIcon;
+	private JLabel minusButtonLabel;
 
 	private JLabel quantinty;
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
@@ -75,12 +76,11 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	// TODO display the total price in the footer
 
 	public CartWindow(Order order, boolean isOrder) {
-		this.order= order; 
+		this.order = order;
 		this.isOrder = isOrder;
 		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
-
 
 	}
 
@@ -108,8 +108,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		this.pack();
 
 	}
-	
-	
+
 	public void addListeners() {
 		exitButton.addActionListener(this);
 	}
@@ -186,13 +185,16 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(320, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.setName("plus");
 
 		minusIcon = new ImageIcon("./buttonImages/minus.png");
-		JLabel minusButtonLabel;
+
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(260, 85, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(this);
+		minusButtonLabel.setName("minus");
 
 		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
 		quantinty.setBounds(290, 85, 50, 20);
@@ -281,7 +283,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == exitButton) {
+		if (e.getSource() == exitButton) {
 			this.dispose();
 			new MenuWindow(order);
 		}
@@ -289,11 +291,18 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		JLabel minusLabel = (JLabel) e.getSource();
-		JPanel parent = (JPanel) minusLabel.getParent();
-		String productName = parent.getName();
-		Product clickedProduct = Menu.findProduct(productName);
-		order.removeProduct(clickedProduct);
+		if (e.getSource() instanceof JLabel) {
+			JLabel label = (JLabel) e.getSource();
+			JPanel parent = (JPanel) label.getParent();
+			String productName = parent.getName();
+			Product clickedProduct = Menu.findProduct(productName);
+			System.out.println(label.getName());
+			if (label.getName().equals("plus")) {
+				order.addProduct(clickedProduct);
+			} else if(label.getName().equals("minus")) {
+				order.removeProduct(clickedProduct);
+			}
+		}
 
 		initilizePanelToFrame();
 	}
