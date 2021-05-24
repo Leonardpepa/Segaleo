@@ -67,11 +67,13 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		backgroundPanel.setBackground(ColorResources.bgMainWindowBtn);
 		configureHeader();
 		configureMainContent();
+		configureCartPanel();
 		addListeners();
 		
 		backgroundPanel.add(backBtn);
 		backgroundPanel.add(activityLabel);
 		backgroundPanel.add(mainContent);
+		backgroundPanel.add(cartPanel);
 		this.setContentPane(backgroundPanel);
 		this.pack();
 	}
@@ -108,8 +110,35 @@ public class ActivityWindow  extends JFrame implements ActionListener{
 		mainContent.setBackground(ColorResources.bgMainWindowBtn);
 		mainContent.setLayout(new BorderLayout());
 		mainContent.add(createVerticalScrollablePanel());
-		mainContent.setBounds(20, 180, 350, 610);
+		mainContent.setBounds(20, 180, 350, 500);
 	}
+
+	// all the content for the cart panel
+	public void configureCartPanel() {
+		cartPanel = new JPanel();
+
+		cartPanel.setLayout(null);
+		cartPanel.setPreferredSize(new Dimension(375, 94));
+		cartPanel.setBounds(0, 718, 375, 94);
+		cartPanel.setBackground(Color.WHITE);
+		cartPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+		bagIcon = new ImageIcon("Icons/Bag.png");
+
+		priceLabel = LabelFactory.createLabel("10" + "€", ColorResources.frPopup, FontFactory.poppins(14));
+		priceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
+
+		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
+		viewCart.setBounds(67, cartPanel.getHeight() / 2 - 15, 200, 20);
+
+		bagLabel = LabelFactory.createIconLabel(bagIcon);
+		bagLabel.setBounds(29, cartPanel.getHeight() / 2 - 15, 25, 25);
+
+		cartPanel.add(bagLabel);
+		cartPanel.add(viewCart);
+		cartPanel.add(priceLabel);
+	}
+
 	
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
