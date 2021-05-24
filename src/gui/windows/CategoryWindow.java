@@ -28,6 +28,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import menu.Menu;
+import order.Food;
 import order.Order;
 import order.Product;
 import resources.ColorResources;
@@ -158,7 +159,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 		bagIcon = new ImageIcon("Icons/Bag.png");
 
-		cartPriceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
+		cartPriceLabel = LabelFactory.createLabel(order.calcCost() + "€", ColorResources.frPopup,
+				FontFactory.poppins(14));
 		cartPriceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
 
 		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
@@ -181,6 +183,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	// layout display for the products
 	public JPanel configureProductPanel(Product product) {
+		Food foodProduct;
+		
 		JPanel panel = new JPanel();
 		panel.setName(product.getName());
 		panel.setLayout(null);
@@ -204,8 +208,20 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
-
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		if (product instanceof Food) {
+			foodProduct = (Food) product;
+			if (foodProduct.isHasDiscount()) {
+				foodProduct.setPrice(foodProduct.getPrice() - 3);
+				priceLabel = new JLabel("<html><body><span style='text-decoration: line-through;'>"
+						+ (foodProduct.getPrice() + foodProduct.getDiscount()) + "€</span></body></html>");
+				JLabel newPrice = LabelFactory.createLabel(foodProduct.getPrice() + "€", Color.red,
+						FontFactory.poppins(13));
+				newPrice.setBounds(250, 65, 43, 19);
+				panel.add(newPrice);
+			}
+		}
+
 		priceLabel.setBounds(286, 65, 43, 19);
 
 		panel.add(productimgLabel);
@@ -253,6 +269,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			String productName = parent.getName();
 			Product clickedProduct = Menu.findProduct(productName);
 			order.addProduct(clickedProduct);
+			cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
 		}
 
 	}

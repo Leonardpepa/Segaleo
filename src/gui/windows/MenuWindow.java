@@ -24,6 +24,7 @@ import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import gui.components.*;
 import menu.Menu;
+import order.Food;
 import order.Order;
 import order.Product;
 import resources.ColorResources;
@@ -192,7 +193,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 		bagIcon = new ImageIcon("Icons/Bag.png");
 
-		priceLabel = LabelFactory.createLabel("28,00", ColorResources.frPopup, FontFactory.poppins(14));
+		priceLabel = LabelFactory.createLabel(order.calcCost() + "€", ColorResources.frPopup, FontFactory.poppins(14));
 		priceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
 
 		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
@@ -222,7 +223,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		container.setLayout(new BorderLayout());
 		container.setBounds(16, 140, 340, 200);
 		// container contains the scrollable panel
-		container.add(createHorizontalScrollablePanel(menu.getMain()));
+		container.add(createHorizontalScrollablePanel(menu.GetDeals()));
 
 		dealsOfTheDay = LabelFactory.createLabel(TextResources.deals, Color.BLACK, FontFactory.poppins(16));
 		dealsOfTheDay.setBounds(16, 110, 200, 30);
@@ -234,11 +235,11 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	}
 
 	// creates a horizontal scrollable panel
-	public JScrollPane createHorizontalScrollablePanel(ArrayList<Product> products) {
+	public JScrollPane createHorizontalScrollablePanel(ArrayList<Food> products) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1, products.size(), 8, 0));
 
-		for (Product product : products) {
+		for (Food product : products) {
 			panel.add(configureProductPanel(product));
 		}
 
@@ -249,7 +250,8 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	}
 
 	// layout display for the products
-	public JPanel configureProductPanel(Product product) {
+	public JPanel configureProductPanel(Food product) {
+		
 		productPanel = new JPanel();
 		productPanel.setName(product.getName());
 		productPanel.setLayout(null);
@@ -266,7 +268,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 35, 150, 17);
 
-		prevPrice = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.lineThrough(14));
+		prevPrice = new JLabel("<html><body><span style='text-decoration: line-through;'>" + (product.getPrice() + product.getDiscount())+ "€</span></body></html>");
 		prevPrice.setBounds(195, 60, 43, 19);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
@@ -277,8 +279,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 
-		int discount = rand.nextInt(3) + 1;
-		newPrice = LabelFactory.createLabel((product.getPrice() - discount) + "€", Color.RED, FontFactory.poppins(14));
+		newPrice = LabelFactory.createLabel(product.getPrice() + "€", Color.RED, FontFactory.poppins(14));
 		newPrice.setBounds(120, 60, 43, 19);
 
 		productPanel.add(productimgLabel);
@@ -315,6 +316,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 			String productName = parent.getName();
 			Product clickedProduct = Menu.findProduct(productName);
 			order.addProduct(clickedProduct);
+			priceLabel.setText(String.valueOf(order.calcCost()) + "€");
 		}
 	}
 
