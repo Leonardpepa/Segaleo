@@ -251,7 +251,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		productPanel = new JPanel();
 		productPanel.setName(product.getName());
 		productPanel.setLayout(null);
-		productPanel.setPreferredSize(new Dimension(250, 100));
+		productPanel.setPreferredSize(new Dimension(260, 100));
 		productPanel.setBackground(Color.white);
 
 		ImageIcon productImg = new ImageIcon(product.getPath());
@@ -259,13 +259,13 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		productimgLabel.setBounds(10, 10, 100, 100);
 
 		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(120, 20, 150, 17);
+		titleLabel.setBounds(120, 10, 150, 17);
 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
-		descLabel.setBounds(120, 35, 150, 17);
+		descLabel.setBounds(120, 35, 150, 40);
 
 		prevPrice = new JLabel("<html><body><span style='text-decoration: line-through;'>" + (product.getPrice() + product.getDiscount())+ "€</span></body></html>");
-		prevPrice.setBounds(195, 60, 43, 19);
+		prevPrice.setBounds(163, 85, 43, 19);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		JLabel plusButtonLabel;
@@ -276,7 +276,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		plusButtonLabel.addMouseListener(this);
 
 		newPrice = LabelFactory.createLabel(product.getPrice() + "€", Color.RED, FontFactory.poppins(14));
-		newPrice.setBounds(120, 60, 43, 19);
+		newPrice.setBounds(120, 85, 43, 19);
 
 		productPanel.add(productimgLabel);
 		productPanel.add(titleLabel);
