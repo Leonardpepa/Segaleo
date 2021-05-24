@@ -127,7 +127,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		exitButton.setBounds(30, 77, 13, 13);
 
 		myCartLabel = LabelFactory.createLabel(TextResources.myCart, Color.BLACK, FontFactory.poppins(20));
-		myCartLabel.setBounds(64, 67, 100, 30);
+		myCartLabel.setBounds(64, 67, 100, 50);
 
 		header.add(exitButton);
 		header.add(myCartLabel);
