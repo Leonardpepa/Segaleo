@@ -126,6 +126,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		dessert.addActionListener(this);
 		drinks.addActionListener(this);
 		salads.addActionListener(this);
+		breakfast.addActionListener(this);
 		cartPanel.addMouseListener(this);
 	}
 

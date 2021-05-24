@@ -19,6 +19,7 @@ public class Menu {
 	public static ArrayList<Product> drinks;
 	public static ArrayList<Product> main;
 	public static ArrayList<Product> salads;
+	public static ArrayList<Product> breakfast;
 	private static ArrayList<Product> allProducts;
 	public static ArrayList<Product> onlyFood;
 	private String line;
@@ -35,6 +36,7 @@ public class Menu {
 		drinks = new ArrayList<>();
 		main = new ArrayList<>();
 		salads = new ArrayList<>();
+		breakfast = new ArrayList<Product>();
 		allProducts = new ArrayList<Product>();
 		onlyFood = new ArrayList<Product>();
 
@@ -44,6 +46,7 @@ public class Menu {
 		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
+		readProduct(breakfast, "files/breakfast/Breakfast", TextResources.endpointPath);
 		
 		allProducts.addAll(appetizers);
 		allProducts.addAll(desserts);
@@ -51,6 +54,7 @@ public class Menu {
 		allProducts.addAll(salads);	
 		allProducts.addAll(coffee);
 		allProducts.addAll(drinks);
+		allProducts.addAll(breakfast);
 		
 		onlyFood.addAll(allProducts);
 		onlyFood.removeAll(coffee);
@@ -150,6 +154,9 @@ public class Menu {
 		}
 		if(category.equalsIgnoreCase(TextResources.salads)) {
 			return salads;
+		}
+		if(category.equalsIgnoreCase(TextResources.breakfast)) {
+			return breakfast;
 		}
 		return null;
 	}

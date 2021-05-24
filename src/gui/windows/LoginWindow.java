@@ -58,7 +58,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	private PopupPanel popupPanel;
 
 	boolean isPopup = false;
-	public static ArrayList<Food> deals = new Menu().GetDeals();
+	public static ArrayList<Food> deals;
 	// constructor
 	public LoginWindow() {
 		initializePanelToFrame();
@@ -80,6 +80,8 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		new TextResources().changeLanguage();
 		new ColorResources();
+		deals = new Menu().GetDeals();
+		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
