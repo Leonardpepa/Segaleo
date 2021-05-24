@@ -255,7 +255,7 @@ public class CartWindow extends JFrame implements ActionListener{
 		priceHolder.setBackground(Color.WHITE);
 
 		totalLabel = LabelFactory.createLabel(TextResources.total, Color.BLACK, FontFactory.poppins(14));
-		priceLabel = LabelFactory.createLabel("17.00", Color.BLACK, FontFactory.poppins(14));
+		priceLabel = LabelFactory.createLabel(order.calcCost() + "€", Color.BLACK, FontFactory.poppins(14));
 		totalLabel.setBounds(23, 18, 100, 20);
 		priceLabel.setBounds(264, 18, 50, 20);
 
