@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -392,8 +393,13 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
-			this.dispose();
-			new MainWindow();
+			int selectedOption = JOptionPane.showConfirmDialog(null, "Do you want to cancel the order?", "Cancel Order",
+					JOptionPane.YES_NO_OPTION);
+			if (selectedOption == 0) {
+				order.clearOrder();
+				this.dispose();
+				new MainWindow();
+			}
 		} else {
 			this.dispose();
 			JButton btn = (JButton) e.getSource();
