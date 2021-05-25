@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -47,16 +48,10 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	private Color categoryColor;
 	private String categoryName;
-	private ArrayList<Product> products;
+	private ArrayList<Product> categoryProducts;
 
 	// components for main panel
 	private JPanel mainContent;
-	private ImageIcon productImage;
-	private JLabel productimgLabel;
-	private JLabel titleLabel;
-	private JLabel descLabel;
-	private JLabel priceLabel;
-	private ImageIcon plusIcon;
 
 	// components for the header
 	private JPanel header;
@@ -77,7 +72,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	public CategoryWindow(Color categoryColor, String categoryName, ArrayList<Product> products, Order order) {
 		this.categoryColor = categoryColor;
 		this.categoryName = categoryName;
-		this.products = products;
+		this.categoryProducts = products;
 		this.order = order;
 		initializePanelToFrame();
 		windowsConfiguration();
@@ -90,7 +85,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		backgroundPanel.setLayout(new BorderLayout());
 
 		configureHeader();
-		configureMainContent(products);
+		configureMainContent(categoryProducts);
 		configureCartPanel();
 		addListeners();
 
@@ -105,7 +100,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	public void refreshMaincontent(ArrayList<Product> products) {
 
 		backgroundPanel.remove(1);
-
+		mainContent = new JPanel();
+		System.out.println(products);
 		configureMainContent(products);
 
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
@@ -130,13 +126,30 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		backButton.addActionListener(this);
 		cartPanel.addMouseListener(this);
 		compobox.addActionListener(this);
-		search.addKeyListener(new KeyAdapter() {
+		search.addKeyListener(new KeyListener() {
+			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				ArrayList<Product> foundProducts = new Search().expoSearch(products, search.getText());
+				// TODO Auto-generated method stub
+				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
+				refreshMaincontent(foundProducts);
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
+				refreshMaincontent(foundProducts);
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
 				refreshMaincontent(foundProducts);
 			}
 		});
+			
 	}
 
 	// all the content for the header panel
@@ -214,17 +227,17 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
 
-		productImage = new ImageIcon(product.getPath());
-		productimgLabel = LabelFactory.createIconLabel(productImage);
+		ImageIcon productImage = new ImageIcon(product.getPath());
+		JLabel productimgLabel = LabelFactory.createIconLabel(productImage);
 		productimgLabel.setBounds(10, 10, 100, 100);
 
-		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
+		JLabel titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(120, 20, 200, 17);
 
-		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
+		JLabel descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 35, 200, 40);
 
-		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		ImageIcon plusIcon = new ImageIcon("./buttonImages/plus.png");
 
 		JLabel plusButtonLabel;
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
@@ -232,7 +245,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 
-		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		JLabel priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		if (product instanceof Food) {
 			foodProduct = (Food) product;
 			if (foodProduct.isHasDiscount()) {
@@ -284,16 +297,16 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			String selectedSortMethod = (String) choices.getSelectedItem();
 			switch (selectedSortMethod) {
 			case "Sort by name":
-				Collections.sort(products, Sort.prodNameComparator);
+				Collections.sort(categoryProducts, Sort.prodNameComparator);
 				break;
 			case "Sort by price":
-				Collections.sort(products, Sort.AscProdPriceComparator);
+				Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
 				break;
 			case "Sort by popularity":
-				Collections.sort(products, Sort.AscProdPriceComparator);
+				Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
 				break;
 			}
-			refreshMaincontent(products);
+			refreshMaincontent(categoryProducts);
 		}
 	}
 
