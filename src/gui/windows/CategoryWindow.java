@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import SortingSearching.Sort;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
@@ -58,7 +60,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JButton backButton;
 	private JLabel headerLabel;
 	private JTextField search;
-	private String[] sorts = { "Sort", "Sort by price", "Sort by popularity", "Sort by name" };
 	private JComboBox<String> compobox;
 	private String headerText;
 	private Color headerLabelColor;
@@ -97,6 +98,20 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		this.setContentPane(backgroundPanel);
 		this.pack();
 	}
+	
+	public void refreshMaincontent() {
+
+		backgroundPanel.remove(1);
+		
+		configureMainContent();
+
+		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
+		backgroundPanel.add(BorderLayout.CENTER, mainContent);
+		backgroundPanel.add(BorderLayout.NORTH, header);
+
+		this.setContentPane(backgroundPanel);
+		this.pack();
+	}
 
 	// settings for the frame
 	public void windowsConfiguration() {
@@ -113,10 +128,12 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	public void addListeners() {
 		backButton.addActionListener(this);
 		cartPanel.addMouseListener(this);
+		compobox.addActionListener(this);
 	}
 
 	// all the content for the header panel
 	public void configureHeader() {
+		String[]  sorts = { "Sort", "Sort by price", "Sort by popularity", "Sort by name" };
 		headerText = categoryName;
 		headerLabelColor = categoryColor;
 		header = new JPanel();
@@ -252,7 +269,24 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			this.dispose();
 			new MenuWindow(order);
 		}
-
+		
+		if(e.getSource() instanceof JComboBox) {
+			@SuppressWarnings("unchecked")
+			JComboBox<String> choices = (JComboBox<String>) e.getSource();
+			String selectedSortMethod = (String) choices.getSelectedItem();
+			switch (selectedSortMethod) {
+			case "Sort by name":
+				Collections.sort(products, Sort.prodNameComparator);
+				break;
+			case "Sort by price":
+				Collections.sort(products, Sort.AscProdPriceComparator);
+				break;
+			case "Sort by popularity":
+				Collections.sort(products, Sort.AscProdPriceComparator);
+				break;
+			}
+			refreshMaincontent();
+		}
 	}
 
 	@Override
