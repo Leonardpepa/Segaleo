@@ -47,7 +47,7 @@ public class Search {
 		for(int i=start;i<end;i++)
 		{
 			String name=array.get(i).getName().substring(0, KeyWord.length());
-			if(name.equals(KeyWord))
+			if(name.equalsIgnoreCase(KeyWord))
 			{
 				Found.add(array.get(i));
 			}
