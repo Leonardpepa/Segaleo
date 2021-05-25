@@ -27,6 +27,8 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import menu.Menu;
+import order.Coupon;
+import order.CouponFactory;
 import order.Order;
 import order.Product;
 import reservation.Activity;
@@ -256,6 +258,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		submitCouponButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(14),
 				new Color(216, 223, 224), Color.BLACK);
 		submitCouponButton.setBounds(231, 10, 121, 48);
+		submitCouponButton.addActionListener(this);
 
 		paymentMethods = ButtonFactory.createButton(TextResources.payment, FontFactory.poppins(14), Color.LIGHT_GRAY,
 				Color.BLACK);
@@ -301,6 +304,13 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		if(e.getSource() == backButton) {
 			this.dispose();
 			new MenuWindow(order);
+		}
+		if(e.getSource() == submitCouponButton) {
+			Coupon coupon = CouponFactory.GenerateCoupon();
+			System.out.println(coupon.getCode());
+
+			double discount = order.calcDiscount(coupon);
+			priceLabel.setText(discount + "€");
 		}
 	}
 

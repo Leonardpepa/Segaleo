@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.Random;
 
 public class CouponFactory {
-	private String email = "phil@michalopoulos.gr";
-	Random rand = new Random();
+	private static String email = "phil@michalopoulos.gr";
+	static Random rand = new Random();
 
-	public Coupon GenerateCoupon() {
+	public static Coupon GenerateCoupon() {
 		String code = "";
 		// Βαλαμε στατικο για τεστ αλλα θα παιρνει ορισμα τον χρηστη και θα παιρνουμε
 		// απο κει το μειλ
@@ -16,7 +16,6 @@ public class CouponFactory {
 		}
 		int randomNumber = rand.nextInt(9990 + 1 - 1000) + 1000;
 		code += Integer.toString(randomNumber);
-		System.out.println(code.toUpperCase());
 
 		return new Coupon(code.toUpperCase(), new Date());
 	}
