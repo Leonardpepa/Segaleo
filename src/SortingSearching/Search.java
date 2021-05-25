@@ -7,6 +7,8 @@ import order.Product;
 
 import java.util.Comparator;
 
+
+
 public class Search {
 
 	private ArrayList<Product> array = new ArrayList<Product>();
@@ -19,12 +21,15 @@ public class Search {
 		Collections.sort(array, Sort.prodNameComparator);
 
 		int i=1;
-		String name=array.get(i).getName().substring(0, KeyWord.length());
+		int smallest= (KeyWord.length()+ array.get(i).getName().length() - Math.abs(KeyWord.length()- array.get(i).getName().length()))/2;
+		String name=array.get(i).getName().substring(0,  smallest);
 
 		while(i<array.size() && name.compareTo(KeyWord)<=0)
 		{
 			i=i*2;
-			name = array.get(i).getName().substring(0, KeyWord.length());
+			smallest = (KeyWord.length() + array.get(i).getName().length()
+					- Math.abs(KeyWord.length() - array.get(i).getName().length())) / 2;
+			 name = array.get(i).getName().substring(0, smallest);
 			if(i*2>=array.size())
 			{
 				return serSearch(array.size(), i-1, KeyWord, array);
@@ -46,7 +51,9 @@ public class Search {
 
 		for(int i=start;i<end;i++)
 		{
-			String name=array.get(i).getName().substring(0, KeyWord.length());
+			int smallest = (KeyWord.length() + array.get(i).getName().length()
+					- Math.abs(KeyWord.length() - array.get(i).getName().length())) / 2;
+			String name = array.get(i).getName().substring(0, smallest);
 			if(name.equalsIgnoreCase(KeyWord))
 			{
 				Found.add(array.get(i));

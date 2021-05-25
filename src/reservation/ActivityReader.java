@@ -46,9 +46,8 @@ public class ActivityReader {
 				hour2 = line.split("#")[5];
 				
 				hour.add(hour1);
-				if(!hour2.equals("-")) {
-					hour.add(hour2);
-				}
+				hour.add(hour2);
+				
 				a=new Activity(name,price,path,availability,hour);
 				activitiesList.add(a);
 				line = inputReader.readLine();
