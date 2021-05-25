@@ -162,6 +162,9 @@ public class Menu {
 		return null;
 	}
 	
+	public static ArrayList<Product> getAllProducts(){
+		return allProducts;
+	}
 	
 	public ArrayList<Product> getAppetizers() {
 		return appetizers;

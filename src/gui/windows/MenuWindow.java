@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import SortingSearching.Search;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
@@ -62,7 +63,6 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel prevPrice;
 	private ImageIcon plusIcon;
 	private JLabel newPrice;
-	private Random rand = new Random();
 
 	// header
 	private JPanel header;
@@ -70,15 +70,14 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	private JTextField search;
 	private JPanel container;
 	private JLabel dealsOfTheDay;
-	private ArrayList<Product> deals;
 
 	// cart panel
 	private JPanel cartPanel;
 	private ImageIcon bagIcon;
 	private JLabel bagLabel;
 	private JLabel viewCart;
-	private JLabel priceLabel;
-
+	private JLabel priceCartLabel;
+	String input = "";
 	// constructor
 	public MenuWindow(Order order) {
 		this.order = order;
@@ -98,8 +97,8 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		configureCartPanel();
 		addListeners();
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
-		backgroundPanel.add(BorderLayout.NORTH, header);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
+		backgroundPanel.add(BorderLayout.NORTH, header);
 
 		// set the content to the background panel that contains all the components
 		this.setContentPane(backgroundPanel);
@@ -128,6 +127,28 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		salads.addActionListener(this);
 		breakfast.addActionListener(this);
 		cartPanel.addMouseListener(this);
+		search.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
+				refreshMaincontent(foundProducts);
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
+				refreshMaincontent(foundProducts);
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
+				refreshMaincontent(foundProducts);
+			}
+		});
 	}
 
 	// all the content of the main panel (CENTER panel)
@@ -177,6 +198,87 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		mainContent.add(breakfast);
 	}
 
+	public void refreshMaincontent(ArrayList<Product> products) {
+
+		backgroundPanel.remove(1);
+		
+		configureSearchContent(products);
+
+		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
+		backgroundPanel.add(BorderLayout.CENTER, mainContent);
+
+		this.pack();
+	}
+	
+	public void configureSearchContent(ArrayList<Product> products) {
+		mainContent = new JPanel();
+		mainContent.setLayout(new BorderLayout());
+		mainContent.add(createVerticalScrollablePanel(products));
+	}
+	public JPanel configureProductPanelSearched(Product product) {
+		Food foodProduct;
+		
+		JPanel panel = new JPanel();
+		panel.setName(product.getName());
+		panel.setLayout(null);
+		panel.setPreferredSize(new Dimension(325, 120));
+		panel.setBackground(Color.white);
+
+		ImageIcon searchProductImage = new ImageIcon(product.getPath());
+		JLabel searchProductimgLabel = LabelFactory.createIconLabel(searchProductImage);
+		searchProductimgLabel.setBounds(10, 10, 100, 100);
+
+		JLabel searchTitleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
+		searchTitleLabel.setBounds(120, 20, 200, 17);
+
+		JLabel searchDescLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
+		searchDescLabel.setBounds(120, 35, 200, 40);
+
+		ImageIcon searchPlusIcon = new ImageIcon("./buttonImages/plus.png");
+
+		JLabel plusButtonLabel;
+		plusButtonLabel = LabelFactory.createIconLabel(searchPlusIcon);
+		plusButtonLabel.setBounds(285, 85, 24, 24);
+		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		plusButtonLabel.addMouseListener(this);
+		
+		JLabel priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		if (product instanceof Food) {
+			foodProduct = (Food) product;
+			if (foodProduct.isHasDiscount()) {
+				priceLabel = new JLabel("<html><body><span style='text-decoration: line-through;'>"
+						+ (foodProduct.getPrice() + foodProduct.getDiscount()) + "€</span></body></html>");
+				JLabel newPrice = LabelFactory.createLabel(foodProduct.getPrice() + "€", Color.red,
+						FontFactory.poppins(13));
+				newPrice.setBounds(250, 65, 43, 19);
+				panel.add(newPrice);
+			}
+		}
+
+		priceLabel.setBounds(286, 65, 43, 19);
+
+		panel.add(searchProductimgLabel);
+		panel.add(searchTitleLabel);
+		panel.add(searchDescLabel);
+		panel.add(plusButtonLabel);
+		panel.add(priceLabel);
+		return panel;
+	}
+	public JScrollPane createVerticalScrollablePanel(ArrayList<Product> products) {
+		JPanel container = new JPanel();
+		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
+
+		for (Product product : products) {
+			container.add(configureProductPanelSearched(product));
+		}
+
+		JScrollPane scrollPane = new JScrollPane(container);
+		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		scrollPane.getVerticalScrollBar().setUnitIncrement(15);
+
+		return scrollPane;
+	}
+		
 	// all the content for the cart panel
 	public void configureCartPanel() {
 		cartPanel = new JPanel();
@@ -189,8 +291,8 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 		bagIcon = new ImageIcon("Icons/Bag.png");
 
-		priceLabel = LabelFactory.createLabel(order.calcCost() + "€", ColorResources.frPopup, FontFactory.poppins(14));
-		priceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
+		priceCartLabel = LabelFactory.createLabel(order.calcCost() + "€", ColorResources.frPopup, FontFactory.poppins(14));
+		priceCartLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
 
 		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
 		viewCart.setBounds(67, cartPanel.getHeight() / 2 - 15, 200, 20);
@@ -200,7 +302,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 		cartPanel.add(bagLabel);
 		cartPanel.add(viewCart);
-		cartPanel.add(priceLabel);
+		cartPanel.add(priceCartLabel);
 	}
 
 	// all the content for the header panel
@@ -312,7 +414,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 			String productName = parent.getName();
 			Product clickedProduct = Menu.findProduct(productName);
 			order.addProduct(clickedProduct);
-			priceLabel.setText(String.valueOf(order.calcCost()) + "€");
+			priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
 		}
 	}
 
