@@ -9,6 +9,8 @@ import java.awt.HeadlessException;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import SortingSearching.Search;
 import SortingSearching.Sort;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
@@ -87,29 +90,27 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		backgroundPanel.setLayout(new BorderLayout());
 
 		configureHeader();
-		configureMainContent();
+		configureMainContent(products);
 		configureCartPanel();
 		addListeners();
 
-		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
-		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 		backgroundPanel.add(BorderLayout.NORTH, header);
+		backgroundPanel.add(BorderLayout.CENTER, mainContent);
+		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
 
 		this.setContentPane(backgroundPanel);
 		this.pack();
 	}
-	
-	public void refreshMaincontent() {
+
+	public void refreshMaincontent(ArrayList<Product> products) {
 
 		backgroundPanel.remove(1);
-		
-		configureMainContent();
+
+		configureMainContent(products);
 
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
-		backgroundPanel.add(BorderLayout.NORTH, header);
 
-		this.setContentPane(backgroundPanel);
 		this.pack();
 	}
 
@@ -129,11 +130,18 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		backButton.addActionListener(this);
 		cartPanel.addMouseListener(this);
 		compobox.addActionListener(this);
+		search.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				ArrayList<Product> foundProducts = new Search().expoSearch(products, search.getText());
+				refreshMaincontent(foundProducts);
+			}
+		});
 	}
 
 	// all the content for the header panel
 	public void configureHeader() {
-		String[]  sorts = { "Sort", "Sort by price", "Sort by popularity", "Sort by name" };
+		String[] sorts = { "Sort", "Sort by price", "Sort by popularity", "Sort by name" };
 		headerText = categoryName;
 		headerLabelColor = categoryColor;
 		header = new JPanel();
@@ -190,16 +198,16 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	}
 
 	// main panel
-	public void configureMainContent() {
+	public void configureMainContent(ArrayList<Product> products) {
 		mainContent = new JPanel();
 		mainContent.setLayout(new BorderLayout());
-		mainContent.add(createVerticalScrollablePanel());
+		mainContent.add(createVerticalScrollablePanel(products));
 	}
 
 	// layout display for the products
 	public JPanel configureProductPanel(Product product) {
 		Food foodProduct;
-		
+
 		JPanel panel = new JPanel();
 		panel.setName(product.getName());
 		panel.setLayout(null);
@@ -223,7 +231,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
-		
+
 		priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		if (product instanceof Food) {
 			foodProduct = (Food) product;
@@ -248,7 +256,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	}
 
 	// creates a vertical scrollable panel
-	public JScrollPane createVerticalScrollablePanel() {
+	public JScrollPane createVerticalScrollablePanel(ArrayList<Product> products) {
 		JPanel container = new JPanel();
 		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
 
@@ -269,8 +277,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			this.dispose();
 			new MenuWindow(order);
 		}
-		
-		if(e.getSource() instanceof JComboBox) {
+
+		if (e.getSource() instanceof JComboBox) {
 			@SuppressWarnings("unchecked")
 			JComboBox<String> choices = (JComboBox<String>) e.getSource();
 			String selectedSortMethod = (String) choices.getSelectedItem();
@@ -285,7 +293,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 				Collections.sort(products, Sort.AscProdPriceComparator);
 				break;
 			}
-			refreshMaincontent();
+			refreshMaincontent(products);
 		}
 	}
 
