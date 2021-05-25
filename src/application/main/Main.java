@@ -12,12 +12,8 @@ import resources.TextResources;
 public class Main {
 
 	public static void main(String[] args) {
-		//new LoginWindow();
-		new TextResources().changeLanguage();
-		Menu menu= new Menu();
-		ArrayList<Product> found = new ArrayList<>();
-		found= new Search().expoSearch(menu.getAppetizers(), "Sav");
-		found.forEach(x->System.out.println(x.getName()));
+		new LoginWindow();
+		
 
 	}
 }
