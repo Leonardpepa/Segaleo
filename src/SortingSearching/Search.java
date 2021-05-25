@@ -32,17 +32,42 @@ public class Search {
 			 name = array.get(i).getName().substring(0, smallest);
 			if(i*2>=array.size())
 			{
-				return serSearch(array.size(), i-1, KeyWord, array);
+				int start=reverse_expoSearch(prod_array, KeyWord, array.size());
+				return serSearch(array.size(), start, KeyWord, array);
 
 			}
 		}
 		if(i<array.size())
 		{
-			int start=i/2;
+			
+			int start = reverse_expoSearch(prod_array, KeyWord, i);
 			return serSearch(i,start,KeyWord, array);
 		}
 		else {return null;}
 	} 
+
+
+	public int reverse_expoSearch(ArrayList<Product> prod_array, String KeyWord,int end)
+	{
+		int start;
+
+		int i = 1;
+		int smallest = (KeyWord.length() + array.get(end-i).getName().length()
+				- Math.abs(KeyWord.length() - array.get(end-i).getName().length())) / 2;
+		String name = array.get(end-i).getName().substring(0, smallest);
+
+		while (i < end && name.compareTo(KeyWord) >= 0) {
+			i = i * 2;
+			smallest = (KeyWord.length() + array.get(end - i).getName().length()
+					- Math.abs(KeyWord.length() - array.get(end-i).getName().length())) / 2;
+			name = array.get(end-i).getName().substring(0, smallest);
+			if (i * 2 >= end) {
+				return start=0;
+
+			}
+		}
+		return start= end-i;
+	}
 
 	public ArrayList<Product> serSearch(int end, int start, String KeyWord, ArrayList<Product> array)
 	{

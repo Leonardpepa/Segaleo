@@ -13,15 +13,15 @@ import resources.TextResources;
 public class Menu {
 
 
-	public static ArrayList<Product> appetizers;
-	public static ArrayList<Product> coffee;
-	public static ArrayList<Product> desserts;
-	public static ArrayList<Product> drinks;
-	public static ArrayList<Product> main;
-	public static ArrayList<Product> salads;
-	public static ArrayList<Product> breakfast;
+	private static ArrayList<Product> appetizers;
+	private static ArrayList<Product> coffee;
+	private static ArrayList<Product> desserts;
+    private static ArrayList<Product> drinks;
+	private static ArrayList<Product> main;
+    private static ArrayList<Product> salads;
+	private static ArrayList<Product> breakfast;
 	private static ArrayList<Product> allProducts;
-	public static ArrayList<Product> onlyFood;
+	private static  ArrayList<Product> onlyFood;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -49,11 +49,13 @@ public class Menu {
 
 		readProduct(breakfast, "files/breakfast/Breakfast", TextResources.endpointPath);
 		
+		
 		allProducts.addAll(appetizers);
+		allProducts.addAll(coffee);
 		allProducts.addAll(desserts);
 		allProducts.addAll(main);
 		allProducts.addAll(salads);	
-		allProducts.addAll(coffee);
+		
 		allProducts.addAll(drinks);
 		allProducts.addAll(breakfast);
 		
@@ -118,6 +120,8 @@ public class Menu {
 		}
 		return null;
 	}
+
+	
 	
 	public static ArrayList<Food> GetDeals(){
 		Random rand = new Random();
@@ -166,11 +170,11 @@ public class Menu {
 		return allProducts;
 	}
 	
-	public ArrayList<Product> getAppetizers() {
+	public static ArrayList<Product> getAppetizers() {
 		return appetizers;
 	}
 
-	public ArrayList<Product> getCoffees() {
+	public static ArrayList<Product> getCoffees() {
 		return coffee;
 	}
 	
