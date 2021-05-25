@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -299,7 +300,9 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		viewCart.setBounds(67, cartPanel.getHeight() / 2 - 15, 200, 20);
 
 		bagLabel = LabelFactory.createIconLabel(bagIcon);
-		bagLabel.setBounds(29, cartPanel.getHeight() / 2 - 15, 25, 25);
+		bagLabel.setText(order.getProducts().size() + "");
+		bagLabel.setBounds(18, cartPanel.getHeight() / 2 - 25, 50, 40);
+		bagLabel.setForeground(Color.RED);
 
 		cartPanel.add(bagLabel);
 		cartPanel.add(viewCart);
@@ -421,6 +424,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 			Product clickedProduct = Menu.findProduct(productName);
 			order.addProduct(clickedProduct);
 			priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
+			bagLabel.setText(order.getProducts().size() + "");
 		}
 	}
 

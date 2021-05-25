@@ -101,7 +101,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 		backgroundPanel.remove(1);
 		mainContent = new JPanel();
-		System.out.println(products);
 		configureMainContent(products);
 
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
@@ -203,7 +202,9 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		viewCart.setBounds(67, cartPanel.getHeight() / 2 - 15, 200, 20);
 
 		bagLabel = LabelFactory.createIconLabel(bagIcon);
-		bagLabel.setBounds(29, cartPanel.getHeight() / 2 - 15, 25, 25);
+		bagLabel.setText(order.getProducts().size() + "");
+		bagLabel.setBounds(18, cartPanel.getHeight() / 2 - 25, 50, 40);
+		bagLabel.setForeground(Color.RED);
 
 		cartPanel.add(bagLabel);
 		cartPanel.add(viewCart);
@@ -323,6 +324,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			Product clickedProduct = Menu.findProduct(productName);
 			order.addProduct(clickedProduct);
 			cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
+			bagLabel.setText(order.getProducts().size() + "");
 		}
 
 	}
