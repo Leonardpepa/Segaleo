@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -28,7 +30,7 @@ import reservation.ActivityReader;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CartWindow extends JFrame {
+public class CartWindow extends JFrame implements ActionListener{
 
 	private JPanel backgroundPanel;
 
@@ -47,6 +49,7 @@ public class CartWindow extends JFrame {
 	private JLabel priceLabel;
 	private JPanel priceHolder;
 	private JButton orderNowButton;
+	private String theText;
 
 	// main
 	private JPanel mainContent;
@@ -67,10 +70,10 @@ public class CartWindow extends JFrame {
 
 	//TODO take the order from the logged customer
 	//TODO display the total price in the footer
-	
-	
-	public CartWindow() {
 
+
+	public CartWindow(String theText) {
+		this.theText = theText;
 		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
@@ -92,6 +95,7 @@ public class CartWindow extends JFrame {
 		configureHeader();
 		configureFooter();
 		configureMainContent();
+		addListeners();
 		backgroundPanel.add(BorderLayout.NORTH, header);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 		backgroundPanel.add(BorderLayout.SOUTH, footer);
@@ -103,6 +107,11 @@ public class CartWindow extends JFrame {
 
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
+	}
+
+	public void addListeners() {
+		exitButton.addActionListener(this);
+		paymentMethods.addActionListener(this);
 	}
 
 	public void configureHeader() {
@@ -233,7 +242,7 @@ public class CartWindow extends JFrame {
 				new Color(216, 223, 224), Color.BLACK);
 		submitCouponButton.setBounds(231, 10, 121, 48);
 
-		paymentMethods = ButtonFactory.createButton(TextResources.payment, FontFactory.poppins(14), Color.LIGHT_GRAY,
+		paymentMethods = ButtonFactory.createButton(theText, FontFactory.poppins(14), Color.LIGHT_GRAY,
 				Color.BLACK);
 		paymentMethods.setBounds(24, 68, 328, 63);
 
@@ -262,5 +271,16 @@ public class CartWindow extends JFrame {
 		footer.add(priceHolder);
 		footer.add(orderNowButton);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
+		if (e.getSource() == paymentMethods) {
+			this.dispose();
+			new PaymentWindow();
+		}
+	}
+
 
 }

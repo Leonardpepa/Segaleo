@@ -57,6 +57,10 @@ public class TextResources {
 	
 	public static String ratingLabel;
 	public static String ratingComment;
+	
+	public static String card;
+	public static String paypal;
+	public static String roomBill;
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -114,7 +118,11 @@ public class TextResources {
 		nameCardField = isEnglish ? "Enter full name" : "Εισάγετε ονοματεπώνυμο";
 		numCardField = isEnglish ? "Enter card number" : "Εισάγετε αριθμό κάρτας";
 		saveCard = isEnglish ? "Save Card" : "Αποθήκευση κάρτας";
-
+		
+		card = isEnglish ? "Card" : "Κάρτα";
+		paypal = "Paypal";
+		roomBill = isEnglish ? "RoomBill" : "Λογαριασμός δωματίου";
+		
 		ratingLabel = isEnglish ? "Rate Activities" : "Αξιολόγησε τις δραστηριότητες";
 		ratingComment = isEnglish ? "Leave your comment about this activity here..." : "Σχολίασε την εμπειρία σου για την συγκεκριμένη δραστηριότητα εδώ";
 	}

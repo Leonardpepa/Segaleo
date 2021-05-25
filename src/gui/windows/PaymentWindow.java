@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import gui.factory.*;
+import payment.Payment;
 import resources.TextResources;
 
 public class PaymentWindow extends JFrame implements ActionListener {
@@ -120,21 +121,21 @@ public class PaymentWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-//		Payment payment = new Payment();
+		Payment payment = new Payment();
 
 		if (e.getSource() == cardBtn) {
-//			this.dispose();
-//			payment.card();
+			this.dispose();
+			payment.card();
 		}
 
 		if (e.getSource() == paypalBtn) {
-//			this.dispose();
-//			paypal.card();
+			this.dispose();
+			payment.paypal();
 
 		}
 		if (e.getSource() == roomBillBtn) {
-//			this.dispose();
-//			roomBill.card();
+			this.dispose();
+			payment.roomBill();
 
 		}
 
