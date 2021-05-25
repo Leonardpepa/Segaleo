@@ -20,22 +20,30 @@ public class CouponFactory {
 		return new Coupon(code.toUpperCase(), new Date());
 	}
 
-	public boolean isValid(Coupon coupon) {
-    	Date today = new Date();
-    	String code = coupon.getCode(); 
-    	String letters = code.substring(0, 2);
-    	//calculates the time that takes for a useer to use the coupon in milliseconds
-    	long mill = today.getTime() - coupon.getDate().getTime();
-    	
-    	//converts the millseconds to days
-    	long days = (long) (mill / (1000*60*60*24));
-    	
-    	//check if the format and the date of the coupon is right
-    	if(email.toUpperCase().contains(letters) && code.length() == 7) {
-    		if(days < 3) {
-    			return true;
-    		}
-    	}
-        return false;
-    }
+	public static boolean isValid(Coupon coupon) {
+		Date today = new Date();
+		String code = coupon.getCode();
+		String letters = code.substring(0, 3);
+		boolean flag = true;
+		// calculates the time that takes for a useer to use the coupon in milliseconds
+		long mill = today.getTime() - coupon.getDate().getTime();
+
+		// converts the millseconds to days
+		long days = (long) (mill / (1000 * 60 * 60 * 24));
+
+		// check if the format and the date of the coupon is right
+		for (char x : letters.toCharArray()) {
+			if (email.toUpperCase().contains(String.valueOf(x))) {
+				continue;
+			} else {
+				flag = false;
+			}
+		}
+		if (flag && code.length() == 7) {
+			if (days < 3) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

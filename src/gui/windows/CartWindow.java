@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -130,10 +131,10 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 		exitButton = ButtonFactory.createButtonIcon(exitIcon);
 		exitButton.setBounds(30, 60, 13, 13);
-		
+
 		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
 		backButton.setBounds(280, 55, 63, 23);
-		
+
 		myCartLabel = LabelFactory.createLabel(TextResources.myCart, Color.BLACK, FontFactory.poppins(20));
 		myCartLabel.setBounds(64, 40, 100, 50);
 
@@ -294,21 +295,20 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == exitButton) {
-			int selectedOption = JOptionPane.showConfirmDialog(null, "Do you want to cancel the order?", "Cancel Order", JOptionPane.YES_NO_OPTION);
-			if(selectedOption == 0) {
+			int selectedOption = JOptionPane.showConfirmDialog(null, "Do you want to cancel the order?", "Cancel Order",
+					JOptionPane.YES_NO_OPTION);
+			if (selectedOption == 0) {
 				order.clearOrder();
 				this.dispose();
 				new MainWindow();
 			}
 		}
-		if(e.getSource() == backButton) {
+		if (e.getSource() == backButton) {
 			this.dispose();
 			new MenuWindow(order);
 		}
-		if(e.getSource() == submitCouponButton) {
+		if (e.getSource() == submitCouponButton) {
 			Coupon coupon = CouponFactory.GenerateCoupon();
-			System.out.println(coupon.getCode());
-
 			double discount = order.calcDiscount(coupon);
 			priceLabel.setText(discount + "€");
 		}
@@ -324,7 +324,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			System.out.println(label.getName());
 			if (label.getName().equals("plus")) {
 				order.addProduct(clickedProduct);
-			} else if(label.getName().equals("minus")) {
+			} else if (label.getName().equals("minus")) {
 				order.removeProduct(clickedProduct);
 			}
 		}

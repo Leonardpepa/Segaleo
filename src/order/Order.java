@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.swing.JOptionPane;
+
 public class Order {
 
 	private double totalCost;
@@ -53,8 +55,11 @@ public class Order {
 	}
 
 	public double calcDiscount(Coupon coupon) {
-		if (new CouponFactory().isValid(coupon)) {
+		if (CouponFactory.isValid(coupon)) {
 			return totalCost -= 3;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Invalid Coupon");
 		}
 		return totalCost;
 	}
