@@ -12,16 +12,15 @@ import resources.TextResources;
 
 public class Menu {
 
-
 	private static ArrayList<Product> appetizers;
 	private static ArrayList<Product> coffee;
 	private static ArrayList<Product> desserts;
-    private static ArrayList<Product> drinks;
+	private static ArrayList<Product> drinks;
 	private static ArrayList<Product> main;
-    private static ArrayList<Product> salads;
+	private static ArrayList<Product> salads;
 	private static ArrayList<Product> breakfast;
 	private static ArrayList<Product> allProducts;
-	private static  ArrayList<Product> onlyFood;
+	private static ArrayList<Product> onlyFood;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -46,19 +45,17 @@ public class Menu {
 		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
-
 		readProduct(breakfast, "files/breakfast/Breakfast", TextResources.endpointPath);
-		
-		
+
 		allProducts.addAll(appetizers);
 		allProducts.addAll(coffee);
 		allProducts.addAll(desserts);
 		allProducts.addAll(main);
-		allProducts.addAll(salads);	
-		
+		allProducts.addAll(salads);
+
 		allProducts.addAll(drinks);
 		allProducts.addAll(breakfast);
-		
+
 		onlyFood.addAll(allProducts);
 		onlyFood.removeAll(coffee);
 		onlyFood.removeAll(drinks);
@@ -85,20 +82,18 @@ public class Menu {
 				// convertion into Double
 				price = Double.parseDouble(line.split("#")[2]);
 				path = line.split("#")[3];
-				
+
 				if (pathName.contentEquals("files/drinks/Drinks")) {
-					//convertion into Double
+					// convertion into Double
 					alchoolPerc = Double.parseDouble(line.split("#")[4]);
-					
+
 					list.add(new Drink(nameOfFood, description, price, path, alchoolPerc));
-				}
-				else if (pathName.equalsIgnoreCase("files/coffee/Coffees")){
+				} else if (pathName.equalsIgnoreCase("files/coffee/Coffees")) {
 					list.add(new Coffee(nameOfFood, description, price, path));
+				} else {
+					list.add(new Food(nameOfFood, description, price, path));
 				}
-				else {
-				list.add(new Food(nameOfFood, description, price, path));
-				}
-				
+
 				line = inputReader.readLine();
 
 			}
@@ -113,22 +108,20 @@ public class Menu {
 	}
 
 	public static Product findProduct(String name) {
-		for(Product p: allProducts) {
-			if(p.getName().equalsIgnoreCase(name)) {
+		for (Product p : allProducts) {
+			if (p.getName().equalsIgnoreCase(name)) {
 				return p;
 			}
 		}
 		return null;
 	}
 
-	
-	
-	public static ArrayList<Food> GetDeals(){
+	public static ArrayList<Food> GetDeals() {
 		Random rand = new Random();
 		ArrayList<Food> deals = new ArrayList<Food>();
-		for(int i=0; i<3; i++) {
+		for (int i = 0; i < 3; i++) {
 			Food dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
-			while(dealdFood.isHasDiscount()) {
+			while (dealdFood.isHasDiscount() || dealdFood.getPrice() < 3) {
 				dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
 			}
 			int discount = rand.nextInt(3) + 1;
@@ -137,39 +130,38 @@ public class Menu {
 		}
 		return deals;
 	}
-	
-	
+
 	public static ArrayList<Product> getProductList(String category) {
-		
-		if(category.equalsIgnoreCase(TextResources.appetizers)) {
+
+		if (category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
 		}
 
-		if(category.equalsIgnoreCase(TextResources.coffee)) {
+		if (category.equalsIgnoreCase(TextResources.coffee)) {
 			return coffee;
 		}
-		if(category.equalsIgnoreCase(TextResources.desserts)) {
+		if (category.equalsIgnoreCase(TextResources.desserts)) {
 			return desserts;
 		}
-		if(category.equalsIgnoreCase(TextResources.drinks)) {
+		if (category.equalsIgnoreCase(TextResources.drinks)) {
 			return drinks;
 		}
-		if(category.equalsIgnoreCase(TextResources.main)) {
+		if (category.equalsIgnoreCase(TextResources.main)) {
 			return main;
 		}
-		if(category.equalsIgnoreCase(TextResources.salads)) {
+		if (category.equalsIgnoreCase(TextResources.salads)) {
 			return salads;
 		}
-		if(category.equalsIgnoreCase(TextResources.breakfast)) {
+		if (category.equalsIgnoreCase(TextResources.breakfast)) {
 			return breakfast;
 		}
 		return null;
 	}
-	
-	public static ArrayList<Product> getAllProducts(){
+
+	public static ArrayList<Product> getAllProducts() {
 		return allProducts;
 	}
-	
+
 	public static ArrayList<Product> getAppetizers() {
 		return appetizers;
 	}
@@ -177,11 +169,11 @@ public class Menu {
 	public static ArrayList<Product> getCoffees() {
 		return coffee;
 	}
-	
+
 	public ArrayList<Product> getDesserts() {
 		return desserts;
 	}
-	
+
 	public ArrayList<Product> getDrinks() {
 		return drinks;
 	}
