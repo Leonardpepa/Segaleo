@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -276,8 +277,10 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		scrollPane.getVerticalScrollBar().setUnitIncrement(15);
-
+		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
+		scrollBar.setUnitIncrement(16);
+		scrollBar.setPreferredSize(new Dimension(0,0));
+		scrollPane.setVerticalScrollBar(scrollBar);
 		return scrollPane;
 	}
 		
@@ -347,7 +350,10 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		scrollPane.getHorizontalScrollBar().setUnitIncrement(15);
+		JScrollBar scrollBar = new JScrollBar(JScrollBar.HORIZONTAL);
+		scrollBar.setUnitIncrement(16);
+		scrollBar.setPreferredSize(new Dimension(0,0));
+		scrollPane.setHorizontalScrollBar(scrollBar);
 		return scrollPane;
 	}
 
@@ -357,7 +363,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		productPanel = new JPanel();
 		productPanel.setName(product.getName());
 		productPanel.setLayout(null);
-		productPanel.setPreferredSize(new Dimension(260, 100));
+		productPanel.setPreferredSize(new Dimension(260, 90));
 		productPanel.setBackground(Color.white);
 
 		ImageIcon productImg = new ImageIcon(product.getPath());

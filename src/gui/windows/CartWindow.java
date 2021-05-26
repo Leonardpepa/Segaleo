@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -168,8 +169,10 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		scrollPane.getVerticalScrollBar().setUnitIncrement(15);
-
+		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
+		scrollBar.setUnitIncrement(16);
+		scrollBar.setPreferredSize(new Dimension(0,0));
+		scrollPane.setVerticalScrollBar(scrollBar);
 		return scrollPane;
 	}
 

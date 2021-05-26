@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
@@ -187,8 +188,10 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 
 			JScrollPane scrollPane = new JScrollPane(container);
 			scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-			scrollPane.getVerticalScrollBar().setUnitIncrement(15);
-
+			JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
+			scrollBar.setUnitIncrement(16);
+			scrollBar.setPreferredSize(new Dimension(0,0));
+			scrollPane.setVerticalScrollBar(scrollBar);
 			return scrollPane;
 		}
 	@Override
