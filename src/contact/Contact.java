@@ -7,7 +7,9 @@ public class Contact {
 	private SocialMedia social;
 	private ArrayList<FAQ> faqs;
 	private FAQReader reader;
+
 	// private Message message;
+
 
 	public Contact() {
 		this.reader = new FAQReader();
