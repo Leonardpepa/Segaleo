@@ -3,6 +3,7 @@ package gui.factory;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 
 public class TextAreaFactory {
@@ -16,4 +17,14 @@ public class TextAreaFactory {
 		area.setWrapStyleWord(true);
 		return area;
 	}
+	
+	public static JPasswordField createPasswordTextArea(String text, Color backgroundColor, Color foregroundColor, Font font) {
+		JPasswordField area = new JPasswordField(text);
+		area.setBackground(backgroundColor);
+		area.setForeground(foregroundColor);
+		area.setFont(font);
+		area.setEchoChar('*');
+		return area;
+	}
+	
 }

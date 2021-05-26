@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import gui.components.PopupPanel;
@@ -47,7 +48,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	private JLabel loginLabel;
 
 	private JTextField roomField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 
 	private JButton loginBtn;
 
@@ -119,8 +120,9 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 				FontFactory.poppins(12));
 		roomField.setBounds(22, 365, 331, 52);
 
-		passwordField = TextFieldFactory.createTextField(TextResources.passField, Color.WHITE, Color.LIGHT_GRAY,
+		passwordField = TextFieldFactory.createPasswordTextField(TextResources.passField, Color.WHITE, Color.LIGHT_GRAY,
 				FontFactory.poppins(12));
+		passwordField.setEchoChar((char)0);
 		passwordField.setBounds(22, 433, 331, 52);
 	}
 
@@ -249,15 +251,15 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		if (e.getSource() == roomField)
 			roomField.setText("");
-		if (e.getSource() == passwordField)
+		if (e.getSource() == passwordField) {
 			passwordField.setText("");
+			passwordField.setEchoChar('*');
+		}
 
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		// initializePanelToFrame();
-
 	}
 
 }
