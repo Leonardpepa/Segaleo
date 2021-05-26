@@ -114,7 +114,7 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 		mainContent.setBackground(ColorResources.bgMainWindowBtn);
 		mainContent.setLayout(new BorderLayout());
 		mainContent.add(createVerticalScrollablePanel());
-		mainContent.setBounds(20, 180, 350, 500);
+		mainContent.setBounds(13, 180, 350, 500);
 	}
 
 	// all the content for the cart panel
@@ -153,21 +153,21 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 		
 		activityImage = new ImageIcon(activity.getPath());
 		activityimgLabel = LabelFactory.createIconLabel(activityImage);
-		activityimgLabel.setBounds(5, 5, 310, 170);
+		activityimgLabel.setBounds(20, 5, 310, 170);
 		
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(5,180,150,40);
+		titleLabel.setBounds(20,180,150,40);
 		
 		
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(295, 185, 24, 24);
+		plusButtonLabel.setBounds(305, 185, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 		
 		priceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
-		priceLabel.setBounds(155, 185, 43, 19);
+		priceLabel.setBounds(165, 185, 43, 19);
 		
 		panel.add(activityimgLabel);
 		panel.add(titleLabel);
