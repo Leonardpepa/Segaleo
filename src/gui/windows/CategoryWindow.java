@@ -97,14 +97,20 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		this.pack();
 	}
 
-	public void refreshMaincontent(ArrayList<Product> products) {
+	public void refreshMaincontent(ArrayList<Product> products, boolean isSearch) {
 
 		backgroundPanel.remove(1);
 		mainContent = new JPanel();
 		configureMainContent(products);
-
-		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
-		backgroundPanel.add(BorderLayout.CENTER, mainContent);
+		if(isSearch) {
+			backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
+			backgroundPanel.add(BorderLayout.CENTER, mainContent);			
+		}
+		else {
+			backgroundPanel.add(BorderLayout.NORTH, header);
+			backgroundPanel.add(BorderLayout.CENTER, mainContent);			
+			backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
+		}
 
 		this.pack();
 	}
@@ -131,21 +137,21 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts);
+				refreshMaincontent(foundProducts, true);
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts);
+				refreshMaincontent(foundProducts, true);
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts);
+				refreshMaincontent(foundProducts, true);
 			}
 		});
 			
@@ -307,8 +313,8 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 				Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
 				break;
 			}
-			refreshMaincontent(categoryProducts);
 		}
+		refreshMaincontent(categoryProducts, false);
 	}
 
 	@Override
