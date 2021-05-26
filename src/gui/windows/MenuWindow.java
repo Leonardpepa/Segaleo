@@ -81,6 +81,10 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel viewCart;
 	private JLabel priceCartLabel;
 	String input = "";
+	
+	private JPanel leftHelper;
+	private JPanel rightHelper;
+	
 	// constructor
 	public MenuWindow(Order order) {
 		this.order = order;
@@ -206,7 +210,14 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		backgroundPanel.remove(1);
 		
 		configureSearchContent(products);
-
+		leftHelper  = new JPanel();
+		leftHelper.setPreferredSize(new Dimension(16, mainContent.getWidth()));
+		
+		rightHelper = new JPanel();
+		rightHelper.setPreferredSize(new Dimension(19, mainContent.getWidth()));
+		
+		backgroundPanel.add(BorderLayout.WEST, leftHelper);
+		backgroundPanel.add(BorderLayout.EAST, rightHelper);
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 
@@ -315,7 +326,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	// all the content for the header panel
 	public void configureHeader() {
 		header = new JPanel();
-		header.setPreferredSize(new Dimension(375, 260));
+		header.setPreferredSize(new Dimension(375, 265));
 		header.setLayout(null);
 		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
 		backButton.setBounds(16, 30, 63, 23);
@@ -363,7 +374,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		productPanel = new JPanel();
 		productPanel.setName(product.getName());
 		productPanel.setLayout(null);
-		productPanel.setPreferredSize(new Dimension(260, 90));
+		productPanel.setPreferredSize(new Dimension(260, 50));
 		productPanel.setBackground(Color.white);
 
 		ImageIcon productImg = new ImageIcon(product.getPath());

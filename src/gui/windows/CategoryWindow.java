@@ -69,6 +69,9 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	private JLabel bagLabel;
 	private JLabel viewCart;
 	private JLabel cartPriceLabel;
+	
+	private JPanel leftHelper;
+	private JPanel rightHelper;
 
 	public CategoryWindow(Color categoryColor, String categoryName, ArrayList<Product> products, Order order) {
 		this.categoryColor = categoryColor;
@@ -89,7 +92,14 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		configureMainContent(categoryProducts);
 		configureCartPanel();
 		addListeners();
-
+		leftHelper  = new JPanel();
+		leftHelper.setPreferredSize(new Dimension(16, mainContent.getWidth()));
+		
+		rightHelper = new JPanel();
+		rightHelper.setPreferredSize(new Dimension(19, mainContent.getWidth()));
+		
+		backgroundPanel.add(BorderLayout.WEST, leftHelper);
+		backgroundPanel.add(BorderLayout.EAST, rightHelper);
 		backgroundPanel.add(BorderLayout.NORTH, header);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
@@ -100,7 +110,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	public void refreshMaincontent(ArrayList<Product> products, boolean isSearch) {
 
-		backgroundPanel.remove(1);
+		backgroundPanel.remove(3);
 		mainContent = new JPanel();
 		configureMainContent(products);
 		if(isSearch) {

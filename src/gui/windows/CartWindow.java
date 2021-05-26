@@ -77,9 +77,9 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
 	private boolean isOrder;
-
-	// TODO take the order from the logged customer
-	// TODO display the total price in the footer
+	
+	private JPanel leftHelper;
+	private JPanel rightHelper;
 
 	public CartWindow(Order order, boolean isOrder) {
 		this.order = order;
@@ -106,6 +106,14 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		configureFooter();
 		configureMainContent();
 		addListeners();
+		leftHelper  = new JPanel();
+		leftHelper.setPreferredSize(new Dimension(24, mainContent.getWidth()));
+		
+		rightHelper = new JPanel();
+		rightHelper.setPreferredSize(new Dimension(23, mainContent.getWidth()));
+		
+		backgroundPanel.add(BorderLayout.WEST, leftHelper);
+		backgroundPanel.add(BorderLayout.EAST, rightHelper);
 		backgroundPanel.add(BorderLayout.NORTH, header);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
 		backgroundPanel.add(BorderLayout.SOUTH, footer);
@@ -196,7 +204,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(320, 85, 24, 24);
+		plusButtonLabel.setBounds(290, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 		plusButtonLabel.setName("plus");
@@ -204,16 +212,16 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		minusIcon = new ImageIcon("./buttonImages/minus.png");
 
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
-		minusButtonLabel.setBounds(260, 85, 24, 24);
+		minusButtonLabel.setBounds(230, 85, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
 		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
-		quantinty.setBounds(290, 85, 50, 20);
+		quantinty.setBounds(260, 85, 50, 20);
 
 		productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
-		productPriceLabel.setBounds(220, 85, 43, 19);
+		productPriceLabel.setBounds(190, 85, 43, 19);
 
 		panel.add(productimgLabel);
 		panel.add(titleLabel);
