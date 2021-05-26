@@ -5,6 +5,7 @@ import javax.swing.table.*;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import reservation.Activity;
 import resources.TextResources;
 
 import java.awt.*;
@@ -17,26 +18,29 @@ public class CalendarProgram extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	static JTable tblCalendar;
-	static JFrame frmMain;
-	static Container container;
-	static DefaultTableModel mtblCalendar; //Table model
-	static JScrollPane stblCalendar; //The scrollpane
-	static JPanel pnlCalendar;
-	static int realYear, realMonth, realDay, currentYear, currentMonth;
+	private JTable tblCalendar;
+	private JFrame frmMain;
+	private Container container;
+	private DefaultTableModel mtblCalendar; //Table model
+	private JScrollPane stblCalendar; //The scrollpane
+	private JPanel pnlCalendar;
+	private int realYear, realMonth, realDay, currentYear, currentMonth;
 	
-	static JLabel dayLabel;
-	static JLabel timeLabel;
+	private JLabel dayLabel;
+	private JLabel timeLabel;
+	private Activity activity;
 	
+	private String path = "buttonImages/Back Button";
+	private String lang = TextResources.imageLang;
+	private ImageIcon backImage = new ImageIcon(path + lang);
+	private JButton backBtn;
 	
-	static String path = "buttonImages/Back Button";
-	static String lang = TextResources.imageLang;
-	static ImageIcon backImage = new ImageIcon(path + lang);
-	static JButton backBtn;
+	private JButton hour1Btn;
+	private JButton hour2Btn;
 	
-	public static void main (String args[]) {
+	public CalendarProgram(Activity activity) {
 		new TextResources().changeLanguage();
-		
+		this.activity = activity;
 		
 		//Look and feel
 		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
@@ -47,23 +51,49 @@ public class CalendarProgram extends JFrame {
 
 
 		//Prepare frame
-		
 		frmMain = new JFrame ("Hotel PDA"); //Create frame
 		frmMain.setSize(new Dimension(375, 812)); //Set size to 400x400 pixels
 		container = frmMain.getContentPane(); //Get content pane
 		container.setLayout(null); //Apply null layout
 		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
 		container.setBackground(new Color(216,223,224));
+		container.setBounds(25, 150, 320, 350);
 		
 		dayLabel = LabelFactory.createLabel("Choose Day", Color.gray, FontFactory.poppins(22));
-		dayLabel.setBounds(32,80,139,32);
+		dayLabel.setBounds(32,100,139,32);
 		timeLabel = LabelFactory.createLabel("Choose Time", Color.gray, FontFactory.poppins(22));
-		timeLabel.setBounds(32,300,139,32);
+		timeLabel.setBounds(32,500,149,32);
 		
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(15, 25, 64, 45);
-//		backBtn.setPressedIcon(backImage);
+		backBtn.setPressedIcon(backImage);
 		
+		hour1Btn = new JButton("FIRST");
+		hour1Btn.setBounds(32, 550, 100, 45);
+		hour2Btn = new JButton("SECOND");
+		hour2Btn.setBounds(32, 610, 100, 45);
+		
+		hour1Btn.addActionListener(new ActionListener() { @Override
+			public void actionPerformed(ActionEvent e) {
+
+			if(e.getSource() == hour1Btn) {
+				frmMain.dispose();
+//				new LoginWindow();
+			}
+		}
+		
+		});
+		
+		hour2Btn.addActionListener(new ActionListener() { @Override
+			public void actionPerformed(ActionEvent e) {
+
+			if(e.getSource() == hour2Btn) {
+				frmMain.dispose();
+//				new LoginWindow();
+			}
+		}
+		
+		});
 		
 		backBtn.addActionListener(new ActionListener() { @Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,9 +121,11 @@ public class CalendarProgram extends JFrame {
 		container.add(dayLabel);
 		container.add(timeLabel);
 		container.add(backBtn);
+		container.add(hour1Btn);
+		container.add(hour2Btn);
 
 		//Set bounds
-		pnlCalendar.setBounds(25, 109, 320, 335);
+		pnlCalendar.setBounds(25, 150, 320, 300);
 		stblCalendar.setBounds(10, 50, 300, 250);
 
 
@@ -141,7 +173,7 @@ public class CalendarProgram extends JFrame {
 	}
 	
 	
-	public static void refreshCalendar(int month, int year){
+	public  void refreshCalendar(int month, int year){
 		int nod, som; //Number Of Days, Start Of Month
 
 		//Clear table
@@ -167,7 +199,7 @@ public class CalendarProgram extends JFrame {
 		tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
 	}
 
-	static class tblCalendarRenderer extends DefaultTableCellRenderer{
+	 class tblCalendarRenderer extends DefaultTableCellRenderer{
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
 
@@ -186,7 +218,7 @@ public class CalendarProgram extends JFrame {
 
 
 
-	static class jtableListener implements MouseListener{
+	class jtableListener implements MouseListener{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
