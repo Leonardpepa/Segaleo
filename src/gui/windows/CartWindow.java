@@ -292,6 +292,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		orderNowButton = ButtonFactory.createButton(TextResources.orderNow, FontFactory.poppins(15),
 				ColorResources.frMainWindowBtn, Color.WHITE);
 		orderNowButton.setBounds(24, 214, 328, 41);
+		orderNowButton.addActionListener(this);
 		priceHolder.add(totalLabel);
 		priceHolder.add(priceLabel);
 
@@ -322,6 +323,14 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			Coupon coupon = CouponFactory.GenerateCoupon();
 			double discount = order.calcDiscount(coupon);
 			priceLabel.setText(discount + "€");
+		}
+		if(e.getSource().equals( orderNowButton)) {
+			if(order.getTotalCost() < 10) {
+				JOptionPane.showMessageDialog(null, "Minimum order price is 10€");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Thank you for ordering");
+			}
 		}
 	}
 

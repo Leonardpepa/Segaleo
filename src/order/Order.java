@@ -63,4 +63,8 @@ public class Order {
 		}
 		return totalCost;
 	}
+
+	public double getTotalCost() {
+		return totalCost;
+	}
 }
