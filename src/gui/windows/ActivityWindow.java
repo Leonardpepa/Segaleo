@@ -22,7 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
-
+import calendar.CalendarProgram;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
@@ -35,10 +35,11 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 
 	private JPanel backgroundPanel;
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
-	private JLabel activityLabel;
+	private JLabel activityLabel;	
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
 	JButton backBtn;
 	
+
 	// components for main panel
 	private JPanel mainContent;
 	private ImageIcon activityImage;
@@ -216,12 +217,13 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 			for(Activity a : activities) {
 				if(a.getName().equalsIgnoreCase(activityName)) {
 					thisactivity = a;
-					System.out.println(thisactivity.getName());
+//					System.out.println(thisactivity.getName());
 				}
 			}
+			new CalendarProgram(thisactivity);
 			//column where activity starts
 			 int pos =(activities.indexOf(thisactivity))*2;
-			 System.out.println(pos);
+//			 System.out.println(pos);
 			//να μπαίνει στο reservation αβτίστοιχα με το order
 			//order.addProduct(clickedProduct);
 			//cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");

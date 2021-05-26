@@ -15,6 +15,21 @@ public class Activity
 	private static int [][] a = new int[7][14];
 	private static ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 	
+	private int selhour ;
+	private int selday ;
+	
+	// set hour and day 
+	public void setSelHour(int hour) {
+		this.selhour = hour;
+	}
+
+	public void setSelDay(int day) {
+		this.selday = day;
+	}
+	public void PRINT()
+	{
+		System.out.print(selhour + "and " + selday);
+	}
 	
 	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour){
 		this.name = name;
