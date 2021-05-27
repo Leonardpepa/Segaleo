@@ -189,14 +189,19 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 	public String getUserPassword(String getRoom) {
 		int roomIndex;
 		String password = null;
-		ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
-
-		if (Integer.parseInt(getRoom) / 100 == 1)
-			roomIndex = (Integer.parseInt(getRoom) % 100) - 1;
-		else
-			roomIndex = (Integer.parseInt(getRoom) / 100) * 10 + (Integer.parseInt(getRoom) % 100) - 1;
-
-		password = rooms.get(roomIndex).getPassword();
+		try {
+			ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
+			
+			if (Integer.parseInt(getRoom) / 100 == 1)
+				roomIndex = (Integer.parseInt(getRoom) % 100) - 1;
+			else
+				roomIndex = (Integer.parseInt(getRoom) / 100) * 10 + (Integer.parseInt(getRoom) % 100) - 1;
+			
+			password = rooms.get(roomIndex).getPassword();			
+		}
+		catch(NumberFormatException ex) {
+			
+		}
 		return password;
 	}
 }
