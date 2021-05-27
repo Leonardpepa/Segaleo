@@ -413,7 +413,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
-			int selectedOption = JOptionPane.showConfirmDialog(null, "Do you want to cancel the order?", "Cancel Order",
+			int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
 					JOptionPane.YES_NO_OPTION);
 			if (selectedOption == 0) {
 				order.clearOrder();

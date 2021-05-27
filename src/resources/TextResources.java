@@ -58,6 +58,17 @@ public class TextResources {
 	public static String ratingLabel;
 	public static String ratingComment;
 
+	public static String invalidCouponTitle;
+	public static String invalidCoupon;
+
+	public static String cancelOrderTitle;
+	public static String cancelOrder;
+
+	public static String orderErrorTitle;
+	public static String orderError;
+	public static String orderSuccessTitle;
+	public static String orderSuccess;
+
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -117,6 +128,18 @@ public class TextResources {
 
 		ratingLabel = isEnglish ? "Rate Activities" : "Αξιολόγησε τις δραστηριότητες";
 		ratingComment = isEnglish ? "Leave your comment about this activity here..." : "Σχολίασε την εμπειρία σου για την συγκεκριμένη δραστηριότητα εδώ";
+
+		invalidCouponTitle = isEnglish ? "Error" : "Σφάλμα";
+		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
+
+		cancelOrderTitle = isEnglish ? "Cancel Order" : "Ακύρωση Παραγγελίας";
+		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας";
+
+		orderErrorTitle = isEnglish ? "Invalid Order" : "Μη Έγκυρη Παραγγελία";
+		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
+		orderSuccessTitle = isEnglish ? "Success" : "Επιτυχία";
+		orderSuccess = isEnglish ? "Your order is complete" : "Η παραγγελία σας ολοκληρώθηκε";
+
 	}
 
 }

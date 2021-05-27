@@ -307,7 +307,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == exitButton) {
-			int selectedOption = JOptionPane.showConfirmDialog(null, "Do you want to cancel the order?", "Cancel Order",
+			int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
 					JOptionPane.YES_NO_OPTION);
 			if (selectedOption == 0) {
 				order.clearOrder();
@@ -326,10 +326,10 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		}
 		if(e.getSource().equals( orderNowButton)) {
 			if(order.getTotalCost() < 10) {
-				JOptionPane.showMessageDialog(null, "Minimum order price is 10€");
+				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Thank you for ordering");
+				JOptionPane.showMessageDialog(null, TextResources.orderSuccess, TextResources.orderSuccessTitle, JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}

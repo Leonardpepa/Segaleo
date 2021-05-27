@@ -1,9 +1,8 @@
 package order;
 
+import resources.TextResources;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
 
@@ -59,7 +58,7 @@ public class Order {
 			return totalCost -= 3;
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Invalid Coupon");
+			JOptionPane.showMessageDialog(null, TextResources.invalidCoupon, TextResources.invalidCouponTitle, JOptionPane.INFORMATION_MESSAGE);
 		}
 		return totalCost;
 	}
