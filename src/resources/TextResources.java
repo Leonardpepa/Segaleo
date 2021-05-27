@@ -133,7 +133,7 @@ public class TextResources {
 		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
 
 		cancelOrderTitle = isEnglish ? "Cancel Order" : "Ακύρωση Παραγγελίας";
-		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας";
+		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας?";
 
 		orderErrorTitle = isEnglish ? "Invalid Order" : "Μη Έγκυρη Παραγγελία";
 		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
