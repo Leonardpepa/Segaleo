@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -60,6 +63,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 	boolean isPopup = false;
 	public static ArrayList<Food> deals;
+
 	// constructor
 	public LoginWindow() {
 		initializePanelToFrame();
@@ -82,7 +86,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		new TextResources().changeLanguage();
 		new ColorResources();
 		deals = new Menu().GetDeals();
-		
+
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -96,6 +100,8 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		this.setContentPane(panel);
 		this.pack();
+		this.getRootPane().setDefaultButton(loginBtn);
+
 	}
 
 	// makes the frame visible
@@ -122,7 +128,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 		passwordField = TextFieldFactory.createPasswordTextField(TextResources.passField, Color.WHITE, Color.LIGHT_GRAY,
 				FontFactory.poppins(12));
-		passwordField.setEchoChar((char)0);
+		passwordField.setEchoChar((char) 0);
 		passwordField.setBounds(22, 433, 331, 52);
 	}
 
@@ -138,18 +144,14 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 				ColorResources.bgLoginWindow, Color.WHITE);
 
 		loginBtn.setBounds(22, 503, 331, 52);
-		
-		if (TextResources.isEnglish)
-		{
+
+		if (TextResources.isEnglish) {
 			myPassBtn = ButtonFactory.createButtonIcon(myPassImage);
 			myPassBtn.setBounds(132, 574, 112, 19);
-		}
-		else
-		{	
+		} else {
 			myPassBtn = ButtonFactory.createButtonIcon(myPassImageGR);
 			myPassBtn.setBounds(113, 574, 150, 19);
 		}
-
 
 	}
 
@@ -165,7 +167,6 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		panel.add(loginBtn);
 
 		panel.add(myPassBtn);
-
 		togglePanel();
 		panel.add(BackgroundFactory.addBackgroundDark());
 	}
@@ -174,6 +175,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	public void addListeners() {
 		languageBtn.addActionListener(this);
 		loginBtn.addActionListener(this);
+
 		contactBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
@@ -236,8 +238,8 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		if (e.getSource() == popupPanel.english) {
 			TextResources.isEnglish = true;
 		}
-		
-		if(e.getSource() == myPassBtn) {
+
+		if (e.getSource() == myPassBtn) {
 			this.dispose();
 			new ForgotPasswordWindow();
 		}
