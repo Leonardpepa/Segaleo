@@ -186,7 +186,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 				Color.BLACK);
 		;
 
-		explore.setBounds(16, 30, 250, 30);
+		explore.setBounds(16, 30, 280, 40);
 		appetizers.setBounds(23, 85, 150, 62);
 		main.setBounds(203, 85, 150, 62);
 		salads.setBounds(23, 177, 150, 62);

@@ -131,7 +131,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
-		backBtn.setBounds(12, 40, 67, 21);
+		backBtn.setBounds(12, 40, 67, 51);
 
 		phoneBtn = ButtonFactory.createButtonIcon(phoneIcon);
 		phoneBtn.setBounds(20, 250, 61, 61);
@@ -144,18 +144,18 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 		sendBtn = ButtonFactory.createButton(TextResources.sendbtn, FontFactory.poppins(14), ColorResources.sendColor,
 				ColorResources.bgLoginWindow);
-		sendBtn.setBounds(281, 379, 70, 23);
+		sendBtn.setBounds(281, 379, 80, 23);
 
 		seeMoreBtn = ButtonFactory.createButton(TextResources.seeMore, FontFactory.poppins(14),
 				ColorResources.sendColor, ColorResources.bgLoginWindow);
-		seeMoreBtn.setBounds(200, 750, 150, 27);
+		seeMoreBtn.setBounds(200, 720, 150, 27);
 	}
 
 	public void configureLabels() {
 		contactLabel = LabelFactory.createLabelBG(TextResources.contactLabel, ColorResources.bgLoginWindow, Color.WHITE,
 				FontFactory.poppins(16));
 		contactLabel = LabelFactory.alignLabel(contactLabel, SwingConstants.CENTER, SwingConstants.CENTER);
-		contactLabel.setBounds(20, 225, 118, 26);
+		contactLabel.setBounds(20, 225, 120, 30);
 
 		messageLabel = LabelFactory.createIconLabel(messageIcon);
 		messageLabel.setBounds(20, 311, 61, 61);
@@ -163,25 +163,25 @@ public class ContactWindow extends JFrame implements ActionListener {
 		faqLabel = LabelFactory.createLabelBG("FAQ", ColorResources.bgLoginWindow, Color.WHITE,
 				FontFactory.poppins(16));
 		faqLabel = LabelFactory.alignLabel(faqLabel, SwingConstants.CENTER, SwingConstants.CENTER);
-		faqLabel.setBounds(20, 425, 118, 26);
+		faqLabel.setBounds(20, 425, 118, 30);
 
 		// picking the 1st and 2nd questions and answers from the FAQ list to show
 		question1 = LabelFactory.createLabel(contact.getFaqs().get(0).getQuestion(), Color.black,
 				FontFactory.poppins(13));
-		question1.setBounds(22, 476, 308, 20);
+		question1.setBounds(22, 470, 308, 20);
 
 		answer1 = TextAreaFactory.createTextArea(contact.getFaqs().get(0).getAnswer(), Color.white,
 				ColorResources.bgLoginWindow, FontFactory.poppins(13));
-		answer1.setBounds(22, 493, 331, 100);
+		answer1.setBounds(22, 490, 331, 80);
 		answer1.setEditable(false);
 
 		question2 = LabelFactory.createLabel(contact.getFaqs().get(1).getQuestion(), Color.black,
 				FontFactory.poppins(12));
-		question2.setBounds(22, 600, 308, 20);
+		question2.setBounds(22, 580, 308, 20);
 
 		answer2 = TextAreaFactory.createTextArea(contact.getFaqs().get(1).getAnswer(), Color.white,
 				ColorResources.bgLoginWindow, FontFactory.poppins(13));
-		answer2.setBounds(22, 620, 331, 105);
+		answer2.setBounds(22, 600, 331, 80);
 		answer2.setEditable(false);
 		answer2.setWrapStyleWord(true);
 		answer2.setLineWrap(true);

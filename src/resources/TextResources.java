@@ -77,7 +77,7 @@ public class TextResources {
 		welcome = isEnglish ? "Welcome to Segaleo" : "Καλώς ήρθατε στο Segaleo";
 		loginto = isEnglish ? "Login to your account" : "Συνδεθείτε στον λογαριασμό σας";
 		roomField = isEnglish ? "  Room Number" : "  Αριθμός Δωματίου";
-		passField = isEnglish ? "  Password" : "  Κωδικός‚";
+		passField = isEnglish ? "  Password" : "  Κωδικός";
 		loginBtn = isEnglish ? "LOGIN" : "Σύνδεση";
 		languageLabel = isEnglish ? "Languages" : "Γλώσσες";
 		viewCart = isEnglish ? "View Cart" : "Δες το καλάθι";
@@ -94,14 +94,14 @@ public class TextResources {
 		endpointPath = isEnglish ? "English.txt" : "Greek.txt";
 		reservationCompleteTitle = isEnglish ? "Reservation Completed" : "Η Κράτηση Ολοκληρώθηκε";
 		reservationCompleteMessage = isEnglish
-				? "Your reservation has been accepted.We will be waiting for your arrival."
+				? "Your reservation has been accepted. We will be waiting for your arrival."
 				: "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
 		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
 		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
 		orderCompleteMessage = isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes."
 				: "Η παραγγελία σας ολοκληρώθηκε με επιτυχία και θα βρίσκεται στο δωματό σας σε περίπου 45 λεπτά.";
 		seeMore = isEnglish ? "See More" : "Δείτε Περισσότερα";
-		activityHeader = isEnglish ? "Choose the activity that best suits your vocation"
+		activityHeader = isEnglish ? "Choose the activity that best suits your vacation"
 				: "Διάλεξε την δραστηριότητα που ταιριάζει καλύτερα στις διακοπές σου";
 
 		myCart = isEnglish ? "My Cart" : "Το καλάθι μου";
@@ -133,7 +133,7 @@ public class TextResources {
 		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
 
 		cancelOrderTitle = isEnglish ? "Cancel Order" : "Ακύρωση Παραγγελίας";
-		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας?";
+		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας;";
 
 		orderErrorTitle = isEnglish ? "Invalid Order" : "Μη Έγκυρη Παραγγελία";
 		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";

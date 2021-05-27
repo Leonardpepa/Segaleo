@@ -106,11 +106,11 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	public void configureButtons() {
 
-		servicesBtn = ButtonFactory.createButton(TextResources.roomService, FontFactory.avenir(20),
+		servicesBtn = ButtonFactory.createButton(TextResources.roomService, FontFactory.avenir(18),
 				ColorResources.bgMainWindowBtn, ColorResources.frMainWindowBtn);
 		servicesBtn.setBounds(91, 353, 193, 48);
 
-		activitiesBtn = ButtonFactory.createButton(TextResources.activities, FontFactory.avenir(20),
+		activitiesBtn = ButtonFactory.createButton(TextResources.activities, FontFactory.avenir(18),
 				ColorResources.bgMainWindowBtn, ColorResources.frMainWindowBtn);
 		activitiesBtn.setBounds(91, 426, 193, 48);
 

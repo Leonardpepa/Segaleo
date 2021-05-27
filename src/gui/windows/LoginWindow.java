@@ -1,31 +1,14 @@
 package gui.windows;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
+import javax.swing.border.Border;
 
-import gui.components.PopupPanel;
-import gui.factory.BackgroundFactory;
-import gui.factory.ButtonFactory;
-import gui.factory.FontFactory;
-import gui.factory.LabelFactory;
-import gui.factory.TextFieldFactory;
+import gui.components.*;
+import gui.factory.*;
 import login.Login;
 import menu.Menu;
 import order.Food;
@@ -52,6 +35,7 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 
 	private JTextField roomField;
 	private JPasswordField passwordField;
+	Border border = BorderFactory.createLineBorder(Color.white, 15);
 
 	private JButton loginBtn;
 
@@ -113,23 +97,25 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	// label settings
 	public void configureLabels() {
 
-		welcomeLabel = LabelFactory.createLabel(TextResources.welcome, Color.WHITE, FontFactory.poppins(28));
-		welcomeLabel.setBounds(42, 224, 294, 70);
+		welcomeLabel = LabelFactory.createLabel(TextResources.welcome, Color.WHITE, FontFactory.poppins(24));
+		welcomeLabel.setBounds(38, 224, 294, 70);
 
-		loginLabel = LabelFactory.createLabel(TextResources.loginto, Color.WHITE, FontFactory.poppins(22));
-		loginLabel.setBounds(41, 298, 244, 70);
+		loginLabel = LabelFactory.createLabel(TextResources.loginto, Color.WHITE, FontFactory.poppins(18));
+		loginLabel.setBounds(38, 275, 300, 70);
 	}
 
 	// textfileds setings
 	public void configureTextFields() {
 		roomField = TextFieldFactory.createTextField(TextResources.roomField, Color.WHITE, Color.LIGHT_GRAY,
 				FontFactory.poppins(12));
-		roomField.setBounds(22, 365, 331, 52);
+		roomField.setBounds(22, 365, 330, 52);
+		roomField.setBorder(border);
 
 		passwordField = TextFieldFactory.createPasswordTextField(TextResources.passField, Color.WHITE, Color.LIGHT_GRAY,
 				FontFactory.poppins(12));
 		passwordField.setEchoChar((char) 0);
-		passwordField.setBounds(22, 433, 331, 52);
+		passwordField.setBounds(22, 433, 330, 52);
+		passwordField.setBorder(border);
 	}
 
 	// buttons settings

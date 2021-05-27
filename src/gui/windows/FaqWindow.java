@@ -90,7 +90,7 @@ public class FaqWindow extends JFrame implements ActionListener {
 		int z = 270;
 		for (FAQ faq : faqs) {
 			questions = LabelFactory.createLabel(faq.getQuestion(), Color.black, FontFactory.poppins(12));
-			questions.setBounds(22, y, 308, 20);
+			questions.setBounds(22, y, 340, 20);
 			panel.add(questions);
 			y += 115;
 
