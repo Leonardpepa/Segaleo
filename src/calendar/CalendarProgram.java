@@ -79,6 +79,7 @@ public class CalendarProgram extends JFrame {
 			if(e.getSource() == hour1Btn) {
 				frmMain.dispose();
 				activity.setSelHour(0);
+				activity.PRINT();
 			}
 		}
 		
@@ -90,13 +91,13 @@ public class CalendarProgram extends JFrame {
 			if(e.getSource() == hour2Btn) {
 				frmMain.dispose();
 				activity.setSelHour(1);
+				activity.PRINT();
+				
 			}
 		}
 		
 		});
-		
-		activity.PRINT();
-		
+	
 		backBtn.addActionListener(new ActionListener() { @Override
 			public void actionPerformed(ActionEvent e) {
 
