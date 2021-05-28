@@ -375,7 +375,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			JPanel parent = (JPanel) label.getParent();
 			String productName = parent.getName();
 			Product clickedProduct = Menu.findProduct(productName);
-			System.out.println(label.getName());
 			if (label.getName().equals("plus")) {
 				order.addProduct(clickedProduct);
 			} else if (label.getName().equals("minus")) {
