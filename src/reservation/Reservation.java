@@ -1,70 +1,50 @@
 package reservation;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 
 public class Reservation 
 {
-	private String day  ; 
-	private String hour ;
+
 	private double totalCost;
-	private int code;
-	private Activity activity;
-	private int people;
-	private DateFormat dayFormat;
-	private DateFormat hourFormat;
-	private ArrayList<Reservation> reservations = new ArrayList<>();
+	private ArrayList<Activity> activities;
 
-	public Reservation (int code, Activity activity, String day, String hour, int people) 
+	public Reservation () 
 	{
-		this.activity = activity;
-		this.people = people;
-		this.day = day; 
-		this.hour = hour;
-		dayFormat = new SimpleDateFormat("dd/MM");
-		hourFormat = new SimpleDateFormat("hh:mm");
-//		if (this.activity.checkLimit(people, hour,day)) {
-//			code = code;
-//		}
-//		else {
-//			System.out.println("den xorane tosoi");
-//		}
-
-
+		activities = new ArrayList<Activity>();
+	}
+	
+	public void addActivity(Activity activity) {
+		activities.add(activity);
+	}
+	
+	public void clearReservation()
+	{
+		activities = new ArrayList<>();
+	}
+	
+	public void removeActivity(Activity activity) {
+		activities.remove(activity);
 	}
 	
 	public double calcCost() 
 	{	
 		totalCost = 0;
 		
-		totalCost = this.people*this.activity.getPrice();
-		
+		for(Activity activity : activities) {
+			totalCost += activity.getActivityCost();
+		}
+
 		return totalCost;
 	}
 	
-	//hour and das
-	//payment methods
-	//total
-	//for search and evaluation
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+	public ArrayList<Activity> getActivities() {
+		return activities;
+	}
+
 	
-	public void addReservation(Reservation r)
-	{
-		reservations.add(r);
-	}
-
-	public void removeReservation(Reservation r)
-	{
-		reservations.remove(r);
-	}
-	
-	public void clearReservations()
-	{
-		reservations = new ArrayList<>();
-	}
-
-
 
 }
