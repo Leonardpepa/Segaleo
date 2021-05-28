@@ -15,9 +15,13 @@ public class Activity
 	private static int [][] a = new int[7][14];
 	private static ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 	
-	private int selhour ;
-	private int selday ;
+	private int selhour = 0 ;
+	private int selday = 0;
+	private int column = 0;
+	private int selpeople = 0;
+	private double activityCost = 0;
 	
+
 	// set hour and day 
 	public void setSelHour(int hour) {
 		this.selhour = hour;
@@ -26,9 +30,43 @@ public class Activity
 	public void setSelDay(int day) {
 		this.selday = day;
 	}
+	
+	public int getSelhour() {
+		return selhour;
+	}
+
+	public int getSelday() {
+		return selday;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+	public void setColumn(int column) {
+		this.column = column;
+	}
+	
+	public int getSelpeople() {
+		return selpeople;
+	}
+
+	public void setSelpeople(int selpeople) {
+		this.selpeople = selpeople;
+	}
+	
+	public void calcActivityCost() {
+		activityCost = this.getSelpeople()* this.getPrice();
+	}
+	
+	public double getActivityCost() {
+		return activityCost;
+	}
+
 	public void PRINT()
 	{
-		System.out.print(selhour + "and " + selday);
+		System.out.print(this.selhour + "and " + this.selday);
+
 	}
 	
 	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour){
@@ -81,6 +119,14 @@ public class Activity
 		}
 	}
 }
-	
+//	public boolean checkLimit() {
+//		if(atoma <= a[this.getSelDay][this.getSelHour + this.getColumn]{
+//		new reservation();
+// 		a[this.getSelDay][this.getSelHour + this.getColumn] -= atoma;
+//	}
+//	else {
+//		sorry
+//	}
+//	
 
 }
