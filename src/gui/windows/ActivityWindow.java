@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,16 +31,17 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class ActivityWindow  extends JFrame implements ActionListener,MouseListener{
+public class ActivityWindow extends JFrame implements ActionListener, MouseListener {
 
 	private JPanel backgroundPanel;
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
-	private JLabel activityLabel;	
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button.png");
-	JButton backBtn;
-	
+	private JLabel activityLabel;
+	private String path = "buttonImages/Back Button";
+	private String lang = TextResources.imageLang;
+	private ImageIcon backImage = new ImageIcon(path + lang);
+	private JButton backBtn;
+
 	private Reservation reservation;
-	
 
 	// components for main panel
 	private JPanel mainContent;
@@ -52,8 +52,8 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 	private JLabel priceLabel;
 	private ImageIcon plusIcon;
 	private JLabel plusButtonLabel;
-	
-	//cart panel
+
+	// cart panel
 	private JPanel cartPanel;
 	private ImageIcon bagIcon;
 	private JLabel bagLabel;
@@ -62,12 +62,12 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 
 	public ActivityWindow(ArrayList<Activity> activities, Reservation reservation) {
 		this.activities = activities;
-		this.reservation =reservation;
+		this.reservation = reservation;
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
 	}
-	
+
 	private void initializePanelToFrame() {
 		backgroundPanel = new JPanel();
 		backgroundPanel.setPreferredSize(new Dimension(375, 812));
@@ -77,7 +77,7 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 		configureMainContent();
 		configureCartPanel();
 		addListeners();
-		
+
 		backgroundPanel.add(backBtn);
 		backgroundPanel.add(activityLabel);
 		backgroundPanel.add(mainContent);
@@ -85,16 +85,19 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 		this.setContentPane(backgroundPanel);
 		this.pack();
 	}
-	
+
 	public void configureHeader() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
-		backBtn.setBounds(12, 40, 67, 21);
-		
-		activityLabel = new JLabel(String.format("<html><body style=\"text-align: left;\">%s</body></html>",TextResources.activityHeader));
+		backBtn.setBounds(12, 40, 67, 41);
+
+		activityLabel = new JLabel(String.format("<html><body style=\"text-align: left;\">%s</body></html>",
+				TextResources.activityHeader));
 		activityLabel.setFont(FontFactory.boldavenir(20));
-		activityLabel.setBounds(20,80,270,80);
-		activityLabel.setForeground(Color.WHITE);
+
+		activityLabel.setBounds(20, 80, 270, 80);
+		activityLabel.setForeground(ColorResources.bgLoginWindow);
 	}
+
 	// settings for the frame
 	public void windowsConfiguration() {
 		this.setTitle("Segaleo");
@@ -102,24 +105,23 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	private void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
-		
+
 	public void addListeners() {
 		backBtn.addActionListener(this);
-	
-	}
-	
 
-	//main panel
+	}
+
+	// main panel
 	public void configureMainContent() {
 		mainContent = new JPanel();
 		mainContent.setBackground(ColorResources.bgMainWindowBtn);
 		mainContent.setLayout(new BorderLayout());
 		mainContent.add(createVerticalScrollablePanel());
-		mainContent.setBounds(13, 180, 350, 500);
+		mainContent.setBounds(13, 160, 350, 558);
 	}
 
 	// all the content for the cart panel
@@ -148,66 +150,63 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 		cartPanel.add(priceLabel);
 	}
 
-	
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
 		panel.setName(activity.getName());
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
-		
+
 		activityImage = new ImageIcon(activity.getPath());
 		activityimgLabel = LabelFactory.createIconLabel(activityImage);
 		activityimgLabel.setBounds(20, 5, 310, 170);
-		
+
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(20,180,150,40);
-		
-		
+		titleLabel.setBounds(20, 180, 250, 24);
+
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(305, 185, 24, 24);
+		plusButtonLabel.setBounds(305, 180, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
-		
-		priceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
-		priceLabel.setBounds(165, 185, 43, 19);
-		
+
+		priceLabel = LabelFactory.createLabelBG(activity.getPrice() + "€", ColorResources.bgLoginWindow, ColorResources.bgMainWindowBtn, FontFactory.poppins(14));
+		priceLabel.setBounds(270, 180, 30, 24);
+
 		panel.add(activityimgLabel);
 		panel.add(titleLabel);
 		panel.add(plusButtonLabel);
 		panel.add(priceLabel);
-		
+
 		return panel;
 	}
-	
-	//creates a vertical scrollable panel
-		public JScrollPane createVerticalScrollablePanel() {
-			JPanel container = new JPanel();
-			container.setLayout(new GridLayout(activities.size(), 1, 0, 15));
 
-			for (Activity activity : activities) {
-				container.add(configureActivityPanel(activity));
-			}
+	// creates a vertical scrollable panel
+	public JScrollPane createVerticalScrollablePanel() {
+		JPanel container = new JPanel();
+		container.setLayout(new GridLayout(activities.size(), 1, 0, 15));
 
-			JScrollPane scrollPane = new JScrollPane(container);
-			scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-			JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
-			scrollBar.setUnitIncrement(16);
-			scrollBar.setPreferredSize(new Dimension(0,0));
-			scrollPane.setVerticalScrollBar(scrollBar);
-			return scrollPane;
+		for (Activity activity : activities) {
+			container.add(configureActivityPanel(activity));
 		}
+
+		JScrollPane scrollPane = new JScrollPane(container);
+		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
+		scrollBar.setUnitIncrement(16);
+		scrollBar.setPreferredSize(new Dimension(0, 0));
+		scrollPane.setVerticalScrollBar(scrollBar);
+		return scrollPane;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backBtn) {
 			this.dispose();
 			new MainWindow();
-		} 
-	
-		
-		
+		}
+
 	}
 
 	@Override
@@ -217,59 +216,51 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 			new CartWindow(reservation);
 		}
 		if (e.getSource() instanceof JLabel) {
-			Activity thisactivity =null;
+			Activity thisactivity = null;
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
 			String activityName = parent.getName();
-			//search for the activity with activityName
-			for(Activity a : activities) {
-				if(a.getName().equalsIgnoreCase(activityName)) {
+			// search for the activity with activityName
+			for (Activity a : activities) {
+				if (a.getName().equalsIgnoreCase(activityName)) {
 					thisactivity = a;
 //					System.out.println(thisactivity.getName());
 				}
 			}
 			new CalendarProgram(thisactivity);
 
-			//column where activity starts
-			 thisactivity.setColumn(activities.indexOf(thisactivity)*2);
-			//να μπαίνει στο reservation αβτίστοιχα με το order
+			// column where activity starts
+			thisactivity.setColumn(activities.indexOf(thisactivity) * 2);
+			// να μπαίνει στο reservation αβτίστοιχα με το order
 			reservation.addActivity(thisactivity);
-			//order.addProduct(clickedProduct);
-			//cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
+			// order.addProduct(clickedProduct);
+			// cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
 		}
 
-		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-		
-		
-	
-
-
-	
 
 }
