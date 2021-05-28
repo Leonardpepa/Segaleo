@@ -6,8 +6,8 @@ public class Coffee  extends Product{
 	private int sugar = 0;
 	private boolean cold = true;
 	
-	public Coffee(String name, String description, double price, String path) {
-		super(name, description, price, path);
+	public Coffee(String name, String description, double price, String path, int id) {
+		super(name, description, price, path, id);
 	}
 	
 	public int getSize() {

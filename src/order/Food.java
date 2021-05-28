@@ -4,8 +4,8 @@ public class Food extends Product{
 	private boolean hasDiscount = false;
 	private int discount = 0;
 	
-	public Food(String name, String description, double price, String path) {
-		super(name, description, price, path);
+	public Food(String name, String description, double price, String path, int id) {
+		super(name, description, price, path, id);
 	}
 	public boolean isHasDiscount() {
 		return hasDiscount;

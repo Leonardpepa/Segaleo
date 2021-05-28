@@ -3,35 +3,49 @@ package order;
 import resources.TextResources;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
+
+import menu.Menu;
 
 public class Order {
 
 	private double totalCost;
-
 	private ArrayList<Product> products;
-
+	public HashMap<Product, Integer> prod;
 	public Order() {
 		products = new ArrayList<Product>();
+		prod = new HashMap<>();
+		initializeHashMap();
 	}
 
-	public void addProduct(Product product) {
-		products.add(product);
+	public void addProduct(Product product) { 
+		if(!products.contains(product)) {
+			products.add(product);
+		}
+		prod.put(product, prod.get(product) + 1);			
 	}
 
 	public void clearOrder() {
 		products = new ArrayList<>();
+		initializeHashMap();
 	}
 
 	public void removeProduct(Product product) {
-		products.remove(product);
+		if(prod.get(product) == 1) {
+			products.remove(product);
+			prod.put(product, prod.get(product) - 1);			
+		}
+		else {
+			prod.put(product, prod.get(product) - 1);
+		}
 	}
 
 	public double calcCost() {
 		totalCost = 0;
 		for (Product product : products) {
-			totalCost += product.getPrice();
+			totalCost += prod.get(product) * product.getPrice();
 		}
 		return totalCost;
 	}
@@ -61,6 +75,12 @@ public class Order {
 			JOptionPane.showMessageDialog(null, TextResources.invalidCoupon, TextResources.invalidCouponTitle, JOptionPane.INFORMATION_MESSAGE);
 		}
 		return totalCost;
+	}
+	
+	public void initializeHashMap() {
+		for(Product p: Menu.getAllProducts()) {
+			prod.put(p, 0);
+		}
 	}
 
 	public double getTotalCost() {
