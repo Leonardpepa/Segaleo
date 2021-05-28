@@ -41,6 +41,7 @@ public class CalendarProgram extends JFrame {
 	
 	public CalendarProgram(Activity activity) {
 		new TextResources().changeLanguage();
+		new ColorResources();
 		this.activity = activity;
 		
 		//Look and feel
@@ -53,8 +54,9 @@ public class CalendarProgram extends JFrame {
 
 		//Prepare frame
 		frmMain = new JFrame ("Hotel PDA"); //Create frame
-		frmMain.setSize(new Dimension(375, 812)); //Set size to 400x400 pixels
+		//frmMain.setSize(new Dimension(375, 812)); //Set size to 400x400 pixels
 		container = frmMain.getContentPane(); //Get content pane
+		container.setPreferredSize(new Dimension(375, 812));
 		container.setLayout(null); //Apply null layout
 		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
 		container.setBackground(new Color(216,223,224));
@@ -177,6 +179,8 @@ public class CalendarProgram extends JFrame {
 		//Make frame visible
 				frmMain.setResizable(false);
 				frmMain.setVisible(true);
+				frmMain.pack();
+				
 	}	
 	
 	public void refreshCalendar(int month, int year){
@@ -208,15 +212,16 @@ public class CalendarProgram extends JFrame {
 	 class tblCalendarRenderer extends DefaultTableCellRenderer{
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-
-			setBackground(new Color(216,223,224));
-			if (value != null){
-				if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-					setBackground(new Color(220, 220, 255));
-				}
-			}
-			setBorder(null);
-			setForeground(new Color(112, 112, 112));
+//
+//			setBackground(new Color(216,223,224));
+//			if (value != null){
+//				if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
+//					setBackground(new Color(220, 220, 255));
+//				}
+//			}
+//			
+//			setBorder(null);
+//			setForeground(new Color(112, 112, 112));
 			return this;
 		}
 	}
