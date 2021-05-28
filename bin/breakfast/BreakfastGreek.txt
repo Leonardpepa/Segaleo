@@ -1,5 +1,5 @@
-Μπουγάτσα με κρέμα#Φύλλο μπουγάτσας με γλυκιά κρέμα, άχνη ζάχαρη και κανέλα#2.00#Food Menu\breakfast\mpougatsa-krema.jpg
-Μπουγάτσα με τυρί#Φύλλο μπουγάτσας με τυρί#2.00#Food Menu\breakfast\mpougatsa-turi.jpg
-Pancakes#Pancakes με μέλι και φρούτα του δάσους#5.00#Food Menu\breakfast\pancakes.jpg
-Croque Madame#Τραγανό ψωμί, λιωμένο τυρί, ζαμπόν, μπεσαμέλ και ένα τέλεια μαγειρεμένο αυγό#6.50#Food Menu\breakfast\croque-madame.jpg
-Ομελέτα σάντουϊτσ#Φρυγανισμένο ψωμί σε ομελέτα, γεμιστό με ζαμπόν#4.00#Food Menu\breakfast\omeleta-sandwich.jpg
+ο»ΏΞΟ€ΞΏΟ…Ξ³Ξ¬Ο„ΟƒΞ± ΞΌΞµ ΞΊΟΞ­ΞΌΞ±#Ξ¦ΟΞ»Ξ»ΞΏ ΞΌΟ€ΞΏΟ…Ξ³Ξ¬Ο„ΟƒΞ±Ο‚ ΞΌΞµ Ξ³Ξ»Ο…ΞΊΞΉΞ¬ ΞΊΟΞ­ΞΌΞ±, Ξ¬Ο‡Ξ½Ξ· Ξ¶Ξ¬Ο‡Ξ±ΟΞ· ΞΊΞ±ΞΉ ΞΊΞ±Ξ½Ξ­Ξ»Ξ±#2.00#Food Menu\breakfast\mpougatsa-krema.jpg
+ΞΟ€ΞΏΟ…Ξ³Ξ¬Ο„ΟƒΞ± ΞΌΞµ Ο„Ο…ΟΞ―#Ξ¦ΟΞ»Ξ»ΞΏ ΞΌΟ€ΞΏΟ…Ξ³Ξ¬Ο„ΟƒΞ±Ο‚ ΞΌΞµ Ο„Ο…ΟΞ―#2.00#Food Menu\breakfast\mpougatsa-turi.jpg
+Pancakes#Pancakes ΞΌΞµ ΞΌΞ­Ξ»ΞΉ ΞΊΞ±ΞΉ Ο†ΟΞΏΟΟ„Ξ± Ο„ΞΏΟ… Ξ΄Ξ¬ΟƒΞΏΟ…Ο‚#5.00#Food Menu\breakfast\pancakes.jpg
+Croque Madame#Ξ¤ΟΞ±Ξ³Ξ±Ξ½Ο ΟΟ‰ΞΌΞ―, Ξ»ΞΉΟ‰ΞΌΞ­Ξ½ΞΏ Ο„Ο…ΟΞ―, Ξ¶Ξ±ΞΌΟ€ΟΞ½, ΞΌΟ€ΞµΟƒΞ±ΞΌΞ­Ξ» ΞΊΞ±ΞΉ Ξ­Ξ½Ξ± Ο„Ξ­Ξ»ΞµΞΉΞ± ΞΌΞ±Ξ³ΞµΞΉΟΞµΞΌΞ­Ξ½ΞΏ Ξ±Ο…Ξ³Ο#6.50#Food Menu\breakfast\croque-madame.jpg
+ΞΞΌΞµΞ»Ξ­Ο„Ξ± ΟƒΞ¬Ξ½Ο„ΞΏΟ…ΟΟ„Οƒ#Ξ¦ΟΟ…Ξ³Ξ±Ξ½ΞΉΟƒΞΌΞ­Ξ½ΞΏ ΟΟ‰ΞΌΞ― ΟƒΞµ ΞΏΞΌΞµΞ»Ξ­Ο„Ξ±, Ξ³ΞµΞΌΞΉΟƒΟ„Ο ΞΌΞµ Ξ¶Ξ±ΞΌΟ€ΟΞ½#4.00#Food Menu\breakfast\omeleta-sandwich.jpg
