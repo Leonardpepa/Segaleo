@@ -13,7 +13,8 @@ public class Order {
 
 	private double totalCost;
 	private ArrayList<Product> products;
-	public HashMap<Product, Integer> prod;
+	private HashMap<Product, Integer> prod;
+	private int quantity = 0;
 	public Order() {
 		products = new ArrayList<Product>();
 		prod = new HashMap<>();
@@ -24,12 +25,14 @@ public class Order {
 		if(!products.contains(product)) {
 			products.add(product);
 		}
-		prod.put(product, prod.get(product) + 1);			
+		prod.put(product, prod.get(product) + 1);
+		quantity++;
 	}
 
 	public void clearOrder() {
 		products = new ArrayList<>();
 		initializeHashMap();
+		quantity = 0;
 	}
 
 	public void removeProduct(Product product) {
@@ -40,6 +43,7 @@ public class Order {
 		else {
 			prod.put(product, prod.get(product) - 1);
 		}
+		quantity--;
 	}
 
 	public double calcCost() {
@@ -52,6 +56,9 @@ public class Order {
 
 	public ArrayList<Product> getProducts() {
 		return products;
+	}
+	public HashMap<Product, Integer> getProd(){
+		return prod;
 	}
 
 	public Product isProduct(String name) {
@@ -85,5 +92,8 @@ public class Order {
 
 	public double getTotalCost() {
 		return totalCost;
+	}
+	public int getQuantity() {
+		return quantity;
 	}
 }
