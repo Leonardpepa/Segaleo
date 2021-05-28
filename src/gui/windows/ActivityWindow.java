@@ -214,7 +214,7 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == cartPanel) {
 			this.dispose();
-			//new CartWindow(reservation,true);
+			new CartWindow(reservation);
 		}
 		if (e.getSource() instanceof JLabel) {
 			Activity thisactivity =null;

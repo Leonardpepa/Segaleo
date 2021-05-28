@@ -245,6 +245,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
+		panel.setName(activity.getName());
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
@@ -256,12 +257,35 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(5, 180, 150, 40);
 
+
+		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
+		plusButtonLabel.setIcon(plusIcon);
+		plusButtonLabel.setBounds(290, 85, 24, 24);
+		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.setName("plus");
+
+		minusIcon = new ImageIcon("./buttonImages/minus.png");
+
+		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
+		minusButtonLabel.setBounds(230, 85, 24, 24);
+		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		minusButtonLabel.addMouseListener(this);
+		minusButtonLabel.setName("minus");
+
+		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
+		quantinty.setBounds(260, 85, 50, 20);
+		
 		productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		productPriceLabel.setBounds(155, 185, 43, 19);
 
 		panel.add(productimgLabel);
 		panel.add(productPriceLabel);
 		panel.add(titleLabel);
+		panel.add(plusButtonLabel);
+		panel.add(quantinty);
+		panel.add(minusButtonLabel);
 		panel.add(productPriceLabel);
 
 		return panel;
