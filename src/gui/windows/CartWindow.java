@@ -141,7 +141,10 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		exitButton = ButtonFactory.createButtonIcon(exitIcon);
 		exitButton.setBounds(30, 60, 13, 13);
 
-		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
+		String path = "buttonImages/Back Button";
+		String lang = TextResources.imageLang;
+		ImageIcon backImage = new ImageIcon(path + lang);
+		backButton = ButtonFactory.createButtonIcon(backImage);
 		backButton.setBounds(280, 55, 63, 23);
 
 		myCartLabel = LabelFactory.createLabel(TextResources.myCart, Color.BLACK, FontFactory.poppins(20));

@@ -181,7 +181,10 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		compobox = new JComboBox<>(sorts);
 		compobox.setBounds(236, 119, 120, 20);
 
-		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
+		String path = "buttonImages/Back Button";
+		String lang = TextResources.imageLang;
+		ImageIcon backImage = new ImageIcon(path + lang);
+		backButton = ButtonFactory.createButtonIcon(backImage);
 		backButton.setBounds(16, 30, 63, 23);
 
 		headerLabel = new JLabel(headerText, SwingConstants.CENTER);

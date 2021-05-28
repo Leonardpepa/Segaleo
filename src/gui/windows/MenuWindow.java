@@ -328,7 +328,10 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		header = new JPanel();
 		header.setPreferredSize(new Dimension(375, 265));
 		header.setLayout(null);
-		backButton = ButtonFactory.createButtonIcon(new ImageIcon("./buttonImages/Back Button.png"));
+		String path = "buttonImages/Back Button";
+		String lang = TextResources.imageLang;
+		ImageIcon backImage = new ImageIcon(path + lang);
+		backButton = ButtonFactory.createButtonIcon(backImage);
 		backButton.setBounds(16, 30, 63, 23);
 
 		search = TextFieldFactory.createTextField(TextResources.search, Color.white, Color.GRAY,
