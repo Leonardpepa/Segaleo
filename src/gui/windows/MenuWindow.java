@@ -435,7 +435,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		// TODO Auto-generated method stub
 		if (e.getSource() == cartPanel) {
 			this.dispose();
-			new CartWindow(order, true);
+			new CartWindow(order);
 		}
 		if (e.getSource() instanceof JLabel) {
 			JLabel plusLabel = (JLabel) e.getSource();

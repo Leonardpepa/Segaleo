@@ -337,7 +337,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == cartPanel) {
 			this.dispose();
-			new CartWindow(order, true);
+			new CartWindow(order);
 		}
 		if (e.getSource() instanceof JLabel) {
 			JLabel plusLabel = (JLabel) e.getSource();

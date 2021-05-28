@@ -35,15 +35,17 @@ import order.Order;
 import order.Product;
 import reservation.Activity;
 import reservation.ActivityReader;
+import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
 public class CartWindow extends JFrame implements ActionListener, MouseListener {
 
 	private JPanel backgroundPanel;
-
+	
+	private Reservation reservation;
 	private Order order;
-
+	private boolean isOrder;
 	// header
 	private JPanel header;
 	private ImageIcon exitIcon = new ImageIcon("buttonImages/exit button.png");
@@ -74,20 +76,25 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel minusButtonLabel;
 
 	private JLabel quantinty;
-	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
-	private boolean isOrder;
 	
 	private JPanel leftHelper;
 	private JPanel rightHelper;
 
-	public CartWindow(Order order, boolean isOrder) {
+	public CartWindow(Order order) {
 		this.order = order;
-		this.isOrder = isOrder;
+		this.isOrder = true;
 		initilizePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
-
+	}
+	
+	public CartWindow(Reservation reservation) {
+		this.reservation = reservation;
+		this.isOrder = false;
+		initilizePanelToFrame();
+		windowsConfiguration();
+		showWindow(this, true);
 	}
 
 	public void windowsConfiguration() {
@@ -171,9 +178,9 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 				container.add(configureProductPanel(product));
 			}
 		} else {
-			container.setLayout(new GridLayout(activities.size(), 1, 0, 8));
+			container.setLayout(new GridLayout(reservation.getActivities().size(), 1, 0, 8));
 
-			for (Activity activity : activities) {
+			for (Activity activity : reservation.getActivities()) {
 				container.add(configureActivityPanel(activity));
 			}
 		}
