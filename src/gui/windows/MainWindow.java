@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import reservation.ActivityReader;
+import reservation.Reservation;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,6 +35,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	Order order = new Order();
+	Reservation reservation= new Reservation();
 	
 	private JPanel panel;
 
@@ -182,7 +184,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		if (e.getSource() == activitiesBtn) {
 			this.dispose();
 			ActivityReader actReader = new ActivityReader();
-			new ActivityWindow(actReader.getActivitiesList());
+			new ActivityWindow(actReader.getActivitiesList(),reservation);
 		}
 		if (e.getSource() == logoutBtn) {
 			Login.logout();

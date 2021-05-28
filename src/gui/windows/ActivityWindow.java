@@ -26,7 +26,6 @@ import calendar.CalendarProgram;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
-import order.Order;
 import reservation.Activity;
 import reservation.ActivityReader;
 import reservation.Reservation;
@@ -61,8 +60,9 @@ public class ActivityWindow  extends JFrame implements ActionListener,MouseListe
 	private JLabel viewCart;
 	private JLabel cartPriceLabel;
 
-	public ActivityWindow(ArrayList<Activity> activities) {
+	public ActivityWindow(ArrayList<Activity> activities, Reservation reservation) {
 		this.activities = activities;
+		this.reservation =reservation;
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
