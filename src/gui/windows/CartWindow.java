@@ -227,7 +227,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
-		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
+		quantinty = LabelFactory.createLabel(order.prod.get(product) +"x", Color.BLACK, FontFactory.poppins(13));
 		quantinty.setBounds(260, 85, 50, 20);
 
 		productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));

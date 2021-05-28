@@ -68,6 +68,7 @@ public class Menu {
 		try {
 			FileReader reader = new FileReader(activitieFile);
 			BufferedReader inputReader = new BufferedReader(reader);
+			int id = 0;
 
 			/*
 			 * The reader reads each line, separates name, price, description and adds it
@@ -87,11 +88,11 @@ public class Menu {
 					// convertion into Double
 					alchoolPerc = Double.parseDouble(line.split("#")[4]);
 
-					list.add(new Drink(nameOfFood, description, price, path, alchoolPerc));
+					list.add(new Drink(nameOfFood, description, price, path, alchoolPerc, id++));
 				} else if (pathName.equalsIgnoreCase("files/coffee/Coffees")) {
-					list.add(new Coffee(nameOfFood, description, price, path));
+					list.add(new Coffee(nameOfFood, description, price, path, id++));
 				} else {
-					list.add(new Food(nameOfFood, description, price, path));
+					list.add(new Food(nameOfFood, description, price, path, id++));
 				}
 
 				line = inputReader.readLine();

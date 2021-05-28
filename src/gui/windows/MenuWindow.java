@@ -332,7 +332,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		String lang = TextResources.imageLang;
 		ImageIcon backImage = new ImageIcon(path + lang);
 		backButton = ButtonFactory.createButtonIcon(backImage);
-		backButton.setBounds(16, 30, 63, 23);
+		backButton.setBounds(16, 30, 63, 26);
 
 		search = TextFieldFactory.createTextField(TextResources.search, Color.white, Color.GRAY,
 				FontFactory.poppins(14));

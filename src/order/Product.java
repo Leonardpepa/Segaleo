@@ -11,13 +11,16 @@ public abstract class Product {
 	private double price;
 	private String path;
 	private ArrayList<Rating> ratings;
+	private int id;
 	
-	public Product(String name, String description, double price, String path) {
+	
+	public Product(String name, String description, double price, String path, int id) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.path = path;
 		this.ratings = new ArrayList<Rating>();
+		this.id = id;
 	}
 
 	public double calcAvRating() {
@@ -27,6 +30,31 @@ public abstract class Product {
 		}
 		return ratings.size() == 0? 0 :sum/ratings.size();
 	}
+	
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;  
+        return result;
+    }
+	
+	
+	//Compare only account numbers
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        if (id != other.getId()) {
+        	return false;        	
+        }
+        return true;
+    }
 	
 	public void addRating(Rating rating) {
 		ratings.add(rating);
@@ -62,6 +90,9 @@ public abstract class Product {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public int getId() {
+		return id;
 	}
 
 //	public String toString() {
