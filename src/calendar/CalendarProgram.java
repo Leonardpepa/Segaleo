@@ -6,6 +6,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import reservation.Activity;
+import resources.ColorResources;
 import resources.TextResources;
 
 import java.awt.*;
@@ -60,7 +61,7 @@ public class CalendarProgram extends JFrame {
 		container.setBounds(25, 150, 320, 350);
 		
 		dayLabel = LabelFactory.createLabel("Choose Day", Color.gray, FontFactory.poppins(22));
-		dayLabel.setBounds(32,100,139,32);
+		dayLabel.setBounds(32,120,139,32);
 		timeLabel = LabelFactory.createLabel("Choose Time", Color.gray, FontFactory.poppins(22));
 		timeLabel.setBounds(32,500,149,32);
 		
@@ -68,10 +69,13 @@ public class CalendarProgram extends JFrame {
 		backBtn.setBounds(15, 25, 64, 45);
 		backBtn.setPressedIcon(backImage);
 		
-		hour1Btn = new JButton(activity.getHour().get(0));
-		hour1Btn.setBounds(32, 550, 100, 45);
-		hour2Btn = new JButton(activity.getHour().get(1));
-		hour2Btn.setBounds(32, 610, 100, 45);
+		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0),FontFactory.poppins(14),
+				ColorResources.timeBtn,Color.WHITE);
+		hour1Btn.setBounds(111, 560, 154, 50);
+		hour2Btn = ButtonFactory.createButton(activity.getHour().get(0),FontFactory.poppins(14),
+				ColorResources.timeBtn,Color.WHITE);
+		hour2Btn.setBounds(111, 630, 154, 50);
+
 		
 		hour1Btn.addActionListener(new ActionListener() { @Override
 			public void actionPerformed(ActionEvent e) {

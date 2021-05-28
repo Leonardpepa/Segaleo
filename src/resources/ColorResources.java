@@ -23,4 +23,5 @@ public class ColorResources {
 	public static Color desserts = new Color(248, 195, 184);
 	public static Color sendColor = new Color(190, 208, 210);
 	public static Color cardLabels = new Color(143, 146, 161); 
+	public static Color timeBtn = new Color(32, 150, 171);
 }
