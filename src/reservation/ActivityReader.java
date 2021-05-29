@@ -28,6 +28,7 @@ public class ActivityReader {
 		int availability;
 		String hour1;
 		String hour2;
+		int id = 0;
 		ArrayList<String> hour = new ArrayList<String>();
 		Activity a;
 		//File format: the # is used to separate the question from the answer
@@ -48,7 +49,7 @@ public class ActivityReader {
 				hour.add(hour1);
 				hour.add(hour2);
 				
-				a=new Activity(name,price,path,availability,hour);
+				a=new Activity(name,price,path,availability,hour,id++);
 				activitiesList.add(a);
 				line = inputReader.readLine();
 			}

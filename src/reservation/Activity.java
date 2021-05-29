@@ -1,28 +1,28 @@
 package reservation;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
 public class Activity 
 {
 	private String name;
-	private int price;
+	private double price;
 	private String path;
 	private int availability;
+	private int id;
 	private ArrayList<String> hour;
+
 	private static int [][] a = new int[7][14];
 	private static ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 	
 	private int selhour = 0 ;
 	private int selday = 0;
 	private int column = 0;
-	private int selpeople = 0;
-	private double activityCost = 0;
+
+
 	
 
-	// set hour and day 
+	// set-get hour and day 
 	public void setSelHour(int hour) {
 		this.selhour = hour;
 	}
@@ -47,21 +47,7 @@ public class Activity
 		this.column = column;
 	}
 	
-	public int getSelpeople() {
-		return selpeople;
-	}
-
-	public void setSelpeople(int selpeople) {
-		this.selpeople = selpeople;
-	}
 	
-	public void calcActivityCost() {
-		activityCost = this.getSelpeople()* this.getPrice();
-	}
-	
-	public double getActivityCost() {
-		return activityCost;
-	}
 
 	public void PRINT()
 	{
@@ -69,12 +55,13 @@ public class Activity
 
 	}
 	
-	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour){
+	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour, int id){
 		this.name = name;
 		this.price = price;
 		this.path = path;
 		this.availability = availability;
 		this.hour = hour;
+		this.id = id;
 
 	}
 
@@ -83,7 +70,7 @@ public class Activity
 		return name;
 	}
 	
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -98,8 +85,12 @@ public class Activity
 	public ArrayList<String> getHour() {
 		return hour;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
-
+	// for avaliability array
 	public static void initialarray() {
 		for(int i= 0; i<7; i++) {
 			int j=0;
@@ -120,13 +111,40 @@ public class Activity
 	}
 }
 //	public boolean checkLimit() {
-//		if(atoma <= a[this.getSelDay][this.getSelHour + this.getColumn]{
-//		new reservation();
-// 		a[this.getSelDay][this.getSelHour + this.getColumn] -= atoma;
+//	if(this.getSelpeople() <= a[this.getSelday()][this.getSelhour() + this.getColumn()]){
+// 		a[this.getSelday()][this.getSelhour() + this.getColumn()] -= this.getSelpeople();
+// 		System.out.println("YES!");
+// 		System.out.println("apomenoun : " +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
+// 		this.calcActivityCost();
+// 		return true;
 //	}
 //	else {
-//		sorry
+//		System.out.println("sorry!");
+//		return false;
 //	}
-//	
+//}	
+	
+	// for hashmap
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+        int result = 1;
+        result = prime * result + id;  
+        return result;
+	}
+	 @Override
+	    public boolean equals(Object obj) {
+	        if (this == obj)
+	            return true;
+	        if (obj == null)
+	            return false;
+	        if (getClass() != obj.getClass())
+	            return false;
+	        Activity other = (Activity) obj;
+	        if (id != other.getId()) {
+	        	return false;        	
+	        }
+	        return true;
+	    }
 
 }
