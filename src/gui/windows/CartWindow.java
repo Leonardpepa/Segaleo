@@ -62,6 +62,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel priceLabel;
 	private JPanel priceHolder;
 	private JButton orderNowButton;
+	private JButton reserveNowButton;
 
 	// main
 	private JPanel mainContent;
@@ -261,7 +262,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(290, 85, 24, 24);
+		plusButtonLabel.setBounds(290, 180, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 		plusButtonLabel.setName("plus");
@@ -269,13 +270,13 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		minusIcon = new ImageIcon("./buttonImages/minus.png");
 
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
-		minusButtonLabel.setBounds(230, 85, 24, 24);
+		minusButtonLabel.setBounds(230, 180, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
-		quantinty = LabelFactory.createLabel("1x", Color.BLACK, FontFactory.poppins(13));
-		quantinty.setBounds(260, 85, 50, 20);
+		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) +"x", Color.BLACK, FontFactory.poppins(13));
+		quantinty.setBounds(260, 180, 50, 20);
 		
 		productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		productPriceLabel.setBounds(155, 185, 43, 19);
@@ -317,16 +318,32 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		priceHolder.setBackground(Color.WHITE);
 
 		totalLabel = LabelFactory.createLabel(TextResources.total, Color.BLACK, FontFactory.poppins(14));
-		priceLabel = LabelFactory.createLabel(order.calcCost() + "€", Color.BLACK, FontFactory.poppins(14));
+		if (!isOrder) {
+			priceLabel = LabelFactory.createLabel(reservation.calcCost() + "€", Color.BLACK, FontFactory.poppins(14));
+		}
+		else {
+			priceLabel = LabelFactory.createLabel(order.calcCost() + "€", Color.BLACK, FontFactory.poppins(14));
+		}
 		totalLabel.setBounds(23, 18, 100, 20);
 		priceLabel.setBounds(264, 18, 50, 20);
 
 		priceHolder.setBounds(24, 141, 328, 63);
-
-		orderNowButton = ButtonFactory.createButton(TextResources.orderNow, FontFactory.poppins(15),
-				ColorResources.frMainWindowBtn, Color.WHITE);
-		orderNowButton.setBounds(24, 214, 328, 41);
-		orderNowButton.addActionListener(this);
+//define submit button
+		if(isOrder) {
+			orderNowButton = ButtonFactory.createButton(TextResources.orderNow, FontFactory.poppins(15),
+					ColorResources.frMainWindowBtn, Color.WHITE);
+			orderNowButton.setBounds(24, 214, 328, 41);
+			orderNowButton.addActionListener(this);
+			footer.add(orderNowButton);
+		}
+		else {
+			reserveNowButton = ButtonFactory.createButton(TextResources.reserveNow, FontFactory.poppins(15),
+					ColorResources.frMainWindowBtn, Color.WHITE);
+			reserveNowButton.setBounds(24, 214, 328, 41);
+			reserveNowButton.addActionListener(this);
+			footer.add(reserveNowButton);
+		}
+		
 		priceHolder.add(totalLabel);
 		priceHolder.add(priceLabel);
 
@@ -334,24 +351,41 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		footer.add(submitCouponButton);
 		footer.add(paymentMethods);
 		footer.add(priceHolder);
-		footer.add(orderNowButton);
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+
 		if (e.getSource() == exitButton) {
-			int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
-					JOptionPane.YES_NO_OPTION);
-			if (selectedOption == 0) {
-				order.clearOrder();
-				this.dispose();
-				new MainWindow();
+			if(isOrder) {
+				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
+						JOptionPane.YES_NO_OPTION);
+				if (selectedOption == 0) {
+					order.clearOrder();
+					this.dispose();
+					new MainWindow();
+				}
 			}
+			else {
+				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
+						JOptionPane.YES_NO_OPTION);
+				if (selectedOption == 0) {
+					reservation.clearReservation();
+					this.dispose();
+					new MainWindow();
+				}
+			}
+			
 		}
 		if (e.getSource() == backButton) {
 			this.dispose();
-			new MenuWindow(order);
+			if(isOrder) new MenuWindow(order);
+			else {
+				ActivityReader actReader = new ActivityReader();
+				new ActivityWindow(actReader.getActivitiesList(),reservation);
+			}
 		}
 		if (e.getSource() == submitCouponButton) {
 			Coupon coupon = CouponFactory.GenerateCoupon();
@@ -374,12 +408,28 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			JLabel label = (JLabel) e.getSource();
 			JPanel parent = (JPanel) label.getParent();
 			String productName = parent.getName();
-			Product clickedProduct = Menu.findProduct(productName);
-			if (label.getName().equals("plus")) {
-				order.addProduct(clickedProduct);
-			} else if (label.getName().equals("minus")) {
-				order.removeProduct(clickedProduct);
+			if(isOrder) {
+				Product clickedProduct = Menu.findProduct(productName);
+				if (label.getName().equals("plus")) {
+					order.addProduct(clickedProduct);
+				} else if (label.getName().equals("minus")) {
+					order.removeProduct(clickedProduct);
+				}
 			}
+			else {
+				Activity clickedActivity =null;
+				for (Activity a : new ActivityReader().getActivitiesList()) {
+					if (a.getName().equalsIgnoreCase(productName)) {
+						clickedActivity = a;
+					}
+				}
+				if (label.getName().equals("plus")) {
+					reservation.addActivity(clickedActivity);
+				} else if (label.getName().equals("minus")) {
+					reservation.removeActivity(clickedActivity);
+				}
+			}
+		
 		}
 
 		initilizePanelToFrame();

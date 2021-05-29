@@ -37,6 +37,7 @@ public class TextResources {
 	public static String couponCode;
 	public static String submit;
 	public static String orderNow;
+	public static String reserveNow;
 	public static String total;
 
 	public static String forgotPassword;
@@ -63,6 +64,8 @@ public class TextResources {
 
 	public static String cancelOrderTitle;
 	public static String cancelOrder;
+	public static String cancelReservationTitle;
+	public static String cancelReservation;
 
 	public static String orderErrorTitle;
 	public static String orderError;
@@ -107,7 +110,8 @@ public class TextResources {
 		myCart = isEnglish ? "My Cart" : "Το καλάθι μου";
 		couponCode = isEnglish ? "Coupon code" : "Κωδικός Κουπονιού";
 		submit = isEnglish ? "Submit" : "Υποβολή";
-		orderNow = isEnglish ? "Order Now" : "Παραγγείλτε Τωρα";
+		orderNow = isEnglish ? "Order Now" : "Παραγγείλτε Τώρα";
+		reserveNow = isEnglish ? "Reserve Now" : "Κάντε Κράτηση Τώρα";
 		total = isEnglish ? "Total" : "Συνολικά";
 
 		payment = isEnglish ? "Payment Methods" : "Τρόποι Πληρωμής";
@@ -134,6 +138,8 @@ public class TextResources {
 
 		cancelOrderTitle = isEnglish ? "Cancel Order" : "Ακύρωση Παραγγελίας";
 		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας;";
+		cancelReservationTitle = isEnglish ? "Cancel Reservation" : "Ακύρωση Κράτησης";
+		cancelReservation = isEnglish ? "Do you want to cancel the reservation?" : "Θέλετε να ακυρώσετε την κράτησή σας;";
 
 		orderErrorTitle = isEnglish ? "Invalid Order" : "Μη Έγκυρη Παραγγελία";
 		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";

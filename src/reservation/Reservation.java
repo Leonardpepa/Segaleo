@@ -3,6 +3,8 @@ package reservation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import order.Product;
+
 public class Reservation 
 {
 
@@ -57,6 +59,10 @@ public class Reservation
 
 	public ArrayList<Activity> getActivities() {
 		return activities;
+	}
+	
+	public HashMap<Activity, Integer> getAct(){
+		return act;
 	}
 	
 	public void initializeHashMap() {

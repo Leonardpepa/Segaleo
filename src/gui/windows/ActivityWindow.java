@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -112,6 +113,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 
 	public void addListeners() {
 		backBtn.addActionListener(this);
+		cartPanel.addMouseListener(this);
 
 	}
 
@@ -136,14 +138,16 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 
 		bagIcon = new ImageIcon("Icons/Bag.png");
 
-		priceLabel = LabelFactory.createLabel("10" + "€", ColorResources.frPopup, FontFactory.poppins(14));
+		priceLabel = LabelFactory.createLabel(reservation.calcCost() + "€", ColorResources.frPopup, FontFactory.poppins(14));
 		priceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
 
 		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
 		viewCart.setBounds(67, cartPanel.getHeight() / 2 - 15, 200, 20);
 
 		bagLabel = LabelFactory.createIconLabel(bagIcon);
-		bagLabel.setBounds(29, cartPanel.getHeight() / 2 - 15, 25, 25);
+		bagLabel.setText(reservation.getActivities().size() + "");
+		bagLabel.setBounds(18, cartPanel.getHeight() / 2 - 25, 50, 40);
+		bagLabel.setForeground(Color.RED);
 
 		cartPanel.add(bagLabel);
 		cartPanel.add(viewCart);
@@ -172,7 +176,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.addMouseListener(this);
 
 		priceLabel = LabelFactory.createLabelBG(activity.getPrice() + "€", ColorResources.bgLoginWindow, ColorResources.bgMainWindowBtn, FontFactory.poppins(14));
-		priceLabel.setBounds(270, 180, 30, 24);
+		priceLabel.setBounds(260, 180, 40, 24);
 
 		panel.add(activityimgLabel);
 		panel.add(titleLabel);
@@ -203,8 +207,13 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backBtn) {
-			this.dispose();
-			new MainWindow();
+			int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
+					JOptionPane.YES_NO_OPTION);
+			if (selectedOption == 0) {
+				reservation.clearReservation();
+				this.dispose();
+				new MainWindow();
+			}
 		}
 
 	}
@@ -229,12 +238,14 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 			}
 			new CalendarProgram(thisactivity);
 
-			// column where activity starts
-			thisactivity.setColumn(activities.indexOf(thisactivity) * 2);
-			// να μπαίνει στο reservation αβτίστοιχα με το order
+//			if(thisactivity.checkLimit()) {
+//			//column where activity starts
+			 thisactivity.setColumn(activities.indexOf(thisactivity)*2);
+//			//να μπαίνει στο reservation αβτίστοιχα με το order
 			reservation.addActivity(thisactivity);
-			// order.addProduct(clickedProduct);
-			// cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
+			priceLabel.setText(String.valueOf(reservation.calcCost()) + "€");
+			bagLabel.setText(reservation.getActivities().size() + "");
+//		}
 		}
 
 	}
