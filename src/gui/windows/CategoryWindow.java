@@ -253,10 +253,10 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		productimgLabel.setBounds(10, 10, 100, 100);
 
 		JLabel titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(120, 20, 200, 17);
+		titleLabel.setBounds(120, 10, 200, 20);
 
 		JLabel descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
-		descLabel.setBounds(120, 35, 200, 40);
+		descLabel.setBounds(120, 30, 200, 50);
 
 		ImageIcon plusIcon = new ImageIcon("./buttonImages/plus.png");
 
@@ -274,7 +274,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 						+ (foodProduct.getPrice() + foodProduct.getDiscount()) + "€</span></body></html>");
 				JLabel newPrice = LabelFactory.createLabel(foodProduct.getPrice() + "€", Color.red,
 						FontFactory.poppins(13));
-				newPrice.setBounds(250, 65, 43, 19);
+				newPrice.setBounds(250, 68, 43, 19);
 				panel.add(newPrice);
 			}
 		}

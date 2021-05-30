@@ -5,4 +5,4 @@
 Φρέντο Εσπρέσσο#παγωμένος εσπρέσσο#2.50#Drinks Menu/Coffees/Freddo Espresso.png
 Φρέντο Καπουτσίνο#παγωμένος εσπρέσσο με κρέμα#3.00#Drinks Menu/Coffees/Freddo Cappuccino.png
 Φραπέ#παγωμένος στιγμιαίος καφές#3.00#Drinks Menu/Coffees/Frappe.png
-Ελληνικός#παραδοσιακός ελληνικός καφές#2.50#freddo espresso#Drinks Menu/Coffees/Greek.png
+Ελληνικός#παραδοσιακός ελληνικός καφές#2.50#Drinks Menu/Coffees/Greek.png

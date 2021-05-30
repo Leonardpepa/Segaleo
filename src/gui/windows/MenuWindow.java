@@ -385,10 +385,10 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		productimgLabel.setBounds(10, 10, 100, 100);
 
 		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(120, 10, 150, 17);
+		titleLabel.setBounds(120, 8, 160, 20);
 
 		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
-		descLabel.setBounds(120, 35, 150, 40);
+		descLabel.setBounds(120, 25, 150, 50);
 
 		prevPrice = new JLabel("<html><body><span style='text-decoration: line-through;'>" + (product.getPrice() + product.getDiscount())+ "€</span></body></html>");
 		prevPrice.setBounds(163, 85, 43, 19);
