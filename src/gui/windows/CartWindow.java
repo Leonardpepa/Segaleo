@@ -28,6 +28,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
+import login.Login;
 import menu.Menu;
 import order.Coupon;
 import order.CouponFactory;
@@ -398,6 +399,12 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			}
 			else {
 				JOptionPane.showMessageDialog(null, TextResources.orderSuccess, TextResources.orderSuccessTitle, JOptionPane.INFORMATION_MESSAGE);
+				if(order.getTotalCost() > 20) {
+					Coupon coupon = CouponFactory.GenerateCoupon();
+					JOptionPane.showMessageDialog(null, "Thank you for the order.Here is a coupon with the code: " + coupon.getCode());
+					Login.loggedCustomer.addCoupons(coupon);
+				}
+				Login.loggedCustomer.addOrders(order);
 			}
 		}
 	}
