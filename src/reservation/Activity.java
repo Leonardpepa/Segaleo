@@ -2,6 +2,8 @@ package reservation;
 
 import java.util.ArrayList;
 
+import rating.Rating;
+
 
 public class Activity 
 {
@@ -11,6 +13,7 @@ public class Activity
 	private int availability;
 	private int id;
 	private ArrayList<String> hour;
+	private ArrayList<Rating> ratings;
 
 	private static int [][] a = new int[7][14];
 	private static ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
@@ -62,6 +65,7 @@ public class Activity
 		this.availability = availability;
 		this.hour = hour;
 		this.id = id;
+		this.ratings = new ArrayList<Rating>();
 
 	}
 
@@ -146,5 +150,17 @@ public class Activity
 	        }
 	        return true;
 	    }
+	 
+	 public void addRating(Rating rating) {
+			ratings.add(rating);
+	}
+	 
+	 public double calcAvRating() {
+			double sum = 0;
+			for(Rating rating: ratings) {
+				sum += rating.getStars();
+			}
+			return ratings.size() == 0? 0 :sum/ratings.size();
+		}
 
 }
