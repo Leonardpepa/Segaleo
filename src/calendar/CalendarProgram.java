@@ -74,7 +74,7 @@ public class CalendarProgram extends JFrame {
 		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0),FontFactory.poppins(14),
 				ColorResources.timeBtn,Color.WHITE);
 		hour1Btn.setBounds(111, 560, 154, 50);
-		hour2Btn = ButtonFactory.createButton(activity.getHour().get(0),FontFactory.poppins(14),
+		hour2Btn = ButtonFactory.createButton(activity.getHour().get(1),FontFactory.poppins(14),
 				ColorResources.timeBtn,Color.WHITE);
 		hour2Btn.setBounds(111, 630, 154, 50);
 
