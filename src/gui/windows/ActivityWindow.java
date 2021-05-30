@@ -207,10 +207,16 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backBtn) {
-			int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
-					JOptionPane.YES_NO_OPTION);
-			if (selectedOption == 0) {
-				reservation.clearReservation();
+			if(reservation.getActivities().size() > 0) {
+				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
+						JOptionPane.YES_NO_OPTION);
+				if (selectedOption == 0) {
+					reservation.clearReservation();
+					this.dispose();
+					new MainWindow();
+				}
+			}
+			else {
 				this.dispose();
 				new MainWindow();
 			}
