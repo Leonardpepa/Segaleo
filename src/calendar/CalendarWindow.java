@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class CalendarProgram extends JFrame {
+public class CalendarWindow extends JFrame {
 	/**
 	 * 
 	 */
@@ -39,7 +39,7 @@ public class CalendarProgram extends JFrame {
 	private JButton hour1Btn;
 	private JButton hour2Btn;
 	
-	public CalendarProgram(Activity activity) {
+	public CalendarWindow(Activity activity) {
 		new TextResources().changeLanguage();
 		new ColorResources();
 		this.activity = activity;
