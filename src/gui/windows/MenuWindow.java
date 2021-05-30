@@ -84,6 +84,8 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	
 	private JPanel leftHelper;
 	private JPanel rightHelper;
+
+	int displayQuantity;
 	
 	// constructor
 	public MenuWindow(Order order) {
@@ -416,10 +418,16 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
-			int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
-					JOptionPane.YES_NO_OPTION);
-			if (selectedOption == 0) {
-				order.clearOrder();
+			if(displayQuantity > 0) {
+				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
+						JOptionPane.YES_NO_OPTION);
+				if (selectedOption == 0) {
+					order.clearOrder();
+					this.dispose();
+					new MainWindow();
+				}
+			}
+			else {
 				this.dispose();
 				new MainWindow();
 			}
@@ -444,7 +452,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 			Product clickedProduct = Menu.findProduct(productName);
 			order.addProduct(clickedProduct);
 			priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
-			int displayQuantity = 0;
+			displayQuantity = 0;
 			for(Product p: order.getProd().keySet()) {
 				displayQuantity += order.getProd().get(p);
 			}
