@@ -71,6 +71,10 @@ public class TextResources {
 	public static String orderError;
 	public static String orderSuccessTitle;
 	public static String orderSuccess;
+	
+	public static String chooseDay;
+	public static String chooseTime;
+
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -145,7 +149,9 @@ public class TextResources {
 		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
 		orderSuccessTitle = isEnglish ? "Success" : "Επιτυχία";
 		orderSuccess = isEnglish ? "Your order is complete" : "Η παραγγελία σας ολοκληρώθηκε";
-
+		
+		chooseDay = isEnglish ? "Choose Day" : "Διάλεξε Μέρα";
+		chooseTime = isEnglish ? "Choose Time" : "Διάλεξε Ώρα";
 	}
 
 }

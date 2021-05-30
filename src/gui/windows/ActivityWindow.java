@@ -22,7 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
-import calendar.CalendarProgram;
+import calendar.CalendarWindow;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
@@ -236,7 +236,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 //					System.out.println(thisactivity.getName());
 				}
 			}
-			new CalendarProgram(thisactivity);
+			new CalendarWindow(thisactivity);
 
 //			if(thisactivity.checkLimit()) {
 //			//column where activity starts
