@@ -40,6 +40,7 @@ public class CalendarWindow extends JFrame {
 	private JButton hour2Btn;
 	
 	public CalendarWindow(Activity activity) {
+		
 		new TextResources().changeLanguage();
 		new ColorResources();
 		this.activity = activity;
@@ -53,7 +54,7 @@ public class CalendarWindow extends JFrame {
 
 
 		//Prepare frame
-		frmMain = new JFrame ("Hotel PDA"); //Create frame
+		frmMain = new JFrame ("Hotel PDA Sample"); //Create frame
 		//frmMain.setSize(new Dimension(375, 812)); //Set size to 400x400 pixels
 		container = frmMain.getContentPane(); //Get content pane
 		container.setPreferredSize(new Dimension(375, 812));
@@ -62,9 +63,9 @@ public class CalendarWindow extends JFrame {
 		container.setBackground(new Color(216,223,224));
 		container.setBounds(25, 150, 320, 350);
 		
-		dayLabel = LabelFactory.createLabel("Choose Day", Color.gray, FontFactory.poppins(22));
-		dayLabel.setBounds(32,120,139,32);
-		timeLabel = LabelFactory.createLabel("Choose Time", Color.gray, FontFactory.poppins(22));
+		dayLabel = LabelFactory.createLabel(TextResources.chooseDay, Color.gray, FontFactory.poppins(22));
+		dayLabel.setBounds(32,120,149,32);
+		timeLabel = LabelFactory.createLabel(TextResources.chooseTime, Color.gray, FontFactory.poppins(22));
 		timeLabel.setBounds(32,500,149,32);
 		
 		backBtn = ButtonFactory.createButtonIcon(backImage);
@@ -151,7 +152,14 @@ public class CalendarWindow extends JFrame {
 		String[] headersGR = {"ΚΥΡ", "ΔΕΥ", "ΤΡΙ", "ΤΕΤ", "ΠΕΜ", "ΠΑΡ", "ΣΑΒ"}; //All headers
 		
 		for (int i=0; i<7; i++){
-			mtblCalendar.addColumn(headers[i]);
+			if (TextResources.isEnglish)
+			{
+				mtblCalendar.addColumn(headers[i]);
+			}
+			else
+			{
+				mtblCalendar.addColumn(headersGR[i]);
+			}
 		}
 
 //		tblCalendar.setBackground(new Color(216,223,224));
