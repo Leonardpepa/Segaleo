@@ -21,6 +21,7 @@ public class Activity
 	private int selhour = 0 ;
 	private int selday = 0;
 	private int column = 0;
+	private int selpeople = 0;
 
 
 	
@@ -50,7 +51,13 @@ public class Activity
 		this.column = column;
 	}
 	
-	
+	public int getSelpeople() {
+		return selpeople;
+	}
+
+	public void setSelpeople(int selpeople) {
+		this.selpeople = selpeople;
+	}
 
 	public void PRINT()
 	{
@@ -114,19 +121,18 @@ public class Activity
 		}
 	}
 }
-//	public boolean checkLimit() {
-//	if(this.getSelpeople() <= a[this.getSelday()][this.getSelhour() + this.getColumn()]){
-// 		a[this.getSelday()][this.getSelhour() + this.getColumn()] -= this.getSelpeople();
-// 		System.out.println("YES!");
-// 		System.out.println("apomenoun : " +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
-// 		this.calcActivityCost();
-// 		return true;
-//	}
-//	else {
-//		System.out.println("sorry!");
-//		return false;
-//	}
-//}	
+	public boolean checkLimit() {
+	if(this.getSelpeople() <= a[this.getSelday()][this.getSelhour() + this.getColumn()]){
+ 		a[this.getSelday()][this.getSelhour() + this.getColumn()] -= this.getSelpeople();
+ 		System.out.println("YES!");
+ 		System.out.println("apomenoun : " +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
+ 		return true;
+	}
+	else {
+		System.out.println("sorry!");
+		return false;
+	}
+}	
 	
 	// for hashmap
 	@Override
