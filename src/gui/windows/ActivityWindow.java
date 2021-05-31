@@ -239,21 +239,10 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 			for (Activity a : activities) {
 				if (a.getName().equalsIgnoreCase(activityName)) {
 					thisactivity = a;
-//					System.out.println(thisactivity.getName());
 				}
 			}
-			new CalendarWindow(thisactivity);
-
-//			if(thisactivity.checkLimit()) {
-//			//column where activity starts
-			 thisactivity.setColumn(activities.indexOf(thisactivity)*2);
-//			//να μπαίνει στο reservation αβτίστοιχα με το order
-			reservation.addActivity(thisactivity);
-			priceLabel.setText(String.valueOf(reservation.calcCost()) + "€");
-			bagLabel.setText(reservation.getActivities().size() + "");
-//		}
+			new CalendarWindow(activities,thisactivity, reservation, priceLabel , bagLabel);
 		}
-
 	}
 
 	@Override
