@@ -74,6 +74,7 @@ public class TextResources {
 	
 	public static String chooseDay;
 	public static String chooseTime;
+	public static String choosePeople;
 
 
 	public void changeLanguage() {
@@ -152,6 +153,7 @@ public class TextResources {
 		
 		chooseDay = isEnglish ? "Choose Day" : "Διάλεξε Μέρα";
 		chooseTime = isEnglish ? "Choose Time" : "Διάλεξε Ώρα";
+		choosePeople = isEnglish ? "Choose People" : "Διάλεξε Άτομα";
 	}
 
 }
