@@ -17,7 +17,6 @@ public class CalendarWindow extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	
 	private JTable tblCalendar;
 	private JFrame frmMain;
@@ -45,14 +44,6 @@ public class CalendarWindow extends JFrame {
 		new ColorResources();
 		this.activity = activity;
 		
-		//Look and feel
-		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
-
-
 		//Prepare frame
 		frmMain = new JFrame ("Hotel PDA Sample"); //Create frame
 		//frmMain.setSize(new Dimension(375, 812)); //Set size to 400x400 pixels
