@@ -55,7 +55,7 @@ public class TextResources {
 	public static String nameCardField;
 	public static String numCardField;
 	public static String saveCard;
-	
+
 	public static String ratingLabel;
 	public static String ratingComment;
 
@@ -71,10 +71,11 @@ public class TextResources {
 	public static String orderError;
 	public static String orderSuccessTitle;
 	public static String orderSuccess;
-	
+
 	public static String chooseDay;
 	public static String chooseTime;
 	public static String choosePeople;
+	public static String confirm;
 
 
 	public void changeLanguage() {
@@ -103,7 +104,7 @@ public class TextResources {
 		reservationCompleteTitle = isEnglish ? "Reservation Completed" : "Η Κράτηση Ολοκληρώθηκε";
 		reservationCompleteMessage = isEnglish
 				? "Your reservation has been accepted. We will be waiting for your arrival."
-				: "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
+						: "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
 		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
 		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
 		orderCompleteMessage = isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes."
@@ -150,10 +151,11 @@ public class TextResources {
 		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
 		orderSuccessTitle = isEnglish ? "Success" : "Επιτυχία";
 		orderSuccess = isEnglish ? "Your order is complete" : "Η παραγγελία σας ολοκληρώθηκε";
-		
+
 		chooseDay = isEnglish ? "Choose Day" : "Διάλεξε Μέρα";
 		chooseTime = isEnglish ? "Choose Time" : "Διάλεξε Ώρα";
 		choosePeople = isEnglish ? "Choose People" : "Διάλεξε Άτομα";
+		confirm = isEnglish ? "Confirm" : "Επιβεβαίωση";
 	}
 
 }
