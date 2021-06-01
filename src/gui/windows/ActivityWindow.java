@@ -241,6 +241,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 					thisactivity = a;
 				}
 			}
+			this.dispose();
 			new CalendarWindow(activities,thisactivity, reservation, priceLabel , bagLabel);
 		}
 	}

@@ -5,6 +5,7 @@ import javax.swing.table.*;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import gui.windows.ActivityWindow;
 import gui.windows.MainWindow;
 import reservation.Activity;
 import reservation.Reservation;
@@ -15,14 +16,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class CalendarWindow extends JFrame implements MouseListener{
+public class CalendarWindow extends JFrame implements ActionListener, MouseListener{
 	/**
 	 * 
 	 */
 
 	private JTable tblCalendar;
-	private JFrame frmMain;
-	private Container container;
+	private JPanel container;
 	private DefaultTableModel mtblCalendar; //Table model
 	private JScrollPane stblCalendar; //The scrollpane
 	private JPanel pnlCalendar;
@@ -67,83 +67,40 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		this.priceLabel = priceLabel;
 		this.bagLabel = bagLabel;
 
-		frmMain = new JFrame ("Segaleo"); //Create frame
-		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
-		frmMain.setResizable(false);
+
 		initializePanel();
-		frmMain.setVisible(true);
-
-		hour1Btn.addActionListener(new ActionListener() { @Override
-			public void actionPerformed(ActionEvent e) {
-
-			if(e.getSource() == hour1Btn) {
-				activity.setSelHour(0);
-				flagHour= true;
-			}
-		}
-
-		});
-
-		hour2Btn.addActionListener(new ActionListener() { @Override
-			public void actionPerformed(ActionEvent e) {
-
-			if(e.getSource() == hour2Btn) {
-				activity.setSelHour(1);
-				flagHour= true;
-
-			}
-		}
-
-		});
-
-		backBtn.addActionListener(new ActionListener() { @Override
-			public void actionPerformed(ActionEvent e) {
-
-			if(e.getSource() == backBtn) {
-				frmMain.dispose();
-				new MainWindow();
-			}
-
-		}
-
-		});
-
-
-		confirmBtn.addActionListener(new ActionListener() { @Override
-			public void actionPerformed(ActionEvent e) {
-
-			if(e.getSource() == confirmBtn) {
-				if(flagHour && flagDay) {
-					frmMain.dispose();
-					activity.PRINT();
-				}
-				else {
-					if(!flagHour) {
-						JOptionPane.showMessageDialog(null, "you don't have pick an hour");
-					}
-					if(!flagDay){
-						JOptionPane.showMessageDialog(null, "you don't have pick a valid day");
-					}
-				}
-
-
-
-			}	
-		}
-		});
+		windowsConfiguration();
+		showWindow(this, true);
 
 
 	}	
+	public void windowsConfiguration() {
+		this.setTitle("Segaleo");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	public void addListeners() {
+		hour1Btn.addActionListener(this);
+		hour2Btn.addActionListener(this);
+		backBtn.addActionListener(this);
+		confirmBtn.addActionListener(this);
+			
+	}
+	
+	public void showWindow(JFrame frame, boolean show) {
+		frame.setVisible(show);
+	}
+	
 	public void initializePanel() {
-		//Prepare frame
-		//frmMain.setSize(new Dimension(375, 812)); //Set size to 400x400 pixels
-		container = frmMain.getContentPane(); //Get content pane
+		// panel 
+		container = new JPanel();
 		container.setPreferredSize(new Dimension(375, 812));
-		container.setLayout(null); //Apply null layout
-
+		container.setLayout(null);
 		container.setBackground(new Color(216,223,224));
 		container.setBounds(25, 130, 320, 350);
-
+		
+		//labels
 		dayLabel = LabelFactory.createLabel(TextResources.chooseDay, Color.gray, FontFactory.poppins(22));
 		dayLabel.setBounds(32,90,160,32);
 		timeLabel = LabelFactory.createLabel(TextResources.chooseTime, Color.gray, FontFactory.poppins(22));
@@ -151,6 +108,7 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		peopleLabel = LabelFactory.createLabel(TextResources.choosePeople, Color.gray, FontFactory.poppins(22));
 		peopleLabel.setBounds(32,660,165,32);
 
+		//buttons
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(15, 25, 64, 45);
 		backBtn.setPressedIcon(backImage);
@@ -194,7 +152,7 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		pnlCalendar = new JPanel(null);
 		pnlCalendar.setBackground(new Color(216,223,224));
 
-		//Add controls to pane
+		//Add controls to panel
 		container.add(pnlCalendar);
 		pnlCalendar.add(stblCalendar);
 		container.add(dayLabel);
@@ -258,8 +216,9 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		//Refresh calendar
 		refreshCalendar (realMonth, realYear); //Refresh calendar
 
-
-		frmMain.pack();
+		addListeners();
+		this.setContentPane(container);
+		this.pack();
 
 	}
 
@@ -289,21 +248,38 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
 	}
 
-	class tblCalendarRenderer extends DefaultTableCellRenderer{
-		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
-			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-			//
-			//			setBackground(new Color(216,223,224));
-			//			if (value != null){
-			//				if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-			//					setBackground(new Color(220, 220, 255));
-			//				}
-			//			}
-			//			
-			//			setBorder(null);
-			//			setForeground(new Color(112, 112, 112));
-			return this;
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == backBtn) {
+			this.dispose();
+			new MainWindow();
 		}
+		if(e.getSource() == hour1Btn) {
+			activity.setSelHour(0);
+			flagHour= true;
+		}
+		if(e.getSource() == hour2Btn) {
+			activity.setSelHour(1);
+			flagHour= true;
+
+		}
+		if(e.getSource() == confirmBtn) {
+			if(flagHour && flagDay) {
+				this.dispose();
+				activity.PRINT();
+				new ActivityWindow(activities,reservation);
+			}
+			else {
+				if(!flagHour) {
+					JOptionPane.showMessageDialog(null, "you don't have pick an hour");
+				}
+				if(!flagDay){
+					JOptionPane.showMessageDialog(null, "you don't have pick a valid day");
+				}
+			}
+		}
+		
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -344,7 +320,23 @@ public class CalendarWindow extends JFrame implements MouseListener{
 
 	}
 
-
+	// extra classes
+	class tblCalendarRenderer extends DefaultTableCellRenderer{
+		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
+			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
+			//
+			//			setBackground(new Color(216,223,224));
+			//			if (value != null){
+			//				if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
+			//					setBackground(new Color(220, 220, 255));
+			//				}
+			//			}
+			//			
+			//			setBorder(null);
+			//			setForeground(new Color(112, 112, 112));
+			return this;
+		}
+	}
 
 	class jTableListener implements MouseListener{
 
@@ -409,6 +401,7 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		}
 
 	}
+	
 
 
 }
