@@ -148,7 +148,7 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		timeLabel = LabelFactory.createLabel(TextResources.chooseTime, Color.gray, FontFactory.poppins(22));
 		timeLabel.setBounds(32,470,160,32);
 		peopleLabel = LabelFactory.createLabel(TextResources.choosePeople, Color.gray, FontFactory.poppins(22));
-		peopleLabel.setBounds(32,680,160,32);
+		peopleLabel.setBounds(32,660,165,32);
 
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(15, 25, 64, 45);
@@ -156,16 +156,16 @@ public class CalendarWindow extends JFrame implements MouseListener{
 
 		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0),FontFactory.poppins(14),
 				ColorResources.timeBtn,Color.WHITE);
-		hour1Btn.setBounds(111, 530, 154, 50);
+		hour1Btn.setBounds(111, 520, 154, 50);
 		hour2Btn = ButtonFactory.createButton(activity.getHour().get(1),FontFactory.poppins(14),
 				ColorResources.timeBtn,Color.WHITE);
-		hour2Btn.setBounds(111, 600, 154, 50);
+		hour2Btn.setBounds(111, 590, 154, 50);
 
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(190, 730, 24, 24);
+		plusButtonLabel.setBounds(210, 710, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 		plusButtonLabel.setName("plus");
@@ -173,17 +173,17 @@ public class CalendarWindow extends JFrame implements MouseListener{
 		minusIcon = new ImageIcon("./buttonImages/minus.png");
 
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
-		minusButtonLabel.setBounds(130, 730, 24, 24);
+		minusButtonLabel.setBounds(150, 710, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
 		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) +"x", Color.BLACK, FontFactory.poppins(13));
-		quantinty.setBounds(160, 730, 50, 20);
+		quantinty.setBounds(180, 710, 50, 20);
 
 		confirmBtn = ButtonFactory.createButton(TextResources.confirm,FontFactory.poppins(14),
 				ColorResources.timeBtn,Color.WHITE);
-		confirmBtn.setBounds(111, 760, 154, 50);
+		confirmBtn.setBounds(111, 740, 154, 50);
 
 		//Create controls
 		mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
