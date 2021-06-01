@@ -5,6 +5,7 @@ import javax.swing.table.*;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import gui.windows.MainWindow;
 import reservation.Activity;
 import reservation.Reservation;
 import resources.ColorResources;
@@ -100,7 +101,7 @@ public class CalendarWindow extends JFrame implements MouseListener{
 
 			if(e.getSource() == backBtn) {
 				frmMain.dispose();
-				//				new LoginWindow();
+				new MainWindow();
 			}
 
 		}
