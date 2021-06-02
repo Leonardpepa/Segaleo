@@ -18,12 +18,10 @@ public class Activity
 	private static int [][] a = new int[7][14];
 	private static ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
-	private int selhour = 0 ;
-	private int selday = 0;
-	private int column = 0;
-	private int selpeople = 0;
-
-
+	private int selhour =0;
+	private int selday =0;
+	private int column =0;
+	private int selpeople =0;
 
 
 	// set-get hour and day 
@@ -57,6 +55,11 @@ public class Activity
 
 	public void setSelpeople(int selpeople) {
 		this.selpeople = selpeople;
+	}
+
+	
+	public static int[][] getA() {
+		return a;
 	}
 
 	public void PRINT()
@@ -100,6 +103,7 @@ public class Activity
 	public int getId() {
 		return id;
 	}
+	
 
 	// for avaliability array
 	public static void initialarray() {
@@ -129,10 +133,23 @@ public class Activity
 			return true;
 		}
 		else {
-			System.out.println("sorry!");
+			System.out.println("sorry!" + +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
 			return false;
 		}
-	}	
+	}
+	public boolean plusCheck() {
+	System.out.println("**********" +a[this.getSelday()][this.getSelhour() + this.getColumn()]);
+		if(a[this.getSelday()][this.getSelhour() + this.getColumn()]>= 1) {
+			a[this.getSelday()][this.getSelhour() + this.getColumn()] -=1;
+			System.out.println("YES!");
+			System.out.println("apomenoun : " +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
+			return true;
+		}
+		else {
+			System.out.println("sorry menoyn 0 ");
+			return false;
+		}
+	}
 
 	// for hashmap
 	@Override

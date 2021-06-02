@@ -45,6 +45,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private JPanel backgroundPanel;
 	
 	private Reservation reservation;
+	private ArrayList<Activity> activities;
 	private Order order;
 	private boolean isOrder;
 	// header
@@ -78,6 +79,8 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel minusButtonLabel;
 
 	private JLabel quantinty;
+	
+	private int[] [] a;
 
 	
 	private JPanel leftHelper;
@@ -91,8 +94,12 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		showWindow(this, true);
 	}
 	
-	public CartWindow(Reservation reservation) {
+	public CartWindow(Reservation reservation, ArrayList<Activity> activities) {
+		System.out.println("////////////////////////////////////////");
+		this.a = Activity.getA();
+		Activity.printArray();
 		this.reservation = reservation;
+		this.activities = activities;
 		this.isOrder = false;
 		initilizePanelToFrame();
 		windowsConfiguration();
@@ -430,10 +437,21 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 						clickedActivity = a;
 					}
 				}
+				clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
 				if (label.getName().equals("plus")) {
 					reservation.addActivity(clickedActivity);
+					clickedActivity.setColumn(activities.indexOf(clickedActivity)*2);
+					System.out.println("h clicked exei day " + clickedActivity.getSelday());
+					System.out.println("h clicked exei hour " + clickedActivity.getSelhour());
+					if(!clickedActivity.plusCheck()) {
+						reservation.removeActivity(clickedActivity);
+					}
 				} else if (label.getName().equals("minus")) {
 					reservation.removeActivity(clickedActivity);
+					clickedActivity.setColumn(activities.indexOf(clickedActivity)*2);
+					clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
+					a[clickedActivity.getSelday()][clickedActivity.getSelhour()+clickedActivity.getColumn()] += 1;
+					System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()+clickedActivity.getColumn()]);
 				}
 			}
 		
