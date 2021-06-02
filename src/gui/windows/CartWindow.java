@@ -53,7 +53,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private ImageIcon exitIcon = new ImageIcon("buttonImages/exit button.png");
 	private JButton exitButton;
 	private JLabel myCartLabel;
-	private JButton backButton;
 
 	// footer
 	JPanel footer;
@@ -95,7 +94,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	}
 	
 	public CartWindow(Reservation reservation, ArrayList<Activity> activities) {
-		System.out.println("////////////////////////////////////////");
 		this.a = Activity.getA();
 		Activity.printArray();
 		this.reservation = reservation;
@@ -141,7 +139,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 	public void addListeners() {
 		exitButton.addActionListener(this);
-		backButton.addActionListener(this);
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -157,17 +154,11 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		exitButton = ButtonFactory.createButtonIcon(exitIcon);
 		exitButton.setBounds(30, 60, 13, 13);
 
-		String path = "buttonImages/Back Button";
-		String lang = TextResources.imageLang;
-		ImageIcon backImage = new ImageIcon(path + lang);
-		backButton = ButtonFactory.createButtonIcon(backImage);
-		backButton.setBounds(280, 55, 63, 23);
-
 		myCartLabel = LabelFactory.createLabel(TextResources.myCart, Color.BLACK, FontFactory.poppins(20));
 		myCartLabel.setBounds(64, 40, 100, 50);
 
 		header.add(exitButton);
-		header.add(backButton);
+	
 		header.add(myCartLabel);
 	}
 
@@ -367,27 +358,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		// TODO Auto-generated method stub
 
 		if (e.getSource() == exitButton) {
-			if(isOrder) {
-				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
-						JOptionPane.YES_NO_OPTION);
-				if (selectedOption == 0) {
-					order.clearOrder();
-					this.dispose();
-					new MainWindow();
-				}
-			}
-			else {
-				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
-						JOptionPane.YES_NO_OPTION);
-				if (selectedOption == 0) {
-					reservation.clearReservation();
-					this.dispose();
-					new MainWindow();
-				}
-			}
-			
-		}
-		if (e.getSource() == backButton) {
 			this.dispose();
 			if(isOrder) new MenuWindow(order);
 			else {
@@ -405,11 +375,13 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
-				JOptionPane.showMessageDialog(null, TextResources.orderSuccess, TextResources.orderSuccessTitle, JOptionPane.INFORMATION_MESSAGE);
-				if(order.getTotalCost() > 20) {
-					Coupon coupon = CouponFactory.GenerateCoupon();
-					JOptionPane.showMessageDialog(null, "Thank you for the order.Here is a coupon with the code: " + coupon.getCode());
-					Login.loggedCustomer.addCoupons(coupon);
+				if(order.getTotalCost() >= 20) {
+					this.dispose();
+					new CompleteOrderWindow(true);
+				}
+				else {
+					this.dispose();
+					new CompleteOrderWindow(false);					
 				}
 				Login.loggedCustomer.addOrders(order);
 			}

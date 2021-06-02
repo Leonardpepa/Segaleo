@@ -10,10 +10,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
+import login.Login;
+import order.Coupon;
+import order.CouponFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -27,6 +32,8 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 	private JPanel insidePanel;
 	private JLabel completeTitle;
 	private JLabel message;
+	private JLabel couponLabel;
+	private JLabel couponCode;
 	private JLabel orderComplLabel;
 
 	ImageIcon orderComplImage = new ImageIcon("buttonImages/order-complete.png");
@@ -34,13 +41,13 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 	ImageIcon exitImage = new ImageIcon("buttonImages/exit button.png");
 	JButton exitBtn;
 
-	public CompleteOrderWindow() {
-		initializePanelToFrame();
+	public CompleteOrderWindow(boolean needsCoupon) {
+		initializePanelToFrame(needsCoupon);
 		windowsConfiguration();
 		showWindow(this, true);
 	}
 
-	public void initializePanelToFrame() {
+	public void initializePanelToFrame(boolean needsCoupon) {
 
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -49,9 +56,9 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 		panel.setBackground(new Color(216, 223, 224));
 
 		configureButtons();
-		configurateLabels();
-		addComponentsToPanel();
-		// addListeners();
+		configurateLabels(needsCoupon);
+		addComponentsToPanel(needsCoupon);
+		addListeners();
 
 		this.setContentPane(panel);
 		this.pack();
@@ -68,7 +75,7 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 		frame.setVisible(show);
 	}
 	
-	public void addComponentsToPanel() {
+	public void addComponentsToPanel(boolean needsCoupon) {
 		panel.add(exitBtn);
 		panel.add(completeTitle);
 		
@@ -84,11 +91,15 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 		//add components to insidePanel
 		insidePanel.add(orderComplLabel);
 		insidePanel.add(message);
+		if(needsCoupon) {
+			insidePanel.add(couponLabel);
+			insidePanel.add(couponCode);
+		}
 
 		
 	}
 	
-	public void configurateLabels() {
+	public void configurateLabels(boolean needsCoupon) {
 		completeTitle = new JLabel(TextResources.orderCompleteTitle);
 		completeTitle.setFont(new Font("Sans-Serif", Font.PLAIN, 23));
 		completeTitle.setBounds(60,40,300,35);
@@ -100,6 +111,16 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 		message.setFont(FontFactory.avenir(15));
 		message.setBounds(40,400,300,40);
 		
+		if(needsCoupon) {
+			Coupon coupon = CouponFactory.GenerateCoupon();
+			couponLabel = LabelFactory.createLabel(TextResources.orderCompleteCoupon, ColorResources.bgLoginWindow, FontFactory.poppins(14));
+			couponCode = LabelFactory.createLabelBG(coupon.getCode(), ColorResources.bgLoginWindow, ColorResources.bgMainWindowBtn, FontFactory.poppins(18));
+			Login.loggedCustomer.addCoupons(coupon);
+			couponLabel.setBounds(50, 500, 300, 100);
+			couponCode.setBounds(150, 590, 80, 50);
+			
+		}
+		
 	}
 
 	public void configureButtons() {
@@ -107,10 +128,17 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 		exitBtn.setBounds(25, 50, 15, 15);
 		
 	}
+	
+	public void addListeners() {
+		exitBtn.addActionListener(this);
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		if(e.getSource() == exitBtn) {
+			this.dispose();
+			new MainWindow();
+		}
 	}
 
 }

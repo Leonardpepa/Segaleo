@@ -2,15 +2,17 @@ package gui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat; 
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import gui.components.RoundedPanel;
 import gui.factory.*;
+import login.Login;
 import order.Coupon;
 import resources.ColorResources;
 import resources.TextResources;
@@ -24,7 +26,8 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
 
-	private Coupon coupon;
+	private ArrayList<Coupon> coupons = Login.loggedCustomer.getCoupons();
+
 	private JLabel couponCode;
 	private JLabel validLabel;
 	private JLabel date;
@@ -84,8 +87,10 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToInsidePanel() {
+
 		insidePanel.add(couponCode);
-		if(coupon!=null) {
+
+		if (!coupons.isEmpty()) {
 			insidePanel.add(validLabel);
 			insidePanel.add(date);
 		}
@@ -96,32 +101,33 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		backBtn.setBounds(12, 40, 67, 45);
 	}
 
-	public void configureLabels(){  
+	public void configureLabels() {
 
-		if (coupon != null) {
-			couponCode = LabelFactory.createLabel(coupon.getCode(), ColorResources.bgLoginWindow,
-					FontFactory.poppins(18));
-			couponCode.setBounds(15, 30, 200, 20);
-			
-			validLabel = LabelFactory.createLabel(TextResources.valid, ColorResources.bgLoginWindow, FontFactory.poppins(14));
-			validLabel.setBounds(240, 20, 100, 20);
-			
-			date = LabelFactory.createLabel(configureDate(), ColorResources.bgLoginWindow, FontFactory.poppins(14));
-			date.setBounds(240, 30, 100, 20);
-			
-		} else {
+		if (!coupons.isEmpty()) {
+			for (Coupon coupon : coupons) {
+				couponCode = LabelFactory.createLabel(coupon.getCode(), ColorResources.bgLoginWindow,
+						FontFactory.poppins(18));
+				couponCode.setBounds(15, 30, 200, 20);
+				validLabel = LabelFactory.createLabel(TextResources.valid, ColorResources.bgLoginWindow,
+						FontFactory.poppins(14));
+				validLabel.setBounds(240, 20, 100, 20);
+
+				date = LabelFactory.createLabel(configureDate(coupon), ColorResources.bgLoginWindow,
+						FontFactory.poppins(14));
+				date.setBounds(240, 40, 100, 20);
+			}
+		}else {
 			couponCode = LabelFactory.createLabel(TextResources.noCoupon, ColorResources.bgLoginWindow,
 					FontFactory.poppins(16));
-			couponCode.setBounds(20, 30, 200, 20);	
+			couponCode.setBounds(20, 30, 200, 20);
 		}
 	}
 
-	public String configureDate() {
-		
+	public String configureDate(Coupon coupon) {
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = coupon.getDate();
 		String dateAsString = sdf.format(date);
-		System.out.println(dateAsString);
 		Calendar c = Calendar.getInstance();
 		try {
 			c.setTime(sdf.parse(dateAsString));
@@ -129,11 +135,12 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		c.add(Calendar.DATE, 3);  // number of days to add
+		c.add(Calendar.DATE, 3); // number of days to add
 		dateAsString = sdf.format(c.getTime());
 		return dateAsString;
-		
+
 	}
+
 	public void addListeners() {
 		backBtn.addActionListener(this);
 	}
