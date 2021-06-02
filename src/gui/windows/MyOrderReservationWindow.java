@@ -41,7 +41,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	}
 
 	public void windowsConfiguration() {
-		this.setTitle("My Orders");
+		this.setTitle("Profile");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
