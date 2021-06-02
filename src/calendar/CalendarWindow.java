@@ -266,9 +266,23 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		}
 		if(e.getSource() == confirmBtn) {
 			if(flagHour && flagDay) {
-				this.dispose();
 				activity.PRINT();
-				new ActivityWindow(activities,reservation);
+				activity.setColumn(activities.indexOf(activity)*2);
+				// if no avaliabity remove actiivity from reservation
+				if(!activity.checkLimit()) {
+					for(int i=0; i<activity.getSelpeople() ; i++) {
+						 reservation.removeActivity(activity);
+					}
+					JOptionPane.showMessageDialog(null, "no avaliability for those people");
+					initializePanel();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "your reservation is in the card");
+					Activity.printArray();
+					this.dispose();
+					new ActivityWindow(activities,reservation);
+				}
+				
 			}
 			else {
 				if(!flagHour) {
