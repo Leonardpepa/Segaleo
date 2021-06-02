@@ -78,12 +78,12 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToPanel(boolean isOrder) {
-		panel.add(backBtn);
 		panel.add(LogoFactory.addLogoScaled());
 
 		initializeInsidePanel(isOrder);
 		addComponentsToInsidePanel();
 		panel.add(insidePanel);
+		panel.add(backBtn);
 		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
@@ -99,7 +99,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		backBtn.setBounds(12, 40, 67, 45);
 		
 		rating = isOrder ? 
-		ButtonFactory.createButton("Rate this order", FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white) : ButtonFactory.createButton("Rate this activity", FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white);
+		ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white) : ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white);
 		rating.setBounds(200, 260, 140, 22);
 	}
 

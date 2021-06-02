@@ -123,6 +123,8 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		backBtn.addActionListener(this);
 		contactBtn.addActionListener(this);
 		orderBtn.addActionListener(this);
+		reservationBtn.addActionListener(this);
+		couponBtn.addActionListener(this);
 	}
 
 	@Override
@@ -137,7 +139,15 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == orderBtn) {
 			this.dispose();
-			//new MyOrderReservationWindow();
+			new MyOrderReservationWindow(true);
+		}
+		if(e.getSource() == reservationBtn) {
+			this.dispose();
+			new MyOrderReservationWindow(false);
+		}
+		if(e.getSource() == couponBtn) {
+			this.dispose();
+			new MyCouponsWindow();
 		}
 
 	}

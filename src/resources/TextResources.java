@@ -27,6 +27,7 @@ public class TextResources {
 	public static String endpointPath;
 	public static String reservationCompleteTitle;
 	public static String reservationCompleteMessage;
+	public static String rate;
 	public static String rateActivity;
 	public static String orderCompleteTitle;
 	public static String orderCompleteMessage;
@@ -61,7 +62,9 @@ public class TextResources {
 
 	public static String invalidCouponTitle;
 	public static String invalidCoupon;
-
+	public static String noCoupon;
+	public static String valid;
+	
 	public static String cancelOrderTitle;
 	public static String cancelOrder;
 	public static String cancelReservationTitle;
@@ -76,6 +79,8 @@ public class TextResources {
 	public static String chooseTime;
 	public static String choosePeople;
 	public static String confirm;
+	
+	
 
 
 	public void changeLanguage() {
@@ -105,6 +110,7 @@ public class TextResources {
 		reservationCompleteMessage = isEnglish
 				? "Your reservation has been accepted. We will be waiting for your arrival."
 						: "Η κράτηση σας ολοκληρώθηκε με επιτυχία. Σας περιμένουμε.";
+		rate = isEnglish ? "Rating" : "Αξιολόγηση";
 		rateActivity = isEnglish ? "Rate this Αctivity" : "Αξιολόγησε αυτή τη δραστηριότητα";
 		orderCompleteTitle = isEnglish ? "Order Completed" : "Η Παραγγελία Ολοκληρώθηκε";
 		orderCompleteMessage = isEnglish ? "Your order is accepted and is going to be with you in around 45 minutes."
@@ -141,6 +147,8 @@ public class TextResources {
 
 		invalidCouponTitle = isEnglish ? "Error" : "Σφάλμα";
 		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
+		noCoupon = isEnglish ? "You have no coupons" : "Δεν έχεις κουπόνια";
+		valid = isEnglish ? "Valid Until" : "Έγκυρο εως";
 
 		cancelOrderTitle = isEnglish ? "Cancel Order" : "Ακύρωση Παραγγελίας";
 		cancelOrder = isEnglish ? "Do you want to cancel the order?" : "Θέλετε να ακυρώσετε την παραγελλία σας;";
