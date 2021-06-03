@@ -58,14 +58,14 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	private JButton coffee;
 
 	// display product layout
-	private JPanel productPanel;
-	private ImageIcon productImg;
-	private JLabel productimgLabel;
-	private JLabel titleLabel;
-	private JLabel descLabel;
-	private JLabel prevPrice;
-	private ImageIcon plusIcon;
-	private JLabel newPrice;
+//	private JPanel productPanel;
+//	private ImageIcon productImg;
+//	private JLabel productimgLabel;
+//	private JLabel titleLabel;
+//	private JLabel descLabel;
+//	private JLabel prevPrice;
+//	private ImageIcon plusIcon;
+//	private JLabel newPrice;
 
 	// header
 	private JPanel header;
@@ -140,24 +140,27 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
-				refreshMaincontent(foundProducts);
+				refreshMaincontent(foundProducts);				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
-				refreshMaincontent(foundProducts);
+				refreshMaincontent(foundProducts);								
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
-				refreshMaincontent(foundProducts);
+				refreshMaincontent(foundProducts);				
 			}
-		});
+		}); 
+			
+		
 	}
 
 	// all the content of the main panel (CENTER panel)
@@ -209,7 +212,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 
 	public void refreshMaincontent(ArrayList<Product> products) {
 
-		backgroundPanel.remove(1);
+		backgroundPanel.remove(mainContent);
 		
 		configureSearchContent(products);
 		leftHelper  = new JPanel();
@@ -376,26 +379,26 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	// layout display for the products
 	public JPanel configureProductPanel(Food product) {
 		
-		productPanel = new JPanel();
+		JPanel	productPanel = new JPanel();
 		productPanel.setName(product.getName());
 		productPanel.setLayout(null);
 		productPanel.setPreferredSize(new Dimension(260, 50));
 		productPanel.setBackground(Color.white);
 
 		ImageIcon productImg = new ImageIcon(product.getPath());
-		productimgLabel = LabelFactory.createIconLabel(productImg);
+		JLabel productimgLabel = LabelFactory.createIconLabel(productImg);
 		productimgLabel.setBounds(10, 10, 100, 100);
 
-		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
+		JLabel titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(120, 8, 160, 20);
 
-		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
+		JLabel descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 25, 150, 50);
 
-		prevPrice = new JLabel("<html><body><span style='text-decoration: line-through;'>" + (product.getPrice() + product.getDiscount())+ "€</span></body></html>");
+		JLabel prevPrice = new JLabel("<html><body><span style='text-decoration: line-through;'>" + (product.getPrice() + product.getDiscount())+ "€</span></body></html>");
 		prevPrice.setBounds(163, 85, 43, 19);
 
-		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		ImageIcon plusIcon = new ImageIcon("./buttonImages/plus.png");
 		JLabel plusButtonLabel;
 		plusButtonLabel = new JLabel();
 		plusButtonLabel.setIcon(plusIcon);
@@ -403,7 +406,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 
-		newPrice = LabelFactory.createLabel(product.getPrice() + "€", Color.RED, FontFactory.poppins(14));
+		JLabel newPrice = LabelFactory.createLabel(product.getPrice() + "€", Color.RED, FontFactory.poppins(14));
 		newPrice.setBounds(120, 85, 43, 19);
 
 		productPanel.add(productimgLabel);

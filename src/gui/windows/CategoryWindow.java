@@ -110,7 +110,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 
 	public void refreshMaincontent(ArrayList<Product> products, boolean isSearch) {
 
-		backgroundPanel.remove(3);
+		backgroundPanel.remove(mainContent);
 		mainContent = new JPanel();
 		configureMainContent(products);
 		if(isSearch) {
