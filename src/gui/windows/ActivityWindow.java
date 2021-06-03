@@ -41,6 +41,8 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	private String lang = TextResources.imageLang;
 	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
+	
+	private int[] [] a;
 
 	private Reservation reservation;
 
@@ -60,8 +62,11 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	private JLabel bagLabel;
 	private JLabel viewCart;
 	private JLabel cartPriceLabel;
+	
+	private Activity thisactivity = null;
 
 	public ActivityWindow(ArrayList<Activity> activities, Reservation reservation) {
+		this.a = Activity.getA();
 		this.activities = activities;
 		this.reservation = reservation;
 		initializePanelToFrame();
@@ -211,6 +216,9 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
 						JOptionPane.YES_NO_OPTION);
 				if (selectedOption == 0) {
+					for(Activity act : reservation.getActivities()) {
+						a[act.getSelday()][act.getSelhour() + act.getColumn()] += act.getSelpeople();
+					}
 					reservation.clearReservation();
 					this.dispose();
 					new MainWindow();
@@ -231,7 +239,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 			new CartWindow(reservation,activities);
 		}
 		if (e.getSource() instanceof JLabel) {
-			Activity thisactivity = null;
+	
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
 			String activityName = parent.getName();
@@ -242,7 +250,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 				}
 			}
 			this.dispose();
-			new CalendarWindow(activities,thisactivity, reservation, priceLabel , bagLabel);
+			new CalendarWindow(activities,thisactivity, reservation);
 		}
 	}
 

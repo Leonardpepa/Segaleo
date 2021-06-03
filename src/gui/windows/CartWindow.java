@@ -44,7 +44,6 @@ import resources.TextResources;
 public class CartWindow extends JFrame implements ActionListener, MouseListener {
 
 	private JPanel backgroundPanel;
-	
 	private Reservation reservation;
 	private ArrayList<Activity> activities;
 	private Order order;
@@ -96,7 +95,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	
 	public CartWindow(Reservation reservation, ArrayList<Activity> activities) {
 		this.a = Activity.getA();
-		Activity.printArray();
 		this.reservation = reservation;
 		this.activities = activities;
 		this.isOrder = false;
@@ -426,7 +424,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			}
 			else {
 				Activity clickedActivity =null;
-				for (Activity a : new ActivityReader().getActivitiesList()) {
+				for (Activity a : reservation.getActivities()) {
 					if (a.getName().equalsIgnoreCase(productName)) {
 						clickedActivity = a;
 					}

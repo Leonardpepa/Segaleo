@@ -57,16 +57,13 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	private boolean flagDay = false;
 
 
-	public CalendarWindow(ArrayList<Activity> activities , Activity activity, Reservation reservation, JLabel priceLabel, JLabel bagLabel) {
+	public CalendarWindow(ArrayList<Activity> activities , Activity activity, Reservation reservation) {
 
 		new TextResources().changeLanguage();
 		new ColorResources();
 		this.activities = activities;
 		this.activity = activity;
 		this.reservation = reservation;
-		this.priceLabel = priceLabel;
-		this.bagLabel = bagLabel;
-
 
 		initializePanel();
 		windowsConfiguration();
