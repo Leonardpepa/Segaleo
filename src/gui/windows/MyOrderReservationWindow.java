@@ -3,6 +3,8 @@ package gui.windows;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -11,6 +13,8 @@ import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LogoFactory;
+import order.Order;
+import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -31,15 +35,24 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	private JLabel orderDate;
 	private JLabel paymentMethod;
 	private JButton rating;
-
-
-
-	public MyOrderReservationWindow(boolean isOrder) {
+	
+	private boolean isOrder;
+	private ArrayList<Order> orders;
+	private ArrayList<Reservation> reservations;
+	
+	@SuppressWarnings("unchecked")
+	public MyOrderReservationWindow(boolean isOrder, ArrayList<?> array) {
+		if(isOrder) {
+			orders = (ArrayList<Order>) array;
+		}
+		else {
+			reservations = (ArrayList<Reservation>) array;
+		}
 		initializePanelToFrame(isOrder);
 		windowsConfiguration();
 		showWindow(this, true);
 	}
-
+	
 	public void windowsConfiguration() {
 		this.setTitle("Profile");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
