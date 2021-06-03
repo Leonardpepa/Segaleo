@@ -399,6 +399,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
 			order.setPaymentMethod(paymentMethods.getText());
+			order.setDate(new Date());
 			Login.loggedCustomer.addOrders(order);
 		}
 	}

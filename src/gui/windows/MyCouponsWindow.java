@@ -138,7 +138,6 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		c.add(Calendar.DATE, 3); // number of days to add
 		dateAsString = sdf.format(c.getTime());
 		return dateAsString;
-
 	}
 
 	public void addListeners() {

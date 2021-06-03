@@ -21,7 +21,6 @@ public class Order {
 	private String paymentMethod;
 	
 	public Order() {
-		date = new Date();
 		products = new ArrayList<Product>();
 		prod = new HashMap<>();
 		initializeHashMap();
@@ -102,6 +101,10 @@ public class Order {
 	}
 	public Date getDate() {
 		return date;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	public String getPaymentMethod() {

@@ -3,6 +3,11 @@ package gui.windows;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -10,7 +15,10 @@ import gui.components.RoundedPanel;
 import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
+import login.Login;
+import order.Coupon;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -68,7 +76,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		insidePanel.setOpaque(false);
 		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
 		insidePanel.setLayout(null);
-		insidePanel.setBounds(11, 250, 351, 300);
+		insidePanel.setBounds(11, 250, 351, 200);
 		configureButtons(isOrder);
 
 	}
@@ -90,8 +98,22 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 	public void addComponentsToInsidePanel() {
 		insidePanel.add(rating);
-
-		// εδω θα μπουν και τα labels για την παραγγελια
+		orderNumber = LabelFactory.createLabel("#0", Color.WHITE, FontFactory.poppins(16));
+		orderNumber.setBounds(10, 10, 30, 20);
+		
+		orderPrice  = LabelFactory.createLabel("35$", Color.WHITE, FontFactory.poppins(16));
+		orderPrice.setBounds(50, 10, 30, 20);
+		
+		orderDate = LabelFactory.createLabel(TextResources.date + ": " + configureDate(new Date()), Color.WHITE, FontFactory.poppins(15));
+		orderDate.setBounds(10, 50, 300, 20);
+		
+		roomNum = LabelFactory.createLabel(TextResources.roomField + ": 401", Color.WHITE, FontFactory.poppins(15));
+		roomNum.setBounds(10, 80, 300, 20);
+		
+		insidePanel.add(roomNum);
+		insidePanel.add(orderPrice);
+		insidePanel.add(orderDate);
+		insidePanel.add(orderNumber);
 	}
 
 	public void configureButtons(boolean isOrder) {
@@ -105,6 +127,23 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 	public void addListeners() {
 		backBtn.addActionListener(this);
+	}
+	
+	public String configureDate(Date adate) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = adate;
+		String dateAsString = sdf.format(date);
+		Calendar c = Calendar.getInstance();
+		try {
+			c.setTime(sdf.parse(dateAsString));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		c.add(Calendar.DATE, 3); // number of days to add
+		dateAsString = sdf.format(c.getTime());
+		return dateAsString;
 	}
 
 	@Override

@@ -85,6 +85,8 @@ public class TextResources {
 	public static String card;
 	
 	public static String noPaymentSelected;
+	
+	public static String date;
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -174,7 +176,7 @@ public class TextResources {
 		card = isEnglish ? "Card" : "Πληρωμή με κάρτα";
 		
 		noPaymentSelected = isEnglish ? "You need to choose payment method for the order" : "Πρέπει να διαλέξετε τρόπο πληρώμης για την παραγγελία";
-		
+		date = isEnglish ? "Date" : "Ημερομηνία";
 		
 	}
 
