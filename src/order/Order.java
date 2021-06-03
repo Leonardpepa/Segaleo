@@ -18,6 +18,7 @@ public class Order {
 	private int quantity = 0;
 	private Date date;
 	private int maximumOffers = 2;
+	private String paymentMethod;
 	
 	public Order() {
 		date = new Date();
@@ -102,4 +103,13 @@ public class Order {
 	public Date getDate() {
 		return date;
 	}
+	
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+	
+	public void setPaymentMethod(String payment) {
+		paymentMethod  = payment;
+	}
+	
 }

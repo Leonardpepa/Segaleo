@@ -400,7 +400,8 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			else {
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
-
+			order.setPaymentMethod(paymentMethods.getText());
+			Login.loggedCustomer.addOrders(order);
 		}
 	}
 
