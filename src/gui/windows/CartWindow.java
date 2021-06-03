@@ -389,10 +389,16 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			if(order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
 				new CompleteOrderWindow(true);
+				order.setPaymentMethod(paymentMethods.getText());
+				order.setDate(new Date());
+				Login.loggedCustomer.addOrders(order);
 			}
 			else if(order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
 				new CompleteOrderWindow(false);
+				order.setPaymentMethod(paymentMethods.getText());
+				order.setDate(new Date());
+				Login.loggedCustomer.addOrders(order);
 			}
 			else if(!paymentMethods.getText().equals(TextResources.payment)){
 				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
@@ -400,9 +406,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			else {
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
-			order.setPaymentMethod(paymentMethods.getText());
-			order.setDate(new Date());
-			Login.loggedCustomer.addOrders(order);
 		}
 	}
 
