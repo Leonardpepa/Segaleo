@@ -11,6 +11,7 @@ public class Reservation
 	private double totalCost;
 	private ArrayList<Activity> activities;
 	public HashMap<Activity,Integer> act;
+	private String paymentMethod;
 
 	public Reservation () 
 	{
@@ -70,6 +71,15 @@ public class Reservation
 			act.put(a, 0);
 		}
 	}
+	
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+	
+	public void setPaymentMethod(String payment) {
+		paymentMethod  = payment;
+	}
+	
 
 	
 
