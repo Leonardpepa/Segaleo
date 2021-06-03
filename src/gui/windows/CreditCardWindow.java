@@ -130,7 +130,7 @@ public class CreditCardWindow extends JFrame implements ActionListener {
 
 		dateLabel = LabelFactory.createLabel(TextResources.expireCard, ColorResources.cardLabels,
 				FontFactory.poppins(12));
-		dateLabel.setBounds(23, 590, 66, 17);
+		dateLabel.setBounds(23, 590, 100, 25);
 		dateIconLabel = new JLabel(dateIcon);
 		dateIconLabel.setBounds(27, 625, 18, 20);
 

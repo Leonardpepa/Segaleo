@@ -299,14 +299,18 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		footer.setPreferredSize(new Dimension(375, 290));
 		footer.setBackground(new Color(244, 249, 250));
 
-		couponField = TextFieldFactory.createTextField(TextResources.couponCode, new Color(216, 223, 224), Color.BLACK,
-				FontFactory.poppins(14));
-		couponField.setBounds(24, 10, 195, 48);
-
-		submitCouponButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(14),
-				new Color(216, 223, 224), Color.BLACK);
-		submitCouponButton.setBounds(231, 10, 121, 48);
-		submitCouponButton.addActionListener(this);
+		if(isOrder) {
+			couponField = TextFieldFactory.createTextField(TextResources.couponCode, new Color(216, 223, 224), Color.BLACK,
+					FontFactory.poppins(14));
+			couponField.setBounds(24, 10, 195, 48);
+			
+			submitCouponButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(14),
+					new Color(216, 223, 224), Color.BLACK);
+			submitCouponButton.setBounds(231, 10, 121, 48);
+			submitCouponButton.addActionListener(this);			
+			footer.add(couponField);
+			footer.add(submitCouponButton);
+		}
 
 		paymentMethods = ButtonFactory.createButton(TextResources.payment, FontFactory.poppins(14), Color.LIGHT_GRAY,
 				Color.BLACK);
@@ -349,8 +353,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		priceHolder.add(totalLabel);
 		priceHolder.add(priceLabel);
 
-		footer.add(couponField);
-		footer.add(submitCouponButton);
 		footer.add(paymentMethods);
 		footer.add(priceHolder);
 		
