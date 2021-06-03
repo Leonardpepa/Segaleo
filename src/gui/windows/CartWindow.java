@@ -407,6 +407,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
 		}
+	
 	}
 
 	@Override

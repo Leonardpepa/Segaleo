@@ -71,6 +71,7 @@ public class TextResources {
 	public static String cancelReservationTitle;
 	public static String cancelReservation;
 
+	public static String reservationErrorTitle;
 	public static String orderErrorTitle;
 	public static String orderError;
 	public static String orderSuccessTitle;
@@ -161,6 +162,7 @@ public class TextResources {
 		cancelReservationTitle = isEnglish ? "Cancel Reservation" : "Ακύρωση Κράτησης";
 		cancelReservation = isEnglish ? "Do you want to cancel the reservation?" : "Θέλετε να ακυρώσετε την κράτησή σας;";
 
+		reservationErrorTitle = isEnglish ? "Invalid Reservation" : "Μη Έγκυρη Κράτηση";
 		orderErrorTitle = isEnglish ? "Invalid Order" : "Μη Έγκυρη Παραγγελία";
 		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
 		orderSuccessTitle = isEnglish ? "Success" : "Επιτυχία";
