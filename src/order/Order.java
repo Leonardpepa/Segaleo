@@ -3,6 +3,7 @@ package order;
 import resources.TextResources;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -15,7 +16,9 @@ public class Order {
 	private ArrayList<Product> products;
 	private HashMap<Product, Integer> prod;
 	private int quantity = 0;
+	private Date date;
 	public Order() {
+		date = new Date();
 		products = new ArrayList<Product>();
 		prod = new HashMap<>();
 		initializeHashMap();
@@ -92,5 +95,8 @@ public class Order {
 	}
 	public int getQuantity() {
 		return quantity;
+	}
+	public Date getDate() {
+		return date;
 	}
 }
