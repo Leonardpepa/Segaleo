@@ -113,16 +113,10 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		backgroundPanel.remove(mainContent);
 		mainContent = new JPanel();
 		configureMainContent(products);
-		if(isSearch) {
-			backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
-			backgroundPanel.add(BorderLayout.CENTER, mainContent);			
-		}
-		else {
-			backgroundPanel.add(BorderLayout.NORTH, header);
-			backgroundPanel.add(BorderLayout.CENTER, mainContent);			
-			backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
-		}
-
+		backgroundPanel.add(BorderLayout.WEST, leftHelper);
+		backgroundPanel.add(BorderLayout.EAST, rightHelper);
+		backgroundPanel.add(BorderLayout.CENTER, mainContent);
+		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);			
 		this.pack();
 	}
 
