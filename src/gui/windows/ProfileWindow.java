@@ -20,7 +20,6 @@ import gui.components.RoundedPanel;
 import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.LogoFactory;
-import login.Login;
 import resources.TextResources;
 
 public class ProfileWindow extends JFrame implements ActionListener {
@@ -140,11 +139,11 @@ public class ProfileWindow extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == orderBtn) {
 			this.dispose();
-			new MyOrderReservationWindow(true, Login.loggedCustomer.getOrders());
+			new MyOrderReservationWindow(true);
 		}
 		if(e.getSource() == reservationBtn) {
 			this.dispose();
-			new MyOrderReservationWindow(false, Login.loggedCustomer.getReservations());
+			new MyOrderReservationWindow(false);
 		}
 		if(e.getSource() == couponBtn) {
 			this.dispose();
