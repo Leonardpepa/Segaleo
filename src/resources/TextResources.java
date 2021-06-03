@@ -89,6 +89,7 @@ public class TextResources {
 	
 	public static String date;
 	public static String noOrder;
+	public static String noReservation;
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -157,6 +158,7 @@ public class TextResources {
 		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
 		noCoupon = isEnglish ? "You have no coupons" : "Δεν έχεις κουπόνια";
 		noOrder = isEnglish ? "You have no orders" : "Δεν έχεις παραγγελίες";
+		noReservation = isEnglish ? "You have no reservations" : "Δεν έχεις κρατήσεις";
 		valid = isEnglish ? "Valid Until" : "Έγκυρο εως";
 
 		cancelOrderTitle = isEnglish ? "Cancel Order" : "Ακύρωση Παραγγελίας";

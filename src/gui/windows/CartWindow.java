@@ -405,6 +405,19 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
 		}
+		if(e.getSource().equals(reserveNowButton)) {
+			if(!paymentMethods.getText().equals(TextResources.payment)) {
+				this.dispose();
+				new CompleteReservationWindow();
+				reservation.setPaymentMethod(paymentMethods.getText());
+				reservation.setDate(new Date());
+				Login.loggedCustomer.addReservation(reservation);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		}
 	
 	}
 

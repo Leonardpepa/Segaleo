@@ -55,7 +55,7 @@ public void initializePanelToFrame() {
 		configureButtons();
 		configurateLabels();
 		addComponentsToPanel();
-		//addListeners();
+		addListeners();
 		
 		this.setContentPane(panel);
 		this.pack();
@@ -114,11 +114,16 @@ public void configurateLabels() {
 	message.setBounds(40,400,300,40);
 	
 }
-
+public void addListeners() {
+	exitBtn.addActionListener(this);
+}
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
-	
+	if(e.getSource() == exitBtn) {
+		this.dispose();
+		new MainWindow();
+	}
 }
 
 	

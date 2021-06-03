@@ -1,6 +1,7 @@
 package reservation;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import order.Product;
@@ -12,6 +13,7 @@ public class Reservation
 	private ArrayList<Activity> activities;
 	public HashMap<Activity,Integer> act;
 	private String paymentMethod;
+	private Date date;
 
 	public Reservation () 
 	{
@@ -78,6 +80,14 @@ public class Reservation
 	
 	public void setPaymentMethod(String payment) {
 		paymentMethod  = payment;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public Date getDate() {
+		return date;
 	}
 	
 
