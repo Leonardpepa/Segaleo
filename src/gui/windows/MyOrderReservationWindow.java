@@ -97,7 +97,6 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToInsidePanel() {
-		insidePanel.add(rating);
 		orderNumber = LabelFactory.createLabel("#0", Color.WHITE, FontFactory.poppins(16));
 		orderNumber.setBounds(10, 10, 30, 20);
 		
@@ -110,6 +109,11 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		roomNum = LabelFactory.createLabel(TextResources.roomField + ": 401", Color.WHITE, FontFactory.poppins(15));
 		roomNum.setBounds(10, 80, 300, 20);
 		
+		paymentMethod = LabelFactory.createLabel(TextResources.payment + ": " + "card", Color.WHITE, FontFactory.poppins(15));
+		paymentMethod.setBounds(10, 110, 300, 20);
+		
+		insidePanel.add(rating);
+		insidePanel.add(paymentMethod);
 		insidePanel.add(roomNum);
 		insidePanel.add(orderPrice);
 		insidePanel.add(orderDate);
@@ -122,7 +126,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		
 		rating = isOrder ? 
 		ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white) : ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white);
-		rating.setBounds(200, 260, 140, 22);
+		rating.setBounds(200, 170, 140, 22);
 	}
 
 	public void addListeners() {
