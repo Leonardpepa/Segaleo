@@ -1,10 +1,15 @@
 package payment;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import gui.windows.CartWindow;
+import resources.ColorResources;
+import resources.TextResources;
 
 public class CreditCard {
 
@@ -73,15 +78,18 @@ public class CreditCard {
 		return validCode;
 	}
 	
-	public void checkValidation() {
+	public void checkValidation(JFrame frame) {
 		
 		//check and print message
-		JFrame frame = new JFrame();
 		if (checkCardNumber() && checkExpireDate() && checkCode()) {
 			JOptionPane.showMessageDialog(frame,
 				    "Card Added",
 				    "Success",
 				    JOptionPane.PLAIN_MESSAGE);
+			CartWindow.paymentMethods.setText(TextResources.card);
+			CartWindow.paymentMethods.setBackground(ColorResources.card);
+			CartWindow.paymentMethods.setForeground(Color.BLACK);
+			frame.dispose();
 		}
 		else {
 			JOptionPane.showMessageDialog(frame,

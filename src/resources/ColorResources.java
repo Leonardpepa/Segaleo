@@ -14,7 +14,7 @@ public class ColorResources {
 	public static Color salads = new Color(175, 206, 120);
 	public static Color paymentBtn = new Color(216, 223, 224);
 	public static Color orderBelow10 = new Color(214, 232, 235);
-	public static Color card = new Color(255, 255, 155);
+	public static Color card = new Color(255, 157, 155);
 	public static Color paypal = new Color(176, 234, 253);
 	public static Color roomBil = new Color(222, 247, 234);
 	public static Color drinks = new Color(102, 166, 187);

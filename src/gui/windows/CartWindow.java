@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +59,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	JPanel footer;
 	private JTextField couponField;
 	private JButton submitCouponButton;
-	private JButton paymentMethods;
+	public static  JButton paymentMethods;
 	private JLabel totalLabel;
 	private JLabel priceLabel;
 	private JPanel priceHolder;
@@ -139,6 +140,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 	public void addListeners() {
 		exitButton.addActionListener(this);
+		paymentMethods.addActionListener(this);
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -308,6 +310,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 		paymentMethods = ButtonFactory.createButton(TextResources.payment, FontFactory.poppins(14), Color.LIGHT_GRAY,
 				Color.BLACK);
+		paymentMethods.setFont(paymentMethods.getFont().deriveFont(Font.BOLD, 14));
 		paymentMethods.setBounds(24, 68, 328, 63);
 
 		priceHolder = new JPanel();
@@ -369,18 +372,27 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			double discount = order.calcDiscount(couponField.getText());
 			priceLabel.setText(discount + "€");
 		}
+		
+		if(e.getSource() == paymentMethods) {
+			new PaymentWindow();
+		}
+		
 		if(e.getSource().equals( orderNowButton)) {
 			
-			if(order.getTotalCost() >= 20) {
+			if(order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
 				new CompleteOrderWindow(true);
 			}
-			else if(order.getTotalCost() >= 10) {
+			else if(order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
 				new CompleteOrderWindow(false);
 			}
-			else {
+			else if(!paymentMethods.getText().equals(TextResources.payment)){
 				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
+
+			}
+			else {
+				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
 
 		}

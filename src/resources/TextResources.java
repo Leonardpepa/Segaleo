@@ -80,8 +80,11 @@ public class TextResources {
 	public static String chooseTime;
 	public static String choosePeople;
 	public static String confirm;
+	public static String roomBill;
+	public static String paypal;
+	public static String card;
 	
-	
+	public static String noPaymentSelected;
 
 
 	public void changeLanguage() {
@@ -166,6 +169,14 @@ public class TextResources {
 		chooseTime = isEnglish ? "Choose Time" : "Διάλεξε Ώρα";
 		choosePeople = isEnglish ? "Choose People" : "Διάλεξε Άτομα";
 		confirm = isEnglish ? "Confirm" : "Επιβεβαίωση";
+		
+		roomBill = isEnglish ? "Room Bill" : "Χρέωση στο δωμάτιο";
+		paypal = isEnglish ? "Paypal" : "Πληρωμή με πέιπαλ";
+		card = isEnglish ? "Card" : "Πληρωμή με κάρτα";
+		
+		noPaymentSelected = isEnglish ? "You need to choose payment method for the order" : "Πρέπει να διαλέξετε τρόπο πληρώμης για την παραγγελία";
+		
+		
 	}
 
 }

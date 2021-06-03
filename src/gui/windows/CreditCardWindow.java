@@ -205,7 +205,7 @@ public class CreditCardWindow extends JFrame implements ActionListener {
 		// create card object and check for validation
 		cc = new CreditCard(cn, n, month, year, cod);
 		if (e.getSource() == savecardBtn) {
-			cc.checkValidation();
+			cc.checkValidation(this);
 		}
 		if (e.getSource() == exitBtn) {
 			this.dispose();

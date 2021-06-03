@@ -8,7 +8,7 @@ import payment.Payment;
 
 
 import gui.factory.*;
-
+import resources.ColorResources;
 import resources.TextResources;
 
 public class PaymentWindow extends JFrame implements ActionListener {
@@ -60,8 +60,8 @@ public class PaymentWindow extends JFrame implements ActionListener {
 		configureLabels();
 		configureButtons();
 		configureBackground();
-		addListeners();
 		addComponentsToPanel();
+		addListeners();
 
 		panel.setBackground(Color.white);
 
@@ -132,6 +132,10 @@ public class PaymentWindow extends JFrame implements ActionListener {
 			this.dispose();
 			p.paypal();
 			
+		}
+		if(e.getSource() == roomBillBtn) {
+			this.dispose();
+			p.roomBill();
 		}
 
 
