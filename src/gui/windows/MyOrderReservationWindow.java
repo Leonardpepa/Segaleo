@@ -19,6 +19,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
+import gui.factory.RoundedBorder;
 import login.Login;
 import order.Coupon;
 import order.Order;
@@ -73,12 +74,26 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	
 	public void initializeMainContent() {
 		mainContent = new RoundedPanel(50, Color.WHITE);
-		mainContent.setBorder(new EmptyBorder(0, 0,0 ,0));
 		mainContent.setOpaque(false);
 		mainContent.setLayout(new BorderLayout());
-		JScrollPane scroll = createVerticalScrollablePanel(); 
-		mainContent.add(scroll);
-		mainContent.setBounds(0, 250, 375, 400);
+		if(customer.getOrders().size() == 0) {
+			mainContent.setLayout(null);
+			JLabel label = LabelFactory.createLabel(TextResources.noOrder, ColorResources.bgLoginWindow,
+					FontFactory.poppins(16));
+			label.setBounds(25, 15, 200, 22);
+			mainContent.add(label);
+			mainContent.setBounds(0, 250, 375, 50);
+		}
+		else if(customer.getOrders().size() < 2) {
+			JScrollPane scroll = createVerticalScrollablePanel();
+			mainContent.add(scroll);
+			mainContent.setBounds(0, 250, 375, 210);
+		}
+		else {
+			JScrollPane scroll = createVerticalScrollablePanel();
+			mainContent.add(scroll);
+			mainContent.setBounds(0, 250, 375, 400);						
+		}
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -101,13 +116,13 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
 		insidePanel.setLayout(null);
 //		insidePanel.setBounds(11, 250, 351, 200);
-		insidePanel.setPreferredSize(new Dimension(351, 200));
+		insidePanel.setPreferredSize(new Dimension(350, 200));
 		
 		JLabel orderNumber = LabelFactory.createLabel("#" + (index + 1), Color.WHITE, FontFactory.poppins(16));
 		orderNumber.setBounds(10, 10, 30, 20);
 		
 		JLabel orderPrice  = LabelFactory.createLabel(order.getTotalCost()+ "€", Color.WHITE, FontFactory.poppins(16));
-		orderPrice.setBounds(50, 10, 40, 20);
+		orderPrice.setBounds(50, 10, 60, 20);
 		
 		JLabel orderDate = LabelFactory.createLabel(TextResources.date + ": " + configureDate(order.getDate()), Color.WHITE, FontFactory.poppins(15));
 		orderDate.setBounds(10, 50, 300, 20);
@@ -117,12 +132,14 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		
 		JLabel paymentMethod = LabelFactory.createLabel(TextResources.payment + ": " + order.getPaymentMethod(), Color.WHITE, FontFactory.poppins(15));
 		paymentMethod.setBounds(10, 110, 300, 20);
-		int y = 50;
+		int y = 10;
+		int i=0;
 		for(Product p: order.getProducts()) {
 			JLabel product = LabelFactory.createLabel(order.getProd().get(p) + "x " + p.getName(), Color.WHITE, FontFactory.poppins(15));
-			product.setBounds(200, y, 300, 20);
+			product.setBounds(210, y, 300, 20);
 			insidePanel.add(product);
 			y += 20;
+			i++;
 		}
 		JButton rating = isOrder ? 
 				ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white) : ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15), ColorResources.bgLoginWindow, Color.white);
