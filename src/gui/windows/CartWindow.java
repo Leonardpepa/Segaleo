@@ -366,25 +366,23 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			}
 		}
 		if (e.getSource() == submitCouponButton) {
-			Coupon coupon = CouponFactory.GenerateCoupon();
-			double discount = order.calcDiscount(coupon);
+			double discount = order.calcDiscount(couponField.getText());
 			priceLabel.setText(discount + "€");
 		}
 		if(e.getSource().equals( orderNowButton)) {
-			if(order.getTotalCost() < 10) {
-				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);
+			
+			if(order.getTotalCost() >= 20) {
+				this.dispose();
+				new CompleteOrderWindow(true);
+			}
+			else if(order.getTotalCost() >= 10) {
+				this.dispose();
+				new CompleteOrderWindow(false);
 			}
 			else {
-				if(order.getTotalCost() >= 20) {
-					this.dispose();
-					new CompleteOrderWindow(true);
-				}
-				else {
-					this.dispose();
-					new CompleteOrderWindow(false);					
-				}
-				Login.loggedCustomer.addOrders(order);
+				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
 			}
+
 		}
 	}
 

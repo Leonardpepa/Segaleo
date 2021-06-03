@@ -74,12 +74,9 @@ public class Order {
 		return temp;
 	}
 
-	public double calcDiscount(Coupon coupon) {
-		if (CouponFactory.isValid(coupon)) {
+	public double calcDiscount(String code) {
+		if (CouponFactory.isValid(code)) {
 			return totalCost -= 3;
-		}
-		else {
-			JOptionPane.showMessageDialog(null, TextResources.invalidCoupon, TextResources.invalidCouponTitle, JOptionPane.INFORMATION_MESSAGE);
 		}
 		return totalCost;
 	}

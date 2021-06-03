@@ -65,7 +65,7 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 	}
 
 	public void windowsConfiguration() {
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -112,7 +112,7 @@ public class CompleteOrderWindow extends JFrame implements ActionListener {
 		message.setBounds(40,400,300,40);
 		
 		if(needsCoupon) {
-			Coupon coupon = CouponFactory.GenerateCoupon();
+			Coupon coupon = CouponFactory.GenerateCoupon(Login.loggedCustomer.getEmail());
 			couponLabel = LabelFactory.createLabel(TextResources.orderCompleteCoupon, ColorResources.bgLoginWindow, FontFactory.poppins(14));
 			couponCode = LabelFactory.createLabelBG(coupon.getCode(), ColorResources.bgLoginWindow, ColorResources.bgMainWindowBtn, FontFactory.poppins(18));
 			Login.loggedCustomer.addCoupons(coupon);

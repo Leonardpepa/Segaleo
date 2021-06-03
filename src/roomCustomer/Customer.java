@@ -51,7 +51,10 @@ public class Customer{
 	public ArrayList<Coupon> getCoupons() {
 		return coupons;
 	}
-
+	
+	public void removeCoupon(Coupon coupon) {
+		this.coupons.remove(coupon);
+	}
 
 	public ArrayList<Order> getOrders() {
 		return orders;
