@@ -86,7 +86,6 @@ public class TextResources {
 	
 	public static String noPaymentSelected;
 
-
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";

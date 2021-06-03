@@ -17,6 +17,8 @@ public class Order {
 	private HashMap<Product, Integer> prod;
 	private int quantity = 0;
 	private Date date;
+	private int maximumOffers = 2;
+	
 	public Order() {
 		date = new Date();
 		products = new ArrayList<Product>();
@@ -78,7 +80,8 @@ public class Order {
 	}
 
 	public double calcDiscount(String code) {
-		if (CouponFactory.isValid(code)) {
+		if (maximumOffers > 0 &&  CouponFactory.isValid(code)) {
+			maximumOffers--;
 			return totalCost -= 3;
 		}
 		return totalCost;

@@ -369,8 +369,13 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			}
 		}
 		if (e.getSource() == submitCouponButton) {
-			double discount = order.calcDiscount(couponField.getText());
-			priceLabel.setText(discount + "€");
+			if(order.getTotalCost() < 4) {
+				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
+			}
+			else {
+				double discount = order.calcDiscount(couponField.getText());
+				priceLabel.setText(discount + "€");				
+			}
 		}
 		
 		if(e.getSource() == paymentMethods) {
@@ -389,7 +394,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			}
 			else if(!paymentMethods.getText().equals(TextResources.payment)){
 				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
-
 			}
 			else {
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
