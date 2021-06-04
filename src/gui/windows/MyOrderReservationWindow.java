@@ -40,7 +40,6 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
 
-	// αν δεν υπάρχει παραγγελια τοτε θα εμφανιζει αναλογο μηνυμα
 	private boolean isOrder;
 	private Customer customer = Login.loggedCustomer;
 

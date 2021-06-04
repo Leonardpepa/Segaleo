@@ -16,6 +16,7 @@ import login.Login;
 import order.Coupon;
 import resources.ColorResources;
 import resources.TextResources;
+import roomCustomer.Customer;
 
 public class MyCouponsWindow extends JFrame implements ActionListener {
 	private JPanel panel;
@@ -27,6 +28,7 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 	private JButton backBtn;
 
 	private ArrayList<Coupon> coupons = Login.loggedCustomer.getCoupons();
+	private Customer customer = Login.loggedCustomer;
 
 	private JLabel couponCode;
 	private JLabel validLabel;
@@ -62,12 +64,27 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 	}
 
 	public void initializeInsidePanel() {
-		insidePanel = new RoundedPanel(50, Color.white);
+		insidePanel = new JPanel();
+		insidePanel.setBackground(ColorResources.paymentBtn);
 		insidePanel.setOpaque(false);
-		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
-		insidePanel.setLayout(null);
-		insidePanel.setBounds(11, 250, 351, 80);
-		configureLabels();
+		insidePanel.setLayout(new BorderLayout());
+		
+			if (customer.getCoupons().size() == 0) {
+				insidePanel.setLayout(null);
+				JLabel label = LabelFactory.createLabel(TextResources.noCoupon, ColorResources.bgLoginWindow,
+						FontFactory.poppins(16));
+				label.setBounds(25, 15, 200, 22);
+				insidePanel.add(label);
+				insidePanel.setBounds(0, 250, 375, 50);
+			} else if (customer.getCoupons().size() < 2) {
+				JScrollPane scroll = createVerticalScrollablePanel();
+				insidePanel.add(scroll);
+				insidePanel.setBounds(0, 250, 375, 100);
+			} else {
+				JScrollPane scroll = createVerticalScrollablePanel();
+				insidePanel.add(scroll);
+				insidePanel.setBounds(0, 250, 375, 100);
+			}
 
 	}
 
@@ -79,48 +96,15 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		panel.add(LogoFactory.addLogoScaled());
 
 		initializeInsidePanel();
-		addComponentsToInsidePanel();
 		panel.add(insidePanel);
 		panel.add(backBtn);
 		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
 
-	public void addComponentsToInsidePanel() {
-
-		insidePanel.add(couponCode);
-
-		if (!coupons.isEmpty()) {
-			insidePanel.add(validLabel);
-			insidePanel.add(date);
-		}
-	}
-
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(12, 40, 67, 45);
-	}
-
-	public void configureLabels() {
-
-		if (!coupons.isEmpty()) {
-			for (Coupon coupon : coupons) {
-				couponCode = LabelFactory.createLabel(coupon.getCode(), ColorResources.bgLoginWindow,
-						FontFactory.poppins(18));
-				couponCode.setBounds(15, 30, 200, 20);
-				validLabel = LabelFactory.createLabel(TextResources.valid, ColorResources.bgLoginWindow,
-						FontFactory.poppins(14));
-				validLabel.setBounds(240, 20, 100, 20);
-
-				date = LabelFactory.createLabel(configureDate(coupon), ColorResources.bgLoginWindow,
-						FontFactory.poppins(14));
-				date.setBounds(240, 40, 100, 20);
-			}
-		}else {
-			couponCode = LabelFactory.createLabel(TextResources.noCoupon, ColorResources.bgLoginWindow,
-					FontFactory.poppins(16));
-			couponCode.setBounds(20, 30, 200, 20);
-		}
 	}
 
 	public String configureDate(Coupon coupon) {
@@ -138,6 +122,50 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		c.add(Calendar.DATE, 3); // number of days to add
 		dateAsString = sdf.format(c.getTime());
 		return dateAsString;
+	}
+	
+	public JPanel displayPanel(Coupon coupon) {
+
+		JPanel insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
+		insidePanel.setOpaque(false);
+		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
+		insidePanel.setLayout(null);
+		insidePanel.setPreferredSize(new Dimension(350, 200));
+
+		couponCode = LabelFactory.createLabel(coupon.getCode(), ColorResources.bgLoginWindow,
+				FontFactory.poppins(18));
+		couponCode.setBounds(15, 30, 200, 20);
+		validLabel = LabelFactory.createLabel(TextResources.valid, ColorResources.bgLoginWindow,
+				FontFactory.poppins(14));
+		validLabel.setBounds(240, 20, 100, 20);
+
+		date = LabelFactory.createLabel(configureDate(coupon), ColorResources.bgLoginWindow,
+				FontFactory.poppins(14));
+		date.setBounds(240, 40, 100, 20);
+	
+		insidePanel.add(couponCode);
+		insidePanel.add(validLabel);
+		insidePanel.add(date);
+		return insidePanel;
+	}
+
+	
+	public JScrollPane createVerticalScrollablePanel() {
+		JPanel container = new JPanel();
+		container.setBackground(ColorResources.paymentBtn);
+			container.setLayout(new GridLayout(customer.getCoupons().size(), 1, 10, 8));
+			for (int i = 0; i < customer.getOrders().size(); i++) {
+				container.add(displayPanel(customer.getCoupons().get(i)));
+			}
+		
+		JScrollPane scrollPane = new JScrollPane(container);
+		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		scrollPane.setBackground(ColorResources.paymentBtn);
+		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
+		scrollBar.setUnitIncrement(16);
+		scrollBar.setPreferredSize(new Dimension(0, 0));
+		scrollPane.setVerticalScrollBar(scrollBar);
+		return scrollPane;
 	}
 
 	public void addListeners() {
