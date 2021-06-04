@@ -7,6 +7,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class TextFieldFactory {
+	/**
+	 * This Class is used to create Text Fields efficiently 
+	 */
 
 	public static JTextField createTextField(String text, Color backgroundColor, Color foregroundColor, Font font) {
 		JTextField field = new JTextField(text);

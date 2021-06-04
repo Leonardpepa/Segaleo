@@ -4,6 +4,10 @@ import java.awt.font.TextAttribute;
 import java.util.Map;
 
 public class FontFactory {
+	
+	/*
+	 * This class contains all the fonts used for the projects GUI windows
+	 */
 
 	public static Font poppins(int size) {
 		return new Font("Poppins", Font.PLAIN, size);

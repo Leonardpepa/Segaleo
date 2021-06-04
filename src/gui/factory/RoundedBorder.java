@@ -8,6 +8,9 @@ import java.awt.Insets;
 import javax.swing.border.Border;
 
 public class RoundedBorder implements Border {
+	/*
+	 * This Class is used to create rounded borders for some of the inside panels of the GUI windows
+	 */
 
 	    private int radius;
 

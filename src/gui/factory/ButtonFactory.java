@@ -11,7 +11,7 @@ public class ButtonFactory extends JButton{
 	
 	
 	/**
-	 * 
+	 * This Class is used to create buttons efficiently 
 	 */
 	private static final long serialVersionUID = 1L;
 

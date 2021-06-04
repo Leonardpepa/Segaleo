@@ -6,6 +6,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class BackgroundFactory extends JLabel {
+	
+	/*
+	 * This Class is used throughout the whole project to set a background picture for the panels
+	 */
 
 	static ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	static JLabel backgroundLabel;

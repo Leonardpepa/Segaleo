@@ -10,6 +10,10 @@ import javax.swing.SwingConstants;
 import resources.TextResources;
 
 public class LabelFactory {
+	
+	/*
+	 * This Class is used to create labels for the GUI windows and also configure them by alignment
+	 */
 
 	public static JLabel createLabel(String text, Color color, Font font) {
 		JLabel label = new JLabel(String.format("<html><body style=\"text-align: left;\">%s</body></html>",text));

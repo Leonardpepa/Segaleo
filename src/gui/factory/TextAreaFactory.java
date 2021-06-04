@@ -7,6 +7,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 
 public class TextAreaFactory {
+	/**
+	 * This Class is used to create text areas efficiently 
+	 */
 
 	public static JTextArea createTextArea(String text, Color backgroundColor, Color foregroundColor, Font font) {
 		JTextArea area = new JTextArea(text);
