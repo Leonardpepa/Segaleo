@@ -1,6 +1,6 @@
 Greek Salad#with tomato, cucumber, feta cheese, onion and olives#7.50#Food Menu/salads/greek salad.jpeg
 Spinach Salad#with cherry tomatoes, manouri cheese and croutons#8.00#Food Menu/salads/salad.jpeg
 Ntakos#with feta cheese, tomato and olive oil#7.50#Food Menu/salads/dakos.jpeg
-Segaleo Salad#with lettuce, arugula, pomegranate, sunflower seeds and strawberry vinaigrette#7.00#Food Menu/salads/segalo salad.jpeg
+Segaleo Salad#with arugula, pomegranate, strawberry vinaigrette#7.00#Food Menu/salads/segalo salad.jpeg
 Greek Cabbage Salad#with cabbage, carrot and vinegar#5.00#Food Menu/salads/carrot.jpeg
 Quinoa Salad#with nutricious vegetables#7.00#Food Menu/salads/quinoa.jpeg
