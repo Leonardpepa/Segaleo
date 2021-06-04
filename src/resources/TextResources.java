@@ -1,6 +1,11 @@
 package resources;
 
 public class TextResources {
+	/*
+	 * This Class is used for the change of language
+	 * 
+	 * All texts displayed in the project can be found here in English and Greek
+	 */
 	public static boolean isEnglish = true;
 
 	public static String roomService;

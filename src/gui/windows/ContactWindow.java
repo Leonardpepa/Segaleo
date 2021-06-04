@@ -14,6 +14,17 @@ import roomCustomer.Customer;
 
 public class ContactWindow extends JFrame implements ActionListener {
 
+	/*
+	 * This Class creates the first window for the Contact page
+	 * 
+	 * The contents are:
+	 * 	- social media buttons
+	 * 	- phone call button
+	 * 	- message area
+	 * 	- some of the faq
+	 */
+	
+	
 	public static Customer loggedCustomer;
 	
 

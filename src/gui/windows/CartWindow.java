@@ -43,6 +43,13 @@ import resources.TextResources;
 
 public class CartWindow extends JFrame implements ActionListener, MouseListener {
 
+	/*
+	 * This Class creates the cart window for both orders and reservations
+	 * 
+	 * It's denominated in 3 categories to create the header, main content and the footer
+	 * 
+	 * The header and footer remain the same for both the reservation and the order, only the main content changes
+	 */
 	private JPanel backgroundPanel;
 	private Reservation reservation;
 	private ArrayList<Activity> activities;
@@ -58,7 +65,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	JPanel footer;
 	private JTextField couponField;
 	private JButton submitCouponButton;
-	public static  JButton paymentMethods;
+	public static JButton paymentMethods;
 	private JLabel totalLabel;
 	private JLabel priceLabel;
 	private JPanel priceHolder;
@@ -78,10 +85,9 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	private JLabel minusButtonLabel;
 
 	private JLabel quantinty;
-	
-	private int[] [] a;
 
-	
+	private int[][] a;
+
 	private JPanel leftHelper;
 	private JPanel rightHelper;
 
@@ -92,7 +98,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		windowsConfiguration();
 		showWindow(this, true);
 	}
-	
+
 	public CartWindow(Reservation reservation, ArrayList<Activity> activities) {
 		this.a = Activity.getA();
 		this.reservation = reservation;
@@ -119,12 +125,12 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		configureFooter();
 		configureMainContent();
 		addListeners();
-		leftHelper  = new JPanel();
+		leftHelper = new JPanel();
 		leftHelper.setPreferredSize(new Dimension(24, mainContent.getWidth()));
-		
+
 		rightHelper = new JPanel();
 		rightHelper.setPreferredSize(new Dimension(23, mainContent.getWidth()));
-		
+
 		backgroundPanel.add(BorderLayout.WEST, leftHelper);
 		backgroundPanel.add(BorderLayout.EAST, rightHelper);
 		backgroundPanel.add(BorderLayout.NORTH, header);
@@ -158,7 +164,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		myCartLabel.setBounds(64, 40, 100, 50);
 
 		header.add(exitButton);
-	
+
 		header.add(myCartLabel);
 	}
 
@@ -189,7 +195,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
 		scrollBar.setUnitIncrement(16);
-		scrollBar.setPreferredSize(new Dimension(0,0));
+		scrollBar.setPreferredSize(new Dimension(0, 0));
 		scrollPane.setVerticalScrollBar(scrollBar);
 		return scrollPane;
 	}
@@ -227,7 +233,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
-		quantinty = LabelFactory.createLabel(order.getProd().get(product) +"x", Color.BLACK, FontFactory.poppins(13));
+		quantinty = LabelFactory.createLabel(order.getProd().get(product) + "x", Color.BLACK, FontFactory.poppins(13));
 		quantinty.setBounds(260, 85, 50, 20);
 
 		productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
@@ -257,7 +263,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(5, 180, 150, 40);
 
-
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
@@ -274,9 +279,10 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
-		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) +"x", Color.BLACK, FontFactory.poppins(13));
+		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) + "x", Color.BLACK,
+				FontFactory.poppins(13));
 		quantinty.setBounds(260, 180, 50, 20);
-		
+
 		productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		productPriceLabel.setBounds(155, 185, 43, 19);
 
@@ -297,15 +303,15 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		footer.setPreferredSize(new Dimension(375, 290));
 		footer.setBackground(new Color(244, 249, 250));
 
-		if(isOrder) {
-			couponField = TextFieldFactory.createTextField(TextResources.couponCode, new Color(216, 223, 224), Color.BLACK,
-					FontFactory.poppins(14));
+		if (isOrder) {
+			couponField = TextFieldFactory.createTextField(TextResources.couponCode, new Color(216, 223, 224),
+					Color.BLACK, FontFactory.poppins(14));
 			couponField.setBounds(24, 10, 195, 48);
-			
+
 			submitCouponButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(14),
 					new Color(216, 223, 224), Color.BLACK);
 			submitCouponButton.setBounds(231, 10, 121, 48);
-			submitCouponButton.addActionListener(this);			
+			submitCouponButton.addActionListener(this);
 			footer.add(couponField);
 			footer.add(submitCouponButton);
 		}
@@ -324,8 +330,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		totalLabel = LabelFactory.createLabel(TextResources.total, Color.BLACK, FontFactory.poppins(14));
 		if (!isOrder) {
 			priceLabel = LabelFactory.createLabel(reservation.calcCost() + "€", Color.BLACK, FontFactory.poppins(14));
-		}
-		else {
+		} else {
 			priceLabel = LabelFactory.createLabel(order.calcCost() + "€", Color.BLACK, FontFactory.poppins(14));
 		}
 		totalLabel.setBounds(23, 18, 100, 20);
@@ -333,27 +338,26 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 		priceHolder.setBounds(24, 141, 328, 63);
 //define submit button
-		if(isOrder) {
+		if (isOrder) {
 			orderNowButton = ButtonFactory.createButton(TextResources.orderNow, FontFactory.poppins(15),
 					ColorResources.frMainWindowBtn, Color.WHITE);
 			orderNowButton.setBounds(24, 214, 328, 41);
 			orderNowButton.addActionListener(this);
 			footer.add(orderNowButton);
-		}
-		else {
+		} else {
 			reserveNowButton = ButtonFactory.createButton(TextResources.reserveNow, FontFactory.poppins(15),
 					ColorResources.frMainWindowBtn, Color.WHITE);
 			reserveNowButton.setBounds(24, 214, 328, 41);
 			reserveNowButton.addActionListener(this);
 			footer.add(reserveNowButton);
 		}
-		
+
 		priceHolder.add(totalLabel);
 		priceHolder.add(priceLabel);
 
 		footer.add(paymentMethods);
 		footer.add(priceHolder);
-		
+
 	}
 
 	@Override
@@ -362,63 +366,63 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 		if (e.getSource() == exitButton) {
 			this.dispose();
-			if(isOrder) new MenuWindow(order);
+			if (isOrder)
+				new MenuWindow(order);
 			else {
 				ActivityReader actReader = new ActivityReader();
-				new ActivityWindow(actReader.getActivitiesList(),reservation);
+				new ActivityWindow(actReader.getActivitiesList(), reservation);
 			}
 		}
 		if (e.getSource() == submitCouponButton) {
-			if(order.getTotalCost() < 4) {
-				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
-			}
-			else {
+			if (order.getTotalCost() < 4) {
+				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle,
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
 				double discount = order.calcDiscount(couponField.getText());
-				priceLabel.setText(discount + "€");				
+				priceLabel.setText(discount + "€");
 			}
 		}
-		
-		if(e.getSource() == paymentMethods) {
+
+		if (e.getSource() == paymentMethods) {
 			new PaymentWindow();
 		}
-		
-		if(e.getSource().equals( orderNowButton)) {
-			
-			if(order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
+
+		if (e.getSource().equals(orderNowButton)) {
+
+			if (order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
-				new CompleteOrderWindow(true);
+				new CompleteWindow(true, true);
 				order.setPaymentMethod(paymentMethods.getText());
 				order.setDate(new Date());
 				Login.loggedCustomer.addOrders(order);
-			}
-			else if(order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
+			} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
-				new CompleteOrderWindow(false);
+				new CompleteWindow(false, true);
 				order.setPaymentMethod(paymentMethods.getText());
 				order.setDate(new Date());
 				Login.loggedCustomer.addOrders(order);
-			}
-			else if(!paymentMethods.getText().equals(TextResources.payment)){
-				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
-			}
-			else {
-				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle, JOptionPane.INFORMATION_MESSAGE);				
+			} else if (!paymentMethods.getText().equals(TextResources.payment)) {
+				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle,
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle,
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
-		if(e.getSource().equals(reserveNowButton)) {
-			if(!paymentMethods.getText().equals(TextResources.payment)) {
+		if (e.getSource().equals(reserveNowButton)) {
+			if (!paymentMethods.getText().equals(TextResources.payment)) {
 				this.dispose();
-				new CompleteReservationWindow();
+				new CompleteWindow(false, false);
 				reservation.setPaymentMethod(paymentMethods.getText());
 				reservation.setDate(new Date());
 				Login.loggedCustomer.addReservation(reservation);
+			} else {
+				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected,
+						TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);
 			}
-			else {
-				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);
-			}
-			
+
 		}
-	
+
 	}
 
 	@Override
@@ -427,16 +431,15 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 			JLabel label = (JLabel) e.getSource();
 			JPanel parent = (JPanel) label.getParent();
 			String productName = parent.getName();
-			if(isOrder) {
+			if (isOrder) {
 				Product clickedProduct = Menu.findProduct(productName);
 				if (label.getName().equals("plus")) {
 					order.addProduct(clickedProduct);
 				} else if (label.getName().equals("minus")) {
 					order.removeProduct(clickedProduct);
 				}
-			}
-			else {
-				Activity clickedActivity =null;
+			} else {
+				Activity clickedActivity = null;
 				for (Activity a : reservation.getActivities()) {
 					if (a.getName().equalsIgnoreCase(productName)) {
 						clickedActivity = a;
@@ -445,21 +448,22 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 				clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
 				if (label.getName().equals("plus")) {
 					reservation.addActivity(clickedActivity);
-					clickedActivity.setColumn(activities.indexOf(clickedActivity)*2);
+					clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
 					System.out.println("h clicked exei day " + clickedActivity.getSelday());
 					System.out.println("h clicked exei hour " + clickedActivity.getSelhour());
-					if(!clickedActivity.plusCheck()) {
+					if (!clickedActivity.plusCheck()) {
 						reservation.removeActivity(clickedActivity);
 					}
 				} else if (label.getName().equals("minus")) {
 					reservation.removeActivity(clickedActivity);
-					clickedActivity.setColumn(activities.indexOf(clickedActivity)*2);
+					clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
 					clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
-					a[clickedActivity.getSelday()][clickedActivity.getSelhour()+clickedActivity.getColumn()] += 1;
-					System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()+clickedActivity.getColumn()]);
+					a[clickedActivity.getSelday()][clickedActivity.getSelhour() + clickedActivity.getColumn()] += 1;
+					System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()
+							+ clickedActivity.getColumn()]);
 				}
 			}
-		
+
 		}
 
 		initilizePanelToFrame();
