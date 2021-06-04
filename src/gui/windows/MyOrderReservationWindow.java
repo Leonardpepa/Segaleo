@@ -3,6 +3,7 @@ package gui.windows;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.text.ParseException;
@@ -42,7 +43,9 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 	private boolean isOrder;
 	private Customer customer = Login.loggedCustomer;
-
+	
+	private int amount = 0;
+	
 	public MyOrderReservationWindow(boolean isOrder) {
 		this.isOrder = isOrder;
 		initializePanelToFrame(isOrder);
@@ -75,43 +78,23 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		mainContent = new JPanel();
 		mainContent.setBackground(ColorResources.paymentBtn);
 		mainContent.setOpaque(false);
-		mainContent.setLayout(new BorderLayout());
-		if (isOrder) {
-			if (customer.getOrders().size() == 0) {
-				mainContent.setLayout(null);
-				JLabel label = LabelFactory.createLabel(TextResources.noOrder, ColorResources.bgLoginWindow,
-						FontFactory.poppins(16));
-				label.setBounds(25, 15, 200, 22);
-				mainContent.add(label);
-				mainContent.setBounds(0, 250, 375, 50);
-			} else if (customer.getOrders().size() < 2) {
-				JScrollPane scroll = createVerticalScrollablePanel();
-				mainContent.add(scroll);
-				mainContent.setBounds(0, 250, 375, 210);
-			} else {
-				JScrollPane scroll = createVerticalScrollablePanel();
-				mainContent.add(scroll);
-				mainContent.setBounds(0, 250, 375, 500);
-			}
-		} else {
-			if (customer.getReservations().size() == 0) {
-				mainContent.setLayout(null);
-				JLabel label = LabelFactory.createLabel(TextResources.noReservation, ColorResources.bgLoginWindow,
-						FontFactory.poppins(16));
-				label.setBounds(25, 15, 200, 22);
-				mainContent.add(label);
-				mainContent.setBounds(0, 250, 375, 50);
-			} else if (customer.getReservations().size() < 2) {
-				JScrollPane scroll = createVerticalScrollablePanel();
-				mainContent.add(scroll);
-				mainContent.setBounds(0, 250, 375, 210);
-			} else {
-				JScrollPane scroll = createVerticalScrollablePanel();
-				mainContent.add(scroll);
-				mainContent.setBounds(0, 250, 375, 400);
-			}
+		
+		mainContent.setLayout(new FlowLayout());
+		mainContent.setBounds(0, 250, 375, 550);
+		JScrollPane pane = createVerticalScrollablePanel();
+		String labelName = isOrder ? TextResources.noOrder : TextResources.noReservation; 
+		
+		if(amount == 0) {
+			mainContent.setLayout(null);
+			JLabel label = LabelFactory.createLabel(labelName, ColorResources.bgLoginWindow,
+					FontFactory.poppins(16));
+			label.setBounds(25, 15, 200, 22);
+			mainContent.add(label);
+			mainContent.setBounds(0, 250, 375, 50);
+		}else if(amount > 2){
+			mainContent.setLayout(new BorderLayout());
 		}
-
+		mainContent.add(pane);			
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -229,7 +212,8 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 				container.add(displayPanel(null, i, customer.getReservations().get(i)));
 			}
 		}
-
+		
+		amount = container.getComponentCount();
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		scrollPane.setBackground(ColorResources.paymentBtn);

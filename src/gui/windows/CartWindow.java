@@ -46,9 +46,11 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	/*
 	 * This Class creates the cart window for both orders and reservations
 	 * 
-	 * It's denominated in 3 categories to create the header, main content and the footer
+	 * It's denominated in 3 categories to create the header, main content and the
+	 * footer
 	 * 
-	 * The header and footer remain the same for both the reservation and the order, only the main content changes
+	 * The header and footer remain the same for both the reservation and the order,
+	 * only the main content changes
 	 */
 	private JPanel backgroundPanel;
 	private Reservation reservation;
@@ -375,9 +377,11 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		}
 		if (e.getSource() == submitCouponButton) {
 			if (order.getTotalCost() < 4) {
-				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle,
+				JOptionPane.showMessageDialog(null, TextResources.invalidCoupon, TextResources.orderErrorTitle,
 						JOptionPane.INFORMATION_MESSAGE);
 			} else {
+				JOptionPane.showMessageDialog(null, TextResources.submited, TextResources.orderErrorTitle,
+						JOptionPane.INFORMATION_MESSAGE);
 				double discount = order.calcDiscount(couponField.getText());
 				priceLabel.setText(discount + "€");
 			}

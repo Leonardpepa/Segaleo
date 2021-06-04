@@ -67,7 +67,7 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		insidePanel = new JPanel();
 		insidePanel.setBackground(ColorResources.paymentBtn);
 		insidePanel.setOpaque(false);
-		insidePanel.setLayout(new BorderLayout());
+		insidePanel.setLayout(new FlowLayout());
 		
 			if (customer.getCoupons().size() == 0) {
 				insidePanel.setLayout(null);
@@ -76,14 +76,16 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 				label.setBounds(25, 15, 200, 22);
 				insidePanel.add(label);
 				insidePanel.setBounds(0, 250, 375, 50);
-			} else if (customer.getCoupons().size() < 2) {
+			}else if(customer.getCoupons().size() >= 6) {
+				insidePanel.setLayout(new BorderLayout());
 				JScrollPane scroll = createVerticalScrollablePanel();
 				insidePanel.add(scroll);
-				insidePanel.setBounds(0, 250, 375, 100);
-			} else {
+				insidePanel.setBounds(0, 250, 375, 500);
+			}
+			else {
 				JScrollPane scroll = createVerticalScrollablePanel();
 				insidePanel.add(scroll);
-				insidePanel.setBounds(0, 250, 375, 100);
+				insidePanel.setBounds(0, 250, 375, 500);
 			}
 
 	}
@@ -130,7 +132,7 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		insidePanel.setOpaque(false);
 		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
 		insidePanel.setLayout(null);
-		insidePanel.setPreferredSize(new Dimension(350, 200));
+		insidePanel.setPreferredSize(new Dimension(350, 80));
 
 		couponCode = LabelFactory.createLabel(coupon.getCode(), ColorResources.bgLoginWindow,
 				FontFactory.poppins(18));
@@ -154,7 +156,7 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 		JPanel container = new JPanel();
 		container.setBackground(ColorResources.paymentBtn);
 			container.setLayout(new GridLayout(customer.getCoupons().size(), 1, 10, 8));
-			for (int i = 0; i < customer.getOrders().size(); i++) {
+			for (int i = 0; i < customer.getCoupons().size(); i++) {
 				container.add(displayPanel(customer.getCoupons().get(i)));
 			}
 		
