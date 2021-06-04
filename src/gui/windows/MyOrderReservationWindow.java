@@ -73,7 +73,8 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	}
 
 	public void initializeMainContent() {
-		mainContent = new RoundedPanel(50, Color.WHITE);
+		mainContent = new JPanel();
+		mainContent.setBackground(ColorResources.paymentBtn);
 		mainContent.setOpaque(false);
 		mainContent.setLayout(new BorderLayout());
 		if (isOrder) {
@@ -91,7 +92,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 			} else {
 				JScrollPane scroll = createVerticalScrollablePanel();
 				mainContent.add(scroll);
-				mainContent.setBounds(0, 250, 375, 400);
+				mainContent.setBounds(0, 250, 375, 500);
 			}
 		} else {
 			if (customer.getReservations().size() == 0) {
@@ -123,7 +124,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		initializeMainContent();
 		panel.add(mainContent);
 		panel.add(backBtn);
-		panel.add(BackgroundFactory.addBackgroundLight());
+		panel.setBackground(ColorResources.paymentBtn);
 
 	}
 
@@ -145,39 +146,52 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 		JLabel date = isOrder
 				? LabelFactory.createLabel(TextResources.date + ": " + configureDate(order.getDate()), Color.WHITE,
-						FontFactory.poppins(15))
+						FontFactory.poppins(13))
 				: LabelFactory.createLabel(TextResources.date + ": " + configureDate(reservation.getDate()),
-						Color.WHITE, FontFactory.poppins(15));
+						Color.WHITE, FontFactory.poppins(13));
 		date.setBounds(10, 50, 300, 20);
 
 		JLabel roomNum = LabelFactory.createLabel(TextResources.roomField + ": " + customer.getRoom().getNumber(),
-				Color.WHITE, FontFactory.poppins(15));
+				Color.WHITE, FontFactory.poppins(13));
 		roomNum.setBounds(10, 80, 300, 20);
 
 		JLabel paymentMethod = isOrder
 				? LabelFactory.createLabel(TextResources.payment + ": " + order.getPaymentMethod(), Color.WHITE,
-						FontFactory.poppins(15))
+						FontFactory.poppins(13))
 				: LabelFactory.createLabel(TextResources.payment + ": " + reservation.getPaymentMethod(), Color.WHITE,
-						FontFactory.poppins(15));
+						FontFactory.poppins(13));
 		paymentMethod.setBounds(10, 110, 300, 20);
 
-		int y = 10; // y for setbounds
+		int y = 10; // y for set bounds
+		int limit = 80;
 		if (isOrder) {
 			for (Product p : order.getProducts()) {
 				JLabel product = LabelFactory.createLabel(order.getProd().get(p) + "x " + p.getName(), Color.WHITE,
-						FontFactory.poppins(15));
+						FontFactory.poppins(13));
 				product.setBounds(210, y, 300, 20);
 				insidePanel.add(product);
 				y += 20;
+				if(y >= limit) {
+					JLabel andMore = LabelFactory.createLabel("and more", Color.white, FontFactory.poppins(13));
+					andMore.setBounds(210, y, 300, 20);
+					insidePanel.add(andMore);
+					break; //the customer will be able to view the complete order when rating it
+				}
 			}
 		} else {
 			for (Activity activity : reservation.getActivities()) {
 				JLabel product = LabelFactory.createLabel(
 						reservation.getAct().get(activity) + "x " + activity.getName(), Color.WHITE,
-						FontFactory.poppins(15));
+						FontFactory.poppins(13));
 				product.setBounds(210, y, 300, 20);
 				insidePanel.add(product);
 				y += 20;
+				if(y >= limit) {
+					JLabel andMore = LabelFactory.createLabel("and more", Color.white, FontFactory.poppins(13));
+					andMore.setBounds(210, y, 300, 20);
+					insidePanel.add(andMore);
+					break; //the customer will be able to view the complete reservation when rating it
+				}
 			}
 		}
 		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
@@ -204,6 +218,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	// creates a vertical scrollable panel
 	public JScrollPane createVerticalScrollablePanel() {
 		JPanel container = new JPanel();
+		container.setBackground(ColorResources.paymentBtn);
 		if (isOrder) {
 			container.setLayout(new GridLayout(customer.getOrders().size(), 1, 10, 8));
 			for (int i = 0; i < customer.getOrders().size(); i++) {
@@ -218,6 +233,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		scrollPane.setBackground(ColorResources.paymentBtn);
 		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
 		scrollBar.setUnitIncrement(16);
 		scrollBar.setPreferredSize(new Dimension(0, 0));
