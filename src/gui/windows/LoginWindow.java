@@ -16,7 +16,7 @@ import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.RoomCustomerReader;
 
-public class LoginWindow extends JFrame implements ActionListener, FocusListener {
+public class LoginWindow extends JFrame {
 	/**
 	 * 
 	 */
@@ -157,19 +157,86 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 		panel.add(BackgroundFactory.addBackgroundDark());
 	}
 
-	// add listeners
+	// each button has its own listener
 	public void addListeners() {
-		languageBtn.addActionListener(this);
-		loginBtn.addActionListener(this);
+		languageBtn.addActionListener(new ActionListener() {
 
-		contactBtn.addActionListener(this);
-		popupPanel.greek.addActionListener(this);
-		popupPanel.english.addActionListener(this);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				isPopup = isPopup ? false : true;
+				initializePanelToFrame();
+			}
+		});
+		loginBtn.addActionListener(new ActionListener() {
 
-		roomField.addFocusListener(this);
-		passwordField.addFocusListener(this);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// reads and saves the all customers with their rooms
+				new RoomCustomerReader();
 
-		myPassBtn.addActionListener(this);
+				// checks if the text field is empty and if the login data is correct
+				if (Login.checkLogin(roomField.getText(), passwordField.getText())) {
+					dispose();
+					new MainWindow();
+				}
+			}
+		});
+
+		contactBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ContactWindow();
+			}
+		});
+		popupPanel.greek.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TextResources.isEnglish = false;
+				initializePanelToFrame();
+			}
+		});
+		popupPanel.english.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TextResources.isEnglish = true;
+				initializePanelToFrame();
+			}
+		});
+
+		myPassBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ForgotPasswordWindow();
+			}
+		});
+
+		roomField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				roomField.setText("");
+				if (e.getSource() == passwordField) {
+					passwordField.setText("");
+					passwordField.setEchoChar('*');
+				}
+
+			}
+		});
+
+		passwordField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				passwordField.setText("");
+				passwordField.setEchoChar('*');
+			}
+
+		});
 
 	}
 
@@ -186,68 +253,6 @@ public class LoginWindow extends JFrame implements ActionListener, FocusListener
 	public void configurePopupWindow() {
 		popupPanel = new PopupPanel();
 		popupPanel.configurePopupWindow();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		if (e.getSource() == languageBtn) {
-			isPopup = isPopup ? false : true;
-		}
-
-		if (e.getSource() == loginBtn) {
-			// reads and saves the all customers with their rooms
-			new RoomCustomerReader();
-
-			// checks if the text field is empty and if the login data is correct
-			if (Login.checkLogin(roomField.getText(), passwordField.getText())) {
-				this.dispose();
-				new MainWindow();
-			}
-
-		}
-
-		if (e.getSource() == contactBtn) {
-			this.dispose();
-			new ContactWindow();
-		}
-
-		if (e.getSource() == popupPanel.greek) {
-			TextResources.isEnglish = false;
-		}
-
-		if (e.getSource() == popupPanel.greek) {
-			TextResources.isEnglish = false;
-
-		}
-
-		if (e.getSource() == popupPanel.english) {
-			TextResources.isEnglish = true;
-		}
-
-		if (e.getSource() == myPassBtn) {
-			this.dispose();
-			new ForgotPasswordWindow();
-		}
-
-		initializePanelToFrame();
-
-	}
-
-	@Override
-	public void focusGained(FocusEvent e) {
-
-		if (e.getSource() == roomField)
-			roomField.setText("");
-		if (e.getSource() == passwordField) {
-			passwordField.setText("");
-			passwordField.setEchoChar('*');
-		}
-
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
 	}
 
 }
