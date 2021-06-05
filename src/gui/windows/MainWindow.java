@@ -27,8 +27,7 @@ import order.Order;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class MainWindow extends JFrame implements ActionListener {
-
+public class MainWindow extends JFrame {
 	/**
 	 * 
 	 */
@@ -136,50 +135,54 @@ public class MainWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	//each button has its own listener
 	public void addListeners() {
-		logoutBtn.addActionListener(this);
-		popupPanel.greek.addActionListener(this);
-		popupPanel.english.addActionListener(this);
-		profileBtn.addActionListener(this);
-		servicesBtn.addActionListener(this);
-		contactBtn.addActionListener(this);
-		activitiesBtn.addActionListener(this);
+
+		logoutBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Login.logout();
+				dispose();
+				new LoginWindow();
+			}
+		});
+	
+		
+		profileBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ProfileWindow();
+			}
+		});
+		
+		servicesBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MenuWindow(order);
+			}
+			
+		});
+		
+		contactBtn.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ContactWindow();
+			}
+		});
+		
+		activitiesBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ActivityReader actReader = new ActivityReader();
+				new ActivityWindow(actReader.getActivitiesList(),reservation);
+			}
+		});
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		if (e.getSource() == popupPanel.greek) {
-			TextResources.isEnglish = false;
-		}
-
-		if (e.getSource() == popupPanel.english) {
-			TextResources.isEnglish = true;
-		}
-
-		if (e.getSource() == profileBtn) {
-			this.dispose();
-			new ProfileWindow();
-		}
-		if (e.getSource() == servicesBtn) {
-			this.dispose();
-			new MenuWindow(order);
-		}
-		if (e.getSource() == contactBtn) {
-			this.dispose();
-			new ContactWindow();
-		}
-		if (e.getSource() == activitiesBtn) {
-			this.dispose();
-			ActivityReader actReader = new ActivityReader();
-			new ActivityWindow(actReader.getActivitiesList(),reservation);
-		}
-		if (e.getSource() == logoutBtn) {
-			Login.logout();
-			this.dispose();
-			new LoginWindow();
-		}
-
-		initializePanelToFrame();
-	}
+	
 }

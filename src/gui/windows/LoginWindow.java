@@ -159,14 +159,7 @@ public class LoginWindow extends JFrame {
 
 	// each button has its own listener
 	public void addListeners() {
-		languageBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				isPopup = isPopup ? false : true;
-				initializePanelToFrame();
-			}
-		});
+		languageBtn.addActionListener(new languageListener());
 		loginBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -190,22 +183,8 @@ public class LoginWindow extends JFrame {
 				new ContactWindow();
 			}
 		});
-		popupPanel.greek.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				TextResources.isEnglish = false;
-				initializePanelToFrame();
-			}
-		});
-		popupPanel.english.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				TextResources.isEnglish = true;
-				initializePanelToFrame();
-			}
-		});
+		popupPanel.greek.addActionListener(new languageListener());
+		popupPanel.english.addActionListener(new languageListener());
 
 		myPassBtn.addActionListener(new ActionListener() {
 
@@ -253,6 +232,28 @@ public class LoginWindow extends JFrame {
 	public void configurePopupWindow() {
 		popupPanel = new PopupPanel();
 		popupPanel.configurePopupWindow();
+	}
+	
+	class languageListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource() == languageBtn) {
+				isPopup = isPopup ? false : true;
+				initializePanelToFrame();
+			}
+			
+			if (e.getSource() == popupPanel.greek) {
+				TextResources.isEnglish = false;
+			}
+
+			if (e.getSource() == popupPanel.english) {
+				TextResources.isEnglish = true;
+			}
+			initializePanelToFrame();
+		}
+		
 	}
 
 }
