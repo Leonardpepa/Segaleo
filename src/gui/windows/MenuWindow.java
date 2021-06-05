@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,7 +35,7 @@ import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class MenuWindow extends JFrame implements ActionListener, MouseListener {
+public class MenuWindow extends JFrame{
 
 	/**
 	 * 
@@ -117,15 +118,42 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	}
 
 	public void addListeners() {
-		backButton.addActionListener(this);
-		main.addActionListener(this);
-		appetizers.addActionListener(this);
-		coffee.addActionListener(this);
-		dessert.addActionListener(this);
-		drinks.addActionListener(this);
-		salads.addActionListener(this);
-		breakfast.addActionListener(this);
-		cartPanel.addMouseListener(this);
+		
+		main.addActionListener(new CategoryButtonListener());
+		appetizers.addActionListener(new CategoryButtonListener());
+		coffee.addActionListener(new CategoryButtonListener());
+		dessert.addActionListener(new CategoryButtonListener());
+		drinks.addActionListener(new CategoryButtonListener());
+		salads.addActionListener(new CategoryButtonListener());
+		breakfast.addActionListener(new CategoryButtonListener());
+		
+		backButton.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(displayQuantity > 0) {
+					int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
+							JOptionPane.YES_NO_OPTION);
+					if (selectedOption == 0) {
+						order.clearOrder();
+						dispose();
+						new MainWindow();
+					}
+				}
+				else {
+					dispose();
+					new MainWindow();
+				}
+			}
+		});
+		
+		cartPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				new CartWindow(order);
+			}
+		});
+		
 		search.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -249,7 +277,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		plusButtonLabel = LabelFactory.createIconLabel(searchPlusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new plusButtonListener());
 		
 		JLabel priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		if (product instanceof Food) {
@@ -394,7 +422,7 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(200, 80, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new plusButtonListener());
 
 		JLabel newPrice = LabelFactory.createLabel(product.getPrice() + "€", Color.RED, FontFactory.poppins(14));
 		newPrice.setBounds(120, 85, 43, 19);
@@ -408,73 +436,32 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 		return productPanel;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backButton) {
-			if(displayQuantity > 0) {
-				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
-						JOptionPane.YES_NO_OPTION);
-				if (selectedOption == 0) {
-					order.clearOrder();
-					this.dispose();
-					new MainWindow();
-				}
-			}
-			else {
-				this.dispose();
-				new MainWindow();
-			}
-		} else {
-			this.dispose();
+	class CategoryButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
 			JButton btn = (JButton) e.getSource();
 			new CategoryWindow(btn.getBackground(), btn.getText(), Menu.getProductList(btn.getText()), order);
 		}
+		
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() == cartPanel) {
-			this.dispose();
-			new CartWindow(order);
+	
+	class plusButtonListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			
+				JLabel plusLabel = (JLabel) e.getSource();
+				JPanel parent = (JPanel) plusLabel.getParent();
+				String productName = parent.getName();
+				Product clickedProduct = Menu.findProduct(productName);
+				order.addProduct(clickedProduct);
+				priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
+				displayQuantity = 0;
+				for(Product p: order.getProd().keySet()) {
+					displayQuantity += order.getProd().get(p);
+				}
+				bagLabel.setText(displayQuantity + "");
 		}
-		if (e.getSource() instanceof JLabel) {
-			JLabel plusLabel = (JLabel) e.getSource();
-			JPanel parent = (JPanel) plusLabel.getParent();
-			String productName = parent.getName();
-			Product clickedProduct = Menu.findProduct(productName);
-			order.addProduct(clickedProduct);
-			priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
-			displayQuantity = 0;
-			for(Product p: order.getProd().keySet()) {
-				displayQuantity += order.getProd().get(p);
-			}
-			bagLabel.setText(displayQuantity + "");
-		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
