@@ -66,7 +66,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 	private JLabel myCartLabel;
 
 	// footer
-	JPanel footer;
+	private JPanel footer;
 	public static JTextField couponField;
 	private JButton submitCouponButton;
 	public static JButton paymentMethods;
@@ -78,15 +78,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 
 	// main
 	private JPanel mainContent;
-	private ImageIcon productImage;
-	private JLabel productimgLabel;
-	private JLabel titleLabel;
-	private JLabel descLabel;
-	private JLabel productPriceLabel;
-	private ImageIcon plusIcon;
-	private JLabel plusButtonLabel;
-	private ImageIcon minusIcon;
-	private JLabel minusButtonLabel;
 
 	private JLabel quantinty;
 
@@ -184,9 +175,9 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 	public JScrollPane createVerticalScrollablePanel() {
 		JPanel container = new JPanel();
 		if (isOrder) {
-			container.setLayout(new GridLayout(order.getProducts().size(), 1, 0, 8));
+			container.setLayout(new GridLayout(this.order.getProducts().size(), 1, 0, 8));
 
-			for (Product product : order.getProducts()) {
+			for (Product product : this.order.getProducts()) {
 				container.add(configureProductPanel(product));
 			}
 		} else {
@@ -213,36 +204,36 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
 
-		productImage = new ImageIcon(product.getPath());
-		productimgLabel = LabelFactory.createIconLabel(productImage);
+		ImageIcon productImage = new ImageIcon(product.getPath());
+		JLabel productimgLabel = LabelFactory.createIconLabel(productImage);
 		productimgLabel.setBounds(10, 10, 100, 100);
 
-		titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
+		JLabel titleLabel = LabelFactory.createLabel(product.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(120, 20, 200, 17);
 
-		descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
+		JLabel descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 35, 200, 40);
 
-		plusIcon = new ImageIcon("./buttonImages/plus.png");
-		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
+		ImageIcon plusIcon = new ImageIcon("./buttonImages/plus.png");
+		JLabel plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(290, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 		plusButtonLabel.setName("plus");
 
-		minusIcon = new ImageIcon("./buttonImages/minus.png");
+		ImageIcon minusIcon = new ImageIcon("./buttonImages/minus.png");
 
-		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
+		JLabel minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(230, 85, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(this);
 		minusButtonLabel.setName("minus");
 
-		quantinty = LabelFactory.createLabel(order.getProd().get(product) + "x", Color.BLACK, FontFactory.poppins(13));
+		JLabel quantinty = LabelFactory.createLabel(order.getProd().get(product) + "x", Color.BLACK, FontFactory.poppins(13));
 		quantinty.setBounds(260, 85, 50, 20);
 
-		productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		JLabel productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		productPriceLabel.setBounds(190, 85, 43, 19);
 
 		panel.add(productimgLabel);
@@ -262,24 +253,24 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
 
-		productImage = new ImageIcon(activity.getPath());
-		productimgLabel = LabelFactory.createIconLabel(productImage);
+		ImageIcon productImage = new ImageIcon(activity.getPath());
+		JLabel productimgLabel = LabelFactory.createIconLabel(productImage);
 		productimgLabel.setBounds(5, 5, 320, 170);
 
-		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
+		JLabel titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
 		titleLabel.setBounds(5, 180, 150, 40);
 
-		plusIcon = new ImageIcon("./buttonImages/plus.png");
-		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
+		ImageIcon plusIcon = new ImageIcon("./buttonImages/plus.png");
+		JLabel plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(290, 180, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(this);
 		plusButtonLabel.setName("plus");
 
-		minusIcon = new ImageIcon("./buttonImages/minus.png");
-
-		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
+		ImageIcon minusIcon = new ImageIcon("./buttonImages/minus.png");
+ 
+		JLabel minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(230, 180, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(this);
@@ -289,7 +280,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 				FontFactory.poppins(13));
 		quantinty.setBounds(260, 180, 50, 20);
 
-		productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		JLabel productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		productPriceLabel.setBounds(155, 185, 43, 19);
 
 		panel.add(productimgLabel);
@@ -383,11 +374,9 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 			if (order.getTotalCost() < 4) {
 				couponField.setBackground(new Color(232, 158, 158));
 				couponField.setText(TextResources.invalidCouponTitle);
-			} else {
+			} else{
 				double discount = order.calcDiscount(couponField.getText());
 				priceLabel.setText(discount + "€");
-				couponField.setBackground(new Color(158, 232, 178));
-				couponField.setText(TextResources.submitted);
 			}
 		}
 

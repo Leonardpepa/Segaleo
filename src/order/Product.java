@@ -3,8 +3,6 @@ package order;
 import java.util.ArrayList;
 
 import rating.Rating;
-
-//TODO override hashcode and equals
 public abstract class Product {
 	private String name;
 	private String description;

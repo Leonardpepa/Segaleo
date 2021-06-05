@@ -57,16 +57,6 @@ public class MenuWindow extends JFrame implements ActionListener, MouseListener 
 	private JButton drinks;
 	private JButton coffee;
 
-	// display product layout
-//	private JPanel productPanel;
-//	private ImageIcon productImg;
-//	private JLabel productimgLabel;
-//	private JLabel titleLabel;
-//	private JLabel descLabel;
-//	private JLabel prevPrice;
-//	private ImageIcon plusIcon;
-//	private JLabel newPrice;
-
 	// header
 	private JPanel header;
 	private JButton backButton;

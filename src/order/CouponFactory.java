@@ -39,6 +39,8 @@ public class CouponFactory {
 
 			if (days < 3) {
 				Login.loggedCustomer.removeCoupon(couponProvided);
+				CartWindow.couponField.setBackground(new Color(158, 232, 178));
+				CartWindow.couponField.setText(TextResources.submitted);
 				return true;
 			}
 

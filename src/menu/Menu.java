@@ -27,7 +27,7 @@ public class Menu {
 	private double price;
 	private String path;
 	private double alchoolPerc;
-
+	int id = 0;
 	public Menu() {
 		appetizers = new ArrayList<>();
 		coffee = new ArrayList<>();
@@ -40,12 +40,12 @@ public class Menu {
 		onlyFood = new ArrayList<Product>();
 
 		readProduct(appetizers, "files/appetizers/Appetizers", TextResources.endpointPath);
-		readProduct(coffee, "files/coffee/Coffees", TextResources.endpointPath);
 		readProduct(desserts, "files/desserts/Desserts", TextResources.endpointPath);
-		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
 		readProduct(main, "files/main/Main", TextResources.endpointPath);
 		readProduct(salads, "files/salads/Salads", TextResources.endpointPath);
 		readProduct(breakfast, "files/breakfast/Breakfast", TextResources.endpointPath);
+		readProduct(drinks, "files/drinks/Drinks", TextResources.endpointPath);
+		readProduct(coffee, "files/coffee/Coffees", TextResources.endpointPath);
 
 		allProducts.addAll(appetizers);
 		allProducts.addAll(coffee);
@@ -68,7 +68,12 @@ public class Menu {
 		try {
 			FileReader reader = new FileReader(activitieFile);
 			BufferedReader inputReader = new BufferedReader(reader);
-			int id = 0;
+			if(pathName.equalsIgnoreCase("files/drinks/Drinks")) {
+				id = 120;
+			}
+			if(pathName.equalsIgnoreCase("files/coffee/Coffees")) {
+				id = 200;
+			}
 
 			/*
 			 * The reader reads each line, separates name, price, description and adds it
@@ -84,7 +89,7 @@ public class Menu {
 				price = Double.parseDouble(line.split("#")[2]);
 				path = line.split("#")[3];
 
-				if (pathName.contentEquals("files/drinks/Drinks")) {
+				if (pathName.equalsIgnoreCase("files/drinks/Drinks")) {
 					// convertion into Double
 					alchoolPerc = Double.parseDouble(line.split("#")[4]);
 

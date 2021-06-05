@@ -66,17 +66,14 @@ public class Order {
 		return prod;
 	}
 
-	public Product isProduct(String name) {
-		Product temp = null;
-
+	public boolean isProduct(String name) {
 		for (Product product : products) {
 			if (name.equals(product.getName())) {
-				temp = product;
-				break;
+				return true;
 			}
 		}
 
-		return temp;
+		return false;
 	}
 
 	public double calcDiscount(String code) {
