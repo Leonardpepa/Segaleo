@@ -24,7 +24,7 @@ public class Activity
 	private int selpeople =0;
 
 
-	// set-get hour and day 
+	// set-get selected hour-day-people-column
 	public void setSelHour(int hour) {
 		this.selhour = hour;
 	}
@@ -57,15 +57,8 @@ public class Activity
 		this.selpeople = selpeople;
 	}
 
-	
 	public static int[][] getA() {
 		return a;
-	}
-
-	public void PRINT()
-	{
-		System.out.print(this.selhour + "and " + this.selday + "atoma: "+ this.selpeople);
-
 	}
 
 	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour, int id){
@@ -104,13 +97,11 @@ public class Activity
 		return id;
 	}
 	
-
-	// for avaliability array
+	//array for avaliabilities
 	public static void initialarray() {
 		for(int i= 0; i<7; i++) {
 			int j=0;
 			for(Activity activity:activities) {
-
 				a[i][j]= activity.getAvailability();
 				a[i][++j] = activity.getAvailability();
 				j++;
@@ -118,35 +109,21 @@ public class Activity
 		}
 	}
 
-	public static void printArray() {
-		for(int i=0; i<=6; i++) {
-			for(int j=0; j<=13; j++) {
-				System.out.println(a[i][j]);
-			}
-		}
-	}
 	public boolean checkLimit() {
 		if(this.getSelpeople() <= a[this.getSelday()][this.getSelhour() + this.getColumn()]){
 			a[this.getSelday()][this.getSelhour() + this.getColumn()] -= this.getSelpeople();
-			System.out.println("YES!");
-			System.out.println("apomenoun : " +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
 			return true;
 		}
 		else {
-			System.out.println("sorry!" + +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
 			return false;
 		}
 	}
 	public boolean plusCheck() {
-	System.out.println("**********" +a[this.getSelday()][this.getSelhour() + this.getColumn()]);
 		if(a[this.getSelday()][this.getSelhour() + this.getColumn()]>= 1) {
 			a[this.getSelday()][this.getSelhour() + this.getColumn()] -=1;
-			System.out.println("YES!");
-			System.out.println("apomenoun : " +a[this.getSelday()][this.getSelhour() + this.getColumn()] );
 			return true;
 		}
 		else {
-			System.out.println("sorry menoyn 0 ");
 			return false;
 		}
 	}

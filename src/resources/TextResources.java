@@ -96,7 +96,16 @@ public class TextResources {
 	public static String noOrder;
 	public static String noReservation;
 	public static String submited;
+	
+	public static String noSelection;
+	public static String noAvaliability;
+	public static String people;
+	public static String successCalendar;
+	public static String invalidDay;
 
+	/**
+	 * 
+	 */
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -191,6 +200,11 @@ public class TextResources {
 		date = isEnglish ? "Date" : "Ημερομηνία";
 		submited = isEnglish ? "Submited" : "Yποβλήθηκε";
 		
+		noSelection = isEnglish ? "Something (day/hour/people) doesn't selected. Please try again" : "Κάποια κατηγορία (μέρα/ώρα/άτομα) δεν επιλέχθηκε. Παρακαλούμε ξαναπροσπαθήστε.";
+		noAvaliability = isEnglish ? "There is space avaliable only for " : "Υπάρχει διαθέσιμότητα μόνο για ";
+		people = isEnglish ? " people" : " άτομα";
+		successCalendar = isEnglish ? "Your reservation is already in your Cart." : "Η κράτηση σου βρίσκεται ήδη μέσα στο καλάθι σου.";
+		invalidDay =  isEnglish ? "Invalid day. You can choose days only from this week and month." : " Μη έγκυρη ημερομηνία. Μπορείτε να επιλέξετε μόνο ημέρες της τρέχουσας εβδομάδας και μήνα.";
 	}
 
 }
