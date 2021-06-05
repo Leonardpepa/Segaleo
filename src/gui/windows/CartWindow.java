@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -41,12 +43,12 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CartWindow extends JFrame implements ActionListener, MouseListener {
+public class CartWindow extends JFrame implements ActionListener, MouseListener, FocusListener {
 
 	/*
 	 * This Class creates the cart window for both orders and reservations
 	 * 
-	 * It's denominated in 3 categories to create the header, main content and the
+	 * It's separated in 3 categories to create the header, main content and the
 	 * footer
 	 * 
 	 * The header and footer remain the same for both the reservation and the order,
@@ -65,7 +67,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 	// footer
 	JPanel footer;
-	private JTextField couponField;
+	public static JTextField couponField;
 	private JButton submitCouponButton;
 	public static JButton paymentMethods;
 	private JLabel totalLabel;
@@ -147,6 +149,8 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	public void addListeners() {
 		exitButton.addActionListener(this);
 		paymentMethods.addActionListener(this);
+		
+		couponField.addFocusListener(this);
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -377,13 +381,13 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		}
 		if (e.getSource() == submitCouponButton) {
 			if (order.getTotalCost() < 4) {
-				JOptionPane.showMessageDialog(null, TextResources.invalidCoupon, TextResources.orderErrorTitle,
-						JOptionPane.INFORMATION_MESSAGE);
+				couponField.setBackground(new Color(232, 158, 158));
+				couponField.setText(TextResources.invalidCouponTitle);
 			} else {
-				JOptionPane.showMessageDialog(null, TextResources.submited, TextResources.orderErrorTitle,
-						JOptionPane.INFORMATION_MESSAGE);
 				double discount = order.calcDiscount(couponField.getText());
 				priceLabel.setText(discount + "€");
+				couponField.setBackground(new Color(158, 232, 178));
+				couponField.setText(TextResources.submitted);
 			}
 		}
 
@@ -394,21 +398,28 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 		if (e.getSource().equals(orderNowButton)) {
 
 			if (order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
+				
 				this.dispose();
 				new CompleteWindow(true, true);
 				order.setPaymentMethod(paymentMethods.getText());
 				order.setDate(new Date());
 				Login.loggedCustomer.addOrders(order);
+				
 			} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
+				
 				this.dispose();
 				new CompleteWindow(false, true);
 				order.setPaymentMethod(paymentMethods.getText());
 				order.setDate(new Date());
 				Login.loggedCustomer.addOrders(order);
-			} else if (!paymentMethods.getText().equals(TextResources.payment)) {
-				JOptionPane.showMessageDialog(null, TextResources.orderError, TextResources.orderErrorTitle,
-						JOptionPane.INFORMATION_MESSAGE);
+				
+			}else if(order.getTotalCost() < 10) {
+				
+				orderNowButton.setBackground(ColorResources.bgMainWindowBtn);
+				orderNowButton.setText(TextResources.orderMin);
+				
 			} else {
+				
 				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle,
 						JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -472,6 +483,22 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 
 		initilizePanelToFrame();
 	}
+	
+	public void focusGained(FocusEvent e) {
+
+		if (e.getSource() == couponField)
+		{
+			couponField.setText("");
+		}
+		
+	}
+
+	
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -492,4 +519,5 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener 
 	public void mouseExited(MouseEvent e) {
 
 	}
+
 }

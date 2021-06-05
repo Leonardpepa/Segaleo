@@ -1,10 +1,12 @@
 package order;
 
+import java.awt.Color;
 import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import gui.windows.CartWindow;
 import login.Login;
 import resources.TextResources;
 
@@ -41,8 +43,8 @@ public class CouponFactory {
 			}
 
 		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(null, TextResources.invalidCoupon, TextResources.invalidCouponTitle,
-					JOptionPane.INFORMATION_MESSAGE);
+			CartWindow.couponField.setBackground(new Color(232, 158, 158));
+			CartWindow.couponField.setText(TextResources.invalidCoupon);
 		}
 
 		return false;

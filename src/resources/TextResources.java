@@ -78,7 +78,7 @@ public class TextResources {
 
 	public static String reservationErrorTitle;
 	public static String orderErrorTitle;
-	public static String orderError;
+	public static String orderMin;
 	public static String orderSuccessTitle;
 	public static String orderSuccess;
 
@@ -95,7 +95,7 @@ public class TextResources {
 	public static String date;
 	public static String noOrder;
 	public static String noReservation;
-	public static String submited;
+	public static String submitted;
 	
 	public static String noSelection;
 	public static String noAvaliability;
@@ -183,7 +183,7 @@ public class TextResources {
 
 		reservationErrorTitle = isEnglish ? "Invalid Reservation" : "Μη Έγκυρη Κράτηση";
 		orderErrorTitle = isEnglish ? "Invalid Order" : "Μη Έγκυρη Παραγγελία";
-		orderError = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
+		orderMin = isEnglish ? "Minimum order price is 10€" : "Το ελάχιστο ποσό παραγγελίας είναι 10€";
 		orderSuccessTitle = isEnglish ? "Success" : "Επιτυχία";
 		orderSuccess = isEnglish ? "Your order is complete" : "Η παραγγελία σας ολοκληρώθηκε";
 
@@ -198,7 +198,7 @@ public class TextResources {
 		
 		noPaymentSelected = isEnglish ? "You need to choose payment method for the order" : "Πρέπει να διαλέξετε τρόπο πληρώμης για την παραγγελία";
 		date = isEnglish ? "Date" : "Ημερομηνία";
-		submited = isEnglish ? "Submited" : "Yποβλήθηκε";
+		submitted = isEnglish ? "Submitted" : "Yποβλήθηκε";
 		
 		noSelection = isEnglish ? "Something (day/hour/people) doesn't selected. Please try again" : "Κάποια κατηγορία (μέρα/ώρα/άτομα) δεν επιλέχθηκε. Παρακαλούμε ξαναπροσπαθήστε.";
 		noAvaliability = isEnglish ? "There is space avaliable only for " : "Υπάρχει διαθέσιμότητα μόνο για ";
