@@ -48,9 +48,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	private ImageIcon logoutBtnImage = new ImageIcon("buttonImages/Logout Button.png");
 	private JButton logoutBtn;
 
-	private ImageIcon languageImage = new ImageIcon("buttonImages/Language Button.png");
-	private JButton languageBtn;
-
 	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
 	private JButton contactBtn;
 
@@ -100,7 +97,6 @@ public class MainWindow extends JFrame implements ActionListener {
 		panel.add(logoutBtn);
 		panel.add(profileBtn);
 		panel.add(contactBtn);
-		panel.add(languageBtn);
 		togglePanel();
 		panel.add(LogoFactory.addLogo());
 		panel.add(BackgroundFactory.addBackgroundLight());
@@ -122,9 +118,6 @@ public class MainWindow extends JFrame implements ActionListener {
 		logoutBtn = ButtonFactory.createButtonIcon(logoutBtnImage);
 		logoutBtn.setBounds(10, 49, 61, 61);
 
-		languageBtn = ButtonFactory.createButtonIcon(languageImage);
-		languageBtn.setBounds(249, 723, 61, 61);
-
 		contactBtn = ButtonFactory.createButtonIcon(contactImage);
 		contactBtn.setBounds(309, 723, 61, 61);
 
@@ -144,7 +137,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		languageBtn.addActionListener(this);
 		logoutBtn.addActionListener(this);
 		popupPanel.greek.addActionListener(this);
 		popupPanel.english.addActionListener(this);
@@ -156,10 +148,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if (e.getSource() == languageBtn) {
-			isPopup = isPopup ? false : true;
-		}
 
 		if (e.getSource() == popupPanel.greek) {
 			TextResources.isEnglish = false;
