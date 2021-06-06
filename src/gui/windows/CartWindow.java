@@ -8,8 +8,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CartWindow extends JFrame implements ActionListener, MouseListener, FocusListener {
+public class CartWindow extends JFrame {
 
 	/*
 	 * This Class creates the cart window for both orders and reservations
@@ -138,10 +140,92 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 	}
 
 	public void addListeners() {
-		exitButton.addActionListener(this);
-		paymentMethods.addActionListener(this);
-		
-		couponField.addFocusListener(this);
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				if (isOrder)
+					new MenuWindow(order);
+				else {
+					ActivityReader actReader = new ActivityReader();
+					new ActivityWindow(actReader.getActivitiesList(), reservation);
+				}
+			}
+		});
+
+		submitCouponButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (order.getTotalCost() < 4) {
+					couponField.setBackground(new Color(232, 158, 158));
+					couponField.setText(TextResources.invalidCouponTitle);
+				} else {
+					double discount = order.calcDiscount(couponField.getText());
+					priceLabel.setText(discount + "€");
+				}
+			}
+		});
+
+		paymentMethods.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new PaymentWindow();
+			}
+		});
+
+		couponField.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				couponField.setText("");
+			}
+		});
+
+		orderNowButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
+
+					dispose();
+					new CompleteWindow(true, true);
+					order.setPaymentMethod(paymentMethods.getText());
+					order.setDate(new Date());
+					Login.loggedCustomer.addOrders(order);
+
+				} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
+					dispose();
+					new CompleteWindow(false, true);
+					order.setPaymentMethod(paymentMethods.getText());
+					order.setDate(new Date());
+					Login.loggedCustomer.addOrders(order);
+
+				} else if (order.getTotalCost() < 10) {
+					orderNowButton.setBackground(ColorResources.bgMainWindowBtn);
+					orderNowButton.setText(TextResources.orderMin);
+
+				} else {
+
+					JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle,
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			}
+		});
+
+		reserveNowButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!paymentMethods.getText().equals(TextResources.payment)) {
+					dispose();
+					new CompleteWindow(false, false);
+					reservation.setPaymentMethod(paymentMethods.getText());
+					reservation.setDate(new Date());
+					Login.loggedCustomer.addReservation(reservation);
+				} else {
+					JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected,
+							TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			}
+		});
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -219,7 +303,7 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(290, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new productsListener());
 		plusButtonLabel.setName("plus");
 
 		ImageIcon minusIcon = new ImageIcon("./buttonImages/minus.png");
@@ -227,13 +311,15 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 		JLabel minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(230, 85, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		minusButtonLabel.addMouseListener(this);
+		minusButtonLabel.addMouseListener(new productsListener());
 		minusButtonLabel.setName("minus");
 
-		JLabel quantinty = LabelFactory.createLabel(order.getProd().get(product) + "x", Color.BLACK, FontFactory.poppins(13));
+		JLabel quantinty = LabelFactory.createLabel(order.getProd().get(product) + "x", Color.BLACK,
+				FontFactory.poppins(13));
 		quantinty.setBounds(260, 85, 50, 20);
 
-		JLabel productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		JLabel productPriceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK,
+				FontFactory.poppins(13));
 		productPriceLabel.setBounds(190, 85, 43, 19);
 
 		panel.add(productimgLabel);
@@ -265,22 +351,23 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(290, 180, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new activitiesListener());
 		plusButtonLabel.setName("plus");
 
 		ImageIcon minusIcon = new ImageIcon("./buttonImages/minus.png");
- 
+
 		JLabel minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(230, 180, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		minusButtonLabel.addMouseListener(this);
+		minusButtonLabel.addMouseListener(new activitiesListener());
 		minusButtonLabel.setName("minus");
 
 		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) + "x", Color.BLACK,
 				FontFactory.poppins(13));
 		quantinty.setBounds(260, 180, 50, 20);
 
-		JLabel productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		JLabel productPriceLabel = LabelFactory.createLabel(activity.getPrice() + "€", Color.BLACK,
+				FontFactory.poppins(13));
 		productPriceLabel.setBounds(155, 185, 43, 19);
 
 		panel.add(productimgLabel);
@@ -295,6 +382,10 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 	}
 
 	public void configureFooter() {
+		
+		reserveNowButton = new JButton();
+		orderNowButton = new JButton();
+		
 		footer = new JPanel();
 		footer.setLayout(null);
 		footer.setPreferredSize(new Dimension(375, 290));
@@ -308,7 +399,6 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 			submitCouponButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(14),
 					new Color(216, 223, 224), Color.BLACK);
 			submitCouponButton.setBounds(231, 10, 121, 48);
-			submitCouponButton.addActionListener(this);
 			footer.add(couponField);
 			footer.add(submitCouponButton);
 		}
@@ -339,13 +429,11 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 			orderNowButton = ButtonFactory.createButton(TextResources.orderNow, FontFactory.poppins(15),
 					ColorResources.frMainWindowBtn, Color.WHITE);
 			orderNowButton.setBounds(24, 214, 328, 41);
-			orderNowButton.addActionListener(this);
 			footer.add(orderNowButton);
 		} else {
 			reserveNowButton = ButtonFactory.createButton(TextResources.reserveNow, FontFactory.poppins(15),
 					ColorResources.frMainWindowBtn, Color.WHITE);
 			reserveNowButton.setBounds(24, 214, 328, 41);
-			reserveNowButton.addActionListener(this);
 			footer.add(reserveNowButton);
 		}
 
@@ -357,156 +445,54 @@ public class CartWindow extends JFrame implements ActionListener, MouseListener,
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-		if (e.getSource() == exitButton) {
-			this.dispose();
-			if (isOrder)
-				new MenuWindow(order);
-			else {
-				ActivityReader actReader = new ActivityReader();
-				new ActivityWindow(actReader.getActivitiesList(), reservation);
-			}
-		}
-		if (e.getSource() == submitCouponButton) {
-			if (order.getTotalCost() < 4) {
-				couponField.setBackground(new Color(232, 158, 158));
-				couponField.setText(TextResources.invalidCouponTitle);
-			} else{
-				double discount = order.calcDiscount(couponField.getText());
-				priceLabel.setText(discount + "€");
-			}
-		}
-
-		if (e.getSource() == paymentMethods) {
-			new PaymentWindow();
-		}
-
-		if (e.getSource().equals(orderNowButton)) {
-
-			if (order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
-				
-				this.dispose();
-				new CompleteWindow(true, true);
-				order.setPaymentMethod(paymentMethods.getText());
-				order.setDate(new Date());
-				Login.loggedCustomer.addOrders(order);
-				
-			} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
-				
-				this.dispose();
-				new CompleteWindow(false, true);
-				order.setPaymentMethod(paymentMethods.getText());
-				order.setDate(new Date());
-				Login.loggedCustomer.addOrders(order);
-				
-			}else if(order.getTotalCost() < 10) {
-				
-				orderNowButton.setBackground(ColorResources.bgMainWindowBtn);
-				orderNowButton.setText(TextResources.orderMin);
-				
-			} else {
-				
-				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected, TextResources.orderErrorTitle,
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		if (e.getSource().equals(reserveNowButton)) {
-			if (!paymentMethods.getText().equals(TextResources.payment)) {
-				this.dispose();
-				new CompleteWindow(false, false);
-				reservation.setPaymentMethod(paymentMethods.getText());
-				reservation.setDate(new Date());
-				Login.loggedCustomer.addReservation(reservation);
-			} else {
-				JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected,
-						TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);
-			}
-
-		}
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() instanceof JLabel) {
+	class productsListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
 			JLabel label = (JLabel) e.getSource();
 			JPanel parent = (JPanel) label.getParent();
 			String productName = parent.getName();
-			if (isOrder) {
-				Product clickedProduct = Menu.findProduct(productName);
-				if (label.getName().equals("plus")) {
-					order.addProduct(clickedProduct);
-				} else if (label.getName().equals("minus")) {
-					order.removeProduct(clickedProduct);
-				}
-			} else {
-				Activity clickedActivity = null;
-				for (Activity a : reservation.getActivities()) {
-					if (a.getName().equalsIgnoreCase(productName)) {
-						clickedActivity = a;
-					}
-				}
-				clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
-				if (label.getName().equals("plus")) {
-					reservation.addActivity(clickedActivity);
-					clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
-					System.out.println("h clicked exei day " + clickedActivity.getSelday());
-					System.out.println("h clicked exei hour " + clickedActivity.getSelhour());
-					if (!clickedActivity.plusCheck()) {
-						reservation.removeActivity(clickedActivity);
-					}
-				} else if (label.getName().equals("minus")) {
-					reservation.removeActivity(clickedActivity);
-					clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
-					clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
-					a[clickedActivity.getSelday()][clickedActivity.getSelhour() + clickedActivity.getColumn()] += 1;
-					System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()
-							+ clickedActivity.getColumn()]);
+			Product clickedProduct = Menu.findProduct(productName);
+	
+			if (label.getName().equals("plus")) {
+				order.addProduct(clickedProduct);
+			} else if (label.getName().equals("minus")) {
+				order.removeProduct(clickedProduct);
+			}
+			initilizePanelToFrame();
+		}
+	}
+	
+	class activitiesListener extends MouseAdapter {
+		
+		public void mouseClicked(MouseEvent e) {
+			JLabel label = (JLabel) e.getSource();
+			JPanel parent = (JPanel) label.getParent();
+			String productName = parent.getName();
+			Activity clickedActivity = null;
+			for (Activity a : reservation.getActivities()) {
+				if (a.getName().equalsIgnoreCase(productName)) {
+					clickedActivity = a;
 				}
 			}
-
-		}
-
-		initilizePanelToFrame();
-	}
-	
-	public void focusGained(FocusEvent e) {
-
-		if (e.getSource() == couponField)
-		{
-			couponField.setText("");
+			clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
+			if (label.getName().equals("plus")) {
+				reservation.addActivity(clickedActivity);
+				clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
+				System.out.println("h clicked exei day " + clickedActivity.getSelday());
+				System.out.println("h clicked exei hour " + clickedActivity.getSelhour());
+				if (!clickedActivity.plusCheck()) {
+					reservation.removeActivity(clickedActivity);
+				}
+			} else if (label.getName().equals("minus")) {
+				reservation.removeActivity(clickedActivity);
+				clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
+				clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
+				a[clickedActivity.getSelday()][clickedActivity.getSelhour() + clickedActivity.getColumn()] += 1;
+				System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()
+				                                                                   + clickedActivity.getColumn()]);
+			}	
+			initilizePanelToFrame();
 		}
 		
 	}
-
-	
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-
-	}
-
 }
