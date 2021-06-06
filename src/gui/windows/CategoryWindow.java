@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ import order.Product;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CategoryWindow extends JFrame implements ActionListener, MouseListener {
+public class CategoryWindow extends JFrame {
 
 	private JPanel backgroundPanel;
 
@@ -108,7 +109,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		this.pack();
 	}
 
-	public void refreshMaincontent(ArrayList<Product> products, boolean isSearch) {
+	public void refreshMaincontent(ArrayList<Product> products) {
 
 		backgroundPanel.remove(mainContent);
 		mainContent = new JPanel();
@@ -133,30 +134,65 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 	}
 
 	public void addListeners() {
-		backButton.addActionListener(this);
-		cartPanel.addMouseListener(this);
-		compobox.addActionListener(this);
+		backButton.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MenuWindow(order);
+			}
+		});
+		
+		cartPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				new CartWindow(order);
+			}
+			
+		});
+		
+		compobox.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unchecked")
+				JComboBox<String> choices = (JComboBox<String>) e.getSource();
+				String selectedSortMethod = (String) choices.getSelectedItem();
+				switch (selectedSortMethod) {
+				case "Sort by name":
+					Collections.sort(categoryProducts, Sort.prodNameComparator);
+					break;
+				case "Sort by price":
+					Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
+					break;
+				case "Sort by popularity":
+					Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
+					break;
+				}
+				refreshMaincontent(categoryProducts);
+				
+			}
+		});
 		search.addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts, true);
+				refreshMaincontent(foundProducts);
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts, true);
+				refreshMaincontent(foundProducts);
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts, true);
+				refreshMaincontent(foundProducts);
 			}
 		});
 			
@@ -258,7 +294,7 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setBounds(285, 85, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new plusButtonListener());
 
 		JLabel priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
 		if (product instanceof Food) {
@@ -300,40 +336,10 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 		scrollPane.setVerticalScrollBar(scrollBar);
 		return scrollPane;
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backButton) {
-			this.dispose();
-			new MenuWindow(order);
-		}
-
-		if (e.getSource() instanceof JComboBox) {
-			@SuppressWarnings("unchecked")
-			JComboBox<String> choices = (JComboBox<String>) e.getSource();
-			String selectedSortMethod = (String) choices.getSelectedItem();
-			switch (selectedSortMethod) {
-			case "Sort by name":
-				Collections.sort(categoryProducts, Sort.prodNameComparator);
-				break;
-			case "Sort by price":
-				Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
-				break;
-			case "Sort by popularity":
-				Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
-				break;
-			}
-		}
-		refreshMaincontent(categoryProducts, false);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() == cartPanel) {
-			this.dispose();
-			new CartWindow(order);
-		}
-		if (e.getSource() instanceof JLabel) {
+	
+	class plusButtonListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
 			String productName = parent.getName();
@@ -346,26 +352,6 @@ public class CategoryWindow extends JFrame implements ActionListener, MouseListe
 			}
 			bagLabel.setText(displayQuantity + "");
 		}
-
 	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-
-	}
 }
