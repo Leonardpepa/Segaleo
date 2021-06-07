@@ -44,6 +44,8 @@ public class MyOrderReservationWindow extends JFrame {
 	private boolean isOrder;
 	private Customer customer = Login.loggedCustomer;
 	
+	private JButton rating;
+	
 	private int amount = 0;
 	
 	public MyOrderReservationWindow(boolean isOrder) {
@@ -110,7 +112,7 @@ public class MyOrderReservationWindow extends JFrame {
 
 	}
 
-	public JPanel displayPanel(Order order, Reservation reservation) {
+	public JPanel displayPanel(Order order, Reservation reservation){
 
 		JPanel insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
 		insidePanel.setOpaque(false);
@@ -176,7 +178,6 @@ public class MyOrderReservationWindow extends JFrame {
 				}
 			}
 		}
-		
 		JButton cancel = ButtonFactory.createButton(TextResources.cancel, FontFactory.poppins(15),
 				ColorResources.appetizer, Color.WHITE);
 		if(isOrder) {
@@ -198,6 +199,8 @@ public class MyOrderReservationWindow extends JFrame {
 		insidePanel.add(price);
 		insidePanel.add(date);
 		insidePanel.add(number);
+		
+		
 		return insidePanel;
 	}
 
@@ -262,8 +265,7 @@ public class MyOrderReservationWindow extends JFrame {
 				System.out.println(orderClicked.getQuantity());
 			}
 			
-		}
-		
+		}		
 	}
 	
 	public Order getOrder(int id) {

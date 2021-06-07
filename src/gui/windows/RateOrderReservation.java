@@ -50,6 +50,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	private JTextArea commentsArea;
 	private Order order;
 	private Reservation reservation;
+	private boolean isOrder;
 	
 	
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
@@ -71,13 +72,15 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	
 	public RateOrderReservation(Reservation reservation) {
 		this.reservation = reservation;
-		initializePanelToFrame();
+		isOrder = false;
+		initializePanelToFrame(isOrder);
 		windowsConfiguration();
 		showWindow(this, true);
 	}
 	public RateOrderReservation(Order order) {
 		this.order = order;
-		initializePanelToFrame();
+		isOrder = true;
+		initializePanelToFrame(isOrder);
 		windowsConfiguration();
 		showWindow(this, true);
 	}
@@ -88,7 +91,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 	}
 	
-	public void initializePanelToFrame() {
+	public void initializePanelToFrame(boolean isOrer) {
 
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -98,7 +101,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 
 		configureButtons();
 		configureLabels();
-		addComponentsToPanel();
+		addComponentsToPanel(isOrder);
 		addListeners();
 
 		this.setContentPane(panel);
@@ -107,12 +110,12 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
-	public void addComponentsToPanel() {
+	public void addComponentsToPanel(boolean isOrder) {
 		panel.add(backBtn);
 		panel.add(LogoFactory.addLogoScaled());
 		panel.add(ratingLabel);
 		initializeInsidePanel();
-		addComponentsToInsidePanel();
+		addComponentsToInsidePanel(isOrder);
 		panel.add(insidePanel);
 		panel.add(BackgroundFactory.addBackgroundLight());
 
@@ -126,9 +129,16 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		configureTextArea();
 		
 	}
-	public void addComponentsToInsidePanel() {
-		JLabel name = new JLabel("# NAME");
-		name.setBounds(30, 3, 100, 25);
+	public void addComponentsToInsidePanel(boolean isOrder) {
+		JLabel name;
+		if(isOrder) {
+			name = new JLabel("#" + order.getId() + " ORDER");
+		}
+		else {
+			name = new JLabel("#" + reservation.getId() + " RESERVATION");
+		}
+	
+		
 		insidePanel.add(name);
 		insidePanel.add(commentsArea);
 		insidePanel.add(estarBtn1);
