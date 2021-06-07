@@ -46,6 +46,10 @@ public class Customer{
 	public void addOrders(Order order) {
 		orders.add(order);
 	}
+	
+	public void removeOrder(Order order) {
+		this.orders.remove(order);
+	}
 
 
 	public ArrayList<Coupon> getCoupons() {

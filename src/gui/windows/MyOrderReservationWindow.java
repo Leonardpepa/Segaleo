@@ -43,11 +43,11 @@ public class MyOrderReservationWindow extends JFrame {
 
 	private boolean isOrder;
 	private Customer customer = Login.loggedCustomer;
-	
+
 	private JButton rating;
-	
+
 	private int amount = 0;
-	
+
 	public MyOrderReservationWindow(boolean isOrder) {
 		this.isOrder = isOrder;
 		initializePanelToFrame(isOrder);
@@ -80,23 +80,22 @@ public class MyOrderReservationWindow extends JFrame {
 		mainContent = new JPanel();
 		mainContent.setBackground(ColorResources.paymentBtn);
 		mainContent.setOpaque(false);
-		
+
 		mainContent.setLayout(new FlowLayout());
 		mainContent.setBounds(0, 250, 375, 550);
 		JScrollPane pane = createVerticalScrollablePanel();
-		String labelName = isOrder ? TextResources.noOrder : TextResources.noReservation; 
-		
-		if(amount == 0) {
+		String labelName = isOrder ? TextResources.noOrder : TextResources.noReservation;
+
+		if (amount == 0) {
 			mainContent.setLayout(null);
-			JLabel label = LabelFactory.createLabel(labelName, ColorResources.bgLoginWindow,
-					FontFactory.poppins(16));
+			JLabel label = LabelFactory.createLabel(labelName, ColorResources.bgLoginWindow, FontFactory.poppins(16));
 			label.setBounds(25, 15, 200, 22);
 			mainContent.add(label);
 			mainContent.setBounds(0, 250, 375, 50);
-		}else if(amount > 2){
+		} else if (amount > 2) {
 			mainContent.setLayout(new BorderLayout());
 		}
-		mainContent.add(pane);			
+		mainContent.add(pane);
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -112,7 +111,7 @@ public class MyOrderReservationWindow extends JFrame {
 
 	}
 
-	public JPanel displayPanel(Order order, Reservation reservation){
+	public JPanel displayPanel(Order order, Reservation reservation) {
 
 		JPanel insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
 		insidePanel.setOpaque(false);
@@ -120,7 +119,8 @@ public class MyOrderReservationWindow extends JFrame {
 		insidePanel.setLayout(null);
 		insidePanel.setPreferredSize(new Dimension(350, 200));
 
-		JLabel number = isOrder ? LabelFactory.createLabel("#" + order.getId(), Color.WHITE, FontFactory.poppins(16)) : LabelFactory.createLabel("#" + reservation.getId(), Color.WHITE, FontFactory.poppins(16));
+		JLabel number = isOrder ? LabelFactory.createLabel("#" + order.getId(), Color.WHITE, FontFactory.poppins(16))
+				: LabelFactory.createLabel("#" + reservation.getId(), Color.WHITE, FontFactory.poppins(16));
 		number.setBounds(10, 10, 30, 20);
 
 		JLabel price = isOrder
@@ -155,11 +155,11 @@ public class MyOrderReservationWindow extends JFrame {
 				product.setBounds(210, y, 300, 20);
 				insidePanel.add(product);
 				y += 20;
-				if(y >= limit) {
+				if (y >= limit) {
 					JLabel andMore = LabelFactory.createLabel("and more", Color.white, FontFactory.poppins(13));
 					andMore.setBounds(210, y, 300, 20);
 					insidePanel.add(andMore);
-					break; //the customer will be able to view the complete order when rating it
+					break; // the customer will be able to view the complete order when rating it
 				}
 			}
 		} else {
@@ -170,25 +170,27 @@ public class MyOrderReservationWindow extends JFrame {
 				product.setBounds(210, y, 300, 20);
 				insidePanel.add(product);
 				y += 20;
-				if(y >= limit) {
+				if (y >= limit) {
 					JLabel andMore = LabelFactory.createLabel("and more", Color.white, FontFactory.poppins(13));
 					andMore.setBounds(210, y, 300, 20);
 					insidePanel.add(andMore);
-					break; //the customer will be able to view the complete reservation when rating it
+					break; // the customer will be able to view the complete reservation when rating it
 				}
 			}
 		}
-		JButton cancel = ButtonFactory.createButton(TextResources.cancel, FontFactory.poppins(15),
+		JButton cancel = ButtonFactory.createButton(TextResources.cancelBtn, FontFactory.poppins(15),
 				ColorResources.appetizer, Color.WHITE);
-		if(isOrder) {
-			cancel.setName(String.valueOf(order.getId()));
-		}
-		else {
-			cancel.setName(String.valueOf(reservation.getId()));
-		}
-		cancel.addActionListener(new cancelListener());
-		cancel.setBounds(20, 170, 90, 22);
 		
+		if (isOrder) {
+			cancel.setName(String.valueOf(order.getId()));
+			cancel.addActionListener(new CancelOrderListener());
+		} else {
+			cancel.setName(String.valueOf(reservation.getId()));
+			cancel.addActionListener(new CancelReservationListener());
+		}
+		
+		cancel.setBounds(20, 170, 90, 22);
+
 		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
 				ColorResources.bgLoginWindow, Color.white);
 		rating.setBounds(200, 170, 140, 22);
@@ -199,8 +201,7 @@ public class MyOrderReservationWindow extends JFrame {
 		insidePanel.add(price);
 		insidePanel.add(date);
 		insidePanel.add(number);
-		
-		
+
 		return insidePanel;
 	}
 
@@ -210,7 +211,7 @@ public class MyOrderReservationWindow extends JFrame {
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(new ActionListener() {	
+		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -225,16 +226,16 @@ public class MyOrderReservationWindow extends JFrame {
 		container.setBackground(ColorResources.paymentBtn);
 		if (isOrder) {
 			container.setLayout(new GridLayout(customer.getOrders().size(), 1, 10, 8));
-			for (Order order: customer.getOrders()) {
+			for (Order order : customer.getOrders()) {
 				container.add(displayPanel(order, null));
 			}
 		} else {
 			container.setLayout(new GridLayout(customer.getReservations().size(), 1, 10, 8));
-			for (Reservation reservation:  customer.getReservations()) {
+			for (Reservation reservation : customer.getReservations()) {
 				container.add(displayPanel(null, reservation));
 			}
 		}
-		
+
 		amount = container.getComponentCount();
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -254,32 +255,49 @@ public class MyOrderReservationWindow extends JFrame {
 		return dateAsString;
 
 	}
-	
-	class cancelListener implements ActionListener{
+
+	class CancelOrderListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(isOrder) {
-				Order orderClicked = getOrder(Integer.parseInt(((JButton)e.getSource()).getName()));
-				System.out.println(orderClicked.getId());
-				System.out.println(orderClicked.getQuantity());
+			Order orderClicked = getOrder(Integer.parseInt(((JButton) e.getSource()).getName()));
+			Date now = new Date();
+			long milliseconds = now.getTime() - orderClicked.getDate().getTime();
+			long timePassed = (milliseconds / 1000) / 60;
+			if (timePassed < 10) {
+				Login.loggedCustomer.removeOrder(orderClicked);
+				JOptionPane.showMessageDialog(null, TextResources.orderHasBeenCanceled, TextResources.orderErrorTitle,
+						JOptionPane.INFORMATION_MESSAGE);
+				initializePanelToFrame(true);
+			} else {
+				JOptionPane.showMessageDialog(null, TextResources.timeLimitOrder, TextResources.orderErrorTitle,
+						JOptionPane.INFORMATION_MESSAGE);
 			}
-			
-		}		
+		}
 	}
 	
+	class CancelReservationListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+
 	public Order getOrder(int id) {
-		for(Order order: customer.getOrders()) {
-			if(order.getId() == id) {
+		for (Order order : customer.getOrders()) {
+			if (order.getId() == id) {
 				return order;
 			}
 		}
 		return null;
 	}
-	
+
 	public Reservation getReservation(int id) {
-		for(Reservation reservation: customer.getReservations()) {
-			if(reservation.getId() == id) {
+		for (Reservation reservation : customer.getReservations()) {
+			if (reservation.getId() == id) {
 				return reservation;
 			}
 		}

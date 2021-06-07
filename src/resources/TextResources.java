@@ -102,8 +102,11 @@ public class TextResources {
 	public static String people;
 	public static String successCalendar;
 	public static String invalidDay;
-	public static String cancel;
-	
+	public static String cancelBtn;
+	public static String orderHasBeenCanceled;
+	public static String resHasBeenCanceled;
+	public static String timeLimitOrder;
+
 	/**
 	 * 
 	 */
@@ -207,7 +210,11 @@ public class TextResources {
 		successCalendar = isEnglish ? "Your reservation is already in your Cart." : "Η κράτηση σου βρίσκεται ήδη μέσα στο καλάθι σου.";
 		invalidDay =  isEnglish ? "Invalid day. You can choose days only from this week and month." : " Μη έγκυρη ημερομηνία. Μπορείτε να επιλέξετε μόνο ημέρες της τρέχουσας εβδομάδας και μήνα.";
 		
-		cancel = isEnglish ? "Cancel" : "Ακύρωση";
+		cancelBtn = isEnglish ? "Cancel" : "Ακύρωση";
+		
+		orderHasBeenCanceled = isEnglish ? "Υour order has been canceled" : "Η παραγγελία σας έχει ακυρωθει";
+		resHasBeenCanceled = isEnglish ? "Υour reservation has been canceled" : "Η κράτηση σας έχει ακυρωθει";
+		timeLimitOrder = isEnglish ? "You can no longer cancel this order. The time limit is 10 minutes." : "Δεν μπορείτε πλέον να ακυρώσετε αυτήν την παραγγελία. Η προθεσμία είναι 10 λεπτά";
 	}
 
 }
