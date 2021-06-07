@@ -3,7 +3,6 @@ package gui.windows;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import gui.components.*;
 import gui.factory.*;
 
 import payment.CreditCard;
@@ -11,6 +10,11 @@ import payment.CreditCard;
 import resources.*;
 
 public class CreditCardWindow extends JFrame implements ActionListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 419477767927453920L;
 
 	JPanel panel = new JPanel();
 
@@ -47,7 +51,9 @@ public class CreditCardWindow extends JFrame implements ActionListener {
 	private String[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
 	private String[] year = { "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" };
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private JComboBox monthsList = new JComboBox(months);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private JComboBox yearList = new JComboBox(year);
 
 	private CreditCard cc;

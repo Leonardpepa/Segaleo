@@ -22,6 +22,18 @@ public class Activity
 	private int selday =0;
 	private int column =0;
 	private int selpeople =0;
+	
+	
+	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour, int id){
+		this.name = name;
+		this.price = price;
+		this.path = path;
+		this.availability = availability;
+		this.hour = hour;
+		this.id = id;
+		this.ratings = new ArrayList<Rating>();
+
+	}
 
 
 	// set-get selected hour-day-people-column
@@ -59,17 +71,6 @@ public class Activity
 
 	public static int[][] getA() {
 		return a;
-	}
-
-	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour, int id){
-		this.name = name;
-		this.price = price;
-		this.path = path;
-		this.availability = availability;
-		this.hour = hour;
-		this.id = id;
-		this.ratings = new ArrayList<Rating>();
-
 	}
 
 	//Getters
@@ -158,9 +159,9 @@ public class Activity
 	public double calcAvRating() {
 		double sum = 0;
 		for(Rating rating: ratings) {
-			sum += rating.getStars();
+			sum += rating.getNumOfStars();
 		}
-		return ratings.size() == 0? 0 :sum/ratings.size();
+		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 
 }

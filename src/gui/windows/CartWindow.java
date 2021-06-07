@@ -10,10 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -35,8 +33,6 @@ import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import login.Login;
 import menu.Menu;
-import order.Coupon;
-import order.CouponFactory;
 import order.Order;
 import order.Product;
 import reservation.Activity;
@@ -47,6 +43,10 @@ import resources.TextResources;
 
 public class CartWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8702422650544044042L;
 	/*
 	 * This Class creates the cart window for both orders and reservations
 	 * 

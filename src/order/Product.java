@@ -24,9 +24,9 @@ public abstract class Product {
 	public double calcAvRating() {
 		double sum = 0;
 		for(Rating rating: ratings) {
-			sum += rating.getStars();
+			sum += rating.getNumOfStars();
 		}
-		return ratings.size() == 0? 0 :sum/ratings.size();
+		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 	
 	@Override

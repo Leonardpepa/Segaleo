@@ -2,10 +2,8 @@ package SortingSearching;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import order.Product;
 
-import java.util.Comparator;
 
 
 
@@ -49,6 +47,7 @@ public class Search {
 
 	public int reverse_expoSearch(ArrayList<Product> prod_array, String KeyWord,int end)
 	{
+		@SuppressWarnings("unused")
 		int start;
 
 		int i = 1;

@@ -20,6 +20,10 @@ import resources.TextResources;
 
 public class FaqWindow extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6937638902732120929L;
 	private JPanel panel;
 	private Contact contact = new Contact();
 

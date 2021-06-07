@@ -5,14 +5,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
 public class RoundedPanel extends JPanel
     {
-        private Color backgroundColor;
+        /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5852875706215881488L;
+		private Color backgroundColor;
         private int cornerRadius = 15;
 
         public RoundedPanel(int radius, Color bgColor) {

@@ -1,7 +1,5 @@
 package gui.factory;
 import java.awt.Font;
-import java.awt.font.TextAttribute;
-import java.util.Map;
 
 public class FontFactory {
 	

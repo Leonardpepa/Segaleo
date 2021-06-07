@@ -81,7 +81,7 @@ public class CreditCard {
 	public void checkValidation(JFrame frame) {
 		
 		//check and print message
-		if (checkCardNumber() && checkExpireDate() && checkCode()) {
+		if (checkCardNumber() && checkExpireDate() && checkCode() && !name.equals("")) {
 			JOptionPane.showMessageDialog(frame,
 				    "Card Added",
 				    "Success",

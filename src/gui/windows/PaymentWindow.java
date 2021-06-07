@@ -5,10 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import gui.factory.*;
 import payment.Payment;
-
-
-import gui.factory.*;
-import resources.ColorResources;
 import resources.TextResources;
 
 public class PaymentWindow extends JFrame implements ActionListener {

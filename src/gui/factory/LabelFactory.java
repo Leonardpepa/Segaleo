@@ -4,10 +4,7 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
-import resources.TextResources;
 
 public class LabelFactory {
 	

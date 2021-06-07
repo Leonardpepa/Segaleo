@@ -6,23 +6,18 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import gui.components.RoundedPanel;
-import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
-import gui.factory.RoundedBorder;
 import login.Login;
-import order.Coupon;
 import order.Order;
 import order.Product;
 import reservation.Activity;
@@ -31,6 +26,7 @@ import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
 
+@SuppressWarnings("serial")
 public class MyOrderReservationWindow extends JFrame {
 
 	private JPanel panel;
@@ -44,7 +40,6 @@ public class MyOrderReservationWindow extends JFrame {
 	private boolean isOrder;
 	private Customer customer = Login.loggedCustomer;
 
-	private JButton rating;
 
 	private int amount = 0;
 

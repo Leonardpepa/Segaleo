@@ -20,12 +20,17 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 3493826716906127814L;
+	/**
+	 * 
+	 */
 
 	private JTable tblCalendar;
 	private JPanel container;
 	private DefaultTableModel mtblCalendar; //Table model
 	private JScrollPane stblCalendar; //The scrollpane
 	private JPanel pnlCalendar;
+	@SuppressWarnings("unused")
 	private int realYear, realMonth, realDay, currentYear, currentMonth;
 
 	private JLabel dayLabel;
@@ -35,8 +40,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	private ArrayList<Activity> activities;
 	private Activity activity;
 	private Reservation reservation;
-	private JLabel priceLabel;
-	private JLabel bagLabel;
+	
 
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
@@ -128,6 +132,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 
 	}
 	
+	@SuppressWarnings("serial")
 	public void configureCalendar() {
 
 		mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
@@ -252,7 +257,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 
 		//Draw calendar
 		for (int i=1; i<=nod; i++){
-			int row = new Integer((i+som-2)/7);
+			int row = (int) ((i+som-2)/7);
 			int column  =  (i+som-2)%7;
 			mtblCalendar.setValueAt(i, row, column);
 		}
@@ -348,6 +353,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	}
 
 	// extra classes
+	@SuppressWarnings("serial")
 	class tblCalendarRenderer extends DefaultTableCellRenderer{
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
@@ -363,12 +369,10 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			GregorianCalendar cal = new GregorianCalendar();
 			int selectedDate = -1;
 			int selectedWeek = -1;
-			int selectedDay = -1;
 
 			try {
 				selectedDate = (int) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
 				selectedWeek = table.getSelectedRow();
-				selectedDay = table.getSelectedColumn();
 			}catch (NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, TextResources.invalidDay);
 			}

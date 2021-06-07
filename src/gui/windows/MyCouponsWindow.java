@@ -2,7 +2,6 @@ package gui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.ParseException;
@@ -19,6 +18,10 @@ import resources.TextResources;
 import roomCustomer.Customer;
 
 public class MyCouponsWindow extends JFrame implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1994427376744382511L;
 	private JPanel panel;
 	private JPanel insidePanel;
 
@@ -27,7 +30,6 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
 
-	private ArrayList<Coupon> coupons = Login.loggedCustomer.getCoupons();
 	private Customer customer = Login.loggedCustomer;
 
 	private JLabel couponCode;

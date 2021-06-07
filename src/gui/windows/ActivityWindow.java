@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import calendar.CalendarWindow;
@@ -34,6 +33,10 @@ import resources.TextResources;
 
 public class ActivityWindow extends JFrame implements ActionListener, MouseListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3218493844069922114L;
 	private JPanel backgroundPanel;
 	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 	private JLabel activityLabel;
@@ -51,7 +54,6 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	private ImageIcon activityImage;
 	private JLabel activityimgLabel;
 	private JLabel titleLabel;
-	private JLabel descLabel;
 	private JLabel priceLabel;
 	private ImageIcon plusIcon;
 	private JLabel plusButtonLabel;
@@ -61,7 +63,6 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	private ImageIcon bagIcon;
 	private JLabel bagLabel;
 	private JLabel viewCart;
-	private JLabel cartPriceLabel;
 	
 	private Activity thisactivity = null;
 

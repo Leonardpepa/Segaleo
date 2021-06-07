@@ -1,13 +1,10 @@
 package order;
 
 import rating.Rating;
-import resources.TextResources;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-import javax.swing.JOptionPane;
 
 import menu.Menu;
 

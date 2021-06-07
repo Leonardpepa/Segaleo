@@ -5,16 +5,12 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,6 +39,11 @@ import resources.ColorResources;
 import resources.TextResources;
 
 public class CategoryWindow extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4277445545184372578L;
 
 	private JPanel backgroundPanel;
 

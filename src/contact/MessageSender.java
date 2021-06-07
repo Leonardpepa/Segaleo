@@ -2,8 +2,7 @@ package contact;
 
 import java.util.*;  
 import javax.mail.*;  
-import javax.mail.internet.*;  
-import javax.activation.*;  
+import javax.mail.internet.*;   
   
 
 public class MessageSender {
@@ -11,7 +10,6 @@ public class MessageSender {
 	public void sendEmail(String email, boolean isContact, String password){  
 		String from = "segaleouom@gmail.com";  
 	      String to = email; 
-	      String host = "localhost";  
 	      
 	     //Get the session object  
 	      Properties props = System.getProperties();

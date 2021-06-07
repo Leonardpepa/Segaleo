@@ -10,22 +10,23 @@ public class Rating {
 		this.numOfStars = numOfStars;
 		this.comments = comments;
 	}
-	
-	public void setStars(){
-	  this.numOfStars = numOfStars;
-	}
-	
-	public int getStars() {
+
+	public int getNumOfStars() {
 		return numOfStars;
 	}
-	
-	public void setComments() {
-		this.comments = comments;
+
+	public void setNumOfStars(int numOfStars) {
+		this.numOfStars = numOfStars;
 	}
-	
+
 	public String getComments() {
 		return comments;
 	}
 
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	
+	
 }
 

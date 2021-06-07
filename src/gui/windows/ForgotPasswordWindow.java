@@ -10,7 +10,6 @@ import javax.swing.*;
 
 import contact.MessageSender;
 import gui.factory.*;
-import login.Login;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Room;
@@ -190,6 +189,7 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 		int roomIndex;
 		String password = null;
 		try {
+			@SuppressWarnings("static-access")
 			ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
 			
 			if (Integer.parseInt(getRoom) / 100 == 1)

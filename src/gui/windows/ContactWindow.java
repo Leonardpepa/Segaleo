@@ -2,7 +2,6 @@ package gui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 import contact.Contact;
@@ -25,6 +24,12 @@ public class ContactWindow extends JFrame implements ActionListener {
 	 */
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1361723905362667530L;
+
+
 	public static Customer loggedCustomer;
 	
 
@@ -237,7 +242,7 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 		if (e.getSource() == phoneBtn) {
 			Object[] options = { "Call" };
-			int n = JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
+			JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, phonecallIcon, options, // the titles of buttons
 					options[0]); // default button title
 		}

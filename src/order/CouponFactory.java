@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.Date;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
 
 import gui.windows.CartWindow;
 import login.Login;

@@ -65,6 +65,7 @@ public class LoginWindow extends JFrame {
 	}
 
 	// set up the panel in the frame
+	@SuppressWarnings("static-access")
 	public void initializePanelToFrame() {
 
 		new TextResources().changeLanguage();
@@ -162,6 +163,7 @@ public class LoginWindow extends JFrame {
 		languageBtn.addActionListener(new languageListener());
 		loginBtn.addActionListener(new ActionListener() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// reads and saves the all customers with their rooms

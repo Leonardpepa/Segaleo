@@ -1,6 +1,6 @@
 package gui.factory;
 
-import java.awt.*;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,6 +11,10 @@ public class BackgroundFactory extends JLabel {
 	 * This Class is used throughout the whole project to set a background picture for the panels
 	 */
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6059076940593950003L;
 	static ImageIcon backgroundImage = new ImageIcon("Background Images/background.png");
 	static JLabel backgroundLabel;
 

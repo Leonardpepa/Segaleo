@@ -3,8 +3,6 @@ package reservation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-import order.Product;
 import rating.Rating;
 
 public class Reservation 

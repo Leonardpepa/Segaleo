@@ -1,8 +1,4 @@
 package gui.windows;
-
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import reservation.ActivityReader;
 import reservation.Reservation;
 
@@ -14,7 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.components.PopupPanel;
