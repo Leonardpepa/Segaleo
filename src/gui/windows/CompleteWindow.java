@@ -21,7 +21,7 @@ import order.CouponFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class CompleteWindow extends JFrame implements ActionListener {
+public class CompleteWindow extends JFrame {
 
 	/**
 	 * This Class creates the GUI window for the completion of each order/reservation
@@ -141,16 +141,13 @@ public class CompleteWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		exitBtn.addActionListener(this);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() == exitBtn) {
-			this.dispose();
-			new MainWindow();
-		}
+		exitBtn.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MainWindow();				
+			}
+		});
 	}
 
 }

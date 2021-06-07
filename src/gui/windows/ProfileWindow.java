@@ -19,7 +19,7 @@ import gui.factory.ButtonFactory;
 import gui.factory.LogoFactory;
 import resources.TextResources;
 
-public class ProfileWindow extends JFrame implements ActionListener {
+public class ProfileWindow extends JFrame {
 
 	/**
 	 * 
@@ -117,35 +117,50 @@ public class ProfileWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(this);
-		contactBtn.addActionListener(this);
-		orderBtn.addActionListener(this);
-		reservationBtn.addActionListener(this);
-		couponBtn.addActionListener(this);
-	}
+		backBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MainWindow();
+			}
+		});
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new MainWindow();
-		}
-		if (e.getSource() == contactBtn) {
-			this.dispose();
-			new ContactWindow();
-		}
-		if (e.getSource() == orderBtn) {
-			this.dispose();
-			new MyOrderReservationWindow(true);
-		}
-		if(e.getSource() == reservationBtn) {
-			this.dispose();
-			new MyOrderReservationWindow(false);
-		}
-		if(e.getSource() == couponBtn) {
-			this.dispose();
-			new MyCouponsWindow();
-		}
+		contactBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ContactWindow();
+			}
+		});
+
+		orderBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MyOrderReservationWindow(true);
+			}
+		});
+
+		reservationBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MyOrderReservationWindow(false);
+			}
+		});
+
+		couponBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MyCouponsWindow();
+
+			}
+		});
 
 	}
 

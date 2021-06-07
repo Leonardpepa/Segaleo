@@ -18,7 +18,7 @@ import gui.factory.TextAreaFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class FaqWindow extends JFrame implements ActionListener {
+public class FaqWindow extends JFrame{
 
 	/**
 	 * 
@@ -123,16 +123,13 @@ public class FaqWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(this);
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new ContactWindow();
-		}
+		backBtn.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ContactWindow();				
+			}
+		});
 
 	}
 

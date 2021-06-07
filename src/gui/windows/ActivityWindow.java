@@ -7,8 +7,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -31,7 +31,7 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class ActivityWindow extends JFrame implements ActionListener, MouseListener {
+public class ActivityWindow extends JFrame {
 
 	/**
 	 * 
@@ -44,8 +44,8 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	private String lang = TextResources.imageLang;
 	private ImageIcon backImage = new ImageIcon(path + lang);
 	private JButton backBtn;
-	
-	private int[] [] a;
+
+	private int[][] a;
 
 	private Reservation reservation;
 
@@ -63,7 +63,7 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	private ImageIcon bagIcon;
 	private JLabel bagLabel;
 	private JLabel viewCart;
-	
+
 	private Activity thisactivity = null;
 
 	public ActivityWindow(ArrayList<Activity> activities, Reservation reservation) {
@@ -118,8 +118,34 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(this);
-		cartPanel.addMouseListener(this);
+		backBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (reservation.getActivities().size() > 0) {
+					int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation,
+							TextResources.cancelReservationTitle, JOptionPane.YES_NO_OPTION);
+					if (selectedOption == 0) {
+						for (Activity act : reservation.getActivities()) {
+							a[act.getSelday()][act.getSelhour() + act.getColumn()] += act.getSelpeople();
+						}
+						reservation.clearReservation();
+						dispose();
+						new MainWindow();
+					}
+				} else {
+					dispose();
+					new MainWindow();
+				}
+			}
+		});
+
+		cartPanel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				new CartWindow(reservation, activities);
+			}
+		});
 
 	}
 
@@ -144,7 +170,8 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 
 		bagIcon = new ImageIcon("Icons/Bag.png");
 
-		priceLabel = LabelFactory.createLabel(reservation.calcCost() + "€", ColorResources.frPopup, FontFactory.poppins(14));
+		priceLabel = LabelFactory.createLabel(reservation.calcCost() + "€", ColorResources.frPopup,
+				FontFactory.poppins(14));
 		priceLabel.setBounds(301, cartPanel.getHeight() / 2 - 15, 49, 20);
 
 		viewCart = LabelFactory.createLabel(TextResources.viewCart, ColorResources.frPopup, FontFactory.poppins(14));
@@ -179,9 +206,10 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(305, 180, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new plusButtonListener());
 
-		priceLabel = LabelFactory.createLabelBG(activity.getPrice() + "€", ColorResources.bgLoginWindow, ColorResources.bgMainWindowBtn, FontFactory.poppins(14));
+		priceLabel = LabelFactory.createLabelBG(activity.getPrice() + "€", ColorResources.bgLoginWindow,
+				ColorResources.bgMainWindowBtn, FontFactory.poppins(14));
 		priceLabel.setBounds(260, 180, 40, 24);
 
 		panel.add(activityimgLabel);
@@ -210,37 +238,10 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 		return scrollPane;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			if(reservation.getActivities().size() > 0) {
-				int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelReservation, TextResources.cancelReservationTitle,
-						JOptionPane.YES_NO_OPTION);
-				if (selectedOption == 0) {
-					for(Activity act : reservation.getActivities()) {
-						a[act.getSelday()][act.getSelhour() + act.getColumn()] += act.getSelpeople();
-					}
-					reservation.clearReservation();
-					this.dispose();
-					new MainWindow();
-				}
-			}
-			else {
-				this.dispose();
-				new MainWindow();
-			}
-		}
+	class plusButtonListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
 
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() == cartPanel) {
-			this.dispose();
-			new CartWindow(reservation,activities);
-		}
-		if (e.getSource() instanceof JLabel) {
-	
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
 			String activityName = parent.getName();
@@ -250,33 +251,10 @@ public class ActivityWindow extends JFrame implements ActionListener, MouseListe
 					thisactivity = a;
 				}
 			}
-			this.dispose();
-			new CalendarWindow(activities,thisactivity, reservation);
+			dispose();
+			new CalendarWindow(activities, thisactivity, reservation);
+
 		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

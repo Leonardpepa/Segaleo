@@ -129,7 +129,9 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 
 	// add listeners
 	public void addListeners() {
+		
 		remindMeBtn.addActionListener(this);
+		
 		backBtn.addActionListener(this);
 	}
 
@@ -156,6 +158,7 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 
 			// if they enter their email, ask for their room number
 			if (getEmail != null) {
+				// if they click on Cancel on both dialogs don't do anything
 				getRoom = (String) JOptionPane.showInputDialog(null, "Enter your room number:", "Room Number",
 						JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
 				// if they don't enter their room number and click on Ok, ask for it again
@@ -164,16 +167,12 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Enter your room number");
 					getRoom = (String) JOptionPane.showInputDialog(null, "Enter your room number:", "Room Number",
 							JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
-				}
-				else {
+				} else {
 					// if they enter both successfully search for their password and send an email
 					password = getUserPassword(getRoom);
 					sender.sendEmail(getEmail, false, password);
 				}
-			// if they click on Cancel on both dialogs don't do anything
-			if (getEmail == null || getRoom == null) {
-				
-			} 
+
 			}
 		}
 
@@ -191,15 +190,14 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 		try {
 			@SuppressWarnings("static-access")
 			ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
-			
+
 			if (Integer.parseInt(getRoom) / 100 == 1)
 				roomIndex = (Integer.parseInt(getRoom) % 100) - 1;
 			else
 				roomIndex = (Integer.parseInt(getRoom) / 100) * 10 + (Integer.parseInt(getRoom) % 100) - 1;
+			password = rooms.get(roomIndex).getPassword();
 			
-			password = rooms.get(roomIndex).getPassword();			
-		}
-		catch(NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			
 		}
 		return password;

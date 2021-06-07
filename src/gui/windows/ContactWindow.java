@@ -11,27 +11,18 @@ import login.Login;
 import resources.*;
 import roomCustomer.Customer;
 
-public class ContactWindow extends JFrame implements ActionListener {
+public class ContactWindow extends JFrame {
 
 	/*
 	 * This Class creates the first window for the Contact page
 	 * 
-	 * The contents are:
-	 * 	- social media buttons
-	 * 	- phone call button
-	 * 	- message area
-	 * 	- some of the faq
+	 * The contents are: - social media buttons - phone call button - message area -
+	 * some of the faq
 	 */
-	
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1361723905362667530L;
 
-
 	public static Customer loggedCustomer;
-	
 
 	private JPanel panel;
 	private Contact contact = new Contact();
@@ -64,7 +55,6 @@ public class ContactWindow extends JFrame implements ActionListener {
 
 	private ImageIcon phonecallIcon = new ImageIcon("Icons/phone-icon.png");
 	private ImageIcon emailIcon = new ImageIcon("Icons/login.png");
-	
 
 	private JLabel question1;
 	private JTextArea answer1;
@@ -210,61 +200,67 @@ public class ContactWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(this);
-		facebookBtn.addActionListener(this);
-		instagramBtn.addActionListener(this);
-		phoneBtn.addActionListener(this);
-		sendBtn.addActionListener(this);
-		seeMoreBtn.addActionListener(this);
-	}
+		backBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				if (Login.loggedCustomer != null) {
+					new MainWindow();
+				} else {
+					new LoginWindow();
+				}
+			}
+		});
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		loggedCustomer = Login.loggedCustomer;
-		
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			if(loggedCustomer !=null) {
-				new MainWindow();	
+		facebookBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				contact.getSocial().openURL("facebook");
 			}
-			else {
-				new LoginWindow();
+		});
+
+		instagramBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				contact.getSocial().openURL("instagram");
 			}
-		}
-		if (e.getSource() == facebookBtn) {
-			contact.getSocial().openURL("facebook");
-		}
-		if (e.getSource() == instagramBtn) {
-			contact.getSocial().openURL("instagram");
-		}
+		});
 
 		// Opens custom dialog for phone call
-
-		if (e.getSource() == phoneBtn) {
-			Object[] options = { "Call" };
-			JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, phonecallIcon, options, // the titles of buttons
-					options[0]); // default button title
-		}
-		if (e.getSource() == seeMoreBtn) {
-			this.dispose();
-			new FaqWindow();
-		}
-
-		if (e.getSource() == sendBtn) {
-			MessageSender sender = new MessageSender();
-
-			if (loggedCustomer == null) {
-				UIManager.put("OptionPane.informationIcon", emailIcon);
-				JOptionPane.showMessageDialog(null, "You need to log in first");
-				
-			} else {
-				String email = loggedCustomer.getEmail();
-
-				sender.sendEmail(email, true, "");
+		phoneBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Object[] options = { "Call" };
+				JOptionPane.showOptionDialog(null, "+30 6978265917", "Phone Call", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE, phonecallIcon, options, // the titles of buttons
+						options[0]); // default button title
 			}
-		}
+		});
 
+		sendBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MessageSender sender = new MessageSender();
+
+				if (Login.loggedCustomer == null) {
+					UIManager.put("OptionPane.informationIcon", emailIcon);
+					JOptionPane.showMessageDialog(null, "You need to log in first");
+
+				} else {
+					String email = Login.loggedCustomer.getEmail();
+					sender.sendEmail(email, true, "");
+				}
+			}
+		});
+
+		seeMoreBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new FaqWindow();
+			}
+		});
 	}
 
 }
