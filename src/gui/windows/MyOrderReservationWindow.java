@@ -44,6 +44,8 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	private boolean isOrder;
 	private Customer customer = Login.loggedCustomer;
 	
+	private JButton rating;
+	
 	private int amount = 0;
 	
 	public MyOrderReservationWindow(boolean isOrder) {
@@ -110,7 +112,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 	}
 
-	public JPanel displayPanel(Order order, Reservation reservation) {
+	public JPanel displayPanel(Order order, Reservation reservation){
 
 		JPanel insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
 		insidePanel.setOpaque(false);
@@ -176,7 +178,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 				}
 			}
 		}
-		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
+		rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
 				ColorResources.bgLoginWindow, Color.white);
 		rating.setBounds(200, 170, 140, 22);
 		insidePanel.add(rating);
@@ -185,6 +187,8 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		insidePanel.add(price);
 		insidePanel.add(date);
 		insidePanel.add(number);
+		
+		
 		return insidePanel;
 	}
 
@@ -239,7 +243,10 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 			this.dispose();
 			new ProfileWindow();
 		}
-
+		if (e.getSource() == rating) {
+			this.dispose();
+			//new RateOrderReservation();
+		}
 	}
 
 }
