@@ -31,7 +31,7 @@ import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
 
-public class MyOrderReservationWindow extends JFrame implements ActionListener {
+public class MyOrderReservationWindow extends JFrame {
 
 	private JPanel panel;
 	private JPanel mainContent;
@@ -176,9 +176,22 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 				}
 			}
 		}
+		
+		JButton cancel = ButtonFactory.createButton(TextResources.cancel, FontFactory.poppins(15),
+				ColorResources.appetizer, Color.WHITE);
+		if(isOrder) {
+			cancel.setName(String.valueOf(order.getId()));
+		}
+		else {
+			cancel.setName(String.valueOf(reservation.getId()));
+		}
+		cancel.addActionListener(new cancelListener());
+		cancel.setBounds(20, 170, 90, 22);
+		
 		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
 				ColorResources.bgLoginWindow, Color.white);
 		rating.setBounds(200, 170, 140, 22);
+		insidePanel.add(cancel);
 		insidePanel.add(rating);
 		insidePanel.add(paymentMethod);
 		insidePanel.add(roomNum);
@@ -194,7 +207,13 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(this);
+		backBtn.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ProfileWindow();
+			}
+		});
 	}
 
 	// creates a vertical scrollable panel
@@ -232,14 +251,37 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		return dateAsString;
 
 	}
+	
+	class cancelListener implements ActionListener{
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new ProfileWindow();
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(isOrder) {
+				Order orderClicked = getOrder(Integer.parseInt(((JButton)e.getSource()).getName()));
+				System.out.println(orderClicked.getId());
+				System.out.println(orderClicked.getQuantity());
+			}
+			
 		}
-
+		
+	}
+	
+	public Order getOrder(int id) {
+		for(Order order: customer.getOrders()) {
+			if(order.getId() == id) {
+				return order;
+			}
+		}
+		return null;
+	}
+	
+	public Reservation getReservation(int id) {
+		for(Reservation reservation: customer.getReservations()) {
+			if(reservation.getId() == id) {
+				return reservation;
+			}
+		}
+		return null;
 	}
 
 }
