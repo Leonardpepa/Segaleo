@@ -36,16 +36,20 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
 import gui.factory.TextAreaFactory;
+import order.Order;
+import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class RateActivityWindow extends JFrame implements ActionListener {
+public class RateOrderReservation extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JPanel insidePanel;
 	private JLabel ratingLabel;
 	private JTextArea commentsArea;
+	private Order order;
+	private Reservation reservation;
 	
 	
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
@@ -65,7 +69,14 @@ public class RateActivityWindow extends JFrame implements ActionListener {
 	JButton starBtn4;
 	JButton starBtn5;
 	
-	public RateActivityWindow() {
+	public RateOrderReservation(Reservation reservation) {
+		this.reservation = reservation;
+		initializePanelToFrame();
+		windowsConfiguration();
+		showWindow(this, true);
+	}
+	public RateOrderReservation(Order order) {
+		this.order = order;
 		initializePanelToFrame();
 		windowsConfiguration();
 		showWindow(this, true);
