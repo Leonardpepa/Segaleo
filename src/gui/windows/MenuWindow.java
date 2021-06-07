@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -155,21 +156,21 @@ public class MenuWindow extends JFrame{
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
+				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
 				refreshMaincontent(foundProducts);				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
+				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
 				refreshMaincontent(foundProducts);								
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				ArrayList<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
+				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
 				refreshMaincontent(foundProducts);				
 			}
 		}); 
@@ -224,7 +225,7 @@ public class MenuWindow extends JFrame{
 		mainContent.add(breakfast);
 	}
 
-	public void refreshMaincontent(ArrayList<Product> products) {
+	public void refreshMaincontent(List<Product> products) {
 
 		backgroundPanel.remove(mainContent);
 		
@@ -243,7 +244,7 @@ public class MenuWindow extends JFrame{
 		this.pack();
 	}
 	
-	public void configureSearchContent(ArrayList<Product> products) {
+	public void configureSearchContent(List<Product> products) {
 		mainContent = new JPanel();
 		mainContent.setLayout(new BorderLayout());
 		mainContent.add(createVerticalScrollablePanel(products));
@@ -297,7 +298,7 @@ public class MenuWindow extends JFrame{
 		panel.add(priceLabel);
 		return panel;
 	}
-	public JScrollPane createVerticalScrollablePanel(ArrayList<Product> products) {
+	public JScrollPane createVerticalScrollablePanel(List<Product> products) {
 		JPanel container = new JPanel();
 		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
 

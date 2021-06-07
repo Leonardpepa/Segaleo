@@ -11,8 +11,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -51,7 +51,7 @@ public class CategoryWindow extends JFrame {
 
 	private Color categoryColor;
 	private String categoryName;
-	private ArrayList<Product> categoryProducts;
+	private List<Product> categoryProducts;
 
 	// components for main panel
 	private JPanel mainContent;
@@ -75,7 +75,7 @@ public class CategoryWindow extends JFrame {
 	private JPanel leftHelper;
 	private JPanel rightHelper;
 
-	public CategoryWindow(Color categoryColor, String categoryName, ArrayList<Product> products, Order order) {
+	public CategoryWindow(Color categoryColor, String categoryName, List<Product> products, Order order) {
 		this.categoryColor = categoryColor;
 		this.categoryName = categoryName;
 		this.categoryProducts = products;
@@ -110,7 +110,7 @@ public class CategoryWindow extends JFrame {
 		this.pack();
 	}
 
-	public void refreshMaincontent(ArrayList<Product> products) {
+	public void refreshMaincontent(List<Product> products) {
 
 		backgroundPanel.remove(mainContent);
 		mainContent = new JPanel();
@@ -178,21 +178,21 @@ public class CategoryWindow extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
+				List<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
 				refreshMaincontent(foundProducts);
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
+				List<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
 				refreshMaincontent(foundProducts);
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				ArrayList<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
+				List<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
 				refreshMaincontent(foundProducts);
 			}
 		});
@@ -263,7 +263,7 @@ public class CategoryWindow extends JFrame {
 	}
 
 	// main panel
-	public void configureMainContent(ArrayList<Product> products) {
+	public void configureMainContent(List<Product> products) {
 		mainContent = new JPanel();
 		mainContent.setLayout(new BorderLayout());
 		mainContent.add(createVerticalScrollablePanel(products));
@@ -321,7 +321,7 @@ public class CategoryWindow extends JFrame {
 	}
 
 	// creates a vertical scrollable panel
-	public JScrollPane createVerticalScrollablePanel(ArrayList<Product> products) {
+	public JScrollPane createVerticalScrollablePanel(List<Product> products) {
 		JPanel container = new JPanel();
 		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
 

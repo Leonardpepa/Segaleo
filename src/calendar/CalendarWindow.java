@@ -15,6 +15,7 @@ import resources.TextResources;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.List;
 
 public class CalendarWindow extends JFrame implements ActionListener, MouseListener{
 	/**
@@ -37,7 +38,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	private JLabel timeLabel;
 	private JLabel peopleLabel;
 
-	private ArrayList<Activity> activities;
+	private List<Activity> activities;
 	private Activity activity;
 	private Reservation reservation;
 	
@@ -63,7 +64,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	private int[][] a;
 
 
-	public CalendarWindow(ArrayList<Activity> activities , Activity activity, Reservation reservation) {
+	public CalendarWindow(List<Activity> activities , Activity activity, Reservation reservation) {
 
 		new TextResources().changeLanguage();
 		new ColorResources();

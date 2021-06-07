@@ -12,8 +12,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -58,7 +58,7 @@ public class CartWindow extends JFrame {
 	 */
 	private JPanel backgroundPanel;
 	private Reservation reservation;
-	private ArrayList<Activity> activities;
+	private List<Activity> activities;
 	private Order order;
 	private boolean isOrder;
 	// header
@@ -96,7 +96,7 @@ public class CartWindow extends JFrame {
 		showWindow(this, true);
 	}
 
-	public CartWindow(Reservation reservation, ArrayList<Activity> activities) {
+	public CartWindow(Reservation reservation, List<Activity> activities) {
 		this.a = Activity.getA();
 		this.reservation = reservation;
 		this.activities = activities;

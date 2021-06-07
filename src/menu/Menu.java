@@ -6,21 +6,24 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+
 import order.*;
 import resources.TextResources;
 
 public class Menu {
 
-	private static ArrayList<Product> appetizers;
-	private static ArrayList<Product> coffee;
-	private static ArrayList<Product> desserts;
-	private static ArrayList<Product> drinks;
-	private static ArrayList<Product> main;
-	private static ArrayList<Product> salads;
-	private static ArrayList<Product> breakfast;
-	private static ArrayList<Product> allProducts;
-	private static ArrayList<Product> onlyFood;
+	private static List<Product> appetizers;
+	private static List<Product> coffee;
+	private static List<Product> desserts;
+	private static List<Product> drinks;
+	private static List<Product> main;
+	private static List<Product> salads;
+	private static List<Product> breakfast;
+	private static List<Product> allProducts;
+	private static List<Product> onlyFood;
 	private String line;
 	private String nameOfFood;
 	private String description;
@@ -62,7 +65,7 @@ public class Menu {
 
 	}
 
-	private void readProduct(ArrayList<Product> list, String pathName, String language) {
+	private void readProduct(List<Product> list, String pathName, String language) {
 
 		File activitieFile = new File(pathName + language);
 		FileReader reader = null;
@@ -150,7 +153,7 @@ public class Menu {
 		return deals;
 	}
 
-	public static ArrayList<Product> getProductList(String category) {
+	public static List<Product> getProductList(String category) {
 
 		if (category.equalsIgnoreCase(TextResources.appetizers)) {
 			return appetizers;
@@ -177,31 +180,31 @@ public class Menu {
 		return null;
 	}
 
-	public static ArrayList<Product> getAllProducts() {
+	public static List<Product> getAllProducts() {
 		return allProducts;
 	}
 
-	public static ArrayList<Product> getAppetizers() {
+	public static List<Product> getAppetizers() {
 		return appetizers;
 	}
 
-	public static ArrayList<Product> getCoffees() {
+	public static List<Product> getCoffees() {
 		return coffee;
 	}
 
-	public ArrayList<Product> getDesserts() {
+	public List<Product> getDesserts() {
 		return desserts;
 	}
 
-	public ArrayList<Product> getDrinks() {
+	public List<Product> getDrinks() {
 		return drinks;
 	}
 
-	public ArrayList<Product> getMain() {
+	public List<Product> getMain() {
 		return main;
 	}
 
-	public ArrayList<Product> getSalads() {
+	public List<Product> getSalads() {
 		return salads;
 	}
 

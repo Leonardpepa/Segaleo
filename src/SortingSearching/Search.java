@@ -2,6 +2,8 @@ package SortingSearching;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 import order.Product;
 
 
@@ -9,9 +11,9 @@ import order.Product;
 
 public class Search {
 
-	private ArrayList<Product> array = new ArrayList<Product>();
+	private List<Product> array = new ArrayList<Product>();
 
-	public ArrayList<Product> expoSearch(ArrayList<Product> prod_array, String KeyWord)
+	public List<Product> expoSearch(List<Product> prod_array, String KeyWord)
 	{
 
 		this.array = prod_array;
@@ -45,7 +47,7 @@ public class Search {
 	} 
 
 
-	public int reverse_expoSearch(ArrayList<Product> prod_array, String KeyWord,int end)
+	public int reverse_expoSearch(List<Product> prod_array, String KeyWord,int end)
 	{
 		@SuppressWarnings("unused")
 		int start;
@@ -68,10 +70,10 @@ public class Search {
 		return start= end-i;
 	}
 
-	public ArrayList<Product> serSearch(int end, int start, String KeyWord, ArrayList<Product> array)
+	public List<Product> serSearch(int end, int start, String KeyWord, List<Product> array)
 	{
 		this.array = array;
-		ArrayList<Product> Found = new ArrayList<Product>();
+		List<Product> Found = new ArrayList<Product>();
 
 		for(int i=start;i<end;i++)
 		{

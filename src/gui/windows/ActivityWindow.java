@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,7 +38,7 @@ public class ActivityWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = -3218493844069922114L;
 	private JPanel backgroundPanel;
-	private ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
+	private List<Activity> activities = new ActivityReader().getActivitiesList();
 	private JLabel activityLabel;
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
@@ -66,7 +66,7 @@ public class ActivityWindow extends JFrame {
 
 	private Activity thisactivity = null;
 
-	public ActivityWindow(ArrayList<Activity> activities, Reservation reservation) {
+	public ActivityWindow(List<Activity> activities, Reservation reservation) {
 		this.a = Activity.getA();
 		this.activities = activities;
 		this.reservation = reservation;
