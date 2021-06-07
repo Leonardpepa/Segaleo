@@ -110,7 +110,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 
 	}
 
-	public JPanel displayPanel(Order order, int index, Reservation reservation) {
+	public JPanel displayPanel(Order order, Reservation reservation) {
 
 		JPanel insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
 		insidePanel.setOpaque(false);
@@ -118,7 +118,7 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		insidePanel.setLayout(null);
 		insidePanel.setPreferredSize(new Dimension(350, 200));
 
-		JLabel number = LabelFactory.createLabel("#" + (index + 1), Color.WHITE, FontFactory.poppins(16));
+		JLabel number = isOrder ? LabelFactory.createLabel("#" + order.getId(), Color.WHITE, FontFactory.poppins(16)) : LabelFactory.createLabel("#" + reservation.getId(), Color.WHITE, FontFactory.poppins(16));
 		number.setBounds(10, 10, 30, 20);
 
 		JLabel price = isOrder
@@ -203,13 +203,13 @@ public class MyOrderReservationWindow extends JFrame implements ActionListener {
 		container.setBackground(ColorResources.paymentBtn);
 		if (isOrder) {
 			container.setLayout(new GridLayout(customer.getOrders().size(), 1, 10, 8));
-			for (int i = 0; i < customer.getOrders().size(); i++) {
-				container.add(displayPanel(customer.getOrders().get(i), i, null));
+			for (Order order: customer.getOrders()) {
+				container.add(displayPanel(order, null));
 			}
 		} else {
 			container.setLayout(new GridLayout(customer.getReservations().size(), 1, 10, 8));
-			for (int i = 0; i < customer.getReservations().size(); i++) {
-				container.add(displayPanel(null, i, customer.getReservations().get(i)));
+			for (Reservation reservation:  customer.getReservations()) {
+				container.add(displayPanel(null, reservation));
 			}
 		}
 		

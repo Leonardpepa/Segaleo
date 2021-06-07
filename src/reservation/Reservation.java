@@ -14,6 +14,9 @@ public class Reservation
 	public HashMap<Activity,Integer> act;
 	private String paymentMethod;
 	private Date date;
+	public static int numberOfReservations = 0;
+	private int id;
+	
 
 	public Reservation () 
 	{
@@ -88,6 +91,14 @@ public class Reservation
 	
 	public Date getDate() {
 		return date;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 

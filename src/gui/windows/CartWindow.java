@@ -188,6 +188,8 @@ public class CartWindow extends JFrame {
 					new CompleteWindow(true, true);
 					order.setPaymentMethod(paymentMethods.getText());
 					order.setDate(new Date());
+					Order.numberOfOrders += 1;
+					order.setId(Order.numberOfOrders);
 					Login.loggedCustomer.addOrders(order);
 
 				} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
@@ -195,6 +197,8 @@ public class CartWindow extends JFrame {
 					new CompleteWindow(false, true);
 					order.setPaymentMethod(paymentMethods.getText());
 					order.setDate(new Date());
+					Order.numberOfOrders += 1;
+					order.setId(Order.numberOfOrders);
 					Login.loggedCustomer.addOrders(order);
 
 				} else if (order.getTotalCost() < 10) {
@@ -218,6 +222,8 @@ public class CartWindow extends JFrame {
 					new CompleteWindow(false, false);
 					reservation.setPaymentMethod(paymentMethods.getText());
 					reservation.setDate(new Date());
+					Reservation.numberOfReservations += 1;
+					reservation.setId(Reservation.numberOfReservations);
 					Login.loggedCustomer.addReservation(reservation);
 				} else {
 					JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected,
@@ -386,6 +392,7 @@ public class CartWindow extends JFrame {
 		reserveNowButton = new JButton();
 		orderNowButton = new JButton();
 		submitCouponButton = new JButton();
+		couponField = new JTextField();
 		
 		footer = new JPanel();
 		footer.setLayout(null);

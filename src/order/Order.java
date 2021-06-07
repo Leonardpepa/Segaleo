@@ -19,7 +19,9 @@ public class Order {
 	private Date date;
 	private int maximumOffers = 2;
 	private String paymentMethod;
-	
+	public static int numberOfOrders;
+	private int id;
+
 	public Order() {
 		products = new ArrayList<Product>();
 		prod = new HashMap<>();
@@ -88,6 +90,14 @@ public class Order {
 		for(Product p: Menu.getAllProducts()) {
 			prod.put(p, 0);
 		}
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getTotalCost() {
