@@ -385,6 +385,7 @@ public class CartWindow extends JFrame {
 		
 		reserveNowButton = new JButton();
 		orderNowButton = new JButton();
+		submitCouponButton = new JButton();
 		
 		footer = new JPanel();
 		footer.setLayout(null);
