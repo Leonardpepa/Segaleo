@@ -1,5 +1,6 @@
 package order;
 
+import rating.Rating;
 import resources.TextResources;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Order {
 
 	private double totalCost;
 	private ArrayList<Product> products;
+	private ArrayList<Rating> ratings;
 	private HashMap<Product, Integer> prod;
 	private int quantity = 0;
 	private Date date;
@@ -24,11 +26,16 @@ public class Order {
 
 	public Order() {
 		products = new ArrayList<Product>();
+		ratings = new ArrayList<>();
 		prod = new HashMap<>();
 		initializeHashMap();
 	}
 
-	public void addProduct(Product product) { 
+	public void addRating(Rating rating) {
+		ratings.add(rating);
+	}
+
+	public void addProduct(Product product) {
 		if(!products.contains(product)) {
 			products.add(product);
 		}
@@ -121,5 +128,6 @@ public class Order {
 	public void setPaymentMethod(String payment) {
 		paymentMethod  = payment;
 	}
+
 	
 }

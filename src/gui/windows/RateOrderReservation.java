@@ -37,6 +37,7 @@ import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
 import gui.factory.TextAreaFactory;
 import order.Order;
+import rating.Rating;
 import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
@@ -51,6 +52,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	private Order order;
 	private Reservation reservation;
 	private boolean isOrder;
+	private int numberOfStars = 0;
 	
 	
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
@@ -69,6 +71,8 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	JButton starBtn3;
 	JButton starBtn4;
 	JButton starBtn5;
+
+	JButton submitButton;
 	
 	public RateOrderReservation(Reservation reservation) {
 		this.reservation = reservation;
@@ -118,6 +122,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		addComponentsToInsidePanel(isOrder);
 		panel.add(insidePanel);
 		panel.add(BackgroundFactory.addBackgroundLight());
+		panel.add(submitButton);
 
 	}
 	public void initializeInsidePanel() {
@@ -187,8 +192,12 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		starBtn4.setBounds(280, 140, 25, 25);
 		starBtn5 = ButtonFactory.createButtonIcon(starImage);
 		starBtn5.setBounds(310, 140, 25, 25);
+
+		submitButton = ButtonFactory.createButton("Submit", FontFactory.poppins(15), ColorResources.frMainWindowBtn, Color.WHITE);
+		submitButton.setBounds(12, 500, 100, 50);
+
 	}
-	
+
 	public void configureLabels() {
 		ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabel, ColorResources.bgLoginWindow, Color.WHITE,
 				FontFactory.poppins(16));
@@ -210,6 +219,8 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		starBtn3.addActionListener(this);
 		starBtn4.addActionListener(this);
 		starBtn5.addActionListener(this);
+
+		submitButton.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -281,6 +292,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
+			numberOfStars = 1;
 		}	
 		if (e.getSource() == starBtn2) {
 			insidePanel.remove(starBtn2);
@@ -293,6 +305,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
+			numberOfStars = 2;
 		}
 		if (e.getSource() == starBtn3) {
 			insidePanel.remove(starBtn3);
@@ -303,6 +316,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
+			numberOfStars = 3;
 		}
 		if (e.getSource() == starBtn4) {
 			insidePanel.remove(starBtn4);
@@ -311,12 +325,25 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
+			numberOfStars = 4;
 		}
 		if (e.getSource() == starBtn5) {
 			insidePanel.remove(starBtn5);
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
+			numberOfStars = 5;
+		}
+
+		if(e.getSource() == submitButton) {
+			String comment = commentsArea.getText();
+			System.out.println(numberOfStars);
+			if(isOrder == true) {
+				order.addRating(new Rating(numberOfStars, comment));
+			}
+			else {
+				reservation.addRating(new Rating(numberOfStars, comment));
+			}
 		}
 		
 		

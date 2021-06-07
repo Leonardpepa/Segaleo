@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 import order.Product;
+import rating.Rating;
 
 public class Reservation 
 {
 
 	private double totalCost;
 	private ArrayList<Activity> activities;
+	private ArrayList<Rating> ratings;
 	public HashMap<Activity,Integer> act;
 	private String paymentMethod;
 	private Date date;
@@ -21,8 +23,13 @@ public class Reservation
 	public Reservation () 
 	{
 		activities = new ArrayList<Activity>();
+		ratings = new ArrayList<>();
 		act = new HashMap<>();
 		initializeHashMap();
+	}
+
+	public void addRating(Rating rating) {
+		ratings.add(rating);
 	}
 	
 	public void addActivity(Activity activity) {
