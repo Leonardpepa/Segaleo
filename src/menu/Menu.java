@@ -65,9 +65,11 @@ public class Menu {
 	private void readProduct(ArrayList<Product> list, String pathName, String language) {
 
 		File activitieFile = new File(pathName + language);
+		FileReader reader = null;
+		BufferedReader inputReader  = null;
 		try {
-			FileReader reader = new FileReader(activitieFile);
-			BufferedReader inputReader = new BufferedReader(reader);
+			reader = new FileReader(activitieFile);
+			inputReader = new BufferedReader(reader);
 			if(pathName.equalsIgnoreCase("files/drinks/Drinks")) {
 				id = 120;
 			}
@@ -103,13 +105,24 @@ public class Menu {
 				line = inputReader.readLine();
 
 			}
-			inputReader.close();
-			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				inputReader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
 		}
 	}
 

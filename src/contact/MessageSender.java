@@ -50,9 +50,8 @@ public class MessageSender {
 
 	          msg.setSentDate(new Date());
 	          Transport.send(msg);
-	          System.out.println("Message sent.");
 	        }catch (MessagingException e){ 
-	          System.out.println("Error: " + e);
+	        	System.err.println(e);
 	        } 
 
 	}

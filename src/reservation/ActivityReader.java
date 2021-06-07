@@ -29,13 +29,17 @@ public class ActivityReader {
 		String hour1;
 		String hour2;
 		int id = 0;
+		
+		BufferedReader inputReader = null;
+		FileReader reader = null;
+		
 		ArrayList<String> hour = new ArrayList<String>();
 		Activity a;
 		//File format: the # is used to separate the question from the answer
 		File activityFile = new File(pathName + language);
 		try {
-			FileReader reader = new FileReader(activityFile);
-			BufferedReader inputReader = new BufferedReader(reader);
+			reader = new FileReader(activityFile);
+			inputReader = new BufferedReader(reader);
 			
 			line = inputReader.readLine();
 			while(line != null) {
@@ -53,12 +57,24 @@ public class ActivityReader {
 				activitiesList.add(a);
 				line = inputReader.readLine();
 			}
-			inputReader.close();
-			reader.close();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				inputReader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

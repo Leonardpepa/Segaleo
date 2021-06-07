@@ -331,7 +331,6 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 
 		if(e.getSource() == submitButton) {
 			String comment = commentsArea.getText();
-			System.out.println(numberOfStars);
 			if(isOrder == true) {
 				order.addRating(new Rating(numberOfStars, comment));
 			}

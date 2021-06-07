@@ -17,7 +17,7 @@ public class RoomCustomerReader {
 	}
 	
 	private void readFile() {
-		
+		Scanner scanner = null;
 		try {
 			String customerName = null;
 			String customerEmail = null;
@@ -26,7 +26,7 @@ public class RoomCustomerReader {
 			
 			
 			File roomCustomerFile = new File("./files/roomCustomer/Room-Customer.txt");
-			Scanner scanner = new Scanner(roomCustomerFile);
+			scanner = new Scanner(roomCustomerFile);
 			
 			while(scanner.hasNextLine())
 			{
@@ -52,11 +52,12 @@ public class RoomCustomerReader {
 			}
 			
 			
-			scanner.close();
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			scanner.close();			
 		}
 	}
 	

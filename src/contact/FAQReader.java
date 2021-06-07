@@ -27,14 +27,17 @@ public class FAQReader {
 		String line;
 		String question;
 		String answer;
-
+		
+		FileReader reader = null;
+		BufferedReader inputReader = null;
+		
 		// File format: the # is used to separate the question from the answer
 		String path = "./files/faqs/Q&A";
 		String lang = TextResources.endpointPath;
 		File qnaFile = new File(path + lang);
 		try {
-			FileReader reader = new FileReader(qnaFile);
-			BufferedReader inputReader = new BufferedReader(reader);
+			reader = new FileReader(qnaFile);
+			inputReader = new BufferedReader(reader);
 
 			/*
 			 * The reader reads each line, separates the question from the answer, adds it
@@ -48,12 +51,23 @@ public class FAQReader {
 				faqsList.add(new FAQ(question, answer));
 				line = inputReader.readLine();
 			}
-			inputReader.close();
-			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				inputReader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
 		}
 
 	}
