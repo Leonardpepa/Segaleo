@@ -180,20 +180,28 @@ public class MyOrderReservationWindow extends JFrame {
 		}
 		JButton cancel = ButtonFactory.createButton(TextResources.cancelBtn, FontFactory.poppins(15),
 				ColorResources.appetizer, Color.WHITE);
+		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
+				ColorResources.bgLoginWindow, Color.white);
+		rating.setBounds(200, 170, 140, 22);
 		
 		if (isOrder) {
 			cancel.setName(String.valueOf(order.getId()));
 			cancel.addActionListener(new CancelOrderListener());
+
+			rating.setName(String.valueOf(order.getId()));
+			rating.addActionListener(new RateOrderListener());
 		} else {
 			cancel.setName(String.valueOf(reservation.getId()));
 			cancel.addActionListener(new CancelReservationListener());
+
+			rating.setName(String.valueOf(reservation.getId()));
+			rating.addActionListener(new RateReservationListener());
 		}
 		
 		cancel.setBounds(20, 170, 90, 22);
 
-		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
-				ColorResources.bgLoginWindow, Color.white);
-		rating.setBounds(200, 170, 140, 22);
+
+
 		insidePanel.add(cancel);
 		insidePanel.add(rating);
 		insidePanel.add(paymentMethod);
@@ -284,6 +292,23 @@ public class MyOrderReservationWindow extends JFrame {
 			
 		}
 		
+	}
+
+	class RateOrderListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Order orderClicked = getOrder(Integer.parseInt(((JButton) e.getSource()).getName()));
+			new RateOrderReservation(orderClicked);
+		}
+	}
+
+	class RateReservationListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Reservation reservationClicked = getReservation(Integer.parseInt(((JButton) e.getSource()).getName()));
+			new RateOrderReservation(reservationClicked);
+		}
 	}
 
 	public Order getOrder(int id) {
