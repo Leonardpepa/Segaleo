@@ -110,6 +110,9 @@ public class TextResources {
 	public static String resHasBeenCanceled;
 	public static String timeLimitOrder;
 
+	public static String rateOrder;
+	public static String rateReservation;
+
 	/**
 	 * 
 	 */
@@ -221,6 +224,9 @@ public class TextResources {
 		orderHasBeenCanceled = isEnglish ? "Υour order has been canceled" : "Η παραγγελία σας έχει ακυρωθει";
 		resHasBeenCanceled = isEnglish ? "Υour reservation has been canceled" : "Η κράτηση σας έχει ακυρωθει";
 		timeLimitOrder = isEnglish ? "You can no longer cancel this order. The time limit is 10 minutes." : "Δεν μπορείτε πλέον να ακυρώσετε αυτήν την παραγγελία. Η προθεσμία είναι 10 λεπτά";
+
+		rateOrder = isEnglish ? "Thank you for rating this order." : "Ευχαριστούμε που αξιολογήσατε αυτή τη παραγγελία";
+		rateReservation = isEnglish ? "Thank you for rating this reservation" : "Ευχαριστούμε που αξιολογήσατε αυτή τη κράτηση";
 	}
 
 }

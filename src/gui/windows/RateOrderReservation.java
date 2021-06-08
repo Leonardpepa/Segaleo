@@ -13,13 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
@@ -382,6 +376,14 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			}
 			else {
 				reservation.addRating(new Rating(numberOfStars, comment));
+			}
+
+			this.dispose();
+			if(isOrder == true) {
+				JOptionPane.showMessageDialog(null, TextResources.rateOrder, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, TextResources.rateReservation, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		
