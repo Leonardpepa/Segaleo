@@ -206,14 +206,14 @@ public class TextResources {
 		confirm = isEnglish ? "Confirm" : "Επιβεβαίωση";
 		
 		roomBill = isEnglish ? "Room Bill" : "Χρέωση στο δωμάτιο";
-		paypal = isEnglish ? "Paypal" : "Πληρωμή με πέιπαλ";
+		paypal = isEnglish ? "Paypal" : "Πληρωμή με paypal";
 		card = isEnglish ? "Card" : "Πληρωμή με κάρτα";
 		
 		noPaymentSelected = isEnglish ? "You need to choose payment method for the order" : "Πρέπει να διαλέξετε τρόπο πληρώμης για την παραγγελία";
 		date = isEnglish ? "Date" : "Ημερομηνία";
 		submitted = isEnglish ? "Submitted" : "Yποβλήθηκε";
 		
-		noSelection = isEnglish ? "Something (day/hour/people) doesn't selected. Please try again" : "Κάποια κατηγορία (μέρα/ώρα/άτομα) δεν επιλέχθηκε. Παρακαλούμε ξαναπροσπαθήστε.";
+		noSelection = isEnglish ? "Something (day/hour/people) hasn't been selected. Please try again" : "Κάποια κατηγορία (μέρα/ώρα/άτομα) δεν επιλέχθηκε. Παρακαλούμε ξαναπροσπαθήστε.";
 		noAvaliability = isEnglish ? "There is space avaliable only for " : "Υπάρχει διαθέσιμότητα μόνο για ";
 		people = isEnglish ? " people" : " άτομα";
 		successCalendar = isEnglish ? "Your reservation is already in your Cart." : "Η κράτηση σου βρίσκεται ήδη μέσα στο καλάθι σου.";
