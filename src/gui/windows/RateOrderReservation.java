@@ -371,11 +371,21 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 
 		if(e.getSource() == submitButton) {
 			String comment = commentsArea.getText();
+			Rating rate = new Rating(numberOfStars, comment);
+
 			if(isOrder == true) {
-				order.addRating(new Rating(numberOfStars, comment));
+				order.addRating(rate);
+
+				for(Product product: order.getProducts()) {
+					product.addRating(rate);
+				}
 			}
 			else {
-				reservation.addRating(new Rating(numberOfStars, comment));
+				reservation.addRating(rate);
+
+				for(Activity activity: reservation.getActivities()) {
+					activity.addRating(rate);
+				}
 			}
 
 			this.dispose();
