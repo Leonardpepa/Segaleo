@@ -166,7 +166,7 @@ public class CategoryWindow extends JFrame {
 					Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
 					break;
 				case "Sort by popularity":
-					Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
+					Collections.sort(categoryProducts, Sort.ProdRatingComparator);
 					break;
 				}
 				refreshMaincontent(categoryProducts);
