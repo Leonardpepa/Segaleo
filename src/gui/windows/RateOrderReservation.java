@@ -31,7 +31,9 @@ import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
 import gui.factory.TextAreaFactory;
 import order.Order;
+import order.Product;
 import rating.Rating;
+import reservation.Activity;
 import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
@@ -47,6 +49,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	private Reservation reservation;
 	private boolean isOrder;
 	private int numberOfStars = 0;
+	private JLabel name;
 	
 	
 	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
@@ -116,7 +119,6 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		addComponentsToInsidePanel(isOrder);
 		panel.add(insidePanel);
 		panel.add(BackgroundFactory.addBackgroundLight());
-		panel.add(submitButton);
 
 	}
 	public void initializeInsidePanel() {
@@ -124,20 +126,19 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		insidePanel.setOpaque(false);
 		insidePanel.setBorder(new EmptyBorder(50, 20, 380, 20));
 		insidePanel.setLayout(null);
-		insidePanel.setBounds(11, 290, 351, 190);
+		insidePanel.setBounds(11, 290, 351, 500);
 		configureTextArea();
 		
 	}
 	public void addComponentsToInsidePanel(boolean isOrder) {
-		JLabel name;
 		if(isOrder) {
-			name = new JLabel("#" + order.getId() + " ORDER");
+			name = new JLabel(TextResources.order + " #" + order.getId());
 		}
 		else {
-			name = new JLabel("#" + reservation.getId() + " RESERVATION");
+			name = new JLabel(TextResources.reservation + " #" + reservation.getId());
 		}
-	
-		
+		configureOrderReservation();
+		name.setBounds(15, 5, 300, 20);
 		insidePanel.add(name);
 		insidePanel.add(commentsArea);
 		insidePanel.add(estarBtn1);
@@ -145,14 +146,48 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		insidePanel.add(estarBtn3);
 		insidePanel.add(estarBtn4);
 		insidePanel.add(estarBtn5);
-		//εδω θα μπουν και τα labels για την δραστηριότητα προς αξιολογηση
+		insidePanel.add(submitButton);
+	}
+	
+	public void configureOrderReservation() {
+		int y = 30; // y for set bounds
+		int k=30;
+		int limit = 300;
+		if (isOrder) {
+			for (Product p : order.getProducts()) {
+				JLabel product = LabelFactory.createLabel(order.getProd().get(p) + "x " + p.getName(), Color.WHITE,
+						FontFactory.poppins(13));
+				product.setBounds(10, y, 180, 20);
+				insidePanel.add(product);
+				y += 20;
+				if (y >= limit) {
+					product.setBounds(200, k, 180, 20);
+					insidePanel.add(product);
+					k +=20;
+				}
+			}
+		} else {
+			for (Activity activity : reservation.getActivities()) {
+				JLabel product = LabelFactory.createLabel(
+						reservation.getAct().get(activity) + "x " + activity.getName(), Color.WHITE,
+						FontFactory.poppins(13));
+				product.setBounds(10, y, 180, 20);
+				insidePanel.add(product);
+				y += 20;
+				if (y >= limit) {
+					product.setBounds(200, k, 180, 20);
+					insidePanel.add(product);
+					k +=20;
+				}
+			}
+		}
 	}
 	
 	public void configureTextArea() {
 		
 		commentsArea = TextAreaFactory.createTextArea(TextResources.ratingComment, new Color(177, 206, 209), ColorResources.bgLoginWindow,
 				FontFactory.poppins(12));
-		commentsArea.setBounds(10, 30,330, 95);
+		commentsArea.setBounds(10, 300,330, 95);
 		commentsArea.setBorder(new RoundBorder(30));
 		commentsArea.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -166,35 +201,41 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		backBtn.setBounds(12, 40, 67, 45);
 		
 		estarBtn1 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn1.setBounds(190, 140, 25, 25);
+		estarBtn1.setBounds(190, 420, 25, 25);
 		estarBtn2 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn2.setBounds(220, 140, 25, 25);
+		estarBtn2.setBounds(220, 420, 25, 25);
 		estarBtn3 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn3.setBounds(250, 140, 25, 25);
+		estarBtn3.setBounds(250, 420, 25, 25);
 		estarBtn4 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn4.setBounds(280, 140, 25, 25);
+		estarBtn4.setBounds(280, 420, 25, 25);
 		estarBtn5 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn5.setBounds(310, 140, 25, 25);
+		estarBtn5.setBounds(310, 420, 25, 25);
 		
 		starBtn1 = ButtonFactory.createButtonIcon(starImage);
-		starBtn1.setBounds(190, 140, 25, 25);
+		starBtn1.setBounds(190, 420, 25, 25);
 		starBtn2 = ButtonFactory.createButtonIcon(starImage);
-		starBtn2.setBounds(220, 140, 25, 25);
+		starBtn2.setBounds(220, 420, 25, 25);
 		starBtn3 = ButtonFactory.createButtonIcon(starImage);
-		starBtn3.setBounds(250, 140, 25, 25);
+		starBtn3.setBounds(250, 420, 25, 25);
 		starBtn4 = ButtonFactory.createButtonIcon(starImage);
-		starBtn4.setBounds(280, 140, 25, 25);
+		starBtn4.setBounds(280, 420, 25, 25);
 		starBtn5 = ButtonFactory.createButtonIcon(starImage);
-		starBtn5.setBounds(310, 140, 25, 25);
+		starBtn5.setBounds(310, 420, 25, 25);
 
-		submitButton = ButtonFactory.createButton("Submit", FontFactory.poppins(15), ColorResources.frMainWindowBtn, Color.WHITE);
-		submitButton.setBounds(12, 500, 100, 50);
+		submitButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(15), ColorResources.frMainWindowBtn, Color.WHITE);
+		submitButton.setBounds(120, 455, 100, 40);
 
 	}
 
 	public void configureLabels() {
-		ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabel, ColorResources.bgLoginWindow, Color.WHITE,
-				FontFactory.poppins(16));
+		if(isOrder) {
+			ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabelOrder, ColorResources.bgLoginWindow, Color.WHITE,
+					FontFactory.poppins(16));
+		}
+		else {
+			ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabelReservation, ColorResources.bgLoginWindow, Color.WHITE,
+					FontFactory.poppins(16));
+		}
 		ratingLabel = LabelFactory.alignLabel(ratingLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		ratingLabel.setBounds(20, 225, 118, 38);
 	}
@@ -227,6 +268,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(starBtn1);
 			revalidate();
 			repaint();
+			numberOfStars = 1;
 		}
 		if (e.getSource() == estarBtn2) {
 			insidePanel.remove(estarBtn1);
@@ -235,6 +277,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(starBtn2);
 			revalidate();
 			repaint();
+			numberOfStars = 2;
 		}
 		if (e.getSource() == estarBtn3) {
 			insidePanel.remove(estarBtn1);
@@ -245,6 +288,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(starBtn3);
 			revalidate();
 			repaint();
+			numberOfStars = 3;
 		}
 		if (e.getSource() == estarBtn4) {
 			insidePanel.remove(estarBtn1);
@@ -257,6 +301,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(starBtn4);
 			revalidate();
 			repaint();
+			numberOfStars = 4;
 		}
 		if (e.getSource() == estarBtn5) {
 			insidePanel.remove(estarBtn1);
@@ -271,6 +316,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(starBtn5);
 			revalidate();
 			repaint();
+			numberOfStars = 5;
 		}
 		
 		if (e.getSource() == starBtn1) {
@@ -286,7 +332,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
-			numberOfStars = 1;
+			numberOfStars = 0;
 		}	
 		if (e.getSource() == starBtn2) {
 			insidePanel.remove(starBtn2);
@@ -299,7 +345,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
-			numberOfStars = 2;
+			numberOfStars = 1;
 		}
 		if (e.getSource() == starBtn3) {
 			insidePanel.remove(starBtn3);
@@ -310,7 +356,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
-			numberOfStars = 3;
+			numberOfStars = 2;
 		}
 		if (e.getSource() == starBtn4) {
 			insidePanel.remove(starBtn4);
@@ -319,14 +365,14 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
-			numberOfStars = 4;
+			numberOfStars = 3;
 		}
 		if (e.getSource() == starBtn5) {
 			insidePanel.remove(starBtn5);
 			insidePanel.add(estarBtn5);
 			revalidate();
 			repaint();
-			numberOfStars = 5;
+			numberOfStars = 4;
 		}
 
 		if(e.getSource() == submitButton) {

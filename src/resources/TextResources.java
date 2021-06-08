@@ -63,8 +63,11 @@ public class TextResources {
 	public static String numCardField;
 	public static String saveCard;
 
-	public static String ratingLabel;
+	public static String ratingLabelOrder;
+	public static String ratingLabelReservation;
 	public static String ratingComment;
+	public static String order;
+	public static String reservation;
 
 	public static String invalidCouponTitle;
 	public static String invalidCoupon;
@@ -170,9 +173,12 @@ public class TextResources {
 		numCardField = isEnglish ? "Enter card number" : "Εισάγετε αριθμό κάρτας";
 		saveCard = isEnglish ? "Save Card" : "Αποθήκευση κάρτας";
 
-		ratingLabel = isEnglish ? "Rate Activities" : "Αξιολόγησε τις δραστηριότητες";
+		ratingLabelOrder = isEnglish ? "Rate this Order" : "Αξιολόγησε αυτή την παραγγελία";
+		ratingLabelReservation = isEnglish ? "Rate this Reservation" : "Αξιολόγησε αυτή την κράτηση";
 		ratingComment = isEnglish ? "Leave your comment about this activity here..." : "Σχολίασε την εμπειρία σου για την συγκεκριμένη δραστηριότητα εδώ";
-
+		order = isEnglish ? "ORDER" : "ΠΑΡΑΓΓΕΛΙΑ";
+		reservation =  isEnglish ? "RESERVATION" : "ΚΡΑΤΗΣΗ";
+		
 		invalidCouponTitle = isEnglish ? "Error" : "Σφάλμα";
 		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
 		noCoupon = isEnglish ? "You have no coupons" : "Δεν έχεις κουπόνια";
