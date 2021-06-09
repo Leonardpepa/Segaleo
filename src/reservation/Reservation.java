@@ -1,11 +1,12 @@
 package reservation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import rating.Rating;
 
-public class Reservation 
+public class Reservation implements Serializable 
 {
 
 	private double totalCost;

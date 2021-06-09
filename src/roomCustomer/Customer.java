@@ -1,12 +1,13 @@
 package roomCustomer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import order.Coupon;
 import order.Order;
 import reservation.Reservation;
 
-public class Customer{
+public class Customer implements Serializable{
 	
 	private String name;
 	private String email;

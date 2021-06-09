@@ -12,6 +12,7 @@ import gui.factory.*;
 import login.Login;
 import menu.Menu;
 import order.Food;
+import platformData.PlatformData;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.RoomCustomerReader;
@@ -167,7 +168,11 @@ public class LoginWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// reads and saves the all customers with their rooms
-				new RoomCustomerReader();
+				
+				if(PlatformData.checkFile())
+					PlatformData.loadData();
+				else
+					new RoomCustomerReader();
 
 				// checks if the text field is empty and if the login data is correct
 				if (Login.checkLogin(roomField.getText(), passwordField.getText())) {

@@ -1,9 +1,10 @@
 package order;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import rating.Rating;
-public abstract class Product {
+public abstract class Product implements Serializable {
 	private String name;
 	private String description;
 	private double price;

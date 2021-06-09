@@ -1,14 +1,14 @@
 package order;
 
-import rating.Rating;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
 import menu.Menu;
+import rating.Rating;
 
-public class Order {
+public class Order implements Serializable{
 
 	private double totalCost;
 	private ArrayList<Product> products;

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class RoomCustomerReader {
 
-	private ArrayList<Customer> customers;
+	public static ArrayList<Customer> customers;
 	public static ArrayList<Room> rooms;
 	
 	public RoomCustomerReader(){

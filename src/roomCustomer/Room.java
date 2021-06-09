@@ -1,6 +1,8 @@
 package roomCustomer;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable{
 	
 	private int number;
 	private String password;

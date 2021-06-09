@@ -1,11 +1,12 @@
 package reservation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import rating.Rating;
 
 
-public class Activity 
+public class Activity implements Serializable 
 {
 	private String name;
 	private double price;

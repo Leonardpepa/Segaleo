@@ -1,11 +1,10 @@
 package gui.windows;
-import reservation.ActivityReader;
-import reservation.Reservation;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +18,9 @@ import gui.factory.FontFactory;
 import gui.factory.LogoFactory;
 import login.Login;
 import order.Order;
+import platformData.PlatformData;
+import reservation.ActivityReader;
+import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -137,6 +139,7 @@ public class MainWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				PlatformData.saveData();
 				Login.logout();
 				dispose();
 				new LoginWindow();
@@ -176,6 +179,17 @@ public class MainWindow extends JFrame {
 				dispose();
 				ActivityReader actReader = new ActivityReader();
 				new ActivityWindow(actReader.getActivitiesList(),reservation);
+			}
+		});
+		
+		this.addWindowListener(new WindowAdapter() {
+			 
+			@Override
+			 
+			public void windowClosing(WindowEvent e) {
+			 
+				PlatformData.saveData();
+			    System.exit(0);
 			}
 		});
 	}
