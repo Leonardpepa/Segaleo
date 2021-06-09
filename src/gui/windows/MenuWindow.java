@@ -173,8 +173,7 @@ public class MenuWindow extends JFrame{
 				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
 				refreshMaincontent(foundProducts);				
 			}
-		}); 
-			
+		});
 		
 	}
 
@@ -267,7 +266,12 @@ public class MenuWindow extends JFrame{
 
 		JLabel searchDescLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		searchDescLabel.setBounds(120, 35, 200, 40);
-
+		
+		ImageIcon startIcon =  new ImageIcon("./Icons/star-rating.png");
+		JLabel starLabel = LabelFactory.createIconLabel(startIcon);
+		starLabel.setBounds(280, 0, 50, 50);
+		starLabel.setText(product.calcAvRating()+"");
+		
 		ImageIcon searchPlusIcon = new ImageIcon("./buttonImages/plus.png");
 
 		JLabel plusButtonLabel;
@@ -296,6 +300,7 @@ public class MenuWindow extends JFrame{
 		panel.add(searchDescLabel);
 		panel.add(plusButtonLabel);
 		panel.add(priceLabel);
+		panel.add(starLabel);
 		return panel;
 	}
 	public JScrollPane createVerticalScrollablePanel(List<Product> products) {

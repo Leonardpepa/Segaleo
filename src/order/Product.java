@@ -92,8 +92,4 @@ public abstract class Product {
 	public int getId() {
 		return id;
 	}
-
-//	public String toString() {
-//		return name + ", " + price;
-//	}
 }

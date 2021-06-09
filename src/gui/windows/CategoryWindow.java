@@ -288,6 +288,11 @@ public class CategoryWindow extends JFrame {
 
 		JLabel descLabel = LabelFactory.createLabel(product.getDescription(), Color.GRAY, FontFactory.poppins(12));
 		descLabel.setBounds(120, 30, 200, 50);
+		
+		ImageIcon startIcon =  new ImageIcon("./Icons/star-rating.png");
+		JLabel starLabel = LabelFactory.createIconLabel(startIcon);
+		starLabel.setBounds(280, 0, 50, 50);
+		starLabel.setText(product.calcAvRating()+"");
 
 		ImageIcon plusIcon = new ImageIcon("./buttonImages/plus.png");
 
@@ -305,7 +310,7 @@ public class CategoryWindow extends JFrame {
 						+ (foodProduct.getPrice() + foodProduct.getDiscount()) + "€</span></body></html>");
 				JLabel newPrice = LabelFactory.createLabel(foodProduct.getPrice() + "€", Color.red,
 						FontFactory.poppins(13));
-				newPrice.setBounds(250, 68, 43, 19);
+				newPrice.setBounds(245, 65, 43, 19);
 				panel.add(newPrice);
 			}
 		}
@@ -317,6 +322,7 @@ public class CategoryWindow extends JFrame {
 		panel.add(descLabel);
 		panel.add(plusButtonLabel);
 		panel.add(priceLabel);
+		panel.add(starLabel);
 		return panel;
 	}
 
