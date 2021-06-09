@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -118,7 +119,8 @@ public class CategoryWindow extends JFrame {
 		backgroundPanel.add(BorderLayout.WEST, leftHelper);
 		backgroundPanel.add(BorderLayout.EAST, rightHelper);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
-		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);			
+		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
+		revalidate();
 		this.pack();
 	}
 
@@ -168,29 +170,14 @@ public class CategoryWindow extends JFrame {
 				case "Sort by popularity":
 					Collections.sort(categoryProducts, Sort.ProdRatingComparator);
 					break;
+					default: return;
 				}
 				refreshMaincontent(categoryProducts);
-				
 			}
 		});
-		search.addKeyListener(new KeyListener() {
-			
+		search.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				List<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts);
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				List<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
-				refreshMaincontent(foundProducts);
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				List<Product> foundProducts = new Search().expoSearch(categoryProducts, search.getText());
 				refreshMaincontent(foundProducts);

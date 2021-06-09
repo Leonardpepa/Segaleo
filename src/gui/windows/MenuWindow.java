@@ -151,24 +151,9 @@ public class MenuWindow extends JFrame{
 			}
 		});
 		
-		search.addKeyListener(new KeyListener() {
-			
+		search.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
-				refreshMaincontent(foundProducts);				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
-				refreshMaincontent(foundProducts);								
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				List<Product> foundProducts = new Search().expoSearch(Menu.getAllProducts(),  search.getText());
 				refreshMaincontent(foundProducts);				
@@ -239,7 +224,7 @@ public class MenuWindow extends JFrame{
 		backgroundPanel.add(BorderLayout.EAST, rightHelper);
 		backgroundPanel.add(BorderLayout.SOUTH, cartPanel);
 		backgroundPanel.add(BorderLayout.CENTER, mainContent);
-
+		revalidate();
 		this.pack();
 	}
 	
