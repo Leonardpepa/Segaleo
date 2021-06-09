@@ -17,7 +17,7 @@ import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
 
-public class MyCouponsWindow extends JFrame implements ActionListener {
+public class MyCouponsWindow extends JFrame {
 	/**
 	 * 
 	 */
@@ -173,15 +173,12 @@ public class MyCouponsWindow extends JFrame implements ActionListener {
 	}
 
 	public void addListeners() {
-		backBtn.addActionListener(this);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new ProfileWindow();
-		}
-
+		backBtn.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ProfileWindow();
+			}
+		});
 	}
 }

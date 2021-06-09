@@ -33,6 +33,8 @@ import gui.factory.LabelFactory;
 import gui.factory.TextFieldFactory;
 import login.Login;
 import menu.Menu;
+import order.Coupon;
+import order.CouponFactory;
 import order.Order;
 import order.Product;
 import reservation.Activity;
@@ -185,16 +187,21 @@ public class CartWindow extends JFrame {
 				if (order.getTotalCost() >= 20 && !paymentMethods.getText().equals(TextResources.payment)) {
 
 					dispose();
-					new CompleteWindow(true, true);
+					Coupon coupon = CouponFactory.GenerateCoupon(Login.loggedCustomer.getEmail());
+					new CompleteWindow(coupon, true);
+					
 					order.setPaymentMethod(paymentMethods.getText());
 					order.setDate(new Date());
 					Order.numberOfOrders += 1;
 					order.setId(Order.numberOfOrders);
+					order.setCoupon(coupon);
+					
+					Login.loggedCustomer.addCoupons(coupon);
 					Login.loggedCustomer.addOrders(order);
 
 				} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
 					dispose();
-					new CompleteWindow(false, true);
+					new CompleteWindow(null, true);
 					order.setPaymentMethod(paymentMethods.getText());
 					order.setDate(new Date());
 					Order.numberOfOrders += 1;
@@ -219,7 +226,7 @@ public class CartWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (!paymentMethods.getText().equals(TextResources.payment)) {
 					dispose();
-					new CompleteWindow(false, false);
+					new CompleteWindow(null, false);
 					reservation.setPaymentMethod(paymentMethods.getText());
 					reservation.setDate(new Date());
 					Reservation.numberOfReservations += 1;

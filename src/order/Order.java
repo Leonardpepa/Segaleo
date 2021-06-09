@@ -20,6 +20,7 @@ public class Order {
 	private String paymentMethod;
 	public static int numberOfOrders;
 	private int id;
+	private Coupon coupon;
 
 	public Order() {
 		products = new ArrayList<Product>();
@@ -124,6 +125,14 @@ public class Order {
 	
 	public void setPaymentMethod(String payment) {
 		paymentMethod  = payment;
+	}
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
 	}
 
 	

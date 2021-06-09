@@ -269,6 +269,7 @@ public class MyOrderReservationWindow extends JFrame {
 			long timePassed = (milliseconds / 1000) / 60;
 			if (timePassed < 10) {
 				Login.loggedCustomer.removeOrder(orderClicked);
+				Login.loggedCustomer.removeCoupon(orderClicked.getCoupon());
 				JOptionPane.showMessageDialog(null, TextResources.orderHasBeenCanceled, TextResources.orderErrorTitle,
 						JOptionPane.INFORMATION_MESSAGE);
 				initializePanelToFrame(true);

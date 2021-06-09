@@ -17,7 +17,6 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import login.Login;
 import order.Coupon;
-import order.CouponFactory;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -41,18 +40,18 @@ public class CompleteWindow extends JFrame {
 	private JLabel couponCode;
 	private JLabel orderComplLabel;
 
-	ImageIcon orderComplImage = new ImageIcon("buttonImages/order-complete.png");
+	private ImageIcon orderComplImage = new ImageIcon("buttonImages/order-complete.png");
 
-	ImageIcon exitImage = new ImageIcon("buttonImages/exit button.png");
-	JButton exitBtn;
+	private ImageIcon exitImage = new ImageIcon("buttonImages/exit button.png");
+	private JButton exitBtn;
 
-	public CompleteWindow(boolean needsCoupon, boolean isOrder) {
-		initializePanelToFrame(needsCoupon, isOrder);
+	public CompleteWindow(Coupon coupon, boolean isOrder) {
+		initializePanelToFrame(coupon, isOrder);
 		windowsConfiguration();
 		showWindow(this, true);
 	}
 
-	public void initializePanelToFrame(boolean needsCoupon, boolean isOrder) {
+	public void initializePanelToFrame(Coupon coupon, boolean isOrder) {
 
 		new TextResources().changeLanguage();
 		panel = new JPanel();
@@ -61,8 +60,8 @@ public class CompleteWindow extends JFrame {
 		panel.setBackground(new Color(216, 223, 224));
 
 		configureButtons();
-		configurateLabels(needsCoupon, isOrder);
-		addComponentsToPanel(needsCoupon, isOrder);
+		configurateLabels(coupon, isOrder);
+		addComponentsToPanel(coupon, isOrder);
 		addListeners();
 
 		this.setContentPane(panel);
@@ -80,7 +79,7 @@ public class CompleteWindow extends JFrame {
 		frame.setVisible(show);
 	}
 
-	public void addComponentsToPanel(boolean needsCoupon, boolean isOrder) {
+	public void addComponentsToPanel(Coupon coupon, boolean isOrder) {
 		panel.add(exitBtn);
 		panel.add(completeTitle);
 
@@ -96,14 +95,14 @@ public class CompleteWindow extends JFrame {
 		// add components to insidePanel
 		insidePanel.add(orderComplLabel);
 		insidePanel.add(message);
-		if (needsCoupon) {
+		if (coupon != null) {
 			insidePanel.add(couponLabel);
 			insidePanel.add(couponCode);
 		}
 
 	}
 
-	public void configurateLabels(boolean needsCoupon, boolean isOrder) {
+	public void configurateLabels(Coupon coupon, boolean isOrder) {
 		completeTitle = isOrder
 				? LabelFactory.createLabel(TextResources.orderCompleteTitle, Color.black, FontFactory.sansSerif(18))
 				: LabelFactory.createLabel(TextResources.reservationCompleteTitle, Color.black,
@@ -119,14 +118,12 @@ public class CompleteWindow extends JFrame {
 						FontFactory.sansSerif(16));
 		message.setBounds(40, 400, 300, 80);
 
-		if (needsCoupon) {
-			Coupon coupon = CouponFactory.GenerateCoupon(Login.loggedCustomer.getEmail());
+		if (coupon != null) {
 			couponLabel = LabelFactory.createLabel(TextResources.orderCompleteCoupon, ColorResources.bgLoginWindow,
 					FontFactory.poppins(14));
 			couponCode = LabelFactory.createLabelBG(coupon.getCode(), ColorResources.bgLoginWindow,
 					ColorResources.bgMainWindowBtn, FontFactory.poppins(18));
 			couponCode = LabelFactory.alignLabel(couponCode, SwingConstants.CENTER, SwingConstants.CENTER);
-			Login.loggedCustomer.addCoupons(coupon);
 			couponLabel.setBounds(50, 500, 300, 100);
 			couponCode.setBounds(130, 590, 100, 50);
 
