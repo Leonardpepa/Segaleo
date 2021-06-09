@@ -1,5 +1,6 @@
 package resources;
 
+
 public class TextResources {
 	/*
 	 * This Class is used for the change of language
@@ -112,10 +113,12 @@ public class TextResources {
 
 	public static String rateOrder;
 	public static String rateReservation;
-
-	/**
-	 * 
-	 */
+	
+	public static String sort;
+	public static String  byPrice;
+	public static String  byPopularity;
+	public static String  byName;
+	
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -227,6 +230,11 @@ public class TextResources {
 
 		rateOrder = isEnglish ? "Thank you for rating this order." : "Ευχαριστούμε που αξιολογήσατε αυτή τη παραγγελία";
 		rateReservation = isEnglish ? "Thank you for rating this reservation" : "Ευχαριστούμε που αξιολογήσατε αυτή τη κράτηση";
+		sort = isEnglish ? "Sort" : "Ταξινόμηση";
+		byPrice = isEnglish ? "By price" : "Ως προς την τιμή";
+		byPopularity = isEnglish ? "By popularity" : "Ως προς την Δημοτικότητα";
+		byName = isEnglish ? "By name" : "Ως προς το όνομα";
+		
 	}
 
 }

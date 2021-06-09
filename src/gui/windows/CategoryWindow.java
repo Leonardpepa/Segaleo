@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collections;
@@ -160,17 +159,16 @@ public class CategoryWindow extends JFrame {
 				@SuppressWarnings("unchecked")
 				JComboBox<String> choices = (JComboBox<String>) e.getSource();
 				String selectedSortMethod = (String) choices.getSelectedItem();
-				switch (selectedSortMethod) {
-				case "Sort by name":
-					Collections.sort(categoryProducts, Sort.prodNameComparator);
-					break;
-				case "Sort by price":
-					Collections.sort(categoryProducts, Sort.AscProdPriceComparator);
-					break;
-				case "Sort by popularity":
-					Collections.sort(categoryProducts, Sort.ProdRatingComparator);
-					break;
-					default: return;
+				if(selectedSortMethod.equals(TextResources.byName)) {
+					Collections.sort(categoryProducts, Sort.prodNameComparator);					
+				}
+				else if(selectedSortMethod.equals(TextResources.byPrice)) {
+					Collections.sort(categoryProducts, Sort.AscProdPriceComparator);					
+				}
+				else if(selectedSortMethod.equals(TextResources.byPopularity)){
+					Collections.sort(categoryProducts, Sort.ProdRatingComparator);					
+				}else {
+					return;
 				}
 				refreshMaincontent(categoryProducts);
 			}
@@ -188,7 +186,7 @@ public class CategoryWindow extends JFrame {
 
 	// all the content for the header panel
 	public void configureHeader() {
-		String[] sorts = { "Sort", "Sort by price", "Sort by popularity", "Sort by name" };
+		String[] sorts = { TextResources.sort, TextResources.byPrice, TextResources.byPopularity, TextResources.byName };
 		headerText = categoryName;
 		headerLabelColor = categoryColor;
 		header = new JPanel();
@@ -197,7 +195,7 @@ public class CategoryWindow extends JFrame {
 		header.setLayout(null);
 
 		compobox = new JComboBox<>(sorts);
-		compobox.setBounds(236, 119, 120, 20);
+		compobox.setBounds(200, 119, 156, 20);
 
 		String path = "buttonImages/Back Button";
 		String lang = TextResources.imageLang;
