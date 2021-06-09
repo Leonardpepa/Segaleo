@@ -51,7 +51,7 @@ public class MessageSender {
 	          msg.setSentDate(new Date());
 	          Transport.send(msg);
 	        }catch (MessagingException e){ 
-	        	System.err.println(e);
+	        	e.printStackTrace();
 	        } 
 
 	}
