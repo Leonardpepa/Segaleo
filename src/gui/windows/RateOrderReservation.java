@@ -26,6 +26,7 @@ import gui.factory.LogoFactory;
 import gui.factory.TextAreaFactory;
 import order.Order;
 import order.Product;
+import platformData.PlatformData;
 import rating.Rating;
 import reservation.Activity;
 import reservation.Reservation;
@@ -388,6 +389,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 				}
 			}
 
+			PlatformData.saveData();
 			this.dispose();
 			if(isOrder == true) {
 				JOptionPane.showMessageDialog(null, TextResources.rateOrder, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
