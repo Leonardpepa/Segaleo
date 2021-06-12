@@ -220,7 +220,7 @@ public class TextResources {
 		noAvaliability = isEnglish ? "There is space avaliable only for " : "Υπάρχει διαθέσιμότητα μόνο για ";
 		people = isEnglish ? " people" : " άτομα";
 		successCalendar = isEnglish ? "Your reservation is already in your Cart." : "Η κράτηση σου βρίσκεται ήδη μέσα στο καλάθι σου.";
-		invalidDay =  isEnglish ? "Invalid day. You can choose days only from this week and month." : " Μη έγκυρη ημερομηνία. Μπορείτε να επιλέξετε μόνο ημέρες της τρέχουσας εβδομάδας και μήνα.";
+		invalidDay =  isEnglish ? "Invalid day.You can only choose days according to the current week and month." : " Μη έγκυρη ημερομηνία. Μπορείτε να επιλέξετε μόνο ημέρες της τρέχουσας εβδομάδας και μήνα.";
 		
 		cancelBtn = isEnglish ? "Cancel" : "Ακύρωση";
 		
