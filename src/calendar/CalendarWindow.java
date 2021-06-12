@@ -265,6 +265,35 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		//Apply renderers
 		tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
 	}
+	
+	public boolean isValidHour(String hour)
+	{
+		boolean flag = true;
+		String[] hrs = hour.split(":",2); // hrs[0] = selected hour (where activity starts) and hrs[1] = selected minutes (where activity starts)
+		GregorianCalendar cal = new GregorianCalendar();
+		int currentHour = cal.get(GregorianCalendar.HOUR_OF_DAY);
+		int currentMinutes = cal.get(GregorianCalendar.MINUTE);
+		int selectedHour = Integer.parseInt(hrs[0]);
+		int selectedMinutes = Integer.parseInt(hrs[1]);
+		
+		if (currentHour > selectedHour)
+		{
+			JOptionPane.showMessageDialog(null,"You can't choose that hour!");
+			flag = false;
+		}
+		
+		if (currentHour == selectedHour)
+		{
+			System.out.println("2,");
+			if (currentMinutes >= selectedMinutes)
+			{
+				flag = false;
+				JOptionPane.showMessageDialog(null,"You can't choose that hour!");
+			}
+		}
+		
+		return flag;
+	}
 
 	
 	@Override
@@ -274,16 +303,26 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			new MainWindow();
 		}
 		if(e.getSource() == hour1Btn) {
-			activity.setSelHour(0);
-			flagHour= true;
-			configurateHourButtons(ColorResources.clickedTimeBtn, ColorResources.timeBtn);
-			initializePanel();
+			String selHour = (activity.getHour().get(0)).substring(0,4); // get the first 4 chars of the string. If str = "9:00-1200" , str.subrstring(0,4) -> "9:00"
+			
+			if (isValidHour(selHour))
+			{
+				activity.setSelHour(0);
+				flagHour= true;
+				configurateHourButtons(ColorResources.clickedTimeBtn, ColorResources.timeBtn);
+				initializePanel();
+			}
 		}
 		if(e.getSource() == hour2Btn) {
-			activity.setSelHour(1);
-			flagHour= true;
-			configurateHourButtons(ColorResources.timeBtn, ColorResources.clickedTimeBtn);
-			initializePanel();
+			String selHour = (activity.getHour().get(1)).substring(0,4); // get the first 4 chars of the string 
+			
+			if (isValidHour(selHour))
+			{
+				activity.setSelHour(1);
+				flagHour= true;
+				configurateHourButtons(ColorResources.timeBtn, ColorResources.clickedTimeBtn);
+				initializePanel();
+			}
 		}
 		if(e.getSource() == confirmBtn) {
 			if(flagHour && flagDay) {
@@ -369,7 +408,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			GregorianCalendar cal = new GregorianCalendar();
 			int selectedDay = -1;
 			int selectedWeek = -1;
-			
+		
 
 			try {
 				selectedDay = (int) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
