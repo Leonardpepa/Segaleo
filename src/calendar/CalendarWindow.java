@@ -171,9 +171,6 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 					}
 				}
 
-				//				tblCalendar.setBackground(new Color(216,223,224));
-				//				tblCalendar.getParent().setBackground(tblCalendar.getBackground()); //Set background
-
 
 				//No resize/reorder
 				tblCalendar.getTableHeader().setResizingAllowed(false);
@@ -207,6 +204,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0),FontFactory.poppins(14),
 				c1,Color.WHITE);
 		hour1Btn.setBounds(111, 520, 154, 50);
+	
 		hour2Btn = ButtonFactory.createButton(activity.getHour().get(1),FontFactory.poppins(14),
 				c2,Color.WHITE);
 		hour2Btn.setBounds(111, 590, 154, 50);
@@ -218,6 +216,8 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		backBtn.setPressedIcon(backImage);
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
+		minusIcon = new ImageIcon("./buttonImages/minus.png");
+		
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(210, 710, 24, 24);
@@ -225,7 +225,6 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.addMouseListener(this);
 		plusButtonLabel.setName("plus");
 
-		minusIcon = new ImageIcon("./buttonImages/minus.png");
 
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(150, 710, 24, 24);
@@ -368,11 +367,12 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		public void mouseClicked(MouseEvent e) {
 			JTable table = (JTable) e.getSource();
 			GregorianCalendar cal = new GregorianCalendar();
-			int selectedDate = -1;
+			int selectedDay = -1;
 			int selectedWeek = -1;
+			
 
 			try {
-				selectedDate = (int) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
+				selectedDay = (int) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
 				selectedWeek = table.getSelectedRow();
 			}catch (NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, TextResources.invalidDay);
@@ -380,14 +380,15 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 
 
 
-			int week = (cal.get(GregorianCalendar.WEEK_OF_MONTH)) - 1;
-			int date = cal.get(GregorianCalendar.DAY_OF_MONTH);
+			int currentWeek = (cal.get(GregorianCalendar.WEEK_OF_MONTH)) - 1;
+			int currentDay = cal.get(GregorianCalendar.DAY_OF_MONTH);
 
 
-			if(selectedDate == -1 || selectedWeek == -1) {
+			if(selectedDay == -1 || selectedWeek == -1) {
 				return;
 			}
-			if(selectedWeek != week || selectedDate < date) {
+			
+			if(selectedWeek != currentWeek || selectedDay < currentDay) {
 				JOptionPane.showMessageDialog(null, TextResources.invalidDay);
 			}
 			else {
