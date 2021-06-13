@@ -52,10 +52,6 @@ public class Customer implements Serializable{
 		this.orders.remove(order);
 	}
 
-	public void removeReservation(Reservation reservation) {
-		this.reservations.remove(reservation);
-	}
-
 
 	public ArrayList<Coupon> getCoupons() {
 		return coupons;
