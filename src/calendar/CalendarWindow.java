@@ -14,6 +14,7 @@ import resources.TextResources;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.List;
 
@@ -273,7 +274,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	
 	public boolean isValidHour(String hour)
 	{
-		String[] hrs = hour.split(":",2); // hrs[0] = selected hour (where activity starts) and hrs[1] = selected minutes (where activity starts)
+		String[] hrs = hour.split(":",2); // hrs[0] = selected hour (where activity starts) and hrs[1] = selected minutes 
 		GregorianCalendar cal = new GregorianCalendar();
 		int currentHour = cal.get(GregorianCalendar.HOUR_OF_DAY);
 		int currentMinutes = cal.get(GregorianCalendar.MINUTE);
@@ -417,18 +418,25 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			JTable table = (JTable) e.getSource();
 			GregorianCalendar cal = new GregorianCalendar();
 		
-		
 
 			try {
 				selectedDay = (int) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
+//				System.out.println("Selected Day "+ selectedDay);
 				selectedWeek = table.getSelectedRow();
+//				System.out.println("Selected Week "+ selectedWeek);
 			}catch (NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, TextResources.invalidDay);
 			}
-
-
-			int currentWeek = (cal.get(GregorianCalendar.WEEK_OF_MONTH)) - 1;
+			
 			int currentDay = cal.get(GregorianCalendar.DAY_OF_MONTH);
+			int currentWeek = (cal.get(GregorianCalendar.WEEK_OF_MONTH))-1;
+			
+			if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) 
+				currentWeek = cal.get(GregorianCalendar.WEEK_OF_MONTH);		
+			
+			
+//			System.out.println("Current Day "+ currentDay);
+//			System.out.println("Current Week "+ currentWeek);
 
 
 			if(selectedDay == -1 || selectedWeek == -1) {
