@@ -168,12 +168,12 @@ public class LoginWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// reads and saves the all customers with their rooms
-				
-				if(PlatformData.checkFile())
-					PlatformData.loadData();
-				else
-					new RoomCustomerReader();
 
+				if (PlatformData.checkFile()) {
+					PlatformData.loadData();
+				} else {
+					new RoomCustomerReader();
+				}
 				// checks if the text field is empty and if the login data is correct
 				if (Login.checkLogin(roomField.getText(), passwordField.getText())) {
 					dispose();
@@ -240,17 +240,17 @@ public class LoginWindow extends JFrame {
 		popupPanel = new PopupPanel();
 		popupPanel.configurePopupWindow();
 	}
-	
+
 	class languageListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			if(e.getSource() == languageBtn) {
+
+			if (e.getSource() == languageBtn) {
 				isPopup = isPopup ? false : true;
 				initializePanelToFrame();
 			}
-			
+
 			if (e.getSource() == popupPanel.greek) {
 				TextResources.isEnglish = false;
 			}
@@ -260,7 +260,7 @@ public class LoginWindow extends JFrame {
 			}
 			initializePanelToFrame();
 		}
-		
+
 	}
 
 }

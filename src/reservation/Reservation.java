@@ -6,9 +6,10 @@ import java.util.Date;
 import java.util.HashMap;
 import rating.Rating;
 
-public class Reservation implements Serializable 
-{
-
+public class Reservation implements Serializable {
+	
+	private static final long serialVersionUID = 6392332274060936021L;
+	
 	private double totalCost;
 	private ArrayList<Activity> activities;
 	private ArrayList<Rating> ratings;

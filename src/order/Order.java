@@ -9,7 +9,9 @@ import menu.Menu;
 import rating.Rating;
 
 public class Order implements Serializable{
-
+	
+	private static final long serialVersionUID = -7785618513835322110L;
+	
 	private double totalCost;
 	private ArrayList<Product> products;
 	private ArrayList<Rating> ratings;

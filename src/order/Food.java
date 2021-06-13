@@ -1,6 +1,9 @@
 package order;
 
 public class Food extends Product{
+	
+	private static final long serialVersionUID = -5957460565520834132L;
+	
 	private boolean hasDiscount = false;
 	private int discount = 0;
 	

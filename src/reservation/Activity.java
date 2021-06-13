@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import rating.Rating;
 
 
-public class Activity implements Serializable 
-{
+public class Activity implements Serializable {
+	
+	private static final long serialVersionUID = -1720481625116348505L;
+	
 	private String name;
 	private double price;
 	private String path;

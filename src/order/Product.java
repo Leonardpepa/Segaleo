@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import rating.Rating;
 public abstract class Product implements Serializable {
+	
+	private static final long serialVersionUID = -5664405825052016146L;
+	
 	private String name;
 	private String description;
 	private double price;

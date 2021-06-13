@@ -3,7 +3,9 @@ package rating;
 import java.io.Serializable;
 
 public class Rating implements Serializable{
-
+	
+	private static final long serialVersionUID = -5374276975811567971L;
+	
 	private int numOfStars;
 	private String comments;
 	

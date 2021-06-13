@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
-import login.Login;
 import order.Coupon;
 import platformData.PlatformData;
 import resources.ColorResources;

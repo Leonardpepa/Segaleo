@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Coupon implements Serializable {
-    private String code;
+  
+	private static final long serialVersionUID = -1867457439069702703L;
+	
+	private String code;
     private Date date;
 
     public Date getDate() {

@@ -2,6 +2,8 @@ package order;
 
 public class Coffee  extends Product{
 
+	private static final long serialVersionUID = -4148346724991891535L;
+	
 	private int size = 0;
 	private int sugar = 0;
 	private boolean cold = true;
