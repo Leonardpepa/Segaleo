@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import menu.Menu;
 import rating.Rating;
@@ -13,8 +14,9 @@ public class Order implements Serializable{
 	private static final long serialVersionUID = -7785618513835322110L;
 	
 	private double totalCost;
-	private ArrayList<Product> products;
-	private ArrayList<Rating> ratings;
+	private List<Product> products;
+	@SuppressWarnings("unused")
+	private Rating rating = null;
 	private HashMap<Product, Integer> prod;
 	private int quantity = 0;
 	private Date date;
@@ -26,13 +28,12 @@ public class Order implements Serializable{
 
 	public Order() {
 		products = new ArrayList<Product>();
-		ratings = new ArrayList<>();
 		prod = new HashMap<>();
 		initializeHashMap();
 	}
 
-	public void addRating(Rating rating) {
-		ratings.add(rating);
+	public void setRating(Rating rating) {
+		this.rating  = rating;
 	}
 
 	public void addProduct(Product product) {
@@ -68,7 +69,7 @@ public class Order implements Serializable{
 		return totalCost;
 	}
 
-	public ArrayList<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 	public HashMap<Product, Integer> getProd(){
