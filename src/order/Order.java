@@ -32,10 +32,6 @@ public class Order implements Serializable{
 		initializeHashMap();
 	}
 
-	public void setRating(Rating rating) {
-		this.rating  = rating;
-	}
-
 	public void addProduct(Product product) {
 		if(!products.contains(product)) {
 			products.add(product);
@@ -137,6 +133,15 @@ public class Order implements Serializable{
 	public void setCoupon(Coupon coupon) {
 		this.coupon = coupon;
 	}
+	
+	public void setRating(Rating rating) {
+		this.rating  = rating;
+	}
+	public Rating getRating() {
+		return rating;
+	}
+
+
 
 	
 }

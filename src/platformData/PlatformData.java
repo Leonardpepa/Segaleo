@@ -9,6 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import menu.Menu;
+import order.Order;
+import order.Product;
 import roomCustomer.Customer;
 import roomCustomer.Room;
 import roomCustomer.RoomCustomerReader;
@@ -30,7 +33,6 @@ public class PlatformData {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Write problem");
 		}
 	}
 
@@ -45,11 +47,12 @@ public class PlatformData {
 				try {
 					RoomCustomerReader.customers = (ArrayList<Customer>) inputStream.readObject();
 					RoomCustomerReader.rooms = (ArrayList<Room>) inputStream.readObject();
+					loadReviews(RoomCustomerReader.customers);
 				} catch (EOFException e) {
 					break;
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
-					System.out.println("No such a class into the file");
+					e.printStackTrace();
 				}
 			}
 
@@ -59,14 +62,23 @@ public class PlatformData {
 			e.printStackTrace();
 		}
 	}
+	
+	//loads all the reviews from each customer to each product / activities
+	public static void loadReviews(ArrayList<Customer> customers) {
+		for(Customer customer: customers) {
+			for(Order order: customer.getOrders()) {
+				for(Product product: order.getProducts()) {
+					if(order.getRating() != null) {
+						Product foundProduct = Menu.findProduct(product.getName());
+						foundProduct.addRating(order.getRating());
+					}
+				}
+			}
+		}
+	}
 
 	// Checks if the file is empty
 	public static boolean checkFile() {
-
-		if (data.length() != 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return data.length() != 0;
 	}
 }
