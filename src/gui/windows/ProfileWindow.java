@@ -48,7 +48,7 @@ public class ProfileWindow extends JFrame {
 	}
 
 	public void windowsConfiguration() {
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);

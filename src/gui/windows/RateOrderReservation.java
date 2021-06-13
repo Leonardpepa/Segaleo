@@ -81,7 +81,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		showWindow(this, true);
 	}
 	public void windowsConfiguration() {
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);

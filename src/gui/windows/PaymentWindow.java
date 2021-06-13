@@ -39,7 +39,7 @@ public class PaymentWindow extends JFrame implements ActionListener {
 
 	// settings for the frame
 	public void windowsConfiguration() {
-		this.setTitle("Hotel PDA Sample");
+		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
