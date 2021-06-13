@@ -388,6 +388,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 			}
 
 			PlatformData.saveData();
+			PlatformData.loadData();
 			this.dispose();
 			if(isOrder == true) {
 				JOptionPane.showMessageDialog(null, TextResources.rateOrder, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
