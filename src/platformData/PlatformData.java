@@ -31,6 +31,8 @@ public class PlatformData {
 
 			outputStream.writeObject(RoomCustomerReader.customers);
 			outputStream.writeObject(RoomCustomerReader.rooms);
+			outputStream.writeObject(Order.numberOfOrders);
+			outputStream.writeObject(Reservation.numberOfReservations);
 
 			outputStream.close();
 		} catch (IOException e) {
@@ -51,6 +53,8 @@ public class PlatformData {
 					RoomCustomerReader.customers = (ArrayList<Customer>) inputStream.readObject();
 					RoomCustomerReader.rooms = (ArrayList<Room>) inputStream.readObject();
 					loadReviews(RoomCustomerReader.customers);
+					Order.numberOfOrders = (Integer) inputStream.readObject();
+					Reservation.numberOfReservations = (Integer) inputStream.readObject();
 				} catch (EOFException e) {
 					break;
 				} catch (ClassNotFoundException e) {
