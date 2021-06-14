@@ -24,7 +24,7 @@ public class Search {
 		int smallest= (KeyWord.length()+ array.get(i).getName().length() - Math.abs(KeyWord.length()- array.get(i).getName().length()))/2;
 		String name=array.get(i).getName().substring(0,  smallest);
 
-		while(i<array.size() && name.compareTo(KeyWord)<=0)
+		while(i<array.size() && name.compareToIgnoreCase(KeyWord)<=0)
 		{
 			i=i*2;
 			smallest = (KeyWord.length() + array.get(i).getName().length()
@@ -57,7 +57,7 @@ public class Search {
 				- Math.abs(KeyWord.length() - array.get(end-i).getName().length())) / 2;
 		String name = array.get(end-i).getName().substring(0, smallest);
 
-		while (i < end && name.compareTo(KeyWord) >= 0) {
+		while (i < end && name.compareToIgnoreCase(KeyWord) >= 0) {
 			i = i * 2;
 			smallest = (KeyWord.length() + array.get(end - i).getName().length()
 					- Math.abs(KeyWord.length() - array.get(end-i).getName().length())) / 2;
