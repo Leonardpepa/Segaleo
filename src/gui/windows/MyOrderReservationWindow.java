@@ -287,7 +287,11 @@ public class MyOrderReservationWindow extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			Reservation reservationClicked = getReservation(Integer.parseInt(((JButton) e.getSource()).getName()));
+			Login.loggedCustomer.removeReservation(reservationClicked);
+			JOptionPane.showMessageDialog(null, TextResources.resHasBeenCanceled, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
+			PlatformData.saveData();
+			initializePanelToFrame(true);
 		}
 		
 	}
