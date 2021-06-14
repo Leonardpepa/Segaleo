@@ -6,7 +6,6 @@ import javax.swing.*;
 import gui.factory.*;
 
 import payment.CreditCard;
-import platformData.PlatformData;
 import resources.*;
 
 public class CreditCardWindow extends JFrame implements ActionListener {
@@ -192,13 +191,6 @@ public class CreditCardWindow extends JFrame implements ActionListener {
 		monthsList.addActionListener(this);
 		yearList.addActionListener(this);
 		savecardBtn.addActionListener(this);
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
-			}
-		});
 	}
 
 	@Override

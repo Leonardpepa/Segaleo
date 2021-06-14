@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import gui.factory.*;
 import payment.Payment;
-import platformData.PlatformData;
 import resources.TextResources;
 
 public class PaymentWindow extends JFrame implements ActionListener {
@@ -105,13 +104,6 @@ public class PaymentWindow extends JFrame implements ActionListener {
 		cardBtn.addActionListener(this);
 		paypalBtn.addActionListener(this);
 		roomBillBtn.addActionListener(this);
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
-			}
-		});
 	}
 
 	public void addComponentsToPanel() {

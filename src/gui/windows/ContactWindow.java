@@ -8,7 +8,6 @@ import contact.Contact;
 import contact.MessageSender;
 import gui.factory.*;
 import login.Login;
-import platformData.PlatformData;
 import resources.*;
 import roomCustomer.Customer;
 
@@ -260,13 +259,6 @@ public class ContactWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				new FaqWindow();
-			}
-		});
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
 			}
 		});
 	}

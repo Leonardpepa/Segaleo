@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -20,7 +18,6 @@ import gui.components.RoundedPanel;
 import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
 import gui.factory.LogoFactory;
-import platformData.PlatformData;
 import resources.TextResources;
 
 public class ProfileWindow extends JFrame {
@@ -163,14 +160,6 @@ public class ProfileWindow extends JFrame {
 				dispose();
 				new MyCouponsWindow();
 
-			}
-		});
-		
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
 			}
 		});
 

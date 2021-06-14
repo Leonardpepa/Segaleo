@@ -29,7 +29,6 @@ import menu.Menu;
 import order.Food;
 import order.Order;
 import order.Product;
-import platformData.PlatformData;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -160,14 +159,6 @@ public class MenuWindow extends JFrame{
 				refreshMaincontent(foundProducts);				
 			}
 		});
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
-			}
-		});
-		
 	}
 
 	// all the content of the main panel (CENTER panel)

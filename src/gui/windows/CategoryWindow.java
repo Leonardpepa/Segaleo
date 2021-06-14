@@ -11,8 +11,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,7 +35,6 @@ import menu.Menu;
 import order.Food;
 import order.Order;
 import order.Product;
-import platformData.PlatformData;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -184,15 +181,6 @@ public class CategoryWindow extends JFrame {
 				refreshMaincontent(foundProducts);
 			}
 		});
-		
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
-			}
-		});
-			
 	}
 
 	// all the content for the header panel

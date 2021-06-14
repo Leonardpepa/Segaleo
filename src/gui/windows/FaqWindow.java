@@ -3,8 +3,6 @@ package gui.windows;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -17,7 +15,6 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
 import gui.factory.TextAreaFactory;
-import platformData.PlatformData;
 import resources.ColorResources;
 import resources.TextResources;
 
@@ -133,14 +130,6 @@ public class FaqWindow extends JFrame{
 				new ContactWindow();				
 			}
 		});
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
-			}
-		});
-
 	}
 
 }
