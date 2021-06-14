@@ -9,6 +9,7 @@ import reservation.Reservation;
 
 public class Customer implements Serializable{
 	
+	private static final long serialVersionUID = 4759859413823365345L;
 	private String name;
 	private String email;
 	private Room room = null;
@@ -71,5 +72,8 @@ public class Customer implements Serializable{
 	
 	public ArrayList<Reservation> getReservations() {
 		return reservations;
+	}
+	public void yes() {
+		
 	}
 }
