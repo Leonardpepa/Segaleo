@@ -12,7 +12,7 @@ import resources.TextResources;
 
 public class ActivityReader {
 
-	private ArrayList<Activity> activitiesList;
+	private static ArrayList<Activity> activitiesList;
 	
 	//Initializing the list
 	public ActivityReader() {
@@ -79,12 +79,21 @@ public class ActivityReader {
 		
 	}
 
-	public ArrayList<Activity> getActivitiesList() {
+	public static ArrayList<Activity> getActivitiesList() {
 		return activitiesList;
 	}
 
 	public void setActivitiesList(ArrayList<Activity> activitiesList) {
-		this.activitiesList = activitiesList;
+		ActivityReader.activitiesList = activitiesList;
+	}
+	
+	public static Activity findActivity(String name) {
+		for(Activity act: activitiesList) {
+			if(act.getName().equalsIgnoreCase(name)) {
+				return act;
+			}
+		}
+		return null;
 	}
 
 }

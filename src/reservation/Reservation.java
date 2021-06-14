@@ -12,26 +12,21 @@ public class Reservation implements Serializable {
 	
 	private double totalCost;
 	private ArrayList<Activity> activities;
-	private ArrayList<Rating> ratings;
+	private Rating rating = null;
 	public HashMap<Activity,Integer> act;
 	private String paymentMethod;
 	private Date date;
-	public static int numberOfReservations = 0;
+	public static int numberOfReservations;
 	private int id;
 	
 
 	public Reservation () 
 	{
 		activities = new ArrayList<Activity>();
-		ratings = new ArrayList<>();
 		act = new HashMap<>();
 		initializeHashMap();
 	}
 
-	public void addRating(Rating rating) {
-		ratings.add(rating);
-	}
-	
 	public void addActivity(Activity activity) {
 		if(!activities.contains(activity)) {
 			activities.add(activity);
@@ -79,7 +74,7 @@ public class Reservation implements Serializable {
 	}
 	
 	public void initializeHashMap() {
-		for(Activity a: new ActivityReader().getActivitiesList()) {
+		for(Activity a: ActivityReader.getActivitiesList()) {
 			act.put(a, 0);
 		}
 	}
@@ -109,6 +104,12 @@ public class Reservation implements Serializable {
 	}
 	
 
-	
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
 
 }

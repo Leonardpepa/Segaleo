@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import menu.Menu;
 import order.Order;
 import order.Product;
+import reservation.Activity;
+import reservation.ActivityReader;
+import reservation.Reservation;
 import roomCustomer.Customer;
 import roomCustomer.Room;
 import roomCustomer.RoomCustomerReader;
@@ -71,6 +74,14 @@ public class PlatformData {
 					Product foundProduct = Menu.findProduct(product.getName());
 					if(order.getRating() != null && foundProduct != null) {
 						foundProduct.addRating(order.getRating());
+					}
+				}
+			}
+			for(Reservation reservation: customer.getReservations()) {
+				for(Activity activity: reservation.getActivities()) {
+					Activity activityFound = ActivityReader.findActivity(activity.getName());
+					if(reservation.getRating() != null && activityFound != null) {
+						activityFound.addRating(reservation.getRating());
 					}
 				}
 			}

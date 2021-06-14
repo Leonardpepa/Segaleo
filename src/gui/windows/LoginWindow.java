@@ -13,6 +13,8 @@ import login.Login;
 import menu.Menu;
 import order.Food;
 import platformData.PlatformData;
+import reservation.Activity;
+import reservation.ActivityReader;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.RoomCustomerReader;
@@ -48,6 +50,7 @@ public class LoginWindow extends JFrame {
 
 	boolean isPopup = false;
 	public static ArrayList<Food> deals;
+	
 
 	// constructor
 	public LoginWindow() {
@@ -68,11 +71,13 @@ public class LoginWindow extends JFrame {
 	// set up the panel in the frame
 	@SuppressWarnings("static-access")
 	public void initializePanelToFrame() {
-
+		
 		new TextResources().changeLanguage();
 		new ColorResources();
 		deals = new Menu().GetDeals();
-
+		Activity.initialarray();
+		new ActivityReader();
+		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));

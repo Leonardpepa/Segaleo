@@ -13,7 +13,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -60,7 +59,6 @@ public class CartWindow extends JFrame {
 	 */
 	private JPanel backgroundPanel;
 	private Reservation reservation;
-	private List<Activity> activities;
 	private Order order;
 	private boolean isOrder;
 	// header
@@ -98,10 +96,9 @@ public class CartWindow extends JFrame {
 		showWindow(this, true);
 	}
 
-	public CartWindow(Reservation reservation, List<Activity> activities) {
+	public CartWindow(Reservation reservation) {
 		this.a = Activity.getA();
 		this.reservation = reservation;
-		this.activities = activities;
 		this.isOrder = false;
 		initilizePanelToFrame();
 		windowsConfiguration();
@@ -149,8 +146,7 @@ public class CartWindow extends JFrame {
 				if (isOrder)
 					new MenuWindow(order);
 				else {
-					ActivityReader actReader = new ActivityReader();
-					new ActivityWindow(actReader.getActivitiesList(), reservation);
+					new ActivityWindow(reservation);
 				}
 			}
 		});
@@ -492,7 +488,7 @@ public class CartWindow extends JFrame {
 			clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
 			if (label.getName().equals("plus")) {
 				reservation.addActivity(clickedActivity);
-				clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
+				clickedActivity.setColumn(ActivityReader.getActivitiesList().indexOf(clickedActivity) * 2);
 				System.out.println("h clicked exei day " + clickedActivity.getSelday());
 				System.out.println("h clicked exei hour " + clickedActivity.getSelhour());
 				if (!clickedActivity.plusCheck()) {
@@ -500,7 +496,7 @@ public class CartWindow extends JFrame {
 				}
 			} else if (label.getName().equals("minus")) {
 				reservation.removeActivity(clickedActivity);
-				clickedActivity.setColumn(activities.indexOf(clickedActivity) * 2);
+				clickedActivity.setColumn(ActivityReader.getActivitiesList().indexOf(clickedActivity) * 2);
 				clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
 				a[clickedActivity.getSelday()][clickedActivity.getSelhour() + clickedActivity.getColumn()] += 1;
 				System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()

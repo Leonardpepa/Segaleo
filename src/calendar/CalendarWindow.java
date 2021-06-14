@@ -348,7 +348,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 				else {
 					JOptionPane.showMessageDialog(null, TextResources.successCalendar);
 					this.dispose();
-					new ActivityWindow(activities,reservation);
+					new ActivityWindow(reservation);
 				}
 				
 			}

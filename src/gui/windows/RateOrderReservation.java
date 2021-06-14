@@ -381,7 +381,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 				}
 			}
 			else {
-				reservation.addRating(rate);
+				reservation.setRating(rate);
 				for(Activity activity: reservation.getActivities()) {
 					activity.addRating(rate);
 				}

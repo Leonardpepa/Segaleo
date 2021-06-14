@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,7 +37,6 @@ public class ActivityWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = -3218493844069922114L;
 	private JPanel backgroundPanel;
-	private List<Activity> activities = new ActivityReader().getActivitiesList();
 	private JLabel activityLabel;
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
@@ -66,9 +64,8 @@ public class ActivityWindow extends JFrame {
 
 	private Activity thisactivity = null;
 
-	public ActivityWindow(List<Activity> activities, Reservation reservation) {
+	public ActivityWindow(Reservation reservation) {
 		this.a = Activity.getA();
-		this.activities = activities;
 		this.reservation = reservation;
 		initializePanelToFrame();
 		windowsConfiguration();
@@ -143,7 +140,7 @@ public class ActivityWindow extends JFrame {
 		cartPanel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				new CartWindow(reservation, activities);
+				new CartWindow(reservation);
 			}
 		});
 
@@ -199,7 +196,12 @@ public class ActivityWindow extends JFrame {
 		activityimgLabel.setBounds(20, 5, 310, 170);
 
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(20, 180, 250, 24);
+		titleLabel.setBounds(70, 180, 250, 24);
+		
+		ImageIcon startIcon =  new ImageIcon("./Icons/star-rating.png");
+		JLabel starLabel = LabelFactory.createIconLabel(startIcon);
+		starLabel.setBounds(20, 180, 50, 24);
+		starLabel.setText(activity.calcAvRating()+"");
 
 		plusIcon = new ImageIcon("./buttonImages/plus.png");
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
@@ -216,6 +218,7 @@ public class ActivityWindow extends JFrame {
 		panel.add(titleLabel);
 		panel.add(plusButtonLabel);
 		panel.add(priceLabel);
+		panel.add(starLabel);
 
 		return panel;
 	}
@@ -223,9 +226,9 @@ public class ActivityWindow extends JFrame {
 	// creates a vertical scrollable panel
 	public JScrollPane createVerticalScrollablePanel() {
 		JPanel container = new JPanel();
-		container.setLayout(new GridLayout(activities.size(), 1, 0, 15));
+		container.setLayout(new GridLayout(ActivityReader.getActivitiesList().size(), 1, 0, 15));
 
-		for (Activity activity : activities) {
+		for (Activity activity : ActivityReader.getActivitiesList()) {
 			container.add(configureActivityPanel(activity));
 		}
 
@@ -246,13 +249,13 @@ public class ActivityWindow extends JFrame {
 			JPanel parent = (JPanel) plusLabel.getParent();
 			String activityName = parent.getName();
 			// search for the activity with activityName
-			for (Activity a : activities) {
+			for (Activity a : ActivityReader.getActivitiesList()) {
 				if (a.getName().equalsIgnoreCase(activityName)) {
 					thisactivity = a;
 				}
 			}
 			dispose();
-			new CalendarWindow(activities, thisactivity, reservation);
+			new CalendarWindow(ActivityReader.getActivitiesList(), thisactivity, reservation);
 
 		}
 	}

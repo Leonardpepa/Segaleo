@@ -15,7 +15,6 @@ public class Order implements Serializable{
 	
 	private double totalCost;
 	private List<Product> products;
-	@SuppressWarnings("unused")
 	private Rating rating = null;
 	private HashMap<Product, Integer> prod;
 	private int quantity = 0;
