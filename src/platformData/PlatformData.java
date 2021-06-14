@@ -68,8 +68,8 @@ public class PlatformData {
 		for(Customer customer: customers) {
 			for(Order order: customer.getOrders()) {
 				for(Product product: order.getProducts()) {
-					if(order.getRating() != null) {
-						Product foundProduct = Menu.findProduct(product.getName());
+					Product foundProduct = Menu.findProduct(product.getName());
+					if(order.getRating() != null && foundProduct != null) {
 						foundProduct.addRating(order.getRating());
 					}
 				}
