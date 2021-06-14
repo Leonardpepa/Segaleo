@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +26,7 @@ import calendar.CalendarWindow;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
+import platformData.PlatformData;
 import reservation.Activity;
 import reservation.ActivityReader;
 import reservation.Reservation;
@@ -141,6 +144,13 @@ public class ActivityWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				new CartWindow(reservation);
+			}
+		});
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				PlatformData.saveData();
+			    System.exit(0);
 			}
 		});
 

@@ -12,6 +12,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -36,6 +38,7 @@ import order.Coupon;
 import order.CouponFactory;
 import order.Order;
 import order.Product;
+import platformData.PlatformData;
 import reservation.Activity;
 import reservation.ActivityReader;
 import reservation.Reservation;
@@ -233,6 +236,14 @@ public class CartWindow extends JFrame {
 							TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);
 				}
 
+			}
+		});
+		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				PlatformData.saveData();
+			    System.exit(0);
 			}
 		});
 	}

@@ -150,9 +150,7 @@ public class CompleteWindow extends JFrame {
 		});
 		
 		this.addWindowListener(new WindowAdapter() {
-			 
 			@Override
-			 
 			public void windowClosing(WindowEvent e) {
 				PlatformData.saveData();
 			    System.exit(0);

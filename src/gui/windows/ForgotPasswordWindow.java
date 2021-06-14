@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import contact.MessageSender;
 import gui.factory.*;
+import platformData.PlatformData;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Room;
@@ -133,6 +134,13 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 		remindMeBtn.addActionListener(this);
 		
 		backBtn.addActionListener(this);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				PlatformData.saveData();
+			    System.exit(0);
+			}
+		});
 	}
 
 	@Override

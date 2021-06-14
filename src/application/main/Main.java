@@ -2,7 +2,6 @@
 package application.main;
 
 import gui.windows.*;
-import reservation.Activity;
 
 public class Main {
 

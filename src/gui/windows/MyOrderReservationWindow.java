@@ -20,6 +20,7 @@ import gui.factory.LogoFactory;
 import login.Login;
 import order.Order;
 import order.Product;
+import platformData.PlatformData;
 import reservation.Activity;
 import reservation.Reservation;
 import resources.ColorResources;
@@ -219,6 +220,13 @@ public class MyOrderReservationWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				new ProfileWindow();
+			}
+		});
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				PlatformData.saveData();
+			    System.exit(0);
 			}
 		});
 	}

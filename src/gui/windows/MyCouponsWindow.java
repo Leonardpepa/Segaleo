@@ -13,6 +13,7 @@ import gui.components.RoundedPanel;
 import gui.factory.*;
 import login.Login;
 import order.Coupon;
+import platformData.PlatformData;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
@@ -178,6 +179,14 @@ public class MyCouponsWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				new ProfileWindow();
+			}
+		});
+		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				PlatformData.saveData();
+			    System.exit(0);
 			}
 		});
 	}

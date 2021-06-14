@@ -181,7 +181,6 @@ public class MainWindow extends JFrame {
 		});
 		
 		this.addWindowListener(new WindowAdapter() {
-			 
 			@Override
 			public void windowClosing(WindowEvent e) {
 				PlatformData.saveData();
