@@ -24,7 +24,6 @@ import calendar.CalendarWindow;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
-import platformData.PlatformData;
 import reservation.Activity;
 import reservation.ActivityReader;
 import reservation.Reservation;
@@ -186,7 +185,7 @@ public class ActivityWindow extends JFrame {
 
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
-		panel.setName(activity.getName());
+		panel.setName(String.valueOf(activity.getId()));
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
@@ -196,7 +195,7 @@ public class ActivityWindow extends JFrame {
 		activityimgLabel.setBounds(20, 5, 310, 170);
 
 		titleLabel = LabelFactory.createLabel(activity.getName(), Color.BLACK, FontFactory.poppins(14));
-		titleLabel.setBounds(70, 180, 250, 24);
+		titleLabel.setBounds(80, 180, 250, 24);
 		
 		ImageIcon startIcon =  new ImageIcon("./Icons/star-rating.png");
 		JLabel starLabel = LabelFactory.createIconLabel(startIcon);
@@ -247,13 +246,9 @@ public class ActivityWindow extends JFrame {
 
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
-			String activityName = parent.getName();
+			String activityId = parent.getName();
 			// search for the activity with activityName
-			for (Activity a : ActivityReader.getActivitiesList()) {
-				if (a.getName().equalsIgnoreCase(activityName)) {
-					thisactivity = a;
-				}
-			}
+			thisactivity = ActivityReader.findActivity(Integer.parseInt(activityId));
 			dispose();
 			new CalendarWindow(ActivityReader.getActivitiesList(), thisactivity, reservation);
 

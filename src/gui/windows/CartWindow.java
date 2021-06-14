@@ -292,7 +292,7 @@ public class CartWindow extends JFrame {
 
 	public JPanel configureProductPanel(Product product) {
 		JPanel panel = new JPanel();
-		panel.setName(product.getName());
+		panel.setName(String.valueOf(product.getId()));
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
@@ -343,7 +343,7 @@ public class CartWindow extends JFrame {
 
 	public JPanel configureActivityPanel(Activity activity) {
 		JPanel panel = new JPanel();
-		panel.setName(activity.getName());
+		panel.setName(String.valueOf(activity.getId()));
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(320, 220));
 		panel.setBackground(Color.white);
@@ -461,8 +461,8 @@ public class CartWindow extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 			JLabel label = (JLabel) e.getSource();
 			JPanel parent = (JPanel) label.getParent();
-			String productName = parent.getName();
-			Product clickedProduct = Menu.findProduct(productName);
+			String productId = parent.getName();
+			Product clickedProduct = Menu.findProduct(Integer.parseInt(productId));
 	
 			if (label.getName().equals("plus")) {
 				order.addProduct(clickedProduct);
@@ -478,19 +478,15 @@ public class CartWindow extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 			JLabel label = (JLabel) e.getSource();
 			JPanel parent = (JPanel) label.getParent();
-			String productName = parent.getName();
-			Activity clickedActivity = null;
-			for (Activity a : reservation.getActivities()) {
-				if (a.getName().equalsIgnoreCase(productName)) {
-					clickedActivity = a;
-				}
-			}
+			String productId = parent.getName();
+			Activity clickedActivity;
+			
+			clickedActivity = ActivityReader.findActivity(Integer.parseInt(productId));
 			clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
+			
 			if (label.getName().equals("plus")) {
 				reservation.addActivity(clickedActivity);
 				clickedActivity.setColumn(ActivityReader.getActivitiesList().indexOf(clickedActivity) * 2);
-				System.out.println("h clicked exei day " + clickedActivity.getSelday());
-				System.out.println("h clicked exei hour " + clickedActivity.getSelhour());
 				if (!clickedActivity.plusCheck()) {
 					reservation.removeActivity(clickedActivity);
 				}
@@ -499,8 +495,6 @@ public class CartWindow extends JFrame {
 				clickedActivity.setColumn(ActivityReader.getActivitiesList().indexOf(clickedActivity) * 2);
 				clickedActivity.setSelpeople(reservation.getAct().get(clickedActivity));
 				a[clickedActivity.getSelday()][clickedActivity.getSelhour() + clickedActivity.getColumn()] += 1;
-				System.out.println("apomenoun : " + a[clickedActivity.getSelday()][clickedActivity.getSelhour()
-				                                                                   + clickedActivity.getColumn()]);
 			}	
 			initilizePanelToFrame();
 		}

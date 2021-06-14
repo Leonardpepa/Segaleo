@@ -87,9 +87,9 @@ public class ActivityReader {
 		ActivityReader.activitiesList = activitiesList;
 	}
 	
-	public static Activity findActivity(String name) {
+	public static Activity findActivity(int id) {
 		for(Activity act: activitiesList) {
-			if(act.getName().equalsIgnoreCase(name)) {
+			if(act.getId() == id) {
 				return act;
 			}
 		}

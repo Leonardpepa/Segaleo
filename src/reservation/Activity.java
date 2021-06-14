@@ -2,6 +2,7 @@ package reservation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 import rating.Rating;
 
@@ -19,12 +20,12 @@ public class Activity implements Serializable {
 	private ArrayList<Rating> ratings;
 
 	private static int [][] a = new int[7][14];
-	private static ArrayList<Activity> activities = new ActivityReader().getActivitiesList();
 
-	private int selhour =0;
-	private int selday =0;
-	private int column =0;
-	private int selpeople =0;
+	private int selhour = 0;
+	private int selday = 0;
+	private int column = 0;
+	private int selpeople = 0;
+	private Date selDate;
 	
 	
 	public Activity(String name,  int price, String path, int availability, ArrayList<String> hour, int id){
@@ -72,6 +73,13 @@ public class Activity implements Serializable {
 		this.selpeople = selpeople;
 	}
 
+	
+	
+	public static void setA(int[][] a) {
+		Activity.a = a;
+	}
+
+
 	public static int[][] getA() {
 		return a;
 	}
@@ -105,7 +113,7 @@ public class Activity implements Serializable {
 	public static void initialarray() {
 		for(int i= 0; i<7; i++) {
 			int j=0;
-			for(Activity activity:activities) {
+			for(Activity activity: ActivityReader.getActivitiesList()) {
 				a[i][j]= activity.getAvailability();
 				a[i][++j] = activity.getAvailability();
 				j++;
@@ -118,18 +126,14 @@ public class Activity implements Serializable {
 			a[this.getSelday()][this.getSelhour() + this.getColumn()] -= this.getSelpeople();
 			return true;
 		}
-		else {
 			return false;
-		}
 	}
 	public boolean plusCheck() {
 		if(a[this.getSelday()][this.getSelhour() + this.getColumn()]>= 1) {
 			a[this.getSelday()][this.getSelhour() + this.getColumn()] -=1;
 			return true;
 		}
-		else {
 			return false;
-		}
 	}
 
 	// for hashmap
@@ -167,4 +171,12 @@ public class Activity implements Serializable {
 		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 
+
+	public Date getSelDate() {
+		return selDate;
+	}
+	
+	public void setSelDate(Date selDate) {
+		this.selDate = selDate;
+	}
 }

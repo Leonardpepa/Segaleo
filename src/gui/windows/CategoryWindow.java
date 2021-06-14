@@ -258,7 +258,7 @@ public class CategoryWindow extends JFrame {
 		Food foodProduct;
 
 		JPanel panel = new JPanel();
-		panel.setName(product.getName());
+		panel.setName(String.valueOf(product.getId()));
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
@@ -333,8 +333,8 @@ public class CategoryWindow extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 			JLabel plusLabel = (JLabel) e.getSource();
 			JPanel parent = (JPanel) plusLabel.getParent();
-			String productName = parent.getName();
-			Product clickedProduct = Menu.findProduct(productName);
+			String productId = parent.getName();
+			Product clickedProduct = Menu.findProduct(Integer.parseInt(productId));
 			order.addProduct(clickedProduct);
 			cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
 			int displayQuantity = 0;

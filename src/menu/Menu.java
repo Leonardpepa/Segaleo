@@ -129,9 +129,9 @@ public class Menu {
 		}
 	}
 
-	public static Product findProduct(String name) {
+	public static Product findProduct(int id) {
 		for (Product p : allProducts) {
-			if (p.getName().equalsIgnoreCase(name)) {
+			if (p.getId() == id) {
 				return p;
 			}
 		}

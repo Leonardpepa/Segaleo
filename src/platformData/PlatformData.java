@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import menu.Menu;
 import order.Order;
@@ -31,6 +32,7 @@ public class PlatformData {
 
 			outputStream.writeObject(RoomCustomerReader.customers);
 			outputStream.writeObject(RoomCustomerReader.rooms);
+			outputStream.writeObject(Activity.getA());
 			outputStream.writeObject(Order.numberOfOrders);
 			outputStream.writeObject(Reservation.numberOfReservations);
 
@@ -53,6 +55,8 @@ public class PlatformData {
 					RoomCustomerReader.customers = (ArrayList<Customer>) inputStream.readObject();
 					RoomCustomerReader.rooms = (ArrayList<Room>) inputStream.readObject();
 					loadReviews(RoomCustomerReader.customers);
+					Activity.setA(((int[][]) inputStream.readObject()));
+					checkArrayAvailabilities(RoomCustomerReader.customers);
 					Order.numberOfOrders = (Integer) inputStream.readObject();
 					Reservation.numberOfReservations = (Integer) inputStream.readObject();
 				} catch (EOFException e) {
@@ -75,7 +79,7 @@ public class PlatformData {
 		for(Customer customer: customers) {
 			for(Order order: customer.getOrders()) {
 				for(Product product: order.getProducts()) {
-					Product foundProduct = Menu.findProduct(product.getName());
+					Product foundProduct = Menu.findProduct(product.getId());
 					if(order.getRating() != null && foundProduct != null) {
 						foundProduct.addRating(order.getRating());
 					}
@@ -83,9 +87,22 @@ public class PlatformData {
 			}
 			for(Reservation reservation: customer.getReservations()) {
 				for(Activity activity: reservation.getActivities()) {
-					Activity activityFound = ActivityReader.findActivity(activity.getName());
+					Activity activityFound = ActivityReader.findActivity(activity.getId());
 					if(reservation.getRating() != null && activityFound != null) {
 						activityFound.addRating(reservation.getRating());
+					}
+				}
+			}
+		}
+	}
+	
+	public static void checkArrayAvailabilities(ArrayList<Customer> customers) {
+		Date today = new Date();
+		for(Customer customer: customers) {
+			for(Reservation reservation: customer.getReservations()) {
+				for(Activity activity: reservation.getActivities()) {
+					if(today.getTime() > activity.getSelDate().getTime()) {
+						Activity.getA()[activity.getSelday()][activity.getSelhour() + activity.getColumn()] += activity.getSelpeople(); 
 					}
 				}
 			}

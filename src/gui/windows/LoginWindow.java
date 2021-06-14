@@ -73,7 +73,6 @@ public class LoginWindow extends JFrame {
 		new TextResources().changeLanguage();
 		new ColorResources();
 		deals = new Menu().GetDeals();
-		Activity.initialarray();
 		new ActivityReader();
 		
 		panel = new JPanel();
@@ -176,6 +175,7 @@ public class LoginWindow extends JFrame {
 					PlatformData.loadData();
 				} else {
 					new RoomCustomerReader();
+					Activity.initialarray();
 				}
 				// checks if the text field is empty and if the login data is correct
 				if (Login.checkLogin(roomField.getText(), passwordField.getText())) {

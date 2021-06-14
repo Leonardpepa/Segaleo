@@ -384,7 +384,7 @@ public class MenuWindow extends JFrame{
 	public JPanel configureProductPanel(Food product) {
 		
 		JPanel	productPanel = new JPanel();
-		productPanel.setName(product.getName());
+		productPanel.setName(String.valueOf(product.getId()));
 		productPanel.setLayout(null);
 		productPanel.setPreferredSize(new Dimension(260, 50));
 		productPanel.setBackground(Color.white);
@@ -438,8 +438,8 @@ public class MenuWindow extends JFrame{
 			
 				JLabel plusLabel = (JLabel) e.getSource();
 				JPanel parent = (JPanel) plusLabel.getParent();
-				String productName = parent.getName();
-				Product clickedProduct = Menu.findProduct(productName);
+				String productId = parent.getName();
+				Product clickedProduct = Menu.findProduct(Integer.parseInt(productId));
 				order.addProduct(clickedProduct);
 				priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
 				displayQuantity = 0;
