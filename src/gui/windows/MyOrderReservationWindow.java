@@ -26,6 +26,7 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
+import roomCustomer.RoomCustomerReader;
 
 @SuppressWarnings("serial")
 public class MyOrderReservationWindow extends JFrame {
@@ -286,12 +287,20 @@ public class MyOrderReservationWindow extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			Activity.print();
+			Date today = new Date();
 			Reservation reservationClicked = getReservation(Integer.parseInt(((JButton) e.getSource()).getName()));
-			Login.loggedCustomer.removeReservation(reservationClicked);
-			JOptionPane.showMessageDialog(null, TextResources.resHasBeenCanceled, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
-			PlatformData.saveData();
-			initializePanelToFrame(true);
+			if(today.getTime() < reservationClicked.getFirstAct().getSelDate().getTime()) {
+				Login.loggedCustomer.removeReservation(reservationClicked);
+				JOptionPane.showMessageDialog(null, TextResources.resHasBeenCanceled, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
+				PlatformData.removeActivitiesFromArray(reservationClicked);
+				PlatformData.saveData();
+				initializePanelToFrame(true);
+				Activity.print();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, TextResources.cancelRes, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		
 	}

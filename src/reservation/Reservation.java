@@ -2,6 +2,8 @@ package reservation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import rating.Rating;
@@ -18,10 +20,11 @@ public class Reservation implements Serializable {
 	private Date date;
 	public static int numberOfReservations;
 	private int id;
+	@SuppressWarnings("unused")
+	private Activity firstAct;
 	
 
-	public Reservation () 
-	{
+	public Reservation () {
 		activities = new ArrayList<Activity>();
 		act = new HashMap<>();
 		initializeHashMap();
@@ -30,8 +33,20 @@ public class Reservation implements Serializable {
 	public void addActivity(Activity activity) {
 		if(!activities.contains(activity)) {
 			activities.add(activity);
+			
 		}
 		act.put(activity, act.get(activity)+1);
+		firstAct = Collections.min(activities, new Comparator<Activity>() {
+
+			@Override
+			public int compare(Activity o1, Activity o2) {
+				if(o1.getSelDate() != null && o2.getSelDate() != null) {
+					return o1.getSelDate().compareTo(o2.getSelDate());					
+				}
+				return 0;
+			}
+			
+		});
 	}
 	
 	public void clearReservation()
@@ -112,4 +127,12 @@ public class Reservation implements Serializable {
 		this.rating = rating;
 	}
 
+	public Activity getFirstAct() {
+		return firstAct;
+	}
+
+	public void setFirstAct(Activity firstAct) {
+		this.firstAct = firstAct;
+	}	
+	
 }

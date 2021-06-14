@@ -108,6 +108,12 @@ public class PlatformData {
 			}
 		}
 	}
+	
+	public static void removeActivitiesFromArray(Reservation reservation) {
+		for(Activity activity: reservation.getActivities()) {
+			Activity.getA()[activity.getSelday()][activity.getSelhour() + activity.getColumn()] += activity.getSelpeople(); 
+		}
+	}
 
 	// Checks if the file is empty
 	public static boolean checkFile() {

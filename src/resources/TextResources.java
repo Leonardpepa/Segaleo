@@ -115,9 +115,11 @@ public class TextResources {
 	public static String rateReservation;
 	
 	public static String sort;
-	public static String  byPrice;
-	public static String  byPopularity;
-	public static String  byName;
+	public static String byPrice;
+	public static String byPopularity;
+	public static String byName;
+	
+	public static String cancelRes;
 	
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -234,6 +236,9 @@ public class TextResources {
 		byPrice = isEnglish ? "By price" : "Ως προς την τιμή";
 		byPopularity = isEnglish ? "By popularity" : "Ως προς την Δημοτικότητα";
 		byName = isEnglish ? "By name" : "Ως προς το όνομα";
+		
+		cancelRes = isEnglish ? "You can't cancel this reservation" : "Δεν μπορείτε να ακυρώσετε αυτή την κράτηση";
+		
 		
 	}
 
