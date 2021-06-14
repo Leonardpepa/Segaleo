@@ -20,10 +20,8 @@ import resources.TextResources;
 import roomCustomer.RoomCustomerReader;
 
 public class LoginWindow extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -8366203896984202567L;
 
 	private JPanel panel;
 
@@ -227,14 +225,6 @@ public class LoginWindow extends JFrame {
 				passwordField.setEchoChar('*');
 			}
 
-		});
-		
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				PlatformData.saveData();
-			    System.exit(0);
-			}
 		});
 
 	}

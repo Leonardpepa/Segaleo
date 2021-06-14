@@ -20,6 +20,7 @@ import gui.factory.LogoFactory;
 import login.Login;
 import order.Order;
 import order.Product;
+import platformData.PlatformData;
 import reservation.Activity;
 import reservation.Reservation;
 import resources.ColorResources;
@@ -270,6 +271,7 @@ public class MyOrderReservationWindow extends JFrame {
 			if (timePassed < 10) {
 				Login.loggedCustomer.removeOrder(orderClicked);
 				Login.loggedCustomer.removeCoupon(orderClicked.getCoupon());
+				PlatformData.saveData();
 				JOptionPane.showMessageDialog(null, TextResources.orderHasBeenCanceled, TextResources.orderErrorTitle,
 						JOptionPane.INFORMATION_MESSAGE);
 				initializePanelToFrame(true);

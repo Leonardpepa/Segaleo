@@ -64,7 +64,6 @@ public class CompleteWindow extends JFrame {
 		addComponentsToPanel(coupon, isOrder);
 		addListeners();
 		PlatformData.saveData();
-		PlatformData.loadData();
 		this.setContentPane(panel);
 		this.pack();
 	}
