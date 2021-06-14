@@ -62,7 +62,8 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	private boolean flagDay = false;
 	
 	private int[][] a;
-
+	private int selectedDay = -1;
+	private int selectedWeek = -1;
 
 	public CalendarWindow(List<Activity> activities , Activity activity, Reservation reservation) {
 
@@ -266,9 +267,12 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
 	}
 	
+	public int getSelectedDay() {
+		return selectedDay;
+	} 
+	
 	public boolean isValidHour(String hour)
 	{
-		boolean flag = true;
 		String[] hrs = hour.split(":",2); // hrs[0] = selected hour (where activity starts) and hrs[1] = selected minutes (where activity starts)
 		GregorianCalendar cal = new GregorianCalendar();
 		int currentHour = cal.get(GregorianCalendar.HOUR_OF_DAY);
@@ -276,10 +280,16 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		int selectedHour = Integer.parseInt(hrs[0]);
 		int selectedMinutes = Integer.parseInt(hrs[1]);
 		
+		int selectedDay = getSelectedDay(); 
+		int currentDay = cal.get(GregorianCalendar.DAY_OF_MONTH);
+		
+		if (selectedDay != currentDay && selectedDay != -1)
+			return true;
+		
 		if (currentHour > selectedHour)
 		{
 			JOptionPane.showMessageDialog(null,"You can't choose that hour!");
-			flag = false;
+			return false;
 		}
 		
 		if (currentHour == selectedHour)
@@ -287,12 +297,12 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			System.out.println("2,");
 			if (currentMinutes >= selectedMinutes)
 			{
-				flag = false;
 				JOptionPane.showMessageDialog(null,"You can't choose that hour!");
+				return false;
 			}
 		}
 		
-		return flag;
+		return true;
 	}
 
 	
@@ -327,7 +337,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		if(e.getSource() == confirmBtn) {
 			if(flagHour && flagDay) {
 				activity.setColumn(activities.indexOf(activity)*2);
-				// if no avaliability remove activity from reservation
+				// if no availability remove activity from reservation
 				if(!activity.checkLimit()) {
 					for(int i=0; i<activity.getSelpeople() ; i++) {
 						 reservation.removeActivity(activity);
@@ -406,8 +416,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		public void mouseClicked(MouseEvent e) {
 			JTable table = (JTable) e.getSource();
 			GregorianCalendar cal = new GregorianCalendar();
-			int selectedDay = -1;
-			int selectedWeek = -1;
+		
 		
 
 			try {
@@ -416,7 +425,6 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			}catch (NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, TextResources.invalidDay);
 			}
-
 
 
 			int currentWeek = (cal.get(GregorianCalendar.WEEK_OF_MONTH)) - 1;
