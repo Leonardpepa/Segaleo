@@ -184,7 +184,6 @@ public class CartWindow extends JFrame {
 
 					dispose();
 					Coupon coupon = CouponFactory.GenerateCoupon(Login.loggedCustomer.getEmail());
-					new CompleteWindow(coupon, true);
 					
 					order.setPaymentMethod(paymentMethods.getText());
 					order.setDate(new Date());
@@ -194,15 +193,16 @@ public class CartWindow extends JFrame {
 					
 					Login.loggedCustomer.addCoupons(coupon);
 					Login.loggedCustomer.addOrders(order);
+					new CompleteWindow(coupon, true);
 
 				} else if (order.getTotalCost() >= 10 && !paymentMethods.getText().equals(TextResources.payment)) {
 					dispose();
-					new CompleteWindow(null, true);
 					order.setPaymentMethod(paymentMethods.getText());
 					order.setDate(new Date());
 					Order.numberOfOrders += 1;
 					order.setId(Order.numberOfOrders);
 					Login.loggedCustomer.addOrders(order);
+					new CompleteWindow(null, true);
 
 				} else if (order.getTotalCost() < 10) {
 					orderNowButton.setBackground(ColorResources.bgMainWindowBtn);
@@ -222,12 +222,12 @@ public class CartWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (!paymentMethods.getText().equals(TextResources.payment)) {
 					dispose();
-					new CompleteWindow(null, false);
 					reservation.setPaymentMethod(paymentMethods.getText());
 					reservation.setDate(new Date());
 					Reservation.numberOfReservations += 1;
 					reservation.setId(Reservation.numberOfReservations);
 					Login.loggedCustomer.addReservation(reservation);
+					new CompleteWindow(null, false);
 				} else {
 					JOptionPane.showMessageDialog(null, TextResources.noPaymentSelected,
 							TextResources.reservationErrorTitle, JOptionPane.INFORMATION_MESSAGE);

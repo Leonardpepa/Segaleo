@@ -63,7 +63,8 @@ public class CompleteWindow extends JFrame {
 		configurateLabels(coupon, isOrder);
 		addComponentsToPanel(coupon, isOrder);
 		addListeners();
-
+		PlatformData.saveData();
+		PlatformData.loadData();
 		this.setContentPane(panel);
 		this.pack();
 	}
@@ -141,7 +142,6 @@ public class CompleteWindow extends JFrame {
 		exitBtn.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PlatformData.saveData();
 				dispose();
 				new MainWindow();				
 			}
