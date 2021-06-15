@@ -122,6 +122,10 @@ public class TextResources {
 	public static String cancelRes;
 	public static String welcomeProfile;
 	
+	public static String emailSent;
+	public static String enterEmail;
+	public static String enterRoom;
+	
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -240,7 +244,10 @@ public class TextResources {
 		
 		cancelRes = isEnglish ? "You can't cancel this reservation" : "Δεν μπορείτε να ακυρώσετε αυτή την κράτηση";
 		welcomeProfile = isEnglish ? "Welcome, " : "Καλωσήρθες, ";
+		emailSent = isEnglish ? "Reminder email has been sent!" : "Η υπενθύμιση κωδικού έχει σταλθεί!";
 		
+		enterEmail = isEnglish ? "Enter the email address associated to your account" : "Εισάγετε το email του λογαρισμού σας";
+		enterRoom = isEnglish ? "Enter your room number" : "Εισάγετε τον αριθμό δωματίου σας";
 	}
 
 }
