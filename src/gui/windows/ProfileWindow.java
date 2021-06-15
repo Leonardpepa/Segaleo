@@ -1,24 +1,21 @@
 package gui.windows;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import gui.components.RoundedPanel;
 import gui.factory.BackgroundFactory;
 import gui.factory.ButtonFactory;
+import gui.factory.FontFactory;
+import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
+import login.Login;
+import resources.ColorResources;
 import resources.TextResources;
+import roomCustomer.Customer;
 
 public class ProfileWindow extends JFrame {
 
@@ -41,6 +38,11 @@ public class ProfileWindow extends JFrame {
 	JButton reservationBtn;
 	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button" + TextResources.imageLang);
 	JButton couponBtn;
+	
+	private Customer customer = Login.loggedCustomer;
+	JLabel welcomeLabel;
+	ImageIcon profile = new ImageIcon("Icons/profile.png");
+	JLabel profileLabel;
 
 	public ProfileWindow() {
 		initializePanelToFrame();
@@ -64,6 +66,7 @@ public class ProfileWindow extends JFrame {
 		panel.setBackground(new Color(216, 223, 224));
 
 		configureButtons();
+		configureLabels();
 
 		addComponentsToPanel();
 		addListeners();
@@ -80,6 +83,8 @@ public class ProfileWindow extends JFrame {
 		panel.add(backBtn);
 		panel.add(LogoFactory.addLogoScaled());
 		panel.add(contactBtn);
+		panel.add(profileLabel);
+		panel.add(welcomeLabel);
 
 		// initial insidePanel and add it to panel
 		insidePanel = new RoundedPanel(50, new Color(255, 255, 255));
@@ -115,6 +120,14 @@ public class ProfileWindow extends JFrame {
 		contactBtn = ButtonFactory.createButtonIcon(contactImage);
 		contactBtn.setBounds(309, 723, 61, 61);
 
+	}
+	
+	public void configureLabels() {
+		profileLabel = LabelFactory.createIconLabel(profile);
+		profileLabel.setBounds(20, 245, 24, 24);
+		
+		welcomeLabel = LabelFactory.createLabel(TextResources.welcomeProfile + customer.getName() + "!", ColorResources.bgLoginWindow, FontFactory.poppins(20));
+		welcomeLabel.setBounds(52, 130, 300, 250);
 	}
 
 	public void addListeners() {

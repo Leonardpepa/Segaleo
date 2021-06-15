@@ -120,6 +120,7 @@ public class TextResources {
 	public static String byName;
 	
 	public static String cancelRes;
+	public static String welcomeProfile;
 	
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -238,7 +239,7 @@ public class TextResources {
 		byName = isEnglish ? "By name" : "Ως προς το όνομα";
 		
 		cancelRes = isEnglish ? "You can't cancel this reservation" : "Δεν μπορείτε να ακυρώσετε αυτή την κράτηση";
-		
+		welcomeProfile = isEnglish ? "Welcome, " : "Καλωσήρθες, ";
 		
 	}
 
