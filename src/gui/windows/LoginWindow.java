@@ -36,7 +36,7 @@ public class LoginWindow extends JFrame {
 
 	private JTextField roomField;
 	private JPasswordField passwordField;
-	Border border = BorderFactory.createLineBorder(Color.white, 15);
+	private Border border = BorderFactory.createLineBorder(Color.white, 15);
 
 	private JButton loginBtn;
 

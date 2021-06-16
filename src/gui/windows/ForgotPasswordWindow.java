@@ -28,7 +28,7 @@ public class ForgotPasswordWindow extends JFrame{
 	private String path = "buttonImages/Back Button";
 	private String lang = TextResources.imageLang;
 	private ImageIcon backImage = new ImageIcon(path + lang);
-	JButton backBtn;
+	private JButton backBtn;
 
 	private String path2 = "buttonImages/RemindMe";
 	private ImageIcon remindMeImage = new ImageIcon(path2 + lang);

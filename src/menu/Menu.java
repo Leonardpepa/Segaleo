@@ -34,7 +34,7 @@ public class Menu {
 	private double price;
 	private String path;
 	private double alchoolPerc;
-	int id = 0;
+	private int id = 0;
 	
 	public Menu() {
 		appetizers = new ArrayList<>();

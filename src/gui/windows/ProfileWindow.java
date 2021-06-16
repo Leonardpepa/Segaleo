@@ -29,19 +29,19 @@ public class ProfileWindow extends JFrame {
 	private ImageIcon contactImage = new ImageIcon("buttonImages/Contact Button.png");
 	private JButton contactBtn;
 
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button" + TextResources.imageLang);
-	JButton backBtn;
-	ImageIcon orderImage = new ImageIcon("buttonImages/Order Button" + TextResources.imageLang);
-	JButton orderBtn;
-	ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button" + TextResources.imageLang);
-	JButton reservationBtn;
-	ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button" + TextResources.imageLang);
-	JButton couponBtn;
+	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button" + TextResources.imageLang);
+	private JButton backBtn;
+	private ImageIcon orderImage = new ImageIcon("buttonImages/Order Button" + TextResources.imageLang);
+	private JButton orderBtn;
+	private ImageIcon reservationImage = new ImageIcon("buttonImages/Reservation Button" + TextResources.imageLang);
+	private JButton reservationBtn;
+	private ImageIcon couponImage = new ImageIcon("buttonImages/Coupon Button" + TextResources.imageLang);
+	private JButton couponBtn;
 	
 	private Customer customer = Login.loggedCustomer;
-	JLabel welcomeLabel;
-	ImageIcon profile = new ImageIcon("Icons/profile.png");
-	JLabel profileLabel;
+	private JLabel welcomeLabel;
+	private ImageIcon profile = new ImageIcon("Icons/profile.png");
+	private JLabel profileLabel;
 
 	public ProfileWindow() {
 		initializePanelToFrame();

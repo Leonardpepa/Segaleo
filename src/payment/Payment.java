@@ -13,11 +13,6 @@ import resources.TextResources;
 
 public class Payment  {
 	
-	public Payment() {
-		
-		
-	}
-	
 	public void paypal()
 	{
 		try {

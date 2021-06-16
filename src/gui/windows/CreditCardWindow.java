@@ -15,7 +15,7 @@ public class CreditCardWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 419477767927453920L;
 
-	JPanel panel = new JPanel();
+	private JPanel panel = new JPanel();
 
 	// Header
 	private ImageIcon exitImage = new ImageIcon("buttonImages/exit button.png");

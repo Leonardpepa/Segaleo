@@ -66,7 +66,6 @@ public class MenuWindow extends JFrame{
 	private JLabel bagLabel;
 	private JLabel viewCart;
 	private JLabel priceCartLabel;
-	String input = "";
 	
 	private JPanel leftHelper;
 	private JPanel rightHelper;
