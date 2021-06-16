@@ -13,11 +13,12 @@ import resources.TextResources;
 
 public class PopupPanel extends JPanel{
 	
-	/**
+	
+	/*	this class is responsible for the panel that pop up when you click the language button
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = -4086340546769595008L;
 	public JLabel languageLabel;
 	public JButton greek;
 	public JButton english;

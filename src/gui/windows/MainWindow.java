@@ -25,7 +25,13 @@ import resources.TextResources;
 
 public class MainWindow extends JFrame {
 	
+	/*
+	 * 	this class holds the content that the logged user sees first and 
+	 * 	also instantiates the order and reservation the user will make
+	 */
+	
 	private static final long serialVersionUID = 6013067933817440251L;
+	
 	private Order order = new Order();
 	private Reservation reservation= new Reservation();
 	
@@ -44,6 +50,7 @@ public class MainWindow extends JFrame {
 	private JButton contactBtn;
 
 	private PopupPanel popupPanel;
+	//if true the the togglePopupPanel will be added to the main panel
 	boolean isPopup = false;
 
 	public MainWindow() {
@@ -58,11 +65,14 @@ public class MainWindow extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
-
+	
+	
 	public void initializePanelToFrame() {
-
+		//changes the language if needed
 		new TextResources().changeLanguage();
+		//initialize the colors
 		new ColorResources();
+		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -79,10 +89,12 @@ public class MainWindow extends JFrame {
 		this.pack();
 	}
 
+	
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
 
+	
 	public void addComponentsToPanel() {
 		panel.add(servicesBtn);
 		panel.add(activitiesBtn);
@@ -94,6 +106,7 @@ public class MainWindow extends JFrame {
 		panel.add(BackgroundFactory.addBackgroundLight());
 	}
 
+	//settings for the buttons
 	public void configureButtons() {
 
 		servicesBtn = ButtonFactory.createButton(TextResources.roomService, FontFactory.arial(18),
@@ -119,7 +132,8 @@ public class MainWindow extends JFrame {
 		popupPanel = new PopupPanel();
 		popupPanel.configurePopupWindow();
 	}
-
+	
+	//adds or removes the pop up panel  form the container panel
 	public void togglePanel() {
 		if (isPopup) {
 			panel.add(popupPanel);
@@ -130,9 +144,9 @@ public class MainWindow extends JFrame {
 
 	//each button has its own listener
 	public void addListeners() {
-
-		logoutBtn.addActionListener(new ActionListener() {
-			
+		
+		//before the user logs out it saves the state
+		logoutBtn.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PlatformData.saveData();
@@ -142,7 +156,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 	
-		
+		//navigate to the profile
 		profileBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -152,6 +166,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 		
+		//navigate to the menu
 		servicesBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -160,7 +175,7 @@ public class MainWindow extends JFrame {
 			}
 			
 		});
-		
+		//navigate to contact window
 		contactBtn.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -169,6 +184,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 		
+		//navigate to activity window
 		activitiesBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,6 +193,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 		
+		//if the app its closed it will save the state
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

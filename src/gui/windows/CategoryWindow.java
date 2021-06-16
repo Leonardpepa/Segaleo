@@ -40,8 +40,8 @@ import resources.TextResources;
 
 public class CategoryWindow extends JFrame {
 
-	/**
-	 * 
+	/*	
+	 * 	this class holds the content of each product category, the cart that show the price and the header tha show the sorting and searching
 	 */
 	private static final long serialVersionUID = -4277445545184372578L;
 
@@ -94,6 +94,8 @@ public class CategoryWindow extends JFrame {
 		configureMainContent(categoryProducts);
 		configureCartPanel();
 		addListeners();
+		
+		//helpers are for the layout nothing more
 		leftHelper  = new JPanel();
 		leftHelper.setPreferredSize(new Dimension(16, mainContent.getWidth()));
 		
@@ -110,8 +112,11 @@ public class CategoryWindow extends JFrame {
 		this.pack();
 	}
 
+	
+	//refresh the page when the user search something or sorts the products
+	//it removes the main panel that contains the content with the products
+	//the calls the method to configure new content and adds it back to the background panel
 	public void refreshMaincontent(List<Product> products) {
-
 		backgroundPanel.remove(mainContent);
 		mainContent = new JPanel();
 		configureMainContent(products);
@@ -134,7 +139,8 @@ public class CategoryWindow extends JFrame {
 	private void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
-
+	
+	//each component has its  own listener
 	public void addListeners() {
 		backButton.addActionListener(new ActionListener() {	
 			@Override
@@ -156,6 +162,8 @@ public class CategoryWindow extends JFrame {
 		compobox.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//checks the users input from the sort choices and calls the sorting methods that suits
+				//in the end calls the method that refresh the page
 				@SuppressWarnings("unchecked")
 				JComboBox<String> choices = (JComboBox<String>) e.getSource();
 				String selectedSortMethod = (String) choices.getSelectedItem();
@@ -174,6 +182,8 @@ public class CategoryWindow extends JFrame {
 			}
 		});
 		search.addKeyListener(new KeyAdapter() {
+			
+			//for each key the users type we call the search method and we refresh the page
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -250,6 +260,7 @@ public class CategoryWindow extends JFrame {
 	public void configureMainContent(List<Product> products) {
 		mainContent = new JPanel();
 		mainContent.setLayout(new BorderLayout());
+		//adds the panel that can be scrollable if the content is to big
 		mainContent.add(createVerticalScrollablePanel(products));
 	}
 
@@ -287,6 +298,7 @@ public class CategoryWindow extends JFrame {
 		plusButtonLabel.addMouseListener(new plusButtonListener());
 
 		JLabel priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		//check if the product is type food and if it has discount so we can show the correct price
 		if (product instanceof Food) {
 			foodProduct = (Food) product;
 			if (foodProduct.isHasDiscount()) {
@@ -313,14 +325,18 @@ public class CategoryWindow extends JFrame {
 	// creates a vertical scrollable panel
 	public JScrollPane createVerticalScrollablePanel(List<Product> products) {
 		JPanel container = new JPanel();
+		
+		//with the help of the grid layout we make a panel that has many rows and one column
 		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
 
 		for (Product product : products) {
 			container.add(configureProductPanel(product));
 		}
 
+		//the scroll pane makes the panel scrollable
 		JScrollPane scrollPane = new JScrollPane(container);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		//the scroll bar used so we can hide it 
 		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
 		scrollBar.setUnitIncrement(16);
 		scrollBar.setPreferredSize(new Dimension(0,0));
@@ -328,6 +344,8 @@ public class CategoryWindow extends JFrame {
 		return scrollPane;
 	}
 	
+	//input is the product the user wants to add to the cart
+	//also changes the state of the cart panel to show the quantity and the price
 	class plusButtonListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -337,11 +355,7 @@ public class CategoryWindow extends JFrame {
 			Product clickedProduct = Menu.findProduct(Integer.parseInt(productId));
 			order.addProduct(clickedProduct);
 			cartPriceLabel.setText(String.valueOf(order.calcCost()) + "€");
-			int displayQuantity = 0;
-			for(Product p: order.getProd().keySet()) {
-				displayQuantity += order.getProd().get(p);
-			}
-			bagLabel.setText(displayQuantity + "");
+			bagLabel.setText(order.getQuantity()+ "");
 		}
 	}
 

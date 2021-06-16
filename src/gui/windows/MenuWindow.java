@@ -67,10 +67,10 @@ public class MenuWindow extends JFrame{
 	private JLabel viewCart;
 	private JLabel priceCartLabel;
 	
+	//for layout purposes only
 	private JPanel leftHelper;
 	private JPanel rightHelper;
 
-	int displayQuantity;
 	
 	// constructor
 	public MenuWindow(Order order) {
@@ -121,10 +121,11 @@ public class MenuWindow extends JFrame{
 		salads.addActionListener(new CategoryButtonListener());
 		breakfast.addActionListener(new CategoryButtonListener());
 		
+		//if the user has prodcts in the cart and want to go back the system informs him first
 		backButton.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(displayQuantity > 0) {
+				if(order.getQuantity() > 0) {
 					int selectedOption = JOptionPane.showConfirmDialog(null, TextResources.cancelOrder, TextResources.cancelOrderTitle,
 							JOptionPane.YES_NO_OPTION);
 					if (selectedOption == 0) {
@@ -140,6 +141,7 @@ public class MenuWindow extends JFrame{
 			}
 		});
 		
+		//navigate to cart panel
 		cartPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -147,7 +149,7 @@ public class MenuWindow extends JFrame{
 				new CartWindow(order);
 			}
 		});
-		
+		//for each key the users type we call the search method and we refresh the page
 		search.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -205,8 +207,11 @@ public class MenuWindow extends JFrame{
 		mainContent.add(breakfast);
 	}
 
+	// refresh the page when the user search something
+	// it removes the main panel that contains the content with the products
+	// the calls the method to configure new content and adds it back to the
+	// background panel
 	public void refreshMaincontent(List<Product> products) {
-
 		backgroundPanel.remove(mainContent);
 		
 		configureSearchContent(products);
@@ -227,11 +232,14 @@ public class MenuWindow extends JFrame{
 	public void configureSearchContent(List<Product> products) {
 		mainContent = new JPanel();
 		mainContent.setLayout(new BorderLayout());
+		//adds the panel that can be scrollable if the content is to big
 		mainContent.add(createVerticalScrollablePanel(products));
 	}
+	
+	//configures the panel that the users see when searching for a product
 	public JPanel configureProductPanelSearched(Product product) {
-		Food foodProduct;
 		
+		Food foodProduct;	
 		JPanel panel = new JPanel();
 		panel.setName(String.valueOf(product.getId()));
 		panel.setLayout(null);
@@ -262,6 +270,7 @@ public class MenuWindow extends JFrame{
 		plusButtonLabel.addMouseListener(new plusButtonListener());
 		
 		JLabel priceLabel = LabelFactory.createLabel(product.getPrice() + "€", Color.BLACK, FontFactory.poppins(13));
+		//check if the product is type food and if it has discount so we can show the correct price
 		if (product instanceof Food) {
 			foodProduct = (Food) product;
 			if (foodProduct.isHasDiscount()) {
@@ -284,15 +293,19 @@ public class MenuWindow extends JFrame{
 		panel.add(starLabel);
 		return panel;
 	}
+	
+	// creates a vertical scrollable panel
 	public JScrollPane createVerticalScrollablePanel(List<Product> products) {
 		JPanel container = new JPanel();
+		//with the help of the grid layout we make a panel that has many rows and one column
 		container.setLayout(new GridLayout(products.size(), 1, 0, 8));
 
 		for (Product product : products) {
 			container.add(configureProductPanelSearched(product));
 		}
-
+		//the scroll pane makes the panel scrollable
 		JScrollPane scrollPane = new JScrollPane(container);
+		//the scroll bar used so we can hide it 
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
 		scrollBar.setUnitIncrement(16);
@@ -360,6 +373,7 @@ public class MenuWindow extends JFrame{
 	}
 
 	// creates a horizontal scrollable panel
+	//its the same as the vertical
 	public JScrollPane createHorizontalScrollablePanel(ArrayList<Food> products) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(1, products.size(), 8, 0));
@@ -377,7 +391,7 @@ public class MenuWindow extends JFrame{
 		return scrollPane;
 	}
 
-	// layout display for the products
+	// layout display for the products qith offers
 	public JPanel configureProductPanel(Food product) {
 		
 		JPanel	productPanel = new JPanel();
@@ -419,6 +433,10 @@ public class MenuWindow extends JFrame{
 		return productPanel;
 	}
 
+	//opens the category window the user wants
+	//each category window wants the name of the category, the color and the list with the products
+	//each button contains those information
+	//the name is used to fetch the products list from the menu so we can use one class for each category
 	class CategoryButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -429,6 +447,8 @@ public class MenuWindow extends JFrame{
 		
 	}
 	
+	//input is the product the user wants to add to the cart
+	//also changes the state of the cart panel to show the quantity and the price
 	class plusButtonListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -439,11 +459,7 @@ public class MenuWindow extends JFrame{
 				Product clickedProduct = Menu.findProduct(Integer.parseInt(productId));
 				order.addProduct(clickedProduct);
 				priceCartLabel.setText(String.valueOf(order.calcCost()) + "€");
-				displayQuantity = 0;
-				for(Product p: order.getProd().keySet()) {
-					displayQuantity += order.getProd().get(p);
-				}
-				bagLabel.setText(displayQuantity + "");
+				bagLabel.setText(order.getQuantity() + "");
 		}
 	}
 
