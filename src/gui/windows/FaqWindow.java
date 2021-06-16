@@ -21,7 +21,7 @@ import resources.TextResources;
 public class FaqWindow extends JFrame{
 
 	/**
-	 * 
+	 * This class is used to create the FAQ Window which contains all the FAQs loaded from the file
 	 */
 	private static final long serialVersionUID = 6937638902732120929L;
 	private JPanel panel;

@@ -14,8 +14,8 @@ import order.*;
 import resources.TextResources;
 
 /*	this class is responsible for reading the products from the files 
- * 	and provides all the program with array lists that contains the products
- * 	also provides useful methods to find a product and returns it and calculates the deals 
+ * 	and provides the program with array lists that contain the products
+ * 	also provides useful methods to find a product, returns it and calculates the deals 
  */
 public class Menu {
 
@@ -72,11 +72,11 @@ public class Menu {
 
 	private void readProduct(List<Product> list, String pathName, String language) {
 
-		File activitieFile = new File(pathName + language);
+		File productFile = new File(pathName + language);
 		FileReader reader = null;
 		BufferedReader inputReader  = null;
 		try {
-			reader = new FileReader(activitieFile);
+			reader = new FileReader(productFile);
 			inputReader = new BufferedReader(reader);
 			if(pathName.equalsIgnoreCase("files/drinks/Drinks")) {
 				id = 120;
@@ -95,12 +95,12 @@ public class Menu {
 				// separation
 				nameOfFood = line.split("#")[0].replace("\\n", System.lineSeparator());
 				description = line.split("#")[1].replace("\\n", System.lineSeparator());
-				// convertion into Double
+				// conversion into Double
 				price = Double.parseDouble(line.split("#")[2]);
 				path = line.split("#")[3];
 
 				if (pathName.equalsIgnoreCase("files/drinks/Drinks")) {
-					// convertion into Double
+					// conversion into Double
 					alchoolPerc = Double.parseDouble(line.split("#")[4]);
 
 					list.add(new Drink(nameOfFood, description, price, path, alchoolPerc, id++));
@@ -143,8 +143,8 @@ public class Menu {
 		return null;
 	}
 	
-	//calculates the deals checking if the price is higher than 3 euro so we dont end up with 0 and negative numbers
-	//also checks so that the same product cant have 2 discounts
+	//calculates the deals checking if the price is higher than 3 euro so we don't end up with 0 and negative numbers
+	//also checks so that the same product can't have 2 discounts
 	public static ArrayList<Food> GetDeals() {
 		Random rand = new Random();
 		ArrayList<Food> deals = new ArrayList<Food>();

@@ -26,7 +26,10 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
-
+/*
+ * This class is used to create both the My Orders and My Reservations window
+ * with a few differences
+ */
 
 public class MyOrderReservationWindow extends JFrame {
 
@@ -83,12 +86,14 @@ public class MyOrderReservationWindow extends JFrame {
 		JScrollPane pane = createVerticalScrollablePanel();
 		String labelName = isOrder ? TextResources.noOrder : TextResources.noReservation;
 
+		//if there are no orders or reservations, display a message
 		if (amount == 0) {
 			mainContent.setLayout(null);
 			JLabel label = LabelFactory.createLabel(labelName, ColorResources.bgLoginWindow, FontFactory.poppins(16));
 			label.setBounds(25, 15, 200, 22);
 			mainContent.add(label);
 			mainContent.setBounds(0, 250, 375, 50);
+		//if there are some orders set a border layout and create a scrollablepane
 		} else if (amount > 2) {
 			mainContent.setLayout(new BorderLayout());
 		}
@@ -107,7 +112,8 @@ public class MyOrderReservationWindow extends JFrame {
 		panel.setBackground(ColorResources.paymentBtn);
 
 	}
-
+	
+	//all of the JLabels are added depending on whether it's a reservation or an order
 	public JPanel displayPanel(Order order, Reservation reservation) {
 
 		JPanel insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
@@ -175,6 +181,8 @@ public class MyOrderReservationWindow extends JFrame {
 				}
 			}
 		}
+		
+		//the cancel and rating button remain the same for both cases
 		JButton cancel = ButtonFactory.createButton(TextResources.cancelBtn, FontFactory.poppins(15),
 				ColorResources.appetizer, Color.WHITE);
 		JButton rating = ButtonFactory.createButton(TextResources.rate, FontFactory.poppins(15),
@@ -261,6 +269,9 @@ public class MyOrderReservationWindow extends JFrame {
 
 	}
 
+	/*
+	 * This class is used to check if the time limit for canceling an order has passed.
+	 */
 	class CancelOrderListener implements ActionListener {
 
 		@Override
@@ -283,6 +294,17 @@ public class MyOrderReservationWindow extends JFrame {
 		}
 	}
 	
+	/*
+	 * This class is used to cancel a reservation.
+	 * Based on the FAQ, there's no time limit for canceling a reservation. 
+	 * 
+	 * Important note: if a user wants to cancel a reservation the system will cancel all activities within the reservation.
+	 * It will also sort the activities in a descending order based on the date and time of the activity. 
+	 * 
+	 * If the first activity (which is the one happening earlier than others) has been completed already, 
+	 * the user won't be able to cancel the reservation.
+	 * 
+	 */
 	class CancelReservationListener implements ActionListener{
 
 		@Override

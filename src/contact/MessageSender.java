@@ -7,6 +7,19 @@ import javax.swing.JOptionPane;
 
 import resources.TextResources;
 
+/*
+ * The MessageSender class is used to send an email to the user based on their action
+ * 
+ * Explaining the variables used to declare the method
+ * 
+ * email: the recipients email
+ * 
+ * isContact: boolean variable to determine the kind of email that needs to be sent to the user
+ * 
+ * password: in case the isContact variable is false, the email being sent is the reminder of the users password.
+ * In this instance the password is searched on the ForgotPasswordWindow and is given here as a variable, 
+ * so the email containing the password found is being sent.
+ */
 public class MessageSender {
 
 	public void sendEmail(String email, boolean isContact, String password) {
@@ -38,6 +51,7 @@ public class MessageSender {
 			// -- Set the FROM and TO fields --
 			msg.setFrom(new InternetAddress(from));
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
+			
 			if (isContact) {
 				msg.setSubject("We have received your message");
 				msg.setText(

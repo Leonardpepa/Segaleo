@@ -10,7 +10,13 @@ import gui.windows.CartWindow;
 import gui.windows.CreditCardWindow;
 import resources.ColorResources;
 import resources.TextResources;
-
+/*
+ * This class is used to load each payment method option
+ * 
+ * For paypal, the link to sign in is used.
+ * For card, a new window opens where the user needs to add his card.
+ * For the room bill, the amount will be charged to the users account
+ */
 public class Payment  {
 	
 	public void paypal()

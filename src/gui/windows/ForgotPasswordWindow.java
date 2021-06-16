@@ -19,7 +19,10 @@ import roomCustomer.RoomCustomerReader;
 
 public class ForgotPasswordWindow extends JFrame{
 	/**
-	 * 
+	 * This Class is used to create the window of the Forgot Password page
+	 * The remind me button functions by searching the room the user enters on the first JOptionPane
+	 * and matching it with the email address. If the email address they enter on the next JOptionPane window is correct
+	 * the email along with the password is sent.
 	 */
 	private static final long serialVersionUID = 1L;
 

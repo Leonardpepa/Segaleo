@@ -19,7 +19,9 @@ import roomCustomer.Customer;
 
 public class MyCouponsWindow extends JFrame {
 	/**
+	 * This window displays all of the users coupons
 	 * 
+	 * It can be found when going to the Profile > My Coupons
 	 */
 	private static final long serialVersionUID = 1994427376744382511L;
 	private JPanel panel;
@@ -71,6 +73,7 @@ public class MyCouponsWindow extends JFrame {
 		insidePanel.setOpaque(false);
 		insidePanel.setLayout(new FlowLayout());
 		
+			//if there's no coupon, display a message
 			if (customer.getCoupons().size() == 0) {
 				insidePanel.setLayout(null);
 				JLabel label = LabelFactory.createLabel(TextResources.noCoupon, ColorResources.bgLoginWindow,
@@ -78,12 +81,14 @@ public class MyCouponsWindow extends JFrame {
 				label.setBounds(25, 15, 200, 22);
 				insidePanel.add(label);
 				insidePanel.setBounds(0, 250, 375, 50);
+			//if there are more than 6 coupons create a scrollable panel and adjust accordingly
 			}else if(customer.getCoupons().size() >= 6) {
 				insidePanel.setLayout(new BorderLayout());
 				JScrollPane scroll = createVerticalScrollablePanel();
 				insidePanel.add(scroll);
 				insidePanel.setBounds(0, 250, 375, 500);
 			}
+			//create a scrollable panel with no adjustments needed
 			else {
 				JScrollPane scroll = createVerticalScrollablePanel();
 				insidePanel.add(scroll);
@@ -111,20 +116,20 @@ public class MyCouponsWindow extends JFrame {
 		backBtn.setBounds(12, 40, 67, 45);
 	}
 
+	//configuring the date when the coupon is going to expire (after 3 days)
 	public String configureDate(Coupon coupon) {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		Date date = coupon.getDate();
+		Date date = coupon.getDate(); //get the creation date of the coupon
 		String dateAsString = sdf.format(date);
 		Calendar c = Calendar.getInstance();
 		try {
 			c.setTime(sdf.parse(dateAsString));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		c.add(Calendar.DATE, 3); // number of days to add
-		dateAsString = sdf.format(c.getTime());
+		c.add(Calendar.DATE, 3); // add 3 days
+		dateAsString = sdf.format(c.getTime()); //new date is the expiring date
 		return dateAsString;
 	}
 	
@@ -153,7 +158,7 @@ public class MyCouponsWindow extends JFrame {
 		return insidePanel;
 	}
 
-	
+	//creating a scrollable panel to display all of the coupons
 	public JScrollPane createVerticalScrollablePanel() {
 		JPanel container = new JPanel();
 		container.setBackground(ColorResources.paymentBtn);

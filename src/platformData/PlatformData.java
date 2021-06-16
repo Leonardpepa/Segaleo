@@ -21,7 +21,7 @@ import roomCustomer.Room;
 import roomCustomer.RoomCustomerReader;
 
 /*
- * 	this class is used to store the apps state in a binary file
+ * 	this class is used to store the state of the app in a binary file
  * 	also to read from it
  */
 public class PlatformData {

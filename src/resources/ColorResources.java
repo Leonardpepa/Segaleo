@@ -1,6 +1,9 @@
 package resources;
 
 import java.awt.Color;
+/*
+ * All of the colors used in the app by name
+ */
 
 public class ColorResources {
 	public static Color bgMainWindowBtn = new Color(205, 221, 223);

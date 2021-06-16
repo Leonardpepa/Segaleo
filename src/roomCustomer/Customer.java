@@ -8,8 +8,8 @@ import order.Order;
 import reservation.Reservation;
 
 /*
- * This class represents a hotel customer as object.
- * It saves the name, the email, the room, the coupons, the orders and the reservations of an customer.
+ * This class represents a hotel customer as an object.
+ * It saves the name, the email, the room, the coupons, the orders and the reservations of a customer.
  */
  
 public class Customer implements Serializable{

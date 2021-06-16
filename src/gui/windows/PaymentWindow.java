@@ -7,6 +7,11 @@ import gui.factory.*;
 import payment.Payment;
 import resources.TextResources;
 
+/*
+ * This class is used to create a window which displays all payment methods available.
+ * 
+ * Used on both orders and reservations.
+ */
 public class PaymentWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 

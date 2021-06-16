@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class RoomCustomerReader {
 	/*
-	 * This class reads all the Hotel infos from a txt file.
+	 * This class reads all the Hotel info from a txt file.
 	 * 
-	 * Also saves the customes and the rooms that are read before.
+	 * Also saves the customers and the rooms that are read before.
 	 */
 
 	public static ArrayList<Customer> customers;

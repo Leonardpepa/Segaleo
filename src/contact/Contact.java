@@ -2,6 +2,11 @@ package contact;
 
 import java.util.ArrayList;
 
+/*
+ * Basic contact class used mainly to load the FAQ list and 
+ * implementing the getters and setters
+ */
+
 public class Contact {
 
 	private SocialMedia social;
