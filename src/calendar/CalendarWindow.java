@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-public class CalendarWindow extends JFrame implements ActionListener, MouseListener {
+public class CalendarWindow extends JFrame {
 	/**
 	 * 
 	 */
@@ -94,10 +94,81 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 	}
 
 	public void addListeners() {
-		hour1Btn.addActionListener(this);
-		hour2Btn.addActionListener(this);
-		backBtn.addActionListener(this);
-		confirmBtn.addActionListener(this);
+		hour1Btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selHour = (activity.getHour().get(0)).substring(0, 4); // get the first 4 chars of the string. If
+																				// str
+				// = "9:00-1200" , str.subrstring(0,4) ->
+				// "9:00"
+
+				if (isValidHour(selHour)) {
+					activity.setSelHour(0);
+					flagHour = true;
+					configurateHourButtons(ColorResources.clickedTimeBtn, ColorResources.timeBtn);
+					initializePanel();
+				}
+			}
+		});
+		hour2Btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selHour = (activity.getHour().get(1)).substring(0, 4); // get the first 4 chars of the string
+
+				if (isValidHour(selHour)) {
+					activity.setSelHour(1);
+					flagHour = true;
+					configurateHourButtons(ColorResources.timeBtn, ColorResources.clickedTimeBtn);
+					initializePanel();
+				}
+			}
+		});
+		backBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MainWindow();
+
+			}
+		});
+		confirmBtn.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (flagHour && flagDay) {
+					activity.setColumn(activities.indexOf(activity) * 2);
+					// if no availability remove activity from reservation
+					if (!activity.checkLimit()) {
+						for (int i = 0; i < activity.getSelpeople(); i++) {
+							reservation.removeActivity(activity);
+						}
+						JOptionPane.showMessageDialog(null,
+								TextResources.noAvaliability
+										+ a[activity.getSelday()][activity.getSelhour() + activity.getColumn()]
+										+ TextResources.people);
+						initializePanel();
+					} else {
+						JOptionPane.showMessageDialog(null, TextResources.successCalendar);
+						dispose();
+						String[] hrs;
+						if (activity.getSelhour() == 0) {
+							hrs = hour1Btn.getText().split(":", 2);
+						} else {
+							hrs = hour2Btn.getText().split(":", 2);
+						}
+						selDate.setHours(Integer.parseInt(hrs[0]));
+						activity.setSelDate(selDate);
+						new ActivityWindow(reservation);
+					}
+
+				} else {
+					if (!flagHour || !flagDay || activity.getSelpeople() <= 0) {
+						JOptionPane.showMessageDialog(null, TextResources.noSelection);
+					}
+				}
+			}
+		});
 	}
 
 	public void showWindow(JFrame frame, boolean show) {
@@ -221,13 +292,13 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		plusButtonLabel.setIcon(plusIcon);
 		plusButtonLabel.setBounds(210, 710, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		plusButtonLabel.addMouseListener(this);
+		plusButtonLabel.addMouseListener(new PlusMinusListener());
 		plusButtonLabel.setName("plus");
 
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
 		minusButtonLabel.setBounds(150, 710, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		minusButtonLabel.addMouseListener(this);
+		minusButtonLabel.addMouseListener(new PlusMinusListener());
 		minusButtonLabel.setName("minus");
 
 		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) + "x", Color.BLACK,
@@ -299,115 +370,29 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		return true;
 	}
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new MainWindow();
-		}
-		if (e.getSource() == hour1Btn) {
-			String selHour = (activity.getHour().get(0)).substring(0, 4); // get the first 4 chars of the string. If str
-																			// = "9:00-1200" , str.subrstring(0,4) ->
-																			// "9:00"
-
-			if (isValidHour(selHour)) {
-				activity.setSelHour(0);
-				flagHour = true;
-				configurateHourButtons(ColorResources.clickedTimeBtn, ColorResources.timeBtn);
-				initializePanel();
-			}
-		}
-		if (e.getSource() == hour2Btn) {
-			String selHour = (activity.getHour().get(1)).substring(0, 4); // get the first 4 chars of the string
-
-			if (isValidHour(selHour)) {
-				activity.setSelHour(1);
-				flagHour = true;
-				configurateHourButtons(ColorResources.timeBtn, ColorResources.clickedTimeBtn);
-				initializePanel();
-			}
-		}
-		if (e.getSource() == confirmBtn) {
-			if (flagHour && flagDay) {
-				activity.setColumn(activities.indexOf(activity) * 2);
-				// if no availability remove activity from reservation
-				if (!activity.checkLimit()) {
-					for (int i = 0; i < activity.getSelpeople(); i++) {
+	class PlusMinusListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (e.getSource() instanceof JLabel) {
+				JLabel label = (JLabel) e.getSource();
+				if (label.getName().equals("plus")) {
+					reservation.addActivity(activity);
+				} else if (label.getName().equals("minus")) {
+					if (activity.getSelpeople() != 0) {
 						reservation.removeActivity(activity);
 					}
-					JOptionPane.showMessageDialog(null,
-							TextResources.noAvaliability
-									+ a[activity.getSelday()][activity.getSelhour() + activity.getColumn()]
-									+ TextResources.people);
-					initializePanel();
-				} else {
-					JOptionPane.showMessageDialog(null, TextResources.successCalendar);
-					this.dispose();
-					String[] hrs;
-					if (activity.getSelhour() == 0) {
-						hrs = hour1Btn.getText().split(":", 2);
-					} else {
-						hrs = hour2Btn.getText().split(":", 2);
-					}
-					selDate.setHours(Integer.parseInt(hrs[0]));
-					activity.setSelDate(selDate);
-					new ActivityWindow(reservation);
 				}
-
-			} else {
-				if (!flagHour || !flagDay || activity.getSelpeople() <= 0) {
-					JOptionPane.showMessageDialog(null, TextResources.noSelection);
-				}
+				activity.setSelpeople(reservation.getAct().get(activity));
 			}
+
+			initializePanel();
 		}
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() instanceof JLabel) {
-			JLabel label = (JLabel) e.getSource();
-			if (label.getName().equals("plus")) {
-				reservation.addActivity(activity);
-			} else if (label.getName().equals("minus")) {
-				if (activity.getSelpeople() != 0) {
-					reservation.removeActivity(activity);
-				}
-			}
-			activity.setSelpeople(reservation.getAct().get(activity));
-		}
-
-		initializePanel();
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	// extra classes
-	@SuppressWarnings("serial")
 	class tblCalendarRenderer extends DefaultTableCellRenderer {
+		private static final long serialVersionUID = 5787096922884342183L;
+
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused,
 				int row, int column) {
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
@@ -415,7 +400,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 		}
 	}
 
-	class jTableListener implements MouseListener {
+	class jTableListener extends MouseAdapter {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -424,9 +409,7 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 
 			try {
 				selectedDay = (int) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
-//				System.out.println("Selected Day "+ selectedDay);
 				selectedWeek = table.getSelectedRow();
-//				System.out.println("Selected Week "+ selectedWeek);
 			} catch (NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, TextResources.invalidDay);
 			}
@@ -439,9 +422,6 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 
 			if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
 				currentWeek = cal.get(GregorianCalendar.WEEK_OF_MONTH);
-
-//			System.out.println("Current Day "+ currentDay);
-//			System.out.println("Current Week "+ currentWeek);
 
 			if (selectedDay == -1 || selectedWeek == -1) {
 				return;
@@ -465,31 +445,6 @@ public class CalendarWindow extends JFrame implements ActionListener, MouseListe
 			}
 
 		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
 	}
 
 }

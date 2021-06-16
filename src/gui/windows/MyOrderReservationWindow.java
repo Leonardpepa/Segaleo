@@ -26,11 +26,11 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
-import roomCustomer.RoomCustomerReader;
 
-@SuppressWarnings("serial")
+
 public class MyOrderReservationWindow extends JFrame {
 
+	private static final long serialVersionUID = 8095162765392553985L;
 	private JPanel panel;
 	private JPanel mainContent;
 
@@ -287,7 +287,6 @@ public class MyOrderReservationWindow extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Activity.print();
 			Date today = new Date();
 			Reservation reservationClicked = getReservation(Integer.parseInt(((JButton) e.getSource()).getName()));
 			if(today.getTime() < reservationClicked.getFirstAct().getSelDate().getTime()) {
@@ -296,7 +295,6 @@ public class MyOrderReservationWindow extends JFrame {
 				PlatformData.resetActivitiesFromArray(reservationClicked);
 				PlatformData.saveData();
 				initializePanelToFrame(true);
-				Activity.print();
 			}
 			else {
 				JOptionPane.showMessageDialog(null, TextResources.cancelRes, "Segaleo", JOptionPane.INFORMATION_MESSAGE);

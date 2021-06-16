@@ -250,7 +250,6 @@ public class LoginWindow extends JFrame {
 
 			if (e.getSource() == languageBtn) {
 				isPopup = isPopup ? false : true;
-				initializePanelToFrame();
 			}
 
 			if (e.getSource() == popupPanel.greek) {

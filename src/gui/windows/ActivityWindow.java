@@ -32,9 +32,6 @@ import resources.TextResources;
 
 public class ActivityWindow extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3218493844069922114L;
 	private JPanel backgroundPanel;
 	private JLabel activityLabel;

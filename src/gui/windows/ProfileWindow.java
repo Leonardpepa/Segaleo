@@ -19,10 +19,9 @@ import roomCustomer.Customer;
 
 public class ProfileWindow extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = -7754183720884619469L;
+
 	private JPanel panel;
 
 	private JPanel insidePanel;

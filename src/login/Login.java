@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import resources.TextResources;
 import roomCustomer.Customer;
 import roomCustomer.Room;
 import roomCustomer.RoomCustomerReader;
@@ -35,11 +36,11 @@ public class Login {
 				loggedCustomer = rooms.get(roomIndex).getCustomer();
 			}
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "Wrong Number or Password");
+			JOptionPane.showMessageDialog(null, TextResources.wrongNumberOrPass);
 			return false;
 		}
 		if (loggedCustomer == null) {
-			JOptionPane.showMessageDialog(null, "Wrong Number or Password");
+			JOptionPane.showMessageDialog(null, TextResources.wrongNumberOrPass);
 
 			int number = Integer.parseInt(numberString);
 

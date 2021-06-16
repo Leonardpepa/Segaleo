@@ -1,6 +1,5 @@
 package gui.windows;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -12,10 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
 
 import gui.components.RoundedPanel;
 import gui.factory.BackgroundFactory;
@@ -33,9 +35,12 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
-public class RateOrderReservation extends JFrame implements ActionListener {
+public class RateOrderReservation extends JFrame{
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4758537304753221958L;
 	private JPanel panel;
 	private JPanel insidePanel;
 	private JLabel ratingLabel;
@@ -45,27 +50,15 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 	private boolean isOrder;
 	private int numberOfStars = 0;
 	private JLabel name;
-	
-	
-	ImageIcon backImage = new ImageIcon("buttonImages/Back Button"+ TextResources.imageLang);
-	JButton backBtn;
-	
-	ImageIcon estarImage = new ImageIcon("buttonImages/emptystar.png");
-	JButton estarBtn1;
-	JButton estarBtn2;
-	JButton estarBtn3;
-	JButton estarBtn4;
-	JButton estarBtn5;
 
-	ImageIcon starImage = new ImageIcon("buttonImages/rating icon.png");
-	JButton starBtn1;
-	JButton starBtn2;
-	JButton starBtn3;
-	JButton starBtn4;
-	JButton starBtn5;
-
-	JButton submitButton;
+	private ImageIcon backImage = new ImageIcon("buttonImages/Back Button" + TextResources.imageLang);
+	private JButton backBtn;
+	private ImageIcon estarImage = new ImageIcon("buttonImages/emptystar.png");
+	private ImageIcon starImage = new ImageIcon("buttonImages/rating icon.png");
+	private List<JButton> stars = new ArrayList<JButton>(5);
 	
+	private JButton submitButton;
+
 	public RateOrderReservation(Reservation reservation) {
 		this.reservation = reservation;
 		isOrder = false;
@@ -73,6 +66,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		windowsConfiguration();
 		showWindow(this, true);
 	}
+
 	public RateOrderReservation(Order order) {
 		this.order = order;
 		isOrder = true;
@@ -80,13 +74,14 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		windowsConfiguration();
 		showWindow(this, true);
 	}
+
 	public void windowsConfiguration() {
 		this.setTitle("Segaleo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	public void initializePanelToFrame(boolean isOrer) {
 
 		new TextResources().changeLanguage();
@@ -103,9 +98,11 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		this.setContentPane(panel);
 		this.pack();
 	}
+
 	public void showWindow(JFrame frame, boolean show) {
 		frame.setVisible(show);
 	}
+
 	public void addComponentsToPanel(boolean isOrder) {
 		panel.add(backBtn);
 		panel.add(LogoFactory.addLogoScaled());
@@ -116,6 +113,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		panel.add(BackgroundFactory.addBackgroundLight());
 
 	}
+
 	public void initializeInsidePanel() {
 		insidePanel = new RoundedPanel(50, new Color(177, 206, 209));
 		insidePanel.setOpaque(false);
@@ -123,30 +121,29 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		insidePanel.setLayout(null);
 		insidePanel.setBounds(11, 290, 351, 500);
 		configureTextArea();
-		
+
 	}
+
 	public void addComponentsToInsidePanel(boolean isOrder) {
-		if(isOrder) {
+		if (isOrder) {
 			name = new JLabel(TextResources.order + " #" + order.getId());
-		}
-		else {
+		} else {
 			name = new JLabel(TextResources.reservation + " #" + reservation.getId());
 		}
 		configureOrderReservation();
 		name.setBounds(15, 5, 300, 20);
 		insidePanel.add(name);
 		insidePanel.add(commentsArea);
-		insidePanel.add(estarBtn1);
-		insidePanel.add(estarBtn2);
-		insidePanel.add(estarBtn3);
-		insidePanel.add(estarBtn4);
-		insidePanel.add(estarBtn5);
+		
+		for(JButton star: stars) {
+			insidePanel.add(star);
+		}
 		insidePanel.add(submitButton);
 	}
-	
+
 	public void configureOrderReservation() {
 		int y = 30; // y for set bounds
-		int k=30;
+		int k = 30;
 		int limit = 300;
 		if (isOrder) {
 			for (Product p : order.getProducts()) {
@@ -158,7 +155,7 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 				if (y >= limit) {
 					product.setBounds(200, k, 180, 20);
 					insidePanel.add(product);
-					k +=20;
+					k += 20;
 				}
 			}
 		} else {
@@ -172,17 +169,17 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 				if (y >= limit) {
 					product.setBounds(200, k, 180, 20);
 					insidePanel.add(product);
-					k +=20;
+					k += 20;
 				}
 			}
 		}
 	}
-	
+
 	public void configureTextArea() {
-		
-		commentsArea = TextAreaFactory.createTextArea(TextResources.ratingComment, new Color(177, 206, 209), ColorResources.bgLoginWindow,
-				FontFactory.poppins(12));
-		commentsArea.setBounds(10, 300,330, 95);
+
+		commentsArea = TextAreaFactory.createTextArea(TextResources.ratingComment, new Color(177, 206, 209),
+				ColorResources.bgLoginWindow, FontFactory.poppins(12));
+		commentsArea.setBounds(10, 300, 330, 95);
 		commentsArea.setBorder(new RoundBorder(30));
 		commentsArea.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -191,248 +188,134 @@ public class RateOrderReservation extends JFrame implements ActionListener {
 		});
 
 	}
+
 	public void configureButtons() {
 		backBtn = ButtonFactory.createButtonIcon(backImage);
 		backBtn.setBounds(12, 40, 67, 45);
 		
-		estarBtn1 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn1.setBounds(190, 420, 25, 25);
-		estarBtn2 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn2.setBounds(220, 420, 25, 25);
-		estarBtn3 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn3.setBounds(250, 420, 25, 25);
-		estarBtn4 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn4.setBounds(280, 420, 25, 25);
-		estarBtn5 = ButtonFactory.createButtonIcon(estarImage);
-		estarBtn5.setBounds(310, 420, 25, 25);
-		
-		starBtn1 = ButtonFactory.createButtonIcon(starImage);
-		starBtn1.setBounds(190, 420, 25, 25);
-		starBtn2 = ButtonFactory.createButtonIcon(starImage);
-		starBtn2.setBounds(220, 420, 25, 25);
-		starBtn3 = ButtonFactory.createButtonIcon(starImage);
-		starBtn3.setBounds(250, 420, 25, 25);
-		starBtn4 = ButtonFactory.createButtonIcon(starImage);
-		starBtn4.setBounds(280, 420, 25, 25);
-		starBtn5 = ButtonFactory.createButtonIcon(starImage);
-		starBtn5.setBounds(310, 420, 25, 25);
-
-		submitButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(15), ColorResources.frMainWindowBtn, Color.WHITE);
+		int x = 190;
+		for(int i=0; i<5; i++) {
+			stars.add(ButtonFactory.createButtonIcon(estarImage));
+			stars.get(i).setBounds(x, 420, 25, 25);
+			stars.get(i).setName(String.valueOf(i));
+			x += 30;
+		}
+		submitButton = ButtonFactory.createButton(TextResources.submit, FontFactory.poppins(15),
+				ColorResources.frMainWindowBtn, Color.WHITE);
 		submitButton.setBounds(120, 455, 100, 40);
 
 	}
 
 	public void configureLabels() {
-		if(isOrder) {
-			ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabelOrder, ColorResources.bgLoginWindow, Color.WHITE,
-					FontFactory.poppins(16));
-		}
-		else {
-			ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabelReservation, ColorResources.bgLoginWindow, Color.WHITE,
-					FontFactory.poppins(16));
+		if (isOrder) {
+			ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabelOrder, ColorResources.bgLoginWindow,
+					Color.WHITE, FontFactory.poppins(16));
+		} else {
+			ratingLabel = LabelFactory.createLabelBG(TextResources.ratingLabelReservation, ColorResources.bgLoginWindow,
+					Color.WHITE, FontFactory.poppins(16));
 		}
 		ratingLabel = LabelFactory.alignLabel(ratingLabel, SwingConstants.CENTER, SwingConstants.CENTER);
 		ratingLabel.setBounds(20, 225, 118, 38);
 	}
-	
+
 	public void addListeners() {
-		backBtn.addActionListener(this);
+		backBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MainWindow();
+			}
+		});
 		
-		estarBtn1.addActionListener(this);
-		estarBtn2.addActionListener(this);
-		estarBtn3.addActionListener(this);
-		estarBtn4.addActionListener(this);
-		estarBtn5.addActionListener(this);
-		
-		starBtn1.addActionListener(this);
-		starBtn2.addActionListener(this);
-		starBtn3.addActionListener(this);
-		starBtn4.addActionListener(this);
-		starBtn5.addActionListener(this);
-
-		submitButton.addActionListener(this);
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new MainWindow();
-		}
-		if (e.getSource() == estarBtn1) {
-			insidePanel.remove(estarBtn1);
-			insidePanel.add(starBtn1);
-			revalidate();
-			repaint();
-			numberOfStars = 1;
-		}
-		if (e.getSource() == estarBtn2) {
-			insidePanel.remove(estarBtn1);
-			insidePanel.remove(estarBtn2);
-			insidePanel.add(starBtn1);
-			insidePanel.add(starBtn2);
-			revalidate();
-			repaint();
-			numberOfStars = 2;
-		}
-		if (e.getSource() == estarBtn3) {
-			insidePanel.remove(estarBtn1);
-			insidePanel.remove(estarBtn2);
-			insidePanel.remove(estarBtn3);
-			insidePanel.add(starBtn1);
-			insidePanel.add(starBtn2);
-			insidePanel.add(starBtn3);
-			revalidate();
-			repaint();
-			numberOfStars = 3;
-		}
-		if (e.getSource() == estarBtn4) {
-			insidePanel.remove(estarBtn1);
-			insidePanel.remove(estarBtn2);
-			insidePanel.remove(estarBtn3);
-			insidePanel.remove(estarBtn4);
-			insidePanel.add(starBtn1);
-			insidePanel.add(starBtn2);
-			insidePanel.add(starBtn3);
-			insidePanel.add(starBtn4);
-			revalidate();
-			repaint();
-			numberOfStars = 4;
-		}
-		if (e.getSource() == estarBtn5) {
-			insidePanel.remove(estarBtn1);
-			insidePanel.remove(estarBtn2);
-			insidePanel.remove(estarBtn3);
-			insidePanel.remove(estarBtn4);
-			insidePanel.remove(estarBtn5);
-			insidePanel.add(starBtn1);
-			insidePanel.add(starBtn2);
-			insidePanel.add(starBtn3);
-			insidePanel.add(starBtn4);
-			insidePanel.add(starBtn5);
-			revalidate();
-			repaint();
-			numberOfStars = 5;
-		}
-		
-		if (e.getSource() == starBtn1) {
-			insidePanel.remove(starBtn1);
-			insidePanel.remove(starBtn2);
-			insidePanel.remove(starBtn3);
-			insidePanel.remove(starBtn4);
-			insidePanel.remove(starBtn5);
-			insidePanel.add(estarBtn1);
-			insidePanel.add(estarBtn2);
-			insidePanel.add(estarBtn3);
-			insidePanel.add(estarBtn4);
-			insidePanel.add(estarBtn5);
-			revalidate();
-			repaint();
-			numberOfStars = 0;
-		}	
-		if (e.getSource() == starBtn2) {
-			insidePanel.remove(starBtn2);
-			insidePanel.remove(starBtn3);
-			insidePanel.remove(starBtn4);
-			insidePanel.remove(starBtn5);
-			insidePanel.add(estarBtn2);
-			insidePanel.add(estarBtn3);
-			insidePanel.add(estarBtn4);
-			insidePanel.add(estarBtn5);
-			revalidate();
-			repaint();
-			numberOfStars = 1;
-		}
-		if (e.getSource() == starBtn3) {
-			insidePanel.remove(starBtn3);
-			insidePanel.remove(starBtn4);
-			insidePanel.remove(starBtn5);
-			insidePanel.add(estarBtn3);
-			insidePanel.add(estarBtn4);
-			insidePanel.add(estarBtn5);
-			revalidate();
-			repaint();
-			numberOfStars = 2;
-		}
-		if (e.getSource() == starBtn4) {
-			insidePanel.remove(starBtn4);
-			insidePanel.remove(starBtn5);
-			insidePanel.add(estarBtn4);
-			insidePanel.add(estarBtn5);
-			revalidate();
-			repaint();
-			numberOfStars = 3;
-		}
-		if (e.getSource() == starBtn5) {
-			insidePanel.remove(starBtn5);
-			insidePanel.add(estarBtn5);
-			revalidate();
-			repaint();
-			numberOfStars = 4;
-		}
-
-		if(e.getSource() == submitButton) {
-			String comment = commentsArea.getText();
-			Rating rate = new Rating(numberOfStars, comment);
-
-			if(isOrder == true) {
-				order.setRating(rate);
-				for(Product product: order.getProducts()) {
-					product.addRating(rate);
+		stars.forEach(star -> {
+			star.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int index = Integer.parseInt(star.getName());
+					if(star.getIcon() == estarImage) {
+						for(int i=0; i<=index; i++) {
+							stars.get(i).setIcon(starImage);
+							numberOfStars = index + 1;
+							repaint();
+							revalidate();
+						}
+					}
+					else {
+						for(int i=4; i>index; i--) {
+							stars.get(i).setIcon(estarImage);
+							numberOfStars = index + 1;
+							repaint();
+							revalidate();
+						}
+					}
 				}
-			}
-			else {
-				reservation.setRating(rate);
-				for(Activity activity: reservation.getActivities()) {
-					activity.addRating(rate);
-				}
-			}
-
-			PlatformData.saveData();
-			PlatformData.loadData();
-			this.dispose();
-			if(isOrder == true) {
-				JOptionPane.showMessageDialog(null, TextResources.rateOrder, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
-			}
-			else {
-				JOptionPane.showMessageDialog(null, TextResources.rateReservation, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		
-		
-		
-	}
+			});
+		});
 	
+
+		submitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String comment = commentsArea.getText();
+				Rating rate = new Rating(numberOfStars, comment);
+
+				if (isOrder == true) {
+					order.setRating(rate);
+					for (Product product : order.getProducts()) {
+						product.addRating(rate);
+					}
+				} else {
+					reservation.setRating(rate);
+					for (Activity activity : reservation.getActivities()) {
+						activity.addRating(rate);
+					}
+				}
+
+				PlatformData.saveData();
+				PlatformData.loadData();
+				dispose();
+				if (isOrder == true) {
+					JOptionPane.showMessageDialog(null, TextResources.rateOrder, "Segaleo",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, TextResources.rateReservation, "Segaleo",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+	}
+
+
 	public class RoundBorder implements Border {
 
-	    private int radius;
+		private int radius;
 
-	    public RoundBorder(int radius) {
-	        this.radius = radius;
-	    }
+		public RoundBorder(int radius) {
+			this.radius = radius;
+		}
 
-	    public int getRadius() {
-	        return radius;
-	    }
+		public int getRadius() {
+			return radius;
+		}
 
-	    @Override
-	    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-	        Graphics2D g2d = (Graphics2D) g.create();
-	        g2d.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, getRadius(), getRadius()));
-	        g2d.dispose();
-	    }
+		@Override
+		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, getRadius(), getRadius()));
+			g2d.dispose();
+		}
 
-	    @Override
-	    public Insets getBorderInsets(Component c) {
-	        int value = getRadius() / 2;
-	        return new Insets(value, value, value, value);
-	    }
+		@Override
+		public Insets getBorderInsets(Component c) {
+			int value = getRadius() / 2;
+			return new Insets(value, value, value, value);
+		}
 
-	    @Override
-	    public boolean isBorderOpaque() {
-	        return false;
-	    }
+		@Override
+		public boolean isBorderOpaque() {
+			return false;
+		}
 
 	}
 
 }
-

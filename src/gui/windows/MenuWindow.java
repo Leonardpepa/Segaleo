@@ -34,10 +34,8 @@ import resources.TextResources;
 
 public class MenuWindow extends JFrame{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6927641101321609666L;
+
 	// contains all the panels for the whole gui window
 	private JPanel backgroundPanel;
 

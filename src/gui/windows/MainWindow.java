@@ -24,11 +24,8 @@ import resources.ColorResources;
 import resources.TextResources;
 
 public class MainWindow extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+	
+	private static final long serialVersionUID = 6013067933817440251L;
 	Order order = new Order();
 	Reservation reservation= new Reservation();
 	

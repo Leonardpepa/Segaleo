@@ -220,7 +220,7 @@ public class CartWindow extends JFrame {
 		reserveNowButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!paymentMethods.getText().equals(TextResources.payment)) {
+				if (!paymentMethods.getText().equals(TextResources.payment) && !reservation.getActivities().isEmpty()) {
 					dispose();
 					reservation.setPaymentMethod(paymentMethods.getText());
 					reservation.setDate(new Date());
