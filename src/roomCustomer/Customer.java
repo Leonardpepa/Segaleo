@@ -21,6 +21,7 @@ public class Customer implements Serializable{
 	private ArrayList<Coupon> coupons = new ArrayList<Coupon>();
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	private double roomBill;
 	
 	
 	public Customer(String name, String email) {
@@ -83,7 +84,16 @@ public class Customer implements Serializable{
 		return reservations;
 	}
 
-	public void removeProduct() {
 
+	public double getRoomBill() {
+		return roomBill;
 	}
+
+
+	public void setRoomBill(double roomBill) {
+		this.roomBill = roomBill;
+	}
+	
+	
+
 }

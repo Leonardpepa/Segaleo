@@ -190,7 +190,9 @@ public class CartWindow extends JFrame {
 					Order.numberOfOrders += 1;
 					order.setId(Order.numberOfOrders);
 					order.setCoupon(coupon);
-					
+					if(paymentMethods.getText().equals(TextResources.roomBill)) {
+						Login.loggedCustomer.setRoomBill(Login.loggedCustomer.getRoomBill() + order.getTotalCost());
+					}
 					Login.loggedCustomer.addCoupons(coupon);
 					Login.loggedCustomer.addOrders(order);
 					new CompleteWindow(coupon, true);
@@ -201,6 +203,9 @@ public class CartWindow extends JFrame {
 					order.setDate(new Date());
 					Order.numberOfOrders += 1;
 					order.setId(Order.numberOfOrders);
+					if(paymentMethods.getText().equals(TextResources.roomBill)) {
+						Login.loggedCustomer.setRoomBill(Login.loggedCustomer.getRoomBill() + order.getTotalCost());
+					}
 					Login.loggedCustomer.addOrders(order);
 					new CompleteWindow(null, true);
 
@@ -226,6 +231,9 @@ public class CartWindow extends JFrame {
 					reservation.setDate(new Date());
 					Reservation.numberOfReservations += 1;
 					reservation.setId(Reservation.numberOfReservations);
+					if(paymentMethods.getText().equals(TextResources.roomBill)) {
+						Login.loggedCustomer.setRoomBill(Login.loggedCustomer.getRoomBill() + order.getTotalCost());
+					}
 					Login.loggedCustomer.addReservation(reservation);
 					new CompleteWindow(null, false);
 				} else {
