@@ -49,8 +49,6 @@ public class Search {
 
 	public int reverse_expoSearch(List<Product> prod_array, String KeyWord,int end)
 	{
-		@SuppressWarnings("unused")
-		int start;
 
 		int i = 1;
 		int smallest = (KeyWord.length() + array.get(end-i).getName().length()
@@ -63,11 +61,11 @@ public class Search {
 					- Math.abs(KeyWord.length() - array.get(end-i).getName().length())) / 2;
 			name = array.get(end-i).getName().substring(0, smallest);
 			if (i * 2 >= end) {
-				return start=0;
+				return 0;
 
 			}
 		}
-		return start= end-i;
+		return end-i;
 	}
 
 	public List<Product> serSearch(int end, int start, String KeyWord, List<Product> array)
