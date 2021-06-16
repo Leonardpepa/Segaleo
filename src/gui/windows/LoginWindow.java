@@ -75,6 +75,13 @@ public class LoginWindow extends JFrame {
 		deals = new Menu().GetDeals();
 		new ActivityReader();
 		
+		if (PlatformData.checkFile()) {
+			PlatformData.loadData();
+		} else {
+			new RoomCustomerReader();
+			Activity.initialarray();
+		}
+		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(375, 812));
@@ -169,14 +176,6 @@ public class LoginWindow extends JFrame {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// reads and saves the all customers with their rooms
-
-				if (PlatformData.checkFile()) {
-					PlatformData.loadData();
-				} else {
-					new RoomCustomerReader();
-					Activity.initialarray();
-				}
 				// checks if the text field is empty and if the login data is correct
 				if (Login.checkLogin(roomField.getText(), passwordField.getText())) {
 					dispose();

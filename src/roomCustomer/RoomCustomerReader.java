@@ -70,7 +70,7 @@ public class RoomCustomerReader {
 	}
 	
 	
-	public ArrayList<Customer> getCustomersList(){
+	public static ArrayList<Customer> getCustomersList(){
 		return customers;
 	}
 	

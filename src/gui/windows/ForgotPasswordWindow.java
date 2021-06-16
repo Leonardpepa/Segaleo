@@ -132,80 +132,33 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 
 	// add listeners
 	public void addListeners() {
-		
+
 		remindMeBtn.addActionListener(this);
-		
+
 		backBtn.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String getEmail = null;
-		String getRoom;
-		String password = null;
-		boolean cancel = false;
-		int option = 0;
-		MessageSender sender = new MessageSender();
 
-//		if (e.getSource() == remindMeBtn) {
-//			// user needs to enter their email
-//			UIManager.put("OptionPane.informationIcon", emailIcon);
-//			getEmail = (String) JOptionPane.showInputDialog(null, "Enter your email", "Email",
-//					JOptionPane.INFORMATION_MESSAGE, emailIcon, null, "");
-//
-//			// if they don't enter the email and click on Ok, ask for it again
-//			if (getEmail != (null) && getEmail.equals("")) {
-//				UIManager.put("OptionPane.informationIcon", emailIcon);
-//				JOptionPane.showMessageDialog(null, "Enter your email");
-//				getEmail = (String) JOptionPane.showInputDialog(null, "Enter your email", "Email",
-//						JOptionPane.INFORMATION_MESSAGE, emailIcon, null, "");
-//			}
-//
-//			// if they enter their email, ask for their room number
-//			if (getEmail != null) {
-//				// if they click on Cancel on both dialogs don't do anything
-//				getRoom = (String) JOptionPane.showInputDialog(null, "Enter your room number:", "Room Number",
-//						JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
-//				// if they don't enter their room number and click on Ok, ask for it again
-//				if (getRoom != null && getRoom.equals("")) {
-//					UIManager.put("OptionPane.informationIcon", roomIcon);
-//					JOptionPane.showMessageDialog(null, "Enter your room number");
-//					getRoom = (String) JOptionPane.showInputDialog(null, "Enter your room number:", "Room Number",
-//							JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
-//				} else {
-//					// if they enter both successfully search for their password and send an email
-//					password = getUserPassword(getRoom);
-//					sender.sendEmail(getEmail, false, password);
-//				}
-//
-//			}
-//		}
-		
-		if(e.getSource() == remindMeBtn) {
-			/*User needs to enter their room number first.
-			 *If the room number does not exist on the file, the user needs to add the room number again*/
-			do{
-				getRoom = (String) JOptionPane.showInputDialog(null, TextResources.enterRoom, "Room Number",
-						JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
-			}while(!findUserRoomNumber(getRoom));
+		if (e.getSource() == remindMeBtn) {
+			String password = null;
+			MessageSender sender = new MessageSender();
+			String roomInput = checkRoom();
 			
-			/*User needs to enter their email address in order to receive the password.
-			 *Since the room number has been confirmed already, 
-			 *we need to check if the input matches the email of the account on file*/
-			if(getRoom != null) {
-				do{
-					UIManager.put("OptionPane.informationIcon", emailIcon);
-					getEmail = (String) JOptionPane.showInputDialog(null, TextResources.enterEmail, "Email",
-							JOptionPane.INFORMATION_MESSAGE, emailIcon, null, "");
-					System.out.println(getEmail);
-				}while(!getEmail.equals(getUserEmail(getRoom)));	
+			if (roomInput == null) {
+				return;
 			}
 			
-			/*Once both inputs have been confirmed, the email is sent*/
-			password = getUserPassword(getRoom);
-			sender.sendEmail(getEmail, false, password);
-			JOptionPane.showMessageDialog(null, TextResources.emailSent);
+			String emailInput = checkEmail(roomInput);
 			
+			if (emailInput == null) {
+				return;
+			}
+			/* Once both inputs have been confirmed, the email is sent */
+			password = getUserPassword(roomInput);
+			sender.sendEmail(emailInput, false, password);
+			JOptionPane.showMessageDialog(null, TextResources.emailSent);
 		}
 
 		if (e.getSource() == backBtn) {
@@ -215,58 +168,91 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 
 		initializePanelToFrame();
 	}
-	
-	public boolean findUserRoomNumber(String getRoom) {
-		
-		boolean found = false;
-		ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
+
+	/*
+	 * User needs to enter their room number first. If the room number does not
+	 * exist on the file, the user needs to add the room number again
+	 */
+	public String checkRoom() {
+		String roomInput = "";
 		try {
-			for(Room room:rooms) {
-				if(Integer.parseInt(getRoom) == room.getNumber()) {
-					found = true;
-					break;
+			do {
+				roomInput = (String) JOptionPane.showInputDialog(null, TextResources.enterRoom, "Room Number",
+						JOptionPane.INFORMATION_MESSAGE, roomIcon, null, "");
+				if (roomInput == null) {
+					return null;
 				}
-			}	
-		}catch(NumberFormatException ex) {
-			
+			} while (roomInput.equals("") || !findUserRoomNumber(roomInput));
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, TextResources.wrongInput);
+			return null;
 		}
-		return found;
+		return roomInput;
+	}
+
+	/*
+	 * User needs to enter their email address in order to receive the password.
+	 * Since the room number has been confirmed already, we need to check if the
+	 * input matches the email of the account on file
+	 */
+
+	public String checkEmail(String roomInput) {
+		String emailInput = "";
+		try {
+			do {
+				UIManager.put("OptionPane.informationIcon", emailIcon);
+				emailInput = (String) JOptionPane.showInputDialog(null, TextResources.enterEmail, "Email",
+						JOptionPane.INFORMATION_MESSAGE, emailIcon, null, "");
+				if (emailInput == null) {
+					return null;
+				}
+			} while (emailInput.equals("") || !emailInput.equals(getUserEmail(roomInput)));
+			
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, TextResources.wrongInput);
+			return null;
+		}
+		return emailInput;
+	}
+
+	public boolean findUserRoomNumber(String getRoom) {
+
+		ArrayList<Room> rooms = RoomCustomerReader.getRoomsList();
+		for (Room room : rooms) {
+			if (Integer.parseInt(getRoom) == room.getNumber()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getUserPassword(String getRoom) {
 		int roomIndex = getUserIndex(getRoom);
 		String password = null;
-		try {
-			@SuppressWarnings("static-access")
-			ArrayList<Room> rooms = new RoomCustomerReader().getRoomsList();
-			password = rooms.get(roomIndex).getPassword();
-			
-		} catch (NumberFormatException ex) {
-			
-		}
+		ArrayList<Room> rooms = RoomCustomerReader.getRoomsList();
+		password = rooms.get(roomIndex).getPassword();
+
 		return password;
 	}
-	
-	
+
 	public String getUserEmail(String getRoom) {
 		String email = null;
 		int roomIndex = getUserIndex(getRoom);
-		
-		ArrayList<Customer> customers = new RoomCustomerReader().getCustomersList();
+
+		ArrayList<Customer> customers = RoomCustomerReader.getCustomersList();
 		email = customers.get(roomIndex).getEmail();
 		return email;
 	}
-	
+
 	public int getUserIndex(String getRoom) {
 		int roomIndex;
-		
+
 		if (Integer.parseInt(getRoom) / 100 == 1) {
 			roomIndex = (Integer.parseInt(getRoom) % 100) - 1;
-		}
-		else {
+		} else {
 			roomIndex = (Integer.parseInt(getRoom) / 100) * 10 + (Integer.parseInt(getRoom) % 100) - 1;
 		}
-		
+
 		return roomIndex;
 	}
 }

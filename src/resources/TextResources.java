@@ -126,6 +126,8 @@ public class TextResources {
 	public static String enterEmail;
 	public static String enterRoom;
 	
+	public static String wrongInput;
+	
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -248,6 +250,8 @@ public class TextResources {
 		
 		enterEmail = isEnglish ? "Enter the email address associated to your account" : "Εισάγετε το email του λογαρισμού σας";
 		enterRoom = isEnglish ? "Enter your room number" : "Εισάγετε τον αριθμό δωματίου σας";
+		
+		wrongInput = isEnglish ? "Wrong input" : "Λάθος δεδομένα";
 	}
 
 }
