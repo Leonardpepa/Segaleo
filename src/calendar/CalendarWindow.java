@@ -149,7 +149,6 @@ public class CalendarWindow extends JFrame {
 										+ TextResources.people);
 						initializePanel();
 					} else {
-						JOptionPane.showMessageDialog(null, TextResources.successCalendar);
 						dispose();
 						String[] hrs;
 						if (activity.getSelhour() == 0) {
@@ -267,17 +266,17 @@ public class CalendarWindow extends JFrame {
 		dayLabel = LabelFactory.createLabel(TextResources.chooseDay, Color.gray, FontFactory.poppins(22));
 		dayLabel.setBounds(32, 90, 160, 32);
 		timeLabel = LabelFactory.createLabel(TextResources.chooseTime, Color.gray, FontFactory.poppins(22));
-		timeLabel.setBounds(32, 470, 160, 32);
+		timeLabel.setBounds(32, 450, 160, 32);
 		peopleLabel = LabelFactory.createLabel(TextResources.choosePeople, Color.gray, FontFactory.poppins(22));
-		peopleLabel.setBounds(32, 660, 165, 32);
+		peopleLabel.setBounds(32, 620, 165, 32);
 	}
 
 	public void configurateHourButtons(Color c1, Color c2) {
 		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0), FontFactory.poppins(14), c1, Color.WHITE);
-		hour1Btn.setBounds(111, 520, 154, 50);
+		hour1Btn.setBounds(111, 500, 154, 50);
 
 		hour2Btn = ButtonFactory.createButton(activity.getHour().get(1), FontFactory.poppins(14), c2, Color.WHITE);
-		hour2Btn.setBounds(111, 590, 154, 50);
+		hour2Btn.setBounds(111, 560, 154, 50);
 	}
 
 	public void configureButtons() {
@@ -290,24 +289,24 @@ public class CalendarWindow extends JFrame {
 
 		plusButtonLabel = LabelFactory.createIconLabel(plusIcon);
 		plusButtonLabel.setIcon(plusIcon);
-		plusButtonLabel.setBounds(210, 710, 24, 24);
+		plusButtonLabel.setBounds(210, 670, 24, 24);
 		plusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		plusButtonLabel.addMouseListener(new PlusMinusListener());
 		plusButtonLabel.setName("plus");
 
 		minusButtonLabel = LabelFactory.createIconLabel(minusIcon);
-		minusButtonLabel.setBounds(150, 710, 24, 24);
+		minusButtonLabel.setBounds(150, 670, 24, 24);
 		minusButtonLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		minusButtonLabel.addMouseListener(new PlusMinusListener());
 		minusButtonLabel.setName("minus");
 
 		quantinty = LabelFactory.createLabel(reservation.getAct().get(activity) + "x", Color.BLACK,
 				FontFactory.poppins(13));
-		quantinty.setBounds(180, 710, 50, 20);
+		quantinty.setBounds(183, 670, 50, 20);
 
 		confirmBtn = ButtonFactory.createButton(TextResources.confirm, FontFactory.poppins(14),
 				ColorResources.clickedTimeBtn, Color.WHITE);
-		confirmBtn.setBounds(111, 740, 154, 50);
+		confirmBtn.setBounds(111, 700, 154, 50);
 	}
 
 	public void refreshCalendar(int month, int year) {
@@ -439,9 +438,6 @@ public class CalendarWindow extends JFrame {
 				}
 				flagDay = true;
 				activity.setSelDay(table.getSelectedColumn());
-				JOptionPane.showMessageDialog(null,
-						"date: " + table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn())
-								+ " day: " + table.getSelectedColumn());
 			}
 
 		}
