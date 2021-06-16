@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 public class Room implements Serializable{
 	
+
+	private static final long serialVersionUID = 3358518379349032467L;
 	private int number;
 	private String password;
 	private Customer customer = null;
