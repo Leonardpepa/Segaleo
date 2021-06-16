@@ -236,7 +236,7 @@ public class MenuWindow extends JFrame{
 		Food foodProduct;
 		
 		JPanel panel = new JPanel();
-		panel.setName(product.getName());
+		panel.setName(String.valueOf(product.getId()));
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 120));
 		panel.setBackground(Color.white);
