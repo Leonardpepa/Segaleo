@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import org.w3c.dom.Text;
 
 import contact.MessageSender;
 import gui.factory.*;
@@ -18,7 +17,7 @@ import roomCustomer.Customer;
 import roomCustomer.Room;
 import roomCustomer.RoomCustomerReader;
 
-public class ForgotPasswordWindow extends JFrame implements ActionListener {
+public class ForgotPasswordWindow extends JFrame{
 	/**
 	 * 
 	 */
@@ -133,40 +132,37 @@ public class ForgotPasswordWindow extends JFrame implements ActionListener {
 	// add listeners
 	public void addListeners() {
 
-		remindMeBtn.addActionListener(this);
-
-		backBtn.addActionListener(this);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		if (e.getSource() == remindMeBtn) {
-			String password = null;
-			MessageSender sender = new MessageSender();
-			String roomInput = checkRoom();
+		remindMeBtn.addActionListener(new ActionListener() {
 			
-			if (roomInput == null) {
-				return;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String password = null;
+				MessageSender sender = new MessageSender();
+				String roomInput = checkRoom();
+				
+				if (roomInput == null) {
+					return;
+				}
+				
+				String emailInput = checkEmail(roomInput);
+				
+				if (emailInput == null) {
+					return;
+				}
+				/* Once both inputs have been confirmed, the email is sent */
+				password = getUserPassword(roomInput);
+				sender.sendEmail(emailInput, false, password);		
 			}
+		});
+
+		backBtn.addActionListener(new ActionListener() {
 			
-			String emailInput = checkEmail(roomInput);
-			
-			if (emailInput == null) {
-				return;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new LoginWindow();
 			}
-			/* Once both inputs have been confirmed, the email is sent */
-			password = getUserPassword(roomInput);
-			sender.sendEmail(emailInput, false, password);
-			JOptionPane.showMessageDialog(null, TextResources.emailSent);
-		}
-
-		if (e.getSource() == backBtn) {
-			this.dispose();
-			new LoginWindow();
-		}
-
-		initializePanelToFrame();
+		});
 	}
 
 	/*

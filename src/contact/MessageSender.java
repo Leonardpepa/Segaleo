@@ -2,14 +2,17 @@ package contact;
 
 import java.util.*;  
 import javax.mail.*;  
-import javax.mail.internet.*;   
+import javax.mail.internet.*;
+import javax.swing.JOptionPane;
+
+import resources.TextResources;   
   
 
 public class MessageSender {
 	
 	public void sendEmail(String email, boolean isContact, String password){  
 		String from = "segaleouom@gmail.com";  
-	      String to = email; 
+	    String to = email; 
 	      
 	     //Get the session object  
 	      Properties props = System.getProperties();
@@ -50,8 +53,9 @@ public class MessageSender {
 
 	          msg.setSentDate(new Date());
 	          Transport.send(msg);
+	          JOptionPane.showMessageDialog(null, TextResources.emailSent);
 	        }catch (MessagingException e){ 
-	        	e.printStackTrace();
+	        	JOptionPane.showMessageDialog(null, TextResources.networkError,"Error", JOptionPane.WARNING_MESSAGE);
 	        } 
 
 	}

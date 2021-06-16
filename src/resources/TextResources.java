@@ -128,6 +128,8 @@ public class TextResources {
 	
 	public static String wrongInput;
 	
+	public static String networkError;
+	
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -252,6 +254,7 @@ public class TextResources {
 		enterRoom = isEnglish ? "Enter your room number" : "Εισάγετε τον αριθμό δωματίου σας";
 		
 		wrongInput = isEnglish ? "Wrong input" : "Λάθος δεδομένα";
+		networkError = isEnglish ? "Network error occured" : "Εμφανίστηκε προβλημα με το δίκτυο";
 	}
 
 }
