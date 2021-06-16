@@ -1,5 +1,7 @@
 package order;
 
+import rating.Rating;
+
 public class Coffee  extends Product{
 
 	private static final long serialVersionUID = -4148346724991891535L;
@@ -34,6 +36,15 @@ public class Coffee  extends Product{
 
 	public void setCold(boolean cold) {
 		this.cold = cold;
+	}
+
+	@Override
+	public double calcAvRating() {
+		double sum = 0;
+		for(Rating rating: ratings) {
+			sum += rating.getNumOfStars();
+		}
+		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 }
 

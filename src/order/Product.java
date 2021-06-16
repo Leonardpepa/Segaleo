@@ -1,6 +1,11 @@
 package order;
 
 import java.io.Serializable;
+
+/*	Abstract class that holds data that other products share like name, description, price, path for the image etc...
+ * 	
+ * 
+ */
 import java.util.ArrayList;
 
 import rating.Rating;
@@ -8,12 +13,12 @@ public abstract class Product implements Serializable {
 	
 	private static final long serialVersionUID = -5664405825052016146L;
 	
-	private String name;
-	private String description;
-	private double price;
-	private String path;
-	private ArrayList<Rating> ratings;
-	private int id;
+	protected String name;
+	protected String description;
+	protected double price;
+	protected String path;
+	protected ArrayList<Rating> ratings;
+	protected int id;
 	
 	
 	public Product(String name, String description, double price, String path, int id) {
@@ -25,14 +30,10 @@ public abstract class Product implements Serializable {
 		this.id = id;
 	}
 
-	public double calcAvRating() {
-		double sum = 0;
-		for(Rating rating: ratings) {
-			sum += rating.getNumOfStars();
-		}
-		return ratings.isEmpty() ? 0 :sum/ratings.size();
-	}
+	//it needs to calculate the average rating
+	public abstract double calcAvRating();
 	
+	/* overrides the hash code method so it returns a unique number based on id*/
 	@Override
     public int hashCode() {
         final int prime = 31;
@@ -42,7 +43,7 @@ public abstract class Product implements Serializable {
     }
 	
 	
-	//Compare only account numbers
+	/* ovverrides equal method so we can use this class as a key in the hash map we use in teh order*/
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

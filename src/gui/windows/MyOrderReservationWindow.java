@@ -293,7 +293,7 @@ public class MyOrderReservationWindow extends JFrame {
 			if(today.getTime() < reservationClicked.getFirstAct().getSelDate().getTime()) {
 				Login.loggedCustomer.removeReservation(reservationClicked);
 				JOptionPane.showMessageDialog(null, TextResources.resHasBeenCanceled, "Segaleo", JOptionPane.INFORMATION_MESSAGE);
-				PlatformData.removeActivitiesFromArray(reservationClicked);
+				PlatformData.resetActivitiesFromArray(reservationClicked);
 				PlatformData.saveData();
 				initializePanelToFrame(true);
 				Activity.print();

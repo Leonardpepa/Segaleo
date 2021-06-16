@@ -2,6 +2,11 @@ package rating;
 
 import java.io.Serializable;
 
+/*	
+ * this class is used to hold a rating for a product
+ * 
+ */
+
 public class Rating implements Serializable{
 	
 	private static final long serialVersionUID = -5374276975811567971L;
@@ -10,7 +15,6 @@ public class Rating implements Serializable{
 	private String comments;
 	
 	public Rating(int numOfStars, String comments) {
-		//it depends on what user is going to click
 		this.numOfStars = numOfStars;
 		this.comments = comments;
 	}

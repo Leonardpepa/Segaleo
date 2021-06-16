@@ -20,26 +20,39 @@ import roomCustomer.Customer;
 import roomCustomer.Room;
 import roomCustomer.RoomCustomerReader;
 
+/*
+ * 	this class is used to store the apps state in a binary file
+ * 	also to read from it
+ */
 public class PlatformData {
 
 	public static File data = new File("files/platformData/data.ser");
 
 	// Saves date to the file
 	public static void saveData() {
-
+		ObjectOutputStream outputStream = null;
 		try {
-			ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(data));
-
+			outputStream = new ObjectOutputStream(new FileOutputStream(data));
+			//storing users that use the app and each user has associations with classes like order, reservation etc  
 			outputStream.writeObject(RoomCustomerReader.customers);
+			//storing the rooms of the hotel
 			outputStream.writeObject(RoomCustomerReader.rooms);
+			//storing the array that is used to check for availabilities for each activity
 			outputStream.writeObject(Activity.getA());
+			//storing the total number of orders and reservations so we can use it for ids
 			outputStream.writeObject(Order.numberOfOrders);
 			outputStream.writeObject(Reservation.numberOfReservations);
 
-			outputStream.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				outputStream.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -75,6 +88,7 @@ public class PlatformData {
 	}
 	
 	//loads all the reviews from each customer to each product / activities
+	//so we can see the state of the ratings
 	public static void loadReviews(ArrayList<Customer> customers) {
 		for(Customer customer: customers) {
 			for(Order order: customer.getOrders()) {
@@ -96,6 +110,7 @@ public class PlatformData {
 		}
 	}
 	
+	//if an activity's time has passed it resets the fields of the array is needs
 	public static void checkArrayAvailabilities(ArrayList<Customer> customers) {
 		Date today = new Date();
 		for(Customer customer: customers) {
@@ -109,7 +124,8 @@ public class PlatformData {
 		}
 	}
 	
-	public static void removeActivitiesFromArray(Reservation reservation) {
+	//reset an activity in the array if the reservation that contained this activity has been canceled
+	public static void resetActivitiesFromArray(Reservation reservation) {
 		for(Activity activity: reservation.getActivities()) {
 			Activity.getA()[activity.getSelday()][activity.getSelhour() + activity.getColumn()] += activity.getSelpeople(); 
 		}

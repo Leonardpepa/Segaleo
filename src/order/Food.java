@@ -1,5 +1,7 @@
 package order;
 
+import rating.Rating;
+
 public class Food extends Product{
 	
 	private static final long serialVersionUID = -5957460565520834132L;
@@ -27,5 +29,13 @@ public class Food extends Product{
 	
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+	@Override
+	public double calcAvRating() {
+		double sum = 0;
+		for(Rating rating: ratings) {
+			sum += rating.getNumOfStars();
+		}
+		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 }

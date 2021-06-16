@@ -13,6 +13,10 @@ import java.util.Random;
 import order.*;
 import resources.TextResources;
 
+/*	this class is responsible for reading the products from the files 
+ * 	and provides all the program with array lists that contains the products
+ * 	also provides useful methods to find a product and returns it and calculates the deals 
+ */
 public class Menu {
 
 	private static List<Product> appetizers;
@@ -31,6 +35,7 @@ public class Menu {
 	private String path;
 	private double alchoolPerc;
 	int id = 0;
+	
 	public Menu() {
 		appetizers = new ArrayList<>();
 		coffee = new ArrayList<>();
@@ -137,13 +142,15 @@ public class Menu {
 		}
 		return null;
 	}
-
+	
+	//calculates the deals checking if the price is higher than 3 euro so we dont end up with 0 and negative numbers
+	//also checks so that the same product cant have 2 discounts
 	public static ArrayList<Food> GetDeals() {
 		Random rand = new Random();
 		ArrayList<Food> deals = new ArrayList<Food>();
 		for (int i = 0; i < 3; i++) {
 			Food dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
-			while (dealdFood.isHasDiscount() || dealdFood.getPrice() < 3) {
+			while (dealdFood.isHasDiscount() || dealdFood.getPrice() < 4) {
 				dealdFood = (Food) onlyFood.get(rand.nextInt(onlyFood.size()));
 			}
 			int discount = rand.nextInt(3) + 1;

@@ -9,15 +9,26 @@ import java.util.List;
 import menu.Menu;
 import rating.Rating;
 
+/* This class is responsible for the order of a customer
+ * it holds data such as the list of products, the quantity of products, the date of the order, the payment method, coupon used and the coupon
+ * it is also responsible to calculate the total cost of that order and to check if and discount with a coupon is possible
+ */
+
 public class Order implements Serializable{
 	
 	private static final long serialVersionUID = -7785618513835322110L;
 	
 	private double totalCost;
+	//holds the products that user wants to buy
 	private List<Product> products;
-	private Rating rating = null;
+	//holds the amount of each product
+	
 	private HashMap<Product, Integer> prod;
+	private Rating rating = null;
+	
+	//hods the total quantity of the orders products
 	private int quantity = 0;
+	
 	private Date date;
 	private int maximumOffers = 2;
 	private String paymentMethod;
@@ -26,11 +37,16 @@ public class Order implements Serializable{
 	private Coupon coupon;
 
 	public Order() {
+		//initialize the data structures the  class uses
 		products = new ArrayList<Product>();
 		prod = new HashMap<>();
 		initializeHashMap();
 	}
-
+	
+	/*	if product already in the order it just increases the amount of that product
+	 *	else it adds it
+	 * 	in the end increases the total quantity by one
+	 */
 	public void addProduct(Product product) {
 		if(!products.contains(product)) {
 			products.add(product);
@@ -39,12 +55,17 @@ public class Order implements Serializable{
 		quantity++;
 	}
 
+	/*it sets everything to 0 or null*/
 	public void clearOrder() {
 		products = new ArrayList<>();
 		initializeHashMap();
 		quantity = 0;
 	}
-
+	
+	/*	if the product amount is 1 then it removes teh product from teh array list
+	 * 	else it just decreases the amount by 1
+	 * 	in the end decreases the total quantity by 1
+	 */
 	public void removeProduct(Product product) {
 		if(prod.get(product) == 1) {
 			products.remove(product);
@@ -56,6 +77,7 @@ public class Order implements Serializable{
 		quantity--;
 	}
 
+	/*	calculates the cost of the order */
 	public double calcCost() {
 		totalCost = 0;
 		for (Product product : products) {
@@ -63,24 +85,8 @@ public class Order implements Serializable{
 		}
 		return totalCost;
 	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-	public HashMap<Product, Integer> getProd(){
-		return prod;
-	}
-
-	public boolean isProduct(String name) {
-		for (Product product : products) {
-			if (name.equals(product.getName())) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
+	
+	/* calculates the discount if the coupon is valid && if he can still use a coupon as it has a limit of 2*/
 	public double calcDiscount(String code) {
 		if (maximumOffers > 0 &&  CouponFactory.isValid(code)) {
 			maximumOffers--;
@@ -89,10 +95,17 @@ public class Order implements Serializable{
 		return totalCost;
 	}
 	
+	/* initialize each product to 0 amount in the beginning*/
 	public void initializeHashMap() {
 		for(Product p: Menu.getAllProducts()) {
 			prod.put(p, 0);
 		}
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public HashMap<Product, Integer> getProd(){
+		return prod;
 	}
 	
 	public int getId() {

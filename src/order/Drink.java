@@ -1,5 +1,7 @@
 package order;
 
+import rating.Rating;
+
 public class Drink extends Product{
 
 	private static final long serialVersionUID = -2429031331393022338L;
@@ -17,6 +19,15 @@ public class Drink extends Product{
 
 	public void setAlcoholPercentage(double alcoholPercentage) {
 		this.alcoholPercentage = alcoholPercentage;
+	}
+
+	@Override
+	public double calcAvRating() {
+		double sum = 0;
+		for(Rating rating: ratings) {
+			sum += rating.getNumOfStars();
+		}
+		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 	
 
