@@ -63,6 +63,7 @@ public class Login {
 		return true;
 	}
 
+	//Logs out the user
 	public static void logout() {
 		loggedCustomer = null;
 	}

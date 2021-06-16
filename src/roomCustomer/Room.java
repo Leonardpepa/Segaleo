@@ -2,6 +2,11 @@ package roomCustomer;
 
 import java.io.Serializable;
 
+/*
+ * This class represents a hotel room as object.
+ * It saves the room number, the password of the room and the room customer.
+ */
+
 public class Room implements Serializable{
 	
 	private int number;

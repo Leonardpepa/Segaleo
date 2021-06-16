@@ -7,6 +7,11 @@ import order.Coupon;
 import order.Order;
 import reservation.Reservation;
 
+/*
+ * This class represents a hotel customer as object.
+ * It saves the name, the email, the room, the coupons, the orders and the reservations of an customer.
+ */
+ 
 public class Customer implements Serializable{
 	
 	private static final long serialVersionUID = 4759859413823365345L;

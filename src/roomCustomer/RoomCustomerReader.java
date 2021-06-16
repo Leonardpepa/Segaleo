@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomCustomerReader {
+	/*
+	 * This class reads all the Hotel infos from a txt file.
+	 * 
+	 * Also saves the customes and the rooms that are read before.
+	 */
 
 	public static ArrayList<Customer> customers;
 	public static ArrayList<Room> rooms;
@@ -17,6 +22,10 @@ public class RoomCustomerReader {
 	}
 	
 	private void readFile() {
+		/*
+		 * Reads the customers and the rooms of the hotel, from the txt file and
+		 * saves them to the correct ArrayLists
+		 */
 		Scanner scanner = null;
 		try {
 			String customerName = null;
