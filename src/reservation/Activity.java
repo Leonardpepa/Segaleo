@@ -7,7 +7,10 @@ import java.util.Iterator;
 
 import rating.Rating;
 
-
+/*	this class is responsible for creating activities, add ratings to them and 
+ *  provides an array with availabilities for all the activities for one week, 
+ *  it also provides methods to check if there is remaining space for people in an activity
+ */
 public class Activity implements Serializable {
 	
 	private static final long serialVersionUID = -1720481625116348505L;
@@ -20,7 +23,7 @@ public class Activity implements Serializable {
 	private ArrayList<String> hour;
 	private ArrayList<Rating> ratings;
 
-	/*avaliability array for all the activities in the current week
+	/*availability array for all the activities in the current week
 	 * 7  lines, one for each day of the week, starts from sunday
 	 * 14 columns, two for each activity because every one has 2 available hours
 	 */

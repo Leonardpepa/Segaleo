@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 import resources.TextResources;
 
-
+/*	this class is responsible for reading the activities from the files
+ * 	and provides the program with array lists that contain the activities
+ * 	also provides useful methods to find an activity and returns it
+ */
 public class ActivityReader {
 
 	private static ArrayList<Activity> activitiesList;
@@ -41,6 +44,10 @@ public class ActivityReader {
 			reader = new FileReader(activityFile);
 			inputReader = new BufferedReader(reader);
 			
+			/*
+			 * The reader reads each line, separates name, price, path,availability and 2 hours for each activity and add them
+			 * into the list
+			 */
 			line = inputReader.readLine();
 			while(line != null) {
 				name = line.split("#")[0];
@@ -79,14 +86,15 @@ public class ActivityReader {
 		
 	}
 
+	//getters and setters
 	public static ArrayList<Activity> getActivitiesList() {
 		return activitiesList;
 	}
-
 	public void setActivitiesList(ArrayList<Activity> activitiesList) {
 		ActivityReader.activitiesList = activitiesList;
 	}
 	
+	//search for an activity by id
 	public static Activity findActivity(int id) {
 		for(Activity act: activitiesList) {
 			if(act.getId() == id) {
