@@ -16,6 +16,7 @@ import resources.TextResources;
 public class ActivityReader {
 
 	private static ArrayList<Activity> activitiesList;
+	private int id = 0;
 	
 	//Initializing the list
 	public ActivityReader() {
@@ -31,7 +32,6 @@ public class ActivityReader {
 		int availability;
 		String hour1;
 		String hour2;
-		int id = 0;
 		
 		BufferedReader inputReader = null;
 		FileReader reader = null;
