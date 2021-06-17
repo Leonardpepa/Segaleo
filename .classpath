@@ -10,7 +10,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Segaleo/external jars/activation.jar"/>
-	<classpathentry kind="lib" path="/Segaleo/external jars/mail.jar"/>
+	<classpathentry kind="lib" path="external jars/activation.jar"/>
+	<classpathentry kind="lib" path="external jars/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
