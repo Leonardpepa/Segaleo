@@ -19,9 +19,9 @@ import roomCustomer.Customer;
 
 public class MyCouponsWindow extends JFrame {
 	/**
-	 * This window displays all of the users coupons
+	 * this window displays the user's coupons, all of them
 	 * 
-	 * It can be found when going to the Profile > My Coupons
+	 * he can navigates to the Profile > My Coupons to find his coupons
 	 */
 	private static final long serialVersionUID = 1994427376744382511L;
 	private JPanel panel;

@@ -11,10 +11,10 @@ import resources.*;
 public class CreditCardWindow extends JFrame implements ActionListener {
 
 	/**
-	 * This class is used to create the Credit Card window.
+	 * this class is used to create the Credit Card window.
 	 * 
-	 * On this window the user can save his credit card for purchases.
-	 * They need to enter their full name, cc number, expiration date and CVV.
+	 * on this window the user can save his credit card for purchases.
+	 * he needs to fill his full name, cc number, expiration date and CVV.
 	 * 
 	 */
 	private static final long serialVersionUID = 419477767927453920L;

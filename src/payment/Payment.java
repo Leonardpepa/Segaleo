@@ -11,11 +11,11 @@ import gui.windows.CreditCardWindow;
 import resources.ColorResources;
 import resources.TextResources;
 /*
- * This class is used to load each payment method option
+ * this class is used to load each payment method option
  * 
- * For paypal, the link to sign in is used.
- * For card, a new window opens where the user needs to add his card.
- * For room bill, the amount will be charged to the users account
+ * for paypal, the link to sign in is used.
+ * for card, a new window opens where the user needs to add his card.
+ * for room bill, the amount will be charged to the users account
  */
 public class Payment  {
 	

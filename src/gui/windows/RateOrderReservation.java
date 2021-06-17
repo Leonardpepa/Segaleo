@@ -38,7 +38,7 @@ import resources.TextResources;
 public class RateOrderReservation extends JFrame{
 
 	/**
-	 * 
+	 * this class is used to rate an order
 	 */
 	private static final long serialVersionUID = 4758537304753221958L;
 	private JPanel panel;
