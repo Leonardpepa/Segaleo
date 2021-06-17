@@ -3,7 +3,6 @@ package reservation;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 
 import rating.Rating;
 
