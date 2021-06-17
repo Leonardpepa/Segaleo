@@ -29,6 +29,8 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 
+/*	this class is responsible to show the list of activities that user can select
+ */
 public class ActivityWindow extends JFrame {
 
 	private static final long serialVersionUID = -3218493844069922114L;
