@@ -64,6 +64,7 @@ public class CalendarWindow extends JFrame {
 	private boolean flagDay = false;
 
 	private int[][] a;
+	
 	private int selectedDay = -1;
 	private int selectedWeek = -1;
 
@@ -99,10 +100,7 @@ public class CalendarWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selHour = (activity.getHour().get(0)).substring(0, 4); // get the first 4 chars of the string. If
-																				// str
-				// = "9:00-1200" , str.subrstring(0,4) ->
-				// "9:00"
-
+																			// str = "9:00-12:00" , str.subrstring(0,4) -> "9:00"
 				if (isValidHour(selHour)) {
 					activity.setSelHour(0);
 					flagHour = true;
@@ -111,6 +109,7 @@ public class CalendarWindow extends JFrame {
 				}
 			}
 		});
+		
 		hour2Btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -124,6 +123,7 @@ public class CalendarWindow extends JFrame {
 				}
 			}
 		});
+		
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -132,6 +132,7 @@ public class CalendarWindow extends JFrame {
 
 			}
 		});
+		
 		confirmBtn.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -234,7 +235,7 @@ public class CalendarWindow extends JFrame {
 
 		// Add headers
 		String[] headers = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" }; // All headers
-		String[] headersGR = { "ΚΥΡ", "ΔΕΥ", "ΤΡΙ", "ΤΕΤ", "ΠΕΜ", "ΠΑΡ", "ΣΑΒ" }; // All headers
+		String[] headersGR = { "ΚΥΡ", "ΔΕΥ", "ΤΡΙ", "ΤΕΤ", "ΠΕΜ", "ΠΑΡ", "ΣΑΒ" }; // All GR headers
 
 		for (int i = 0; i < 7; i++) {
 			if (TextResources.isEnglish) {
@@ -263,19 +264,24 @@ public class CalendarWindow extends JFrame {
 	}
 
 	public void configureLabels() {
-		dayLabel = LabelFactory.createLabel(TextResources.chooseDay, Color.gray, FontFactory.poppins(22));
+		dayLabel = LabelFactory.createLabel(TextResources.chooseDay, Color.gray,
+				FontFactory.poppins(22));
 		dayLabel.setBounds(32, 90, 160, 32);
-		timeLabel = LabelFactory.createLabel(TextResources.chooseTime, Color.gray, FontFactory.poppins(22));
+		timeLabel = LabelFactory.createLabel(TextResources.chooseTime, Color.gray,
+				FontFactory.poppins(22));
 		timeLabel.setBounds(32, 450, 160, 32);
-		peopleLabel = LabelFactory.createLabel(TextResources.choosePeople, Color.gray, FontFactory.poppins(22));
+		peopleLabel = LabelFactory.createLabel(TextResources.choosePeople, Color.gray,
+				FontFactory.poppins(22));
 		peopleLabel.setBounds(32, 620, 165, 32);
 	}
 
 	public void configurateHourButtons(Color c1, Color c2) {
-		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0), FontFactory.poppins(14), c1, Color.WHITE);
+		hour1Btn = ButtonFactory.createButton(activity.getHour().get(0), FontFactory.poppins(14),
+				c1, Color.WHITE);
 		hour1Btn.setBounds(111, 500, 154, 50);
 
-		hour2Btn = ButtonFactory.createButton(activity.getHour().get(1), FontFactory.poppins(14), c2, Color.WHITE);
+		hour2Btn = ButtonFactory.createButton(activity.getHour().get(1), FontFactory.poppins(14),
+				c2, Color.WHITE);
 		hour2Btn.setBounds(111, 560, 154, 50);
 	}
 
@@ -309,6 +315,7 @@ public class CalendarWindow extends JFrame {
 		confirmBtn.setBounds(111, 700, 154, 50);
 	}
 
+	//Refresh new Calendar
 	public void refreshCalendar(int month, int year) {
 		int nod, som; // Number Of Days, Start Of Month
 
@@ -339,29 +346,34 @@ public class CalendarWindow extends JFrame {
 		return selectedDay;
 	}
 
+	//If the day that has been selected is the same with current day 
+	//then check if the current hour does not surpass selected hour.
 	public boolean isValidHour(String hour) {
-		String[] hrs = hour.split(":", 2); // hrs[0] = selected hour (where activity starts) and hrs[1] = selected
-											// minutes
+		
+		String[] hrs = hour.split(":", 2); // Split the string (e.g. "9:00" to hrs[0]="9" and hrs[1]="0") 
+		                                   //hrs[0] = selected hour (where activity starts) 
+		                                   // and hrs[1] = selected minutes (where activity starts)
+		
 		GregorianCalendar cal = new GregorianCalendar();
-		int currentHour = cal.get(GregorianCalendar.HOUR_OF_DAY);
+		int currentHour = cal.get(GregorianCalendar.HOUR_OF_DAY); 
 		int currentMinutes = cal.get(GregorianCalendar.MINUTE);
-		int selectedHour = Integer.parseInt(hrs[0]);
-		int selectedMinutes = Integer.parseInt(hrs[1]);
+		int selectedHour = Integer.parseInt(hrs[0]); //e.g. selectedHour = 9
+		int selectedMinutes = Integer.parseInt(hrs[1]); //e.g. selectedMinutes = 0
 
 		int selectedDay = getSelectedDay();
 		int currentDay = cal.get(GregorianCalendar.DAY_OF_MONTH);
 
-		if (selectedDay != currentDay && selectedDay != -1)
+		if (selectedDay != currentDay && selectedDay != -1) 
 			return true;
 
 		if (currentHour > selectedHour) {
-			JOptionPane.showMessageDialog(null, "You can't choose that hour!");
+			JOptionPane.showMessageDialog(null, "You can't choose that hour! Select another hour or day.");
 			return false;
 		}
 
 		if (currentHour == selectedHour) {
 			if (currentMinutes >= selectedMinutes) {
-				JOptionPane.showMessageDialog(null, "You can't choose that hour!");
+				JOptionPane.showMessageDialog(null, "You can't choose that hour! Select another hour or day.");
 				return false;
 			}
 		}
@@ -415,12 +427,13 @@ public class CalendarWindow extends JFrame {
 
 			int currentDay = cal.get(GregorianCalendar.DAY_OF_MONTH);
 			int currentWeek = (cal.get(GregorianCalendar.WEEK_OF_MONTH)) - 1;
+			
+			if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+				currentWeek = cal.get(GregorianCalendar.WEEK_OF_MONTH);
 
 			int actMonth = cal.get(GregorianCalendar.MONTH) + 1;
 			int actYear = cal.get(GregorianCalendar.YEAR);
 
-			if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
-				currentWeek = cal.get(GregorianCalendar.WEEK_OF_MONTH);
 
 			if (selectedDay == -1 || selectedWeek == -1) {
 				return;
