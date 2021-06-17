@@ -4,39 +4,49 @@ package application.main;
 import gui.windows.*;
 
 /*
- * The program is developed with java 11
+ * The program is developed with Java 11
  */
 public class Main {
 	
 	
-	/*	The profile our professor can use to test the app is: 
+	/*	
+	 * The main class is used to call the LoginWindow class, so the user can enter his credentials and use the app
+	 *	
+	 *	The profile our professor can use to test the app is: 
 	 * 	room number: 115
 	 * 	password: Achat115
 	 * 	name: Achat
-	 * 	email: achat@uom.edu.gr (the email that is associate with the profile can be used to retrieve the password and email will be send at users email)
+	 * 	email: achat@uom.edu.gr 
 	 * 
-	 * 	Or you can use any profile exist in the path files/roomCustomer/Room-Customer.txt
-	 * 	the format is roomnumber#pasword#name#email (# represent the divider of the variables)
+	 *  The email that is associated with the profile can be used to retrieve the password via email.
+	 * 
+	 * 	You can use or modify any profile that exists in the path files/roomCustomer/Room-Customer.txt
+	 * 	the format is roomnumber#password#name#email (# represents the divider of the variables)
 	 * 
 	 * 
-	 *  Main class starts the program calling the login window class so the user can login and use the app
+	 * 	General Info:
+	 * 
+	 * 	External jars are included in the external jars folder. The class path is configured to link them to the program so the user
+	 * 	doesn't have to add them manually (if a problem occurs you can link them by going to build path > configure build path > add external jars)
+	 * 
+	 * 	The external jars used are mail.jar and activation.jar. These can help sending an email to the customer.
+	 * 	***Sometimes  the email can't be sent due to server connection issues and it throws a server error ***
+	 * 
+	 * 	The project doesn't use a database to store or retrieve data.
+	 *  All of the data used for products, activities, customers and more are stored in .txt files .
 	 * 	
-	 * 	External jars are included in the folder external jars and the class path is configured to link them to the program so the user hopefully 
-	 * 	doesn't have to do it manually (if a problem occures you can link them by going to build path -> configure build path -> add external jars)
-	 * 
-	 * 	External jars are mail.jar and activation.jar. Are used to send an email to the customer
-	 * 	***Sometimes it doesn't send it and it throws an error ***
-	 * 
-	 * 	The program doesn't have a data base the data used for products, activities and customer is stored in .txt files 
-	 * 	with the format: # represent the divider of the variables
+	 * 	The state of the program is stored in a binary file.
+	 *  This way the user can still view his orders/reservations/coupons on his profile. 
+	 *  The binary file is also used to store the rating of each product/reservation, so an average rating can be displayed.
+	 *  
+	 *  Custom libraries have been developed from the team to help us create the GUI windows faster and efficiently.	
 	 * 	
-	 * 	The state of the program is stored in a binary file (the state is the orders/reservations/coupons/ratings each customer have) 
-	 * 	
-	 * 	Use cases we didn't full fill are the payment with paypal and room bill  (you can use them to pay but in the background it doesnt do anything more than storing the payment method and the total room bill)
-	 * 	choices for each product like adding sugar to the coffee etc
-	 * 	message contact with the hotel (we show the user a message that we recieve his message but we cant reach him back)
 	 * 
-	 * 	Custom libraries have been developed from the team to help us make the GUI more beautiful and easy	
+	 * 	SDS Use Cases we didn't fulfill:
+	 * 
+	 * 	Customizable options for each product like adding sugar to the coffee etc
+	 * 	Message contact with the hotel (we send an email to the user that we received his message but we can't actually reach him back)
+	 *  Rating the app. We realized that this function wouldn't have any impact on the overall use of the app.
 	 * 
 	 */
 	
