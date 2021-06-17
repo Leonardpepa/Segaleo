@@ -231,9 +231,11 @@ public class CartWindow extends JFrame {
 					reservation.setDate(new Date());
 					Reservation.numberOfReservations += 1;
 					reservation.setId(Reservation.numberOfReservations);
+					
 					if(paymentMethods.getText().equals(TextResources.roomBill)) {
-						Login.loggedCustomer.setRoomBill(Login.loggedCustomer.getRoomBill() + order.getTotalCost());
+						Login.loggedCustomer.setRoomBill(Login.loggedCustomer.getRoomBill() + reservation.getTotalCost());
 					}
+					
 					Login.loggedCustomer.addReservation(reservation);
 					new CompleteWindow(null, false);
 				} else {
