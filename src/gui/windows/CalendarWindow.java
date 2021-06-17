@@ -18,15 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
+/*	this class is responsible to show the frame where the user can select day, hour and people for an activity he wants to do,
+ *  and checks if the inputs are valid.
+ */
 public class CalendarWindow extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3493826716906127814L;
-	/**
-	 * 
-	 */
 
+	private static final long serialVersionUID = 3493826716906127814L;
+	
 	private JTable tblCalendar;
 	private JPanel container;
 	private DefaultTableModel mtblCalendar; // Table model
@@ -58,8 +56,8 @@ public class CalendarWindow extends JFrame {
 	private JLabel quantinty;
 
 	private JButton confirmBtn;
-	private boolean flagHour = false;
-	private boolean flagDay = false;
+	private boolean flagHour = false; //checks if an hour is selected
+	private boolean flagDay = false; // checks if a day is selected
 
 	private int[][] a;
 	
@@ -147,7 +145,9 @@ public class CalendarWindow extends JFrame {
 										+ a[activity.getSelday()][activity.getSelhour() + activity.getColumn()]
 										+ TextResources.people);
 						initializePanel();
-					} else {
+					} 
+					// there is space for SelPeople for this activity this day and hour
+					else {
 						dispose();
 						String[] hrs;
 						if (activity.getSelhour() == 0) {
@@ -156,10 +156,11 @@ public class CalendarWindow extends JFrame {
 							hrs = hour2Btn.getText().split(":", 2);
 						}
 						selDate.setHours(Integer.parseInt(hrs[0]));
+						//set the selected day and hour to the activity
 						activity.setSelDate(selDate);
 						new ActivityWindow(reservation);
 					}
-
+				// day or hour or people not selected
 				} else {
 					if (!flagHour || !flagDay || activity.getSelpeople() <= 0) {
 						JOptionPane.showMessageDialog(null, TextResources.noSelection);
@@ -379,6 +380,7 @@ public class CalendarWindow extends JFrame {
 		return true;
 	}
 
+	//listener for +/- buttons
 	class PlusMinusListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
