@@ -15,7 +15,7 @@ import resources.TextResources;
  * 
  * For paypal, the link to sign in is used.
  * For card, a new window opens where the user needs to add his card.
- * For the room bill, the amount will be charged to the users account
+ * For room bill, the amount will be charged to the users account
  */
 public class Payment  {
 	

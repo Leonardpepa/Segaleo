@@ -9,9 +9,9 @@ import java.util.List;
 import menu.Menu;
 import rating.Rating;
 
-/* This class is responsible for the order of a customer
+/* this class is responsible for each customer's order
  * it holds data such as the list of products, the quantity of products, the date of the order, the payment method, coupon used and the coupon
- * it is also responsible to calculate the total cost of that order and to check if and discount with a coupon is possible
+ * it's also responsible for calculating the total cost of that specific order and for checking if the discount of a coupon is validated
  */
 
 public class Order implements Serializable{
@@ -19,14 +19,14 @@ public class Order implements Serializable{
 	private static final long serialVersionUID = -7785618513835322110L;
 	
 	private double totalCost;
-	//holds the products that user wants to buy
+	//holds the user's products 
 	private List<Product> products;
 	//holds the amount of each product
 	
 	private HashMap<Product, Integer> prod;
 	private Rating rating = null;
 	
-	//hods the total quantity of the orders products
+	//holds the total quantity of products in the order
 	private int quantity = 0;
 	
 	private Date date;
@@ -43,7 +43,7 @@ public class Order implements Serializable{
 		initializeHashMap();
 	}
 	
-	/*	if product already in the order it just increases the amount of that product
+	/*	if the product is already in the order, it just increases the amount of that product
 	 *	else it adds it
 	 * 	in the end increases the total quantity by one
 	 */
@@ -62,7 +62,7 @@ public class Order implements Serializable{
 		quantity = 0;
 	}
 	
-	/*	if the product amount is 1 then it removes teh product from teh array list
+	/*	if the product amount is 1 then it removes the product from the array list
 	 * 	else it just decreases the amount by 1
 	 * 	in the end decreases the total quantity by 1
 	 */

@@ -3,7 +3,7 @@ package rating;
 import java.io.Serializable;
 
 /*	
- * this class is used to hold a rating for a product
+ * this class is used to record/show a product's rating
  * 
  */
 

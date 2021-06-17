@@ -8,12 +8,12 @@ import order.Order;
 import reservation.Reservation;
 
 /*
- * This class represents a hotel customer as an object.
- * It saves the name, the email, the room, the coupons, the orders and the reservations of a customer.
+ * This class represents a hotel's customer as an object.
+ * It saves the name, the email, the room, the coupons, the orders and the reservations of the customer.
  */
- 
+
 public class Customer implements Serializable{
-	
+
 	private static final long serialVersionUID = 4759859413823365345L;
 	private String name;
 	private String email;
@@ -22,14 +22,14 @@ public class Customer implements Serializable{
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 	private double roomBill;
-	
-	
+
+
 	public Customer(String name, String email) {
 		this.name = name;
 		this.email = email;
 	}
 
-	
+
 	public String getName() {
 		return name;
 	}
@@ -41,7 +41,7 @@ public class Customer implements Serializable{
 	public Room getRoom() {
 		return room;
 	}
-	
+
 	public void setRoom(Room room) {
 		this.room = room;
 	}
@@ -54,7 +54,7 @@ public class Customer implements Serializable{
 	public void addOrders(Order order) {
 		orders.add(order);
 	}
-	
+
 	public void removeOrder(Order order) {
 		this.orders.remove(order);
 	}
@@ -67,7 +67,7 @@ public class Customer implements Serializable{
 	public ArrayList<Coupon> getCoupons() {
 		return coupons;
 	}
-	
+
 	public void removeCoupon(Coupon coupon) {
 		this.coupons.remove(coupon);
 	}
@@ -75,11 +75,11 @@ public class Customer implements Serializable{
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}
-	
+
 	public void addReservation(Reservation reservation) {
 		reservations.add(reservation);
 	}
-	
+
 	public ArrayList<Reservation> getReservations() {
 		return reservations;
 	}
@@ -93,7 +93,7 @@ public class Customer implements Serializable{
 	public void setRoomBill(double roomBill) {
 		this.roomBill = roomBill;
 	}
-	
-	
+
+
 
 }
