@@ -1,4 +1,4 @@
-package calendar;
+package gui.windows;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -6,8 +6,6 @@ import javax.swing.table.*;
 import gui.factory.ButtonFactory;
 import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
-import gui.windows.ActivityWindow;
-import gui.windows.MainWindow;
 import reservation.Activity;
 import reservation.Reservation;
 import resources.ColorResources;
