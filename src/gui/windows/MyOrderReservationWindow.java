@@ -27,7 +27,7 @@ import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
 /*
- * This class is used to create both the My Orders and My Reservations window
+ * this class is used to create both the My Orders and My Reservations window
  * with a few differences
  */
 

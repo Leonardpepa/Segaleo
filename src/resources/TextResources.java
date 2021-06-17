@@ -3,9 +3,9 @@ package resources;
 
 public class TextResources {
 	/*
-	 * This Class is used for the change of language
+	 * this class is used for changing language from English to Greek and vice versa.
 	 * 
-	 * All texts displayed in the project can be found here in English and Greek
+	 * all texts displayed in the project can be found here in English and Greek
 	 */
 	public static boolean isEnglish = true;
 
@@ -74,7 +74,7 @@ public class TextResources {
 	public static String invalidCoupon;
 	public static String noCoupon;
 	public static String valid;
-	
+
 	public static String cancelOrderTitle;
 	public static String cancelOrder;
 	public static String cancelReservationTitle;
@@ -93,14 +93,14 @@ public class TextResources {
 	public static String roomBill;
 	public static String paypal;
 	public static String card;
-	
+
 	public static String noPaymentSelected;
-	
+
 	public static String date;
 	public static String noOrder;
 	public static String noReservation;
 	public static String submitted;
-	
+
 	public static String noSelection;
 	public static String noAvaliability;
 	public static String people;
@@ -113,24 +113,24 @@ public class TextResources {
 
 	public static String rateOrder;
 	public static String rateReservation;
-	
+
 	public static String sort;
 	public static String byPrice;
 	public static String byPopularity;
 	public static String byName;
-	
+
 	public static String cancelRes;
 	public static String welcomeProfile;
-	
+
 	public static String emailSent;
 	public static String enterEmail;
 	public static String enterRoom;
-	
+
 	public static String wrongInput;
-	
+
 	public static String networkError;
 	public static String wrongNumberOrPass;
-	
+
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
 		english = isEnglish ? "English" : "Αγγλικά";
@@ -196,7 +196,7 @@ public class TextResources {
 		ratingComment = isEnglish ? "Leave your comment about this activity here..." : "Σχολίασε την εμπειρία σου για την συγκεκριμένη δραστηριότητα εδώ";
 		order = isEnglish ? "ORDER" : "ΠΑΡΑΓΓΕΛΙΑ";
 		reservation =  isEnglish ? "RESERVATION" : "ΚΡΑΤΗΣΗ";
-		
+
 		invalidCouponTitle = isEnglish ? "Error" : "Σφάλμα";
 		invalidCoupon = isEnglish ? "Invalid Coupon" : "Μη έγκυρο Κουπόνι";
 		noCoupon = isEnglish ? "You have no coupons" : "Δεν έχεις κουπόνια";
@@ -219,23 +219,23 @@ public class TextResources {
 		chooseTime = isEnglish ? "Choose Time" : "Διάλεξε Ώρα";
 		choosePeople = isEnglish ? "Choose People" : "Διάλεξε Άτομα";
 		confirm = isEnglish ? "Confirm" : "Επιβεβαίωση";
-		
+
 		roomBill = isEnglish ? "Room Bill" : "Χρέωση στο δωμάτιο";
 		paypal = isEnglish ? "Paypal" : "Πληρωμή με paypal";
 		card = isEnglish ? "Card" : "Πληρωμή με κάρτα";
-		
+
 		noPaymentSelected = isEnglish ? "You need to choose payment method for the order" : "Πρέπει να διαλέξετε τρόπο πληρώμης για την παραγγελία";
 		date = isEnglish ? "Date" : "Ημερομηνία";
 		submitted = isEnglish ? "Submitted" : "Yποβλήθηκε";
-		
+
 		noSelection = isEnglish ? "Something (day/hour/people) hasn't been selected. Please try again" : "Κάποια κατηγορία (μέρα/ώρα/άτομα) δεν επιλέχθηκε. Παρακαλούμε ξαναπροσπαθήστε.";
 		noAvaliability = isEnglish ? "There is space avaliable only for " : "Υπάρχει διαθέσιμότητα μόνο για ";
 		people = isEnglish ? " people" : " άτομα";
 		successCalendar = isEnglish ? "Your reservation is already in your Cart." : "Η κράτηση σου βρίσκεται ήδη μέσα στο καλάθι σου.";
 		invalidDay =  isEnglish ? "Invalid day.You can only choose days according to the current week and month." : " Μη έγκυρη ημερομηνία. Μπορείτε να επιλέξετε μόνο ημέρες της τρέχουσας εβδομάδας και μήνα.";
-		
+
 		cancelBtn = isEnglish ? "Cancel" : "Ακύρωση";
-		
+
 		orderHasBeenCanceled = isEnglish ? "Υour order has been canceled" : "Η παραγγελία σας έχει ακυρωθει";
 		resHasBeenCanceled = isEnglish ? "Υour reservation has been canceled" : "Η κράτηση σας έχει ακυρωθει";
 		timeLimitOrder = isEnglish ? "You can no longer cancel this order. The time limit is 10 minutes." : "Δεν μπορείτε πλέον να ακυρώσετε αυτήν την παραγγελία. Η προθεσμία είναι 10 λεπτά";
@@ -246,17 +246,17 @@ public class TextResources {
 		byPrice = isEnglish ? "By price" : "Ως προς την τιμή";
 		byPopularity = isEnglish ? "By popularity" : "Ως προς την Δημοτικότητα";
 		byName = isEnglish ? "By name" : "Ως προς το όνομα";
-		
+
 		cancelRes = isEnglish ? "You can't cancel this reservation" : "Δεν μπορείτε να ακυρώσετε αυτή την κράτηση";
 		welcomeProfile = isEnglish ? "Welcome, " : "Καλωσήρθες, ";
 		emailSent = isEnglish ? "Reminder email has been sent!" : "Η υπενθύμιση κωδικού έχει σταλθεί!";
-		
+
 		enterEmail = isEnglish ? "Enter the email address associated to your account" : "Εισάγετε το email του λογαρισμού σας";
 		enterRoom = isEnglish ? "Enter your room number" : "Εισάγετε τον αριθμό δωματίου σας";
-		
+
 		wrongInput = isEnglish ? "Wrong input" : "Λάθος δεδομένα";
 		networkError = isEnglish ? "Network error occured" : "Εμφανίστηκε προβλημα με το δίκτυο";
-		
+
 		wrongNumberOrPass = isEnglish ? "Wrong Number or Password" : "Λάθος αριθμός ή κωδικός";
 	}
 

@@ -23,12 +23,12 @@ import resources.TextResources;
 public class CompleteWindow extends JFrame {
 
 	/**
-	 * This Class creates the GUI window for the completion of each order/reservation
+	 * this class creates the GUI window for the completion of each order/reservation
 	 * 
-	 * The boolean isOrder is used to specify if the action is performed for an order or a reservation 
+	 * the boolean isOrder is used to specify if the action is performed for an order or a reservation 
 	 * and can differentiate the labels for each
 	 * 
-	 * The boolean needsCoupon is used for the time an order is above 20 euros so the window
+	 * the boolean needsCoupon is used for the time an order is above 20 euro so the window
 	 * needs to generate and display a coupon
 	 */
 	private static final long serialVersionUID = 1L;

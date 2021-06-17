@@ -14,9 +14,9 @@ import roomCustomer.Customer;
 public class ContactWindow extends JFrame {
 
 	/*
-	 * This Class creates the first window for the Contact page
+	 * this class creates the first window for the Contact page
 	 * 
-	 * The contents are: - social media buttons - phone call button - message area -
+	 * rhe contents are: - social media buttons - phone call button - message area -
 	 * some of the faq
 	 */
 

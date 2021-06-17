@@ -14,13 +14,13 @@ public class RoomCustomerReader {
 
 	public static ArrayList<Customer> customers;
 	public static ArrayList<Room> rooms;
-	
+
 	public RoomCustomerReader(){
 		customers = new ArrayList<Customer>();
 		rooms = new ArrayList<Room>();
 		readFile();
 	}
-	
+
 	private void readFile() {
 		/*
 		 * Reads the customers and the rooms of the hotel, from the txt file and
@@ -32,11 +32,11 @@ public class RoomCustomerReader {
 			String customerEmail = null;
 			int roomNumber = 0;
 			String roomPassword = null;
-			
-			
+
+
 			File roomCustomerFile = new File("./files/roomCustomer/Room-Customer.txt");
 			scanner = new Scanner(roomCustomerFile);
-			
+
 			while(scanner.hasNextLine())
 			{
 				String line = scanner.nextLine();
@@ -44,19 +44,19 @@ public class RoomCustomerReader {
 
 				roomNumber = Integer.parseInt(line.split("#")[0]);
 				roomPassword = line.split("#")[1];
-				
-				
-				/*Checks of the room is empty*/
+
+
+				/*Checks if the room is empty*/
 				if(!roomPassword.equals("null"))
 				{
 					customerName = line.split("#")[2];
 					customerEmail = line.split("#")[3];
 				}
-				
-				
+
+
 				customers.add(new Customer(customerName, customerEmail));
 				rooms.add(new Room(roomNumber, roomPassword));
-				
+
 				AssociateRoomCustomer();
 			}
 			scanner.close();
@@ -65,27 +65,27 @@ public class RoomCustomerReader {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	private void AssociateRoomCustomer() {
 		/*Associates the last added room to the last added customer
 		 * and the opposite
 		 */
-		
+
 		customers.get(customers.size()-1).setRoom(rooms.get(rooms.size()-1));
 		rooms.get(customers.size()-1).setCustomer(customers.get(rooms.size()-1));
 	}
-	
-	
+
+
 	public static ArrayList<Customer> getCustomersList(){
 		return customers;
 	}
-	
-	
+
+
 	public static ArrayList<Room> getRoomsList(){
 		return rooms;
 	}
-	
+
 }

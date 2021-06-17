@@ -18,9 +18,9 @@ import resources.TextResources;
 import roomCustomer.Customer;
 
 /*
- * This class is used to create the Profile page.
+ * this class is used to create the Profile page.
  * 
- * There the user will find a list with 3 buttons
+ * in the frame the user/customer will find a list with 3 buttons
  * 1. My Orders
  * 2. My Reservations
  * 3. My Coupons
