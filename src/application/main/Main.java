@@ -31,6 +31,7 @@ public class Main {
 	 * 
 	 * 	The external jars used are mail.jar and activation.jar. These can help sending an email to the customer.
 	 * 	***Sometimes  the email can't be sent due to server connection issues and it throws a server error ***
+	 * 	SOS! You have to sign in in segaleo's email first (in your browser) before you try to click the Remind me button as a user/customer.
 	 * 
 	 * 	The project doesn't use a database to store or retrieve data.
 	 *  All of the data used for products, activities, customers and more are stored in .txt files .
