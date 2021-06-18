@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -76,7 +77,7 @@ public class Menu {
 		FileReader reader = null;
 		BufferedReader inputReader  = null;
 		try {
-			reader = new FileReader(productFile);
+			reader = new FileReader(productFile, StandardCharsets.UTF_8);
 			inputReader = new BufferedReader(reader);
 			if(pathName.equalsIgnoreCase("files/drinks/Drinks")) {
 				id = 120;

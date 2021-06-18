@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import resources.TextResources;
@@ -41,7 +42,7 @@ public class ActivityReader {
 		//File format: the # is used to separate the question from the answer
 		File activityFile = new File(pathName + language);
 		try {
-			reader = new FileReader(activityFile);
+			reader = new FileReader(activityFile, StandardCharsets.UTF_8);
 			inputReader = new BufferedReader(reader);
 			
 			/*

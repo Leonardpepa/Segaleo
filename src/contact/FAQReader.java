@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import resources.TextResources;
@@ -36,7 +37,7 @@ public class FAQReader {
 		String lang = TextResources.endpointPath;
 		File qnaFile = new File(path + lang);
 		try {
-			reader = new FileReader(qnaFile);
+			reader = new FileReader(qnaFile, StandardCharsets.UTF_8);
 			inputReader = new BufferedReader(reader);
 
 			/*
