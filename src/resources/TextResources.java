@@ -133,7 +133,7 @@ public class TextResources {
 	
 	public static String andMore;
 	
-	public static String search;
+	
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
