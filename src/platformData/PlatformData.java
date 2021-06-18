@@ -72,6 +72,7 @@ public class PlatformData {
 					checkArrayAvailabilities(RoomCustomerReader.customers);
 					Order.numberOfOrders = (Integer) inputStream.readObject();
 					Reservation.numberOfReservations = (Integer) inputStream.readObject();
+					changeLanguageofStored();
 				} catch (EOFException e) {
 					break;
 				} catch (ClassNotFoundException e) {
@@ -119,6 +120,23 @@ public class PlatformData {
 					if(today.getTime() > activity.getSelDate().getTime()) {
 						Activity.getA()[activity.getSelday()][activity.getSelhour() + activity.getColumn()] += activity.getSelpeople(); 
 					}
+				}
+			}
+		}
+	}
+	
+	public static void changeLanguageofStored() {		
+		for(Customer customer: RoomCustomerReader.customers) {
+			for(Order order: customer.getOrders()) {
+				for(Product product: order.getProducts()) {
+					product.setName(Menu.findProduct(product.getId()).getName());
+					product.setDescription(Menu.findProduct(product.getId()).getDescription());
+				}
+			}
+			
+			for(Reservation reservation: customer.getReservations()) {
+				for(Activity activity: reservation.getActivities()) {
+					activity.setName(ActivityReader.findActivity(activity.getId()).getName());
 				}
 			}
 		}

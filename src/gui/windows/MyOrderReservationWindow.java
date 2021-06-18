@@ -18,6 +18,7 @@ import gui.factory.FontFactory;
 import gui.factory.LabelFactory;
 import gui.factory.LogoFactory;
 import login.Login;
+import menu.Menu;
 import order.Order;
 import order.Product;
 import platformData.PlatformData;
@@ -26,6 +27,7 @@ import reservation.Reservation;
 import resources.ColorResources;
 import resources.TextResources;
 import roomCustomer.Customer;
+import roomCustomer.RoomCustomerReader;
 /*
  * this class is used to create both the My Orders and My Reservations window
  * with a few differences
@@ -155,12 +157,12 @@ public class MyOrderReservationWindow extends JFrame {
 			for (Product p : order.getProducts()) {
 				JLabel product = LabelFactory.createLabel(order.getProd().get(p) + "x " + p.getName(), Color.WHITE,
 						FontFactory.poppins(13));
-				product.setBounds(210, y, 300, 20);
+				product.setBounds(190, y, 300, 20);
 				insidePanel.add(product);
 				y += 20;
 				if (y >= limit) {
-					JLabel andMore = LabelFactory.createLabel("and more", Color.white, FontFactory.poppins(13));
-					andMore.setBounds(210, y, 300, 20);
+					JLabel andMore = LabelFactory.createLabel(TextResources.andMore, Color.white, FontFactory.poppins(13));
+					andMore.setBounds(200, y, 300, 20);
 					insidePanel.add(andMore);
 					break; // the customer will be able to view the complete order when rating it
 				}
@@ -174,7 +176,7 @@ public class MyOrderReservationWindow extends JFrame {
 				insidePanel.add(product);
 				y += 20;
 				if (y >= limit) {
-					JLabel andMore = LabelFactory.createLabel("and more", Color.white, FontFactory.poppins(13));
+					JLabel andMore = LabelFactory.createLabel(TextResources.andMore, Color.white, FontFactory.poppins(13));
 					andMore.setBounds(210, y, 300, 20);
 					insidePanel.add(andMore);
 					break; // the customer will be able to view the complete reservation when rating it

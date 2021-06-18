@@ -185,4 +185,9 @@ public class Activity implements Serializable {
 		return ratings.isEmpty() ? 0 :sum/ratings.size();
 	}
 
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

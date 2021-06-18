@@ -218,7 +218,7 @@ public class CategoryWindow extends JFrame {
 		headerLabel.setBackground(headerLabelColor);
 		headerLabel.setBounds(16, 77, 150, 62);
 
-		search = new JTextField("Search");
+		search = new JTextField(TextResources.search);
 		search.setBounds(16, 160, 340, 30);
 
 		header.add(backButton);

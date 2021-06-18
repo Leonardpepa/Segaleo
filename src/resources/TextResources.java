@@ -130,6 +130,10 @@ public class TextResources {
 
 	public static String networkError;
 	public static String wrongNumberOrPass;
+	
+	public static String andMore;
+	
+	public static String search;
 
 	public void changeLanguage() {
 		greek = isEnglish ? "Greek" : "Ελληνικά";
@@ -258,6 +262,8 @@ public class TextResources {
 		networkError = isEnglish ? "Network error occured" : "Εμφανίστηκε προβλημα με το δίκτυο";
 
 		wrongNumberOrPass = isEnglish ? "Wrong Number or Password" : "Λάθος αριθμός ή κωδικός";
+		
+		andMore = isEnglish ? "And more" : "Περισσότερα";
 	}
 
 }
