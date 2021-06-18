@@ -64,7 +64,13 @@ public class MessageSender {
 
 			msg.setSentDate(new Date());
 			Transport.send(msg);
-			JOptionPane.showMessageDialog(null, TextResources.emailSent);
+			
+			if(isContact) {
+				JOptionPane.showMessageDialog(null, TextResources.emailSent);
+			}else {
+				JOptionPane.showMessageDialog(null, TextResources.reminderSent);
+			}
+				
 		} catch (MessagingException e) {
 			JOptionPane.showMessageDialog(null, TextResources.networkError, "Error", JOptionPane.WARNING_MESSAGE);
 		}
