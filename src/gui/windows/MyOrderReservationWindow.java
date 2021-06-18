@@ -172,12 +172,12 @@ public class MyOrderReservationWindow extends JFrame {
 				JLabel product = LabelFactory.createLabel(
 						reservation.getAct().get(activity) + "x " + activity.getName(), Color.WHITE,
 						FontFactory.poppins(13));
-				product.setBounds(210, y, 300, 20);
+				product.setBounds(190, y, 300, 20);
 				insidePanel.add(product);
 				y += 20;
 				if (y >= limit) {
 					JLabel andMore = LabelFactory.createLabel(TextResources.andMore, Color.white, FontFactory.poppins(13));
-					andMore.setBounds(210, y, 300, 20);
+					andMore.setBounds(200, y, 300, 20);
 					insidePanel.add(andMore);
 					break; // the customer will be able to view the complete reservation when rating it
 				}
